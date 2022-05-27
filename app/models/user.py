@@ -18,9 +18,6 @@ class User(db.Model, UserMixin):
     updatedAt = db.Column(db.DateTime, nullable=False, server_default=func.now(),
                           onupdate=func.now())
 
-
-# UPDATE users SET username = 'newuser' WHERE id=1;
-
     @property
     def password(self):
         return self.hashedPassword
