@@ -5,12 +5,12 @@ html {
   box-sizing: border-box;
   display: flex;
 }
-*,
+/* *,
 *:before,
 *:after {
   box-sizing: inherit;
   display: flex;
-}
+} */
 
 html,
 body,

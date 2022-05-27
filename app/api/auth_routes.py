@@ -3,7 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
-from utils import validation_errors_to_error_messages
+from .utils import validation_errors_to_error_messages
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -45,7 +45,7 @@ def logout():
 
 
 @auth_routes.route('/signup/fan', methods=['POST'])
-def sign_up():
+def sign_up_fan():
     """
     Creates a new user and logs them in
     """
@@ -66,7 +66,7 @@ def sign_up():
 
 
 @auth_routes.route('/signup/artist', methods=['POST'])
-def sign_up():
+def sign_up_artist():
     """
     Creates a new user and logs them in
     """
