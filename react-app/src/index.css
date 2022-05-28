@@ -1,16 +1,17 @@
 /* TODO Add site wide styles */
 
 /* add universal Box Sizing */
+
 html {
   box-sizing: border-box;
   display: flex;
 }
-/* *,
+
+*,
 *:before,
 *:after {
   box-sizing: inherit;
-  display: flex;
-} */
+}
 
 html,
 body,
@@ -30,6 +31,10 @@ body,
   /* used to only apply to splash, double check in  */
   overflow-y: auto;
   position: relative;
+}
+
+#root * {
+  display: flex;
 }
 
 /* THEME */

@@ -22,11 +22,28 @@ updated migration file and seed file
 
 backend - added route+utils, form, and model placeholder files to backend
 frontend - added store boilerplate and updated settings. added reset.css updated index.html/.css
-updated app file and decided on overall web site flow
+updated app file and decided on overall web site flow/routes, added boilerplate components
+
+FRONTEND
+    NAV
+    FOOTER
+    LOGIN
+    SIGNUP
+    SPLASH
+    STORES - users, artists, albums, songs
+    COMPONENTS
+
+MUSIC PLAYER
+AWS S3
+
+BACKEND:
+    DB MODELS
+    ROUTES
+    FORMS
+    SEEDS
 
 
 TO DO:
-discuss linters and auto formatters
 discuss git main protection and merging
 
 """
