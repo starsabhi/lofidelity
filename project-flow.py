@@ -20,13 +20,16 @@ updated migration file and seed file
 \d check tables
 
 
-backend - added route+utils, form, and model placeholder files to backend
-frontend - added store boilerplate and updated settings. added reset.css updated index.html/.css
-updated app file and decided on overall web site flow/routes, added boilerplate components
+Project Setup:
+    backend:
+        - added route+utils, form, and model placeholder files to backend
+    frontend:
+        - added store boilerplate and updated settings. added reset.css updated index.html/.css
+        - updated app file and decided on overall web site flow/routes, added boilerplate components
 
 FRONTEND
-    NAV
-    FOOTER
+    NAV - EK
+    FOOTER - AB
     LOGIN
     SIGNUP
     SPLASH
@@ -34,16 +37,12 @@ FRONTEND
     COMPONENTS
 
 MUSIC PLAYER
-AWS S3
+AWS S3 - Mark/Abi
 
 BACKEND:
-    DB MODELS
+    DB MODELS - AL/EK
     ROUTES
     FORMS
     SEEDS
-
-
-TO DO:
-discuss git main protection and merging
 
 """

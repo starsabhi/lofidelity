@@ -1,20 +1,26 @@
 /* Main NAV */
 
 .main-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: space-between;
-
   background-color: white;
   border: 1px solid rgb(238, 238, 238);
   height: 53px;
-  width: auto;
-  padding: 0px 16px;
+  width: 100%;
 
   position: sticky;
   top: 0px;
   left: 0px;
   z-index: 2000;
+}
+
+.main-nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 53px;
+  padding: 0px 16px;
+  max-width: 1260px;
+  margin: auto;
 }
 
 .main-nav-left {

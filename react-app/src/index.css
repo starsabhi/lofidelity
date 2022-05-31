@@ -4,7 +4,7 @@
 
 html {
   box-sizing: border-box;
-  display: flex;
+  /* display: flex; */
 }
 
 *,
@@ -25,9 +25,9 @@ body,
 }
 
 #root {
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   /* min-height: 100vh; */
   /* used to only apply to splash, double check in  */
