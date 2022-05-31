@@ -8,6 +8,8 @@ CREATE DATABASE dbNAme WITH OWNER appname;
 update user class model
 updated migration file and seed file
 
+added other models files and seed files
+
 
 
 #Heroku Database Commands
@@ -18,6 +20,8 @@ updated migration file and seed file
 
     ~$ heroku pg:psql postgresql-pointy-72360 --app lofidelity
 \d check tables
+
+
 
 
 Project Setup:
@@ -43,6 +47,6 @@ BACKEND:
     DB MODELS - AL/EK
     ROUTES
     FORMS
-    SEEDS
+    SEEDS - AL/EK
 
 """
