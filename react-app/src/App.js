@@ -11,6 +11,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Footer from './components/Footer';
+import UploadPhoto from './components/UploadPhoto';
 
 function App() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -40,6 +41,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <UploadPhoto />
       <Switch>
         <Route exact path='/'>
           {sessionUser ? (
