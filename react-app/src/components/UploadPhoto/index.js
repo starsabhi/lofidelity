@@ -8,7 +8,7 @@ const UploadPicture = () => {
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
     const sessionUser = useSelector((state) => state.session.user);
-    const id = sessionUser.id
+    const id = sessionUser?.id
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -18,8 +18,8 @@ const UploadPicture = () => {
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
         setImageLoading(true);
-
-        const res = await fetch(`api/artist/${id}/upload`, {
+        console.log('right before fetch')
+        const res = await fetch(`/api/artist/${id}/upload`, {
             method: "POST",
             body: formData,
         });
@@ -38,6 +38,7 @@ const UploadPicture = () => {
 
     const updateImage = (e) => {
         const file = e.target.files[0];
+        console.log(file)
         setImage(file);
     }
 

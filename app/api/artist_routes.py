@@ -8,7 +8,7 @@ artist_routes = Blueprint("artist", __name__)
 
 # we need to figure out what url for route here, and how this
 # will be nested within artist form or be a separate route
-@artist_routes.route("<:id>/upload", methods=["POST"])
+@artist_routes.route("/<int:id>/upload", methods=["POST"])
 @login_required
 def upload_profile_image(id):
     print('in route')
@@ -32,9 +32,11 @@ def upload_profile_image(id):
 
     url = upload["url"]
     print(url)
+    print("URL^")
     # flask_login allows us to get the current user from the request
-    current_artist = Artist.query.filter(Artist.userId == id)
-    print(current_artist)
+    current_artist = Artist.query.filter(Artist.userId == id).first()
+    print(current_artist.profileImageUrl)
+    print("current_artist^")
     current_artist.profileImageUrl = url
     # new_image = Image(user=current_user, url=url)
     db.session.commit()
