@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e792684ab26c
+Revision ID: da57da2a3dcf
 Revises: 
-Create Date: 2022-05-31 14:00:35.579167
+Create Date: 2022-05-31 14:13:14.679088
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e792684ab26c'
+revision = 'da57da2a3dcf'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,6 +21,8 @@ def upgrade():
     op.create_table('genres',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
+    sa.Column('createdAt', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
+    sa.Column('updatedAt', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
@@ -47,6 +49,8 @@ def upgrade():
     sa.Column('bgImageUrl', sa.String(length=1000), nullable=False),
     sa.Column('coverImageUrl', sa.String(length=1000), nullable=False),
     sa.Column('profileImageUrl', sa.String(length=1000), nullable=False),
+    sa.Column('createdAt', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
+    sa.Column('updatedAt', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.ForeignKeyConstraint(['genreId'], ['genres.id'], ),
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
@@ -59,17 +63,21 @@ def upgrade():
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('release', sa.Date(), nullable=False),
     sa.Column('about', sa.Text(), nullable=True),
-    sa.Column('imageUrl', sa.String(length=255), nullable=True),
+    sa.Column('imageUrl', sa.String(length=1000), nullable=True),
     sa.Column('price', sa.Float(), nullable=True),
+    sa.Column('createdAt', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
+    sa.Column('updatedAt', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.ForeignKeyConstraint(['artistId'], ['artists.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('songs',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('albumId', sa.Integer(), nullable=True),
+    sa.Column('albumId', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('trackNumber', sa.Integer(), nullable=False),
     sa.Column('audioUrl', sa.String(length=1000), nullable=False),
+    sa.Column('createdAt', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
+    sa.Column('updatedAt', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.ForeignKeyConstraint(['albumId'], ['albums.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
