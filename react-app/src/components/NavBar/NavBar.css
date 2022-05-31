@@ -1,0 +1,198 @@
+/* Main NAV */
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+
+  background-color: white;
+  border: 1px solid rgb(238, 238, 238);
+  height: 53px;
+  width: auto;
+  padding: 0px 16px;
+
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+}
+
+.main-nav-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+}
+
+.main-nav-logo {
+  height: 17px;
+  padding-right: 19px;
+}
+
+.main-nav-search {
+  height: 38px;
+  width: 342px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.main-nav-search-input {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding: 0px 35px 0px 10px;
+  background-color: rgb(243, 243, 243);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.main-nav-search-icon {
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  right: 9.5px;
+  top: 11px;
+}
+
+/* ******************** */
+
+.main-nav-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+}
+
+.main-nav-right-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+  list-style: none;
+  margin: 0px;
+}
+
+.main-nav-login,
+.main-nav-signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 15px;
+  height: 100%;
+}
+
+.main-nav-login a,
+.main-nav-signup a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: 100%;
+  height: 100%;
+}
+
+.main-nav-login:hover,
+.main-nav-signup:hover {
+  background-color: rgb(243, 243, 243);
+  cursor: pointer;
+}
+
+/* ******************** */
+/* ******************** */
+/* ******************** */
+/* LOGGED IN USER: */
+
+.main-nav-notification-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 59px;
+  height: 53px;
+  position: relative;
+  cursor: default;
+}
+
+/* .main-nav-notification-container:hover {
+  background-color: rgb(243, 243, 243);
+} */
+
+.nav-user-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 59px;
+  height: 53px;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-user-image-container:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.nav-user-image {
+  background: linear-gradient(to right, rgb(92, 84, 245), rgb(94, 150, 198));
+  height: 29px;
+  width: 29px;
+  border-radius: 29px;
+
+  background-position: center;
+  background-size: contain;
+}
+.nav-user-dropdown-container {
+  position: absolute;
+  background-color: #fff;
+  top: 47px;
+  right: 0px;
+  z-index: 2006;
+
+  width: 236px;
+  max-height: 400px;
+
+  border-radius: 3px;
+  border: 1px solid rgb(243, 243, 243);
+  /* box-shadow: 0 0 0 1px rgb(0 0 0 / 30%), 0 1px 4px 0 rgb(0 0 0 / 20%); */
+  cursor: default;
+}
+
+.nav-user-dropdown-welcome,
+.nav-user-dropdown-artist {
+  padding: 15px;
+}
+
+.nav-user-logout {
+  padding: 0px 15px;
+  padding-bottom: 15px;
+}
+
+.nav-user-logout-btn {
+  padding: 10px 15px;
+  border: 1px solid var(--mid1);
+  border-radius: 4px;
+  width: 100%;
+
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 200;
+  color: white;
+  background-color: var(--mid1);
+
+  cursor: pointer;
+  /* transition: border 0.5s, background-color 0.5s, color 0.5s; */
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+.nav-user-logout-btn:hover {
+  background-color: rgb(81, 136, 224);
+}

@@ -27,19 +27,24 @@ body,
 #root {
   /* display: flex; */
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   /* min-height: 100vh; */
   /* used to only apply to splash, double check in  */
   overflow-y: auto;
   position: relative;
 }
 
-#root * {
+/* too powerful of a selector c id, can't overwrite*/
+/* #root * {
   display: flex;
-}
+  justify-content: center;
+  align-items: center;
+} */
 
 /* THEME */
 :root {
-  font-family: Proxima Nova, Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   /* font-family: Helvetica; */
   /* box-sizing: border-box; */
 
