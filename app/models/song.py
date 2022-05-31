@@ -16,3 +16,13 @@ class Song(db.Model):
 
     # attribute_name = db.relationship("OtherClassName", back_populates="other_relationship_attribute_name")
     album = db.relationship("Album", back_populates="songs")
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'albumId': self.albumId,
+            'title': self.title,
+            'trackNumber': self.trackNumber,
+            'audioUrl': self.audioUrl
+        }
