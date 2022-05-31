@@ -8,11 +8,14 @@ def seed_users():
     demoArtist = User(
         username='DemoArtist', email='demoartist@user.io', password='password', isArtist=True)
     loFiUser = User(
-        username='LofiRocks', email='lofiRocks@user.io', password='password', isArtist=True)
+        username='LofiRocks', email='lofirocks@user.io', password='password', isArtist=True)
+    loFiBoss = User(
+        username='LofiBoss', email='lofiboss@user.io', password='password', isArtist=True)
 
     db.session.add(demoFan)
     db.session.add(demoArtist)
     db.session.add(loFiUser)
+    db.session.add(loFiBoss)
 
     db.session.commit()
 
