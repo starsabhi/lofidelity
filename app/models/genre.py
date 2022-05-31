@@ -2,6 +2,7 @@ from .db import db
 from sqlalchemy.sql import func
 
 
+# autopep8: off
 class Genre(db.Model):
     __tablename__ = 'genres'
 
@@ -10,5 +11,10 @@ class Genre(db.Model):
     createdAt = db.Column(db.DateTime, nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
 
-    # attribute_name = db.relationship("OtherClassName", back_populates="other_relationship_attribute_name")
     artists = db.relationship("Artist", back_populates="genre")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+        }

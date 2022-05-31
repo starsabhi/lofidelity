@@ -21,3 +21,18 @@ class Artist(db.Model):
     albums = db.relationship('Album', back_populates='artist')
     user = db.relationship('User', back_populates='artist')
     genre = db.relationship('Genre', back_populates='artists')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'userId': self.userId,
+            'genreId': self.genreId,
+            'location': self.location,
+            'artistUrl': self.artistUrl,
+            'description': self.description,
+            'bgImageUrl': self.bgImageUrl,
+            'coverImageUrl': self.coverImageUrl,
+            'profileImageUrl': self.profileImageUrl,
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt,
+        }
