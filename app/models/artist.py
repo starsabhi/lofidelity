@@ -1,4 +1,5 @@
 from .db import db
+from sqlalchemy.sql import func
 
 class Artist(db.Model):
   __tablename__= 'artists'
@@ -13,6 +14,8 @@ class Artist(db.Model):
   bgImageUrl = db.Column(db.String(1000), nullable=False)
   coverImageUrl = db.Column(db.String(1000), nullable=False)
   profileImageUrl = db.Column(db.String(1000), nullable=False)
+  createdAt = db.Column(db.DateTime, nullable=False, server_default=func.now())
+  updatedAt = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
 
   albums = db.relationship('Album', back_populates='artist')
   user = db.relationship('User', back_populates='artist')
