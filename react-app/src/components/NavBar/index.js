@@ -52,40 +52,42 @@ const NavBar = () => {
 
   return (
     <nav className='main-nav'>
-      <div className='main-nav-left'>
-        <NavLink exact to='/' className='main-nav-link'>
-          <img
-            className='main-nav-logo'
-            src={bandCampLogo}
-            alt='logo'
-            viewBox='0 0 100 100'
-            preserveAspectRatio='xMidYMid meet'
-          />
-        </NavLink>
+      <div className='main-nav-inner'>
+        <div className='main-nav-left'>
+          <NavLink exact to='/' className='main-nav-link'>
+            <img
+              className='main-nav-logo'
+              src={bandCampLogo}
+              alt='logo'
+              viewBox='0 0 100 100'
+              preserveAspectRatio='xMidYMid meet'
+            />
+          </NavLink>
 
-        <Link to='/explore' className='main-nav-search'>
-          <input
-            id='search'
-            className='main-nav-search-input'
-            type='text'
-            name='search'
-            placeholder='Search for artist, album, or track'
-            disabled
-            value={query ?? ''}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <img
-            className='main-nav-search-icon'
-            src={searchIcon}
-            alt='search'
-            viewBox='0 0 100 100'
-            preserveAspectRatio='xMidYMid meet'
-          />
-        </Link>
-      </div>
+          <Link to='/explore' className='main-nav-search'>
+            <input
+              id='search'
+              className='main-nav-search-input'
+              type='text'
+              name='search'
+              placeholder='Search for artist, album, or track'
+              disabled
+              value={query ?? ''}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <img
+              className='main-nav-search-icon'
+              src={searchIcon}
+              alt='search'
+              viewBox='0 0 100 100'
+              preserveAspectRatio='xMidYMid meet'
+            />
+          </Link>
+        </div>
 
-      <div className='main-nav-right'>
-        <ul className='main-nav-right-list'>{sessionLinks}</ul>
+        <div className='main-nav-right'>
+          <ul className='main-nav-right-list'>{sessionLinks}</ul>
+        </div>
       </div>
     </nav>
   );

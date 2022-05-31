@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from sqlalchemy.sql import func
 from flask_login import UserMixin
 
-
+# autopep8: off
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -13,10 +13,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashedPassword = db.Column(db.String(255), nullable=False)
     isArtist = db.Column(db.Boolean, nullable=False, default=False)
-    createdAt = db.Column(db.DateTime, nullable=False,
-                          server_default=func.now())
-    updatedAt = db.Column(db.DateTime, nullable=False, server_default=func.now(),
-                          onupdate=func.now())
+    createdAt = db.Column(db.DateTime, nullable=False, server_default=func.now())
+    updatedAt = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
+# autopep8: on
 
     @property
     def password(self):
