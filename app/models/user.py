@@ -15,6 +15,8 @@ class User(db.Model, UserMixin):
     isArtist = db.Column(db.Boolean, nullable=False, default=False)
     createdAt = db.Column(db.DateTime, nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
+
+    artist = db.relationship('Artist', back_populates='user')
 # autopep8: on
 
     @property
