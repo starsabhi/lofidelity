@@ -3,6 +3,7 @@ from flask_login import login_required
 from app import app
 from app.models import db, Album
 from app.forms import AlbumForm
+# from .react-app.src.images.defaults import WallpaperDog-20501846.jpg
 
 album_routes = Blueprint('album', __name__, url_prefix='/album')
 
@@ -33,7 +34,7 @@ def create_new_album():
       title = form.data['title'],
       release = form.data['release_year'],
       about = form.data['about'],
-      imageUrl = form.data['imageUrl'],
+      imageUrl = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwallpaper.dog%2Flofi&psig=AOvVaw1v3OhCWq1RUeZdR7yatl92&ust=1654192848068000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPDLmdvqjPgCFQAAAAAdAAAAABAD',
       price = form.data['price']
     )
 
@@ -63,7 +64,7 @@ def update_album(id):
     session_album.title = form.data['title']
     session_album.release = form.data['release_year']
     session_album.about = form.data['about']
-    session_album.imageUrl = form.data['imageUrl']
+    # session_album.imageUrl = form.data['imageUrl']
     session_album.price = form.data['price']
 
     db.session.commit()
