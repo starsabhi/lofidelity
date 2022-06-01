@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
 from wtforms.fields import FloatField, IntegerField, StringField, TextAreaField
-from wtforms.validators import DataRequired, FileRequired
+from wtforms.validators import DataRequired
 from app.models import Album
 
 class AlbumForm(FlaskForm):
