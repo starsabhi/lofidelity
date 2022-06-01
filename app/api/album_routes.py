@@ -24,6 +24,10 @@ def create_new_album():
   form=AlbumForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
+
+
+
+
     body = dict(
       artistId = form.data['artistId'],
       title = form.data['title'],
@@ -43,7 +47,7 @@ def create_new_album():
     return form.errors
 
 
-@album_routes.route('/<int:id>', methods=['PUT'])
+@album_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def update_album(id):
 
@@ -68,3 +72,12 @@ def update_album(id):
 
   if form.errors:
     return form.errors
+
+
+
+@album_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_album(id):
+  album = Album.query.get(id)
+  db.session.delete(album)
+  db.session.commit()
