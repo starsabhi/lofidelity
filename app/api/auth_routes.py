@@ -5,6 +5,8 @@ from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 from .utils import validation_errors_to_error_messages
 
+from sqlalchemy import or_
+
 auth_routes = Blueprint('auth', __name__)
 
 
@@ -27,9 +29,12 @@ def login():
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
+        # user = User.query.filter(User.email == form.data['email']).first()
+        user = User.query.filter(or_(
+            User.email == form.data['credential'], User.username == form.data['credential'])).first()
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
