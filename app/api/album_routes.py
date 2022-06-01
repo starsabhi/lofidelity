@@ -1,6 +1,5 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app import app
 from app.models import db, Album
 from app.forms import AlbumForm
 # from .react-app.src.images.defaults import WallpaperDog-20501846.jpg
@@ -26,15 +25,12 @@ def create_new_album():
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
 
-
-
-
     body = dict(
       artistId = form.data['artistId'],
       title = form.data['title'],
-      release = form.data['release_year'],
+      releaseYear = form.data['release_year'],
       about = form.data['about'],
-      imageUrl = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwallpaper.dog%2Flofi&psig=AOvVaw1v3OhCWq1RUeZdR7yatl92&ust=1654192848068000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPDLmdvqjPgCFQAAAAAdAAAAABAD',
+      imageUrl = None,
       price = form.data['price']
     )
 
@@ -48,7 +44,7 @@ def create_new_album():
     return form.errors
 
 
-@album_routes.route('/<int:id>', methods=['POST'])
+@album_routes.route('/<int:id>', methods=['Patch'])
 @login_required
 def update_album(id):
 
@@ -64,7 +60,6 @@ def update_album(id):
     session_album.title = form.data['title']
     session_album.release = form.data['release_year']
     session_album.about = form.data['about']
-    # session_album.imageUrl = form.data['imageUrl']
     session_album.price = form.data['price']
 
     db.session.commit()
@@ -80,5 +75,7 @@ def update_album(id):
 @login_required
 def delete_album(id):
   album = Album.query.get(id)
+  print('THIS IS THE ALBUM!!!!!!!!!!', album)
   db.session.delete(album)
   db.session.commit()
+  return album.to_dict()
