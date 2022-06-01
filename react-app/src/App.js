@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import LoginForm from './components/auth/LoginForm';
+import LoginPage from './components/LoginPage';
 import SignUpForm from './components/auth/SignUpForm';
 
 import NavBar from './components/NavBar';
@@ -65,7 +65,7 @@ function App() {
           <h1>WELCOME TO EXPLORE!</h1>
         </Route>
         <Route path='/login' exact={true}>
-          <LoginForm />
+          <LoginPage />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />

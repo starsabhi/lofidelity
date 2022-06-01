@@ -30,8 +30,9 @@ def password_matches(form, field):
         User.email == credential, User.username == credential)).first()
 
     if not user:
-        raise ValidationError('No such user exists.')
-    if not user.check_password(password):
+        pass
+        # raise ValidationError('No such user exists.')
+    elif not user.check_password(password):
         raise ValidationError('Password was incorrect.')
 
 
