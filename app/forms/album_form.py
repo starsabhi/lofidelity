@@ -9,5 +9,4 @@ class AlbumForm(FlaskForm):
   title = StringField('name', validators=[DataRequired()])
   release_year = IntegerField('release_year', validators=[DataRequired()])
   about = TextAreaField('about')
-  imageUrl = FileField('image', validators=[FileRequired()])
   price = FloatField('price')
