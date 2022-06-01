@@ -5,7 +5,7 @@ import { NavLink, Link, Route, Switch, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 
-import bandCampLogo from '../../images/bandcamp.svg';
+import logo from '../../images/logo.png';
 import searchIcon from '../../images/icons/search-icon.svg';
 import notificationsIcon from '../../images/icons/notification-icon.svg';
 
@@ -23,7 +23,7 @@ const NavBar = () => {
           <img
             className='main-nav-upload-icon'
             src={notificationsIcon}
-            alt='logo'
+            alt='notifications'
             viewBox='0 0 100 100'
             preserveAspectRatio='xMidYMid meet'
           />
@@ -57,7 +57,7 @@ const NavBar = () => {
           <NavLink exact to='/' className='main-nav-link'>
             <img
               className='main-nav-logo'
-              src={bandCampLogo}
+              src={logo}
               alt='logo'
               viewBox='0 0 100 100'
               preserveAspectRatio='xMidYMid meet'
