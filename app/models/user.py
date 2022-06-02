@@ -37,3 +37,10 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'isArtist': self.isArtist
         }
+
+    def safe_to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'isArtist': self.isArtist
+        }

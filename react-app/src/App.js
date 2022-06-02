@@ -9,7 +9,12 @@ import NavBar from './components/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
 // import UsersList from './components/UsersList';
 // import User from './components/User';
-import { authenticate } from './store/session';
+import * as sessionActions from './store/session';
+import * as userActions from './store/user';
+import * as artistActions from './store/artist';
+import * as albumActions from './store/album';
+import * as songActions from './store/song';
+
 import Footer from './components/Footer';
 // import UploadPhoto from './components/UploadPhoto';
 
@@ -18,25 +23,46 @@ function App() {
   const dispatch = useDispatch();
 
   //ensures that app has checked whether a user exists in the session
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isAuthLoaded, setIsAuthLoaded] = useState(false);
 
   //on first render, check whether jwt token credentials matches user in db,
   //if so add user to session Redux State
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      await dispatch(sessionActions.authenticate()).catch((res) =>
+        console.log(res)
+      );
       //calls setUser() if user is authenticated
-      setIsLoaded(true);
+      setIsAuthLoaded(true);
+
+      //eager load Users, Artists,Albums, Songs from in db into state
+      dispatch(userActions.getAllUsersThunk()).then(
+        () => true
+        // setIsUsersLoaded(true)
+      );
+
+      dispatch(artistActions.getAllArtistsThunk()).then(
+        () => true
+        // setIsArtistLoaded(true)
+      );
+
+      dispatch(albumActions.getAllAlbumsThunk()).then(
+        () => true
+        // setIsAlbumLoaded(true)
+      );
+
+      dispatch(songActions.getAllSongsThunk()).then(
+        () => true
+        // setIsSongLoaded(true)
+      );
     })();
   }, [dispatch]);
 
-  //eager load users, artists, albums/songs,
-
-  if (!isLoaded) {
+  if (!isAuthLoaded) {
     return null;
   }
 
-  console.log(sessionUser);
+  console.log('USER:', sessionUser);
 
   return (
     <BrowserRouter>

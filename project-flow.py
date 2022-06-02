@@ -13,48 +13,48 @@ added other models files and seed files
 
 
 #Heroku Database Commands
-    github build, automatically runs the db upgrade, but not seed
+    github build, automatically runs the db migrate and upgrade, but not seed
 #resetting database, on Heroku database GUI resets PK ids
-    ~$ heroku run -a lofidelity-test flask db migrate
-    ~$ heroku run -a lofidelity-test flask db upgrade
-    ~$ heroku run -a lofidelity-test flask seed all
+    ~$ heroku run -a lofi-test flask db migrate
+    ~$ heroku run -a lofi-test flask db upgrade
+    ~$ heroku run -a lofi-test flask seed all
 
-    ~$ heroku pg:psql postgresql-pointy-72360 --app lofidelity
-\d check tables
-
-
+    ~$ heroku pg:psql postgresql-pointy-72360 --app lofi-test
+        \d check tables
 
 
-Project Setup:
+
+
+Initial Project Setup:
     backend:
         - added route+utils, form, and model placeholder files to backend
     frontend:
         - added store boilerplate and updated settings. added reset.css updated index.html/.css
         - updated app file and decided on overall web site flow/routes, added boilerplate components
 
-FRONTEND
-    NAV - EK - add links to profile menu
-    FOOTER - AB - REVAMP
+
+COMPONENTS
+    NAV - EK - TODO: add links to profile menu
+    FOOTER - AB - REVAMP - TODO
     LOGIN - EK - DONE
-    SIGNUP - EK
-    SPLASH PAGE -
-    EXPLORE PAGE -
-    MODALS - delete, uploads, edits - EK
+    SIGNUP - EK - TODO
+    SPLASH PAGE - AL - TODO
+    EXPLORE PAGE - AB - TODO
+    MODALS - delete, uploads, edits - EK - TODO
     ARTIST PAGE: -
-        - ARTIST DETAILS and COVER PHOTO
-        - ALL ALBUMS CONTAINER (component)
-        - ALBUM DETAIL CONTAINER (component)
+        - ARTIST DETAILS and COVER PHOTO - MO - TODO
+            - ALL ALBUMS CONTAINER (component) -
+            - ALBUM DETAIL CONTAINER (component) -
 
+STORES
+    - users - EK - DONE
+    - artists - MO/AL - DONE
+    - albums - EK - DONE
+    - songs - AB/EK - DONE
 
-    STORES
-      - users - EK - DONE
-      - artists - MO/AL
-      - albums - EK - DONE
-      - songs - Abi/EK - DONE
+MUSIC PLAYER - TODO
 
-MUSIC PLAYER
-
-AWS S3 - MO/Abi
+AWS S3 - MO/AB
     - separate buckets songs vs images (2 keys/secrets)
     - 2 helper functions
     - download
@@ -65,13 +65,13 @@ BACKEND:
     ROUTES -
         -artists - MO - DONE
         -albums - AB - DONE
-        -songs - Abi - DONE
+        -songs - AB - DONE
     FORMS
         -artists - EK
         -albums - AB
-        -songs - Abi
+        -songs - AB
         -auth - EK
 
-TO DO: NEED TO RE-MIGRATE PRODUCTION!
+TODO: NEED TO RE-MIGRATE PRODUCTION!
 
 """
