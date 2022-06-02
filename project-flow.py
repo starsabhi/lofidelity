@@ -33,21 +33,45 @@ Project Setup:
         - updated app file and decided on overall web site flow/routes, added boilerplate components
 
 FRONTEND
-    NAV - EK
-    FOOTER - AB
-    LOGIN
-    SIGNUP
-    SPLASH
-    STORES - users, artists, albums, songs
-    COMPONENTS
+    NAV - EK - add links to profile menu
+    FOOTER - AB - REVAMP
+    LOGIN - EK - DONE
+    SIGNUP - EK
+    SPLASH PAGE -
+    EXPLORE PAGE -
+    MODALS - delete, uploads, edits - EK
+    ARTIST PAGE: -
+        - ARTIST DETAILS and COVER PHOTO
+        - ALL ALBUMS CONTAINER (component)
+        - ALBUM DETAIL CONTAINER (component)
+
+
+    STORES
+      - users - EK
+      - artists - MO
+      - albums - EK
+      - songs - Group/Abi
 
 MUSIC PLAYER
-AWS S3 - Mark/Abi
+
+AWS S3 - MO/Abi
+    - separate buckets songs vs images (2 keys/secrets)
+    - 2 helper functions
+    - download
 
 BACKEND:
-    DB MODELS - AL/EK
-    ROUTES - everyone
-    FORMS - everyone
-    SEEDS - AL/EK
+    DB MODELS - AL/EK - DONE
+    SEEDS - AL/EK - DONE
+    ROUTES -
+        -artists - MO - DONE
+        -albums - AB - DONE
+        -songs - Abi (revamp)
+    FORMS
+        -artists - EK
+        -albums - AB
+        -songs - Abi
+        -auth - EK
+
+TO DO: NEED TO RE-MIGRATE PRODUCTION!
 
 """
