@@ -9,8 +9,10 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 import * as sessionActions from './store/session';
-import * as albumActions from './store/album';
 import * as userActions from './store/user';
+import * as artistActions from './store/artist';
+import * as albumActions from './store/album';
+import * as songActions from './store/song';
 
 //create the redux store
 import { Provider } from 'react-redux';
@@ -23,8 +25,10 @@ const store = configureStore();
 if (process.env.NODE_ENV !== 'production') {
   window.store = store; //easy access to store and its methods in browser console
   window.sessionActions = sessionActions; //test session redux state
-  window.albumActions = albumActions; //test session redux state
   window.userActions = userActions; //test session redux state
+  window.artistActions = artistActions; //test session redux state
+  window.albumActions = albumActions; //test session redux state
+  window.songActions = songActions; //test session redux state
 }
 
 //root wrapper used to wrap <App/>  in various provider components

@@ -278,7 +278,41 @@ const albumReducer = (state = initialState, action) => {
       return newState;
 
     case SA.GET_SONGS:
+      //add all songsByAlbumId to state
       newState.songsByAlbumId = action.payload.songsByAlbumId;
+      return newState;
+
+    // Most likely will never use this route
+    case SA.GET_SONG:
+      albumId = action.payload.albumId;
+      songId = action.payload.songId;
+
+      //find index of song to update (if exists)
+      index = newState.songsByAlbumId[albumId]?.findIndex(
+        (song) => song.id === parseInt(songId)
+      );
+
+      if (index !== -1 && index !== undefined) {
+        //if song exists in state
+        //replace song in songsByAlbumId array
+        newState.songsByAlbumId[albumId][index] = action.payload.song;
+      } else {
+        if (newState.songsByAlbumId[albumId]) {
+          //add song to end of array
+          newState.songsByAlbumId[albumId].push(action.payload.song);
+
+          //sort array based on trackNumber in Asc order
+          newState.songsByAlbumId[albumId].sort((a, b) => {
+            return a.trackNumber - b.trackNumber;
+          });
+        } else {
+          // add albumId property to state
+          newState.songsByAlbumId[albumId] = [];
+          //add song to end of array
+          newState.songsByAlbumId[albumId].push(action.payload.song);
+        }
+      }
+
       return newState;
 
     case SA.ADD_SONG:
@@ -288,10 +322,11 @@ const albumReducer = (state = initialState, action) => {
       //add Song to end of array sorted by "trackNumber"
       newState.songsByAlbumId[albumId].push(action.payload.song);
 
+      //not specifying trackNumber, when add new song
       //re-sort array based on trackNumber in Asc order
-      newState.songsByAlbumId[artistId].sort((a, b) => {
-        return a.trackNumber - b.trackNumber;
-      });
+      // newState.songsByAlbumId[albumId].sort((a, b) => {
+      //   return a.trackNumber - b.trackNumber;
+      // });
       return newState;
 
     case SA.UPDATE_SONG:
@@ -306,6 +341,11 @@ const albumReducer = (state = initialState, action) => {
       newState.songsByAlbumId[albumId][index] = action.payload.updatedSong;
       return newState;
 
+    case SA.UPDATE_SONG_TRACKS:
+      albumId = action.payload.albumId;
+      newState.songsByAlbumId.albumId = action.payload.songList;
+      return newState;
+
     case SA.DELETE_SONG:
       albumId = action.payload.albumId;
       songId = action.payload.songId;
@@ -316,7 +356,7 @@ const albumReducer = (state = initialState, action) => {
       );
 
       //remove song from songsByAlbumId array
-      newState.songsByAlbumId[artistId].splice(index, 1);
+      newState.songsByAlbumId[albumId].splice(index, 1);
       return newState;
 
     default:
