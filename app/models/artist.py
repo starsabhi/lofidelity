@@ -12,9 +12,9 @@ class Artist(db.Model):
     location = db.Column(db.String(255), nullable=False)
     artistUrl = db.Column(db.String(255), nullable=False, unique=True)
     description = db.Column(db.Text)
-    bgImageUrl = db.Column(db.String(1000), nullable=False)
-    coverImageUrl = db.Column(db.String(1000), nullable=False)
-    profileImageUrl = db.Column(db.String(1000), nullable=False)
+    bgImageUrl = db.Column(db.String(1000))
+    coverImageUrl = db.Column(db.String(1000))
+    profileImageUrl = db.Column(db.String(1000))
     createdAt = db.Column(db.DateTime, nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
 
