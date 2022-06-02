@@ -21,9 +21,9 @@ def user(id):
 
 # get all users normalized in safe data form
 @user_routes.route('/ids')
-@login_required
+# @login_required
 def get_all_users():
     users = User.query.all()
-    user_dict_list = [user.to_dict() for user in users]
+    user_dict_list = [user.safe_to_dict() for user in users]
     users_by_artistId = {user['id']: user for user in user_dict_list}
     return {'usersByUserId': users_by_artistId}

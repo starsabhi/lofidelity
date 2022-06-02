@@ -1,7 +1,7 @@
 //Redux state slice to hold users from db
 
 //ACTION TYPES:
-const GET_ALL_USERS = 'users/getAllUsers';
+const GET_ALL_USERS = 'users/GET_ALL_USERS';
 
 //REGULAR ACTION CREATORS (implicit returns)
 
