@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Artist
+from app.models import db, Artist, Genre
 from app.forms import ArtistForm
 
 from app.s3_helpers import (
@@ -18,9 +18,23 @@ def get_all_artists():
     artist_dict_list = [artist.to_dict() for artist in artists]
     artists_by_artistId = {artist['id']: artist for artist in artist_dict_list}
 
+    genres = Genre.query.all()
+    genre_dict_list = [genre.to_dict() for genre in genres]
+    artists_by_genreId = {}
+
+    for genre in genre_dict_list:
+      artists_by_genreId[genre['id']] = []
+
+    for artist in artist_dict_list:
+      artists_by_genreId[artist['genreId']].append(artist)
+
+    # for genre in genres:
+    # artistsByGenreId[genre['id']] = [Artist.query.filter(Artist.genreId == genre.id).all()]
+
     return {
         'allArtists': artist_dict_list,
         'artistsByArtistId': artists_by_artistId,
+        'artistsByGenreId': artists_by_genreId
     }
 
 
@@ -207,7 +221,13 @@ def upload_background_image(id):
     db.session.commit()
     return {"url": url}
 
-
+@artist_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_artist(id):
+    artist = Artist.query.get(id)
+    db.session.delete(artist)
+    db.session.commit()
+    return {'message': 'Success'}
 # TEST ROUTES
 
 

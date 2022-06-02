@@ -18,7 +18,7 @@ class Artist(db.Model):
     createdAt = db.Column(db.DateTime, nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
 
-    albums = db.relationship('Album', back_populates='artist')
+    albums = db.relationship('Album', back_populates='artist', cascade='all, delete, delete-orphan')
     user = db.relationship('User', back_populates='artist')
     genre = db.relationship('Genre', back_populates='artists')
 
@@ -27,6 +27,7 @@ class Artist(db.Model):
             'id': self.id,
             'userId': self.userId,
             'genreId': self.genreId,
+            'name': self.name,
             'location': self.location,
             'artistUrl': self.artistUrl,
             'description': self.description,
