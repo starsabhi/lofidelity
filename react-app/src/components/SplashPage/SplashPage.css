@@ -1,0 +1,28 @@
+.splash-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.splash-hooks {
+  text-align: center;
+}
+
+.splash-hooks h1 {
+  font-size: 400%;
+}
+
+.splash-hooks p {
+  font-size: 125%;
+  margin: 2.5%;
+}
+
+.splash-auth-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  margin-top: 10%;
+}

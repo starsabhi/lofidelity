@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import LoginPage from './components/LoginPage';
 import SignUpForm from './components/auth/SignUpForm';
+import SplashPage from './components/SplashPage';
 
 import NavBar from './components/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -82,7 +83,7 @@ function App() {
           ) : (
             // else show splash page
             // <SplashPage isLoaded={isLoaded} />
-            <h1>WELCOME TO SPLASH!</h1>
+            <SplashPage />
           )}
         </Route>
         <Route path='/explore'>
