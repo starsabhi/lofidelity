@@ -1,7 +1,7 @@
 import './NavBar.css';
 
-import React, { useEffect, useState } from 'react';
-import { NavLink, Link, Route, Switch, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 

@@ -4,14 +4,14 @@ import thunk from 'redux-thunk';
 //import slices of state
 import sessionReducer from './session';
 // import artistReducer from './artist';
-// import albumReducer from './album';
+import albumReducer from './album';
 // import songReducer from './song';
 // import userReducer from './user';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   // artist: artistReducer,
-  // album: albumReducer,
+  album: albumReducer,
   // song: songReducer,
   // user: userReducer,
 });

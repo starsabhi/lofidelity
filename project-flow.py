@@ -15,8 +15,9 @@ added other models files and seed files
 #Heroku Database Commands
     github build, automatically runs the db upgrade, but not seed
 #resetting database, on Heroku database GUI resets PK ids
-    ~$ heroku run -a lofidelity flask db upgrade
-    ~$ heroku run -a lofidelity flask seed all
+    ~$ heroku run -a lofidelity-test flask db migrate
+    ~$ heroku run -a lofidelity-test flask db upgrade
+    ~$ heroku run -a lofidelity-test flask seed all
 
     ~$ heroku pg:psql postgresql-pointy-72360 --app lofidelity
 \d check tables
@@ -45,8 +46,8 @@ AWS S3 - Mark/Abi
 
 BACKEND:
     DB MODELS - AL/EK
-    ROUTES
-    FORMS
+    ROUTES - everyone
+    FORMS - everyone
     SEEDS - AL/EK
 
 """

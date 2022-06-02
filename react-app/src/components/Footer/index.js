@@ -12,12 +12,14 @@ const Footer = () => {
                 <img
                   src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr3RdVtDNdUU-Zui7pAKxXoTeLUzT4TRsDYA&usqp=CAU'
                   height='20px'
+                  alt='github'
                 ></img>
               </a>
               <a href='https://github.com/Amlovern'>
                 <img
                   src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png'
                   height='25px'
+                  alt='linkedIn'
                 ></img>
               </a>
             </div>
@@ -29,12 +31,14 @@ const Footer = () => {
                 <img
                   src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr3RdVtDNdUU-Zui7pAKxXoTeLUzT4TRsDYA&usqp=CAU'
                   height='20px'
+                  alt='github'
                 ></img>
               </a>
               <a href='https://www.linkedin.com/in/elankatz/'>
                 <img
                   src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png'
                   height='25px'
+                  alt='linkedIn'
                 ></img>
               </a>
             </div>
@@ -46,12 +50,14 @@ const Footer = () => {
                 <img
                   src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr3RdVtDNdUU-Zui7pAKxXoTeLUzT4TRsDYA&usqp=CAU'
                   height='20px'
+                  alt='github'
                 ></img>
               </a>
               <a href='https://github.com/thisismydisplay'>
                 <img
                   src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png'
                   height='25px'
+                  alt='linkedIn'
                 ></img>
               </a>
             </div>
@@ -63,12 +69,14 @@ const Footer = () => {
                 <img
                   src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr3RdVtDNdUU-Zui7pAKxXoTeLUzT4TRsDYA&usqp=CAU'
                   height='20px'
+                  alt='github'
                 ></img>
               </a>
               <a href='https://www.linkedin.com/in/abhishek-bornak-semasna514865/'>
                 <img
                   src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png'
                   height='25px'
+                  alt='linkedIn'
                 ></img>
               </a>
             </div>

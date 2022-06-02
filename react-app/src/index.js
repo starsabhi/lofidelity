@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 import * as sessionActions from './store/session';
+import * as albumActions from './store/album';
 
 //create the redux store
 import { Provider } from 'react-redux';
@@ -21,6 +22,7 @@ const store = configureStore();
 if (process.env.NODE_ENV !== 'production') {
   window.store = store; //easy access to store and its methods in browser console
   window.sessionActions = sessionActions; //test session redux state
+  window.albumActions = albumActions; //test session redux state
 }
 
 //root wrapper used to wrap <App/>  in various provider components
