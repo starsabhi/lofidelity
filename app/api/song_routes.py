@@ -35,7 +35,6 @@ def get_all_songs():
     return {'songsByAlbumId': songs_by_albumId}
 
 
-
 # GET ONE SONG BY ID
 @song_routes.route('<int:id>', methods=['GET'])
 def get_one_song(id):
@@ -43,30 +42,30 @@ def get_one_song(id):
     return song.to_dict()
 
 
-# ADD ONE SONG
-@song_routes.route('', methods=["POST"])
-@login_required
-def add_new_song():
-    form = SongForm()
+# # ADD ONE SONG
+# @song_routes.route('', methods=["POST"])
+# @login_required
+# def add_new_song():
+#     form = SongForm()
 
-    form['csrf_token'].data = request.cookies['csrf_token']
+#     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        params = dict(
-            albumId = form.data['albumId'],
-            title = form.data['title'],
-            trackNumber = form.data['trackNumber'],
-            audioUrl = form.data['audioUrl']
-        )
+#     if form.validate_on_submit():
+#         params = dict(
+#             albumId=form.data['albumId'],
+#             title=form.data['title'],
+#             trackNumber=form.data['trackNumber'],
+#             audioUrl=form.data['audioUrl']
+#         )
 
-        new_song = Song(**params)
-        db.session.add(new_song)
-        db.session.commit()
+#         new_song = Song(**params)
+#         db.session.add(new_song)
+#         db.session.commit()
 
-        return new_song.to_dict()
+#         return new_song.to_dict()
 
-    if form.errors:
-        return form.errors
+#     if form.errors:
+#         return form.errors
 
 
 # ADD ONE SONG
@@ -99,7 +98,8 @@ def add_song(id):
 
         albumId = form.data['albumId']
 
-        album_last_track = Song.query.filter(Song.albumId == albumId).order_by(Song.trackNumber.asc()).first()
+        album_last_track = Song.query.filter(
+            Song.albumId == albumId).order_by(Song.trackNumber.asc()).first()
 
         if album_last_track:
             trackNumber = album_last_track.trackNumber + 1
@@ -107,10 +107,10 @@ def add_song(id):
             trackNumber = 1
 
         params = dict(
-            albumId = form.data['albumId'],
-            title = form.data['title'],
-            trackNumber = trackNumber,
-            audioUrl = url
+            albumId=form.data['albumId'],
+            title=form.data['title'],
+            trackNumber=trackNumber,
+            audioUrl=url
         )
 
         new_song = Song(**params)
@@ -121,7 +121,6 @@ def add_song(id):
 
     if form.errors:
         return form.errors
-
 
 
 # UPDATE ONE SONG
@@ -153,7 +152,6 @@ def update_song(id):
         return form.errors
 
 
-
 # DELETE ONE SONG
 @song_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
@@ -162,8 +160,7 @@ def delete_song(id):
     db.session.delete(song)
     db.session.commit()
 
-    return {'message':'Success'}
-
+    return {'message': 'Success'}
 
 
 # TEST ROUTES
@@ -174,42 +171,32 @@ def delete_song(id):
 
 
 # GET ONE Song by songId
-# fetch("/api/songs/1").then(res=> res.json()).then(data => console.log(data))
+# fetch("/api/songs/4").then(res=> res.json()).then(data => console.log(data))
 
 
 # POST New Song
-
-# fetch('/api/songs', {
-#     method: 'POST',
-#     headers: {'Content-Type': 'application/json'},
-#     body: JSON.stringify({
-
-#     }),
-# })
-# .then((res)=> res.json())
-# .then((data)=> console.log(data))
+# need to test with S3 on the front end
 
 
 # PATCH
 # Check if artistUrl unique validation works
 # Check if login required works
 
-# fetch('/api/artists/4', {
+# fetch('/api/songs/4', {
 #     method: 'PATCH',
 #     headers: {'Content-Type': 'application/json'},
 #     body: JSON.stringify({
-            # albumId : '4'
-            # title :  ''
-            # trackNumber :
-            # audioUrl :
+#       albumId: '2',
+#       title:  'UPDATED',
+#       trackNumber: 3
 #     }),
 # })
 # .then((res)=> res.json())
 # .then((data)=> console.log(data))
 
 # NO DELETE ROUTE
-# fetch('/api/artists/4', {
+# fetch('/api/songs/4', {
 #     method: 'DELETE',
 # })
-# .then((res)= > res.json())
-# .then((data)= > console.log(data))
+# .then((res)=> res.json())
+# .then((data)=> console.log(data))
