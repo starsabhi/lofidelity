@@ -1,22 +1,22 @@
 from flask import Blueprint, request
+from flask_login import login_required
 from app.models import db, Artist
 from app.forms import ArtistForm
 
-from flask_login import current_user, login_required
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
-artist_routes = Blueprint("artists", __name__)
+artist_routes = Blueprint('artists', __name__)
 
 
-# GET ALL ARTISTS IN DATABASE
-# can move to explore route if end up implementing
-@artist_routes.route('/', methods=['GET'])
+# GET ALL ARTISTS
+@artist_routes.route('', methods=['GET'])
 def get_all_artists():
-    artists = Artist.query.all()
+
+    artists = Artist.query.order_by(Artist.name.asc()).all()
 
     artist_dict_list = [artist.to_dict() for artist in artists]
-    artists_by_artistId = {artist["id"]: artist for artist in artist_dict_list}
+    artists_by_artistId = {artist['id']: artist for artist in artist_dict_list}
 
     return {
         'allArtists': artist_dict_list,
@@ -25,9 +25,9 @@ def get_all_artists():
 
 
 # GET ONE ARTIST BY ID
-@artist_routes.route('/<artistUrl>')
-def get_one_artists(artistUrl):
-    artist = Artist.query.filter(Artist.artistUrl == artistUrl).first()
+@artist_routes.route('/<int:id>')
+def get_one_artist(id):
+    artist = Artist.query.get(id)
     return artist.to_dict()
 
 
@@ -46,7 +46,6 @@ interaction. Note: this exception is only raised in debug mode"
 @artist_routes.route('', methods=['POST'])
 @login_required
 def post_new_artist():
-
     form = ArtistForm()
     # Get csrf_token from request cookie and add to form manually
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -60,9 +59,9 @@ def post_new_artist():
             location=form.data["location"],
             artistUrl=form.data["artistUrl"],
             description=form.data["description"],
-            bgImageUrl=form.data["bgImageUrl"],
-            coverImageUrl=form.data["coverImageUrl"],
-            profileImageUrl=form.data["profileImageUrl"],
+            bgImageUrl=None,
+            coverImageUrl=None,
+            profileImageUrl=None,
         )
 
         new_artist = Artist(**params)
@@ -79,7 +78,7 @@ def post_new_artist():
         return form.errors
 
 
-# PATCH ARTIST - LOGGED-IN USER ONLY
+# UPDATE ONE ARTIST - LOGGED-IN USER ONLY
 @artist_routes.route('/<int:id>', methods=['PATCH'])
 @login_required
 def patch_artist(id):
@@ -100,9 +99,9 @@ def patch_artist(id):
         session_artist.location = form.data["location"]
         session_artist.artistUrl = form.data["artistUrl"]
         session_artist.description = form.data["description"]
-        session_artist.bgImageUrl = form.data["bgImageUrl"]
-        session_artist.coverImageUrl = form.data["coverImageUrl"]
-        session_artist.profileImageUrl = form.data["profileImageUrl"]
+        # session_artist.bgImageUrl = form.data["bgImageUrl"]
+        # session_artist.coverImageUrl = form.data["coverImageUrl"]
+        # session_artist.profileImageUrl = form.data["profileImageUrl"]
 
         db.session.commit()
 
@@ -116,12 +115,11 @@ def patch_artist(id):
         return form.errors
 
 
-# we need to figure out what url for route here, and how this
-# will be nested within artist form or be a separate route
-@artist_routes.route("/<int:id>/upload", methods=["POST"])
+# UPDATE ARTIST profileImageUrl
+@artist_routes.route("/<int:id>/profile", methods=["POST"])
 @login_required
 def upload_profile_image(id):
-    print('in route')
+
     if "image" not in request.files:
         return {"errors": "image required"}, 400
 
@@ -141,49 +139,74 @@ def upload_profile_image(id):
         return upload, 400
 
     url = upload["url"]
-    print(url)
-    print("URL^")
-    # flask_login allows us to get the current user from the request
-    current_artist = Artist.query.filter(Artist.userId == id).first()
-    print(current_artist.profileImageUrl)
-    print("current_artist^")
+
+    current_artist = Artist.query.get(id)
     current_artist.profileImageUrl = url
-    # new_image = Image(user=current_user, url=url)
     db.session.commit()
     return {"url": url}
 
 
-"""
-state = {
-    albumsByArtist: {
-        artistId1: [albumObj1, albumObj2, albumObj3],
-        artistId2: [albumObj1, albumObj2, albumObj3],
-    },
-    albumId1: albumObj1,
-    albumId2: albumObj2,
-    albumId3: albumObj3,
-}
+# UPDATE ARTIST coverImageUrl
+@artist_routes.route("/<int:id>/cover", methods=["POST"])
+@login_required
+def upload_cover_image(id):
 
-# /albums/artists/:artistUrl
-@album_routes.route('/', methods=['GET'])
-def get_all_albums():
-    albums = Album.query.all()
-    albums_dict_list = [album.to_dict() for album in albums]
-    albums_by_albumId = {album['id']: album for album in albums_dict_list}
-    albums_by_artistId = {}
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
 
-    for album in albums_dict_list:
-        if album.artistId in albums_by_artistId:
-            albums_by_artistId[album['artistId']].append(album)
-        else:
-            albums_by_artistId[album['artistId']] = []
-            albums_by_artistId[album['artistId']].append(album)
+    image = request.files["image"]
 
-    return {
-        'albumsByArtistId': albums_by_artistId,
-        'albumsByAlbumId': albums_by_albumId,
-    }
-"""
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+
+    current_artist = Artist.query.get(id)
+    current_artist.coverImageUrl = url
+    db.session.commit()
+    return {"url": url}
+
+
+# UPDATE ARTIST bgImageUrl
+@artist_routes.route("/<int:id>/background", methods=["POST"])
+@login_required
+def upload_background_image(id):
+
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files["image"]
+
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+
+    current_artist = Artist.query.get(id)
+    current_artist.bgImageUrl = url
+    db.session.commit()
+    return {"url": url}
+
 
 # TEST ROUTES
 
@@ -210,9 +233,9 @@ def get_all_albums():
 # location: 'Washington',
 # artistUrl: 'lofitest',
 # description: 'Ugh sequelize and express are so much better',
-# bgImageUrl: 'default',
-# coverImageUrl: 'default',
-# profileImageUrl: 'default',
+# //bgImageUrl: 'default',
+# //coverImageUrl: 'default',
+# //profileImageUrl: 'default',
 #     }),
 # })
 # .then((res)=> res.json())
@@ -233,9 +256,9 @@ def get_all_albums():
 #       location: 'UPDATED',
 #       artistUrl: 'UPDATE',
 #       description: 'UPDATED',
-#       bgImageUrl: 'default',
-#       coverImageUrl: 'default',
-#       profileImageUrl: 'default',
+#       //bgImageUrl: 'default',
+#       //coverImageUrl: 'default',
+#       //profileImageUrl: 'default',
 #     }),
 # })
 # .then((res)=> res.json())

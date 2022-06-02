@@ -6,12 +6,12 @@ import LoginPage from './components/LoginPage';
 import SignUpForm from './components/auth/SignUpForm';
 
 import NavBar from './components/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+// import ProtectedRoute from './components/auth/ProtectedRoute';
+// import UsersList from './components/UsersList';
+// import User from './components/User';
 import { authenticate } from './store/session';
 import Footer from './components/Footer';
-import UploadPhoto from './components/UploadPhoto';
+// import UploadPhoto from './components/UploadPhoto';
 
 function App() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -30,7 +30,7 @@ function App() {
     })();
   }, [dispatch]);
 
-  //eager load users, artists, albums, songs,
+  //eager load users, artists, albums/songs,
 
   if (!isLoaded) {
     return null;
@@ -41,7 +41,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <UploadPhoto />
+
       <Switch>
         <Route exact path='/'>
           {sessionUser ? (
@@ -90,6 +90,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute> */}
       </Switch>
+
       <Footer />
     </BrowserRouter>
   );

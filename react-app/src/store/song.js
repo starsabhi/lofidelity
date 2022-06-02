@@ -1,38 +1,36 @@
-import { csrfFetch } from './csrf';
+export const GET_SONGS = 'songs/LOAD_SONGS';
+export const GET_SONG = 'songs/LOAD_ONE_SONG';
+export const ADD_SONG = 'songs/RECEIVE_SONG';
+export const UPDATE_SONG = 'songs/EDIT_SONG';
+export const DELETE_SONG = 'songs/DELETE_SONG';
 
-const LOAD_SONGS = 'songs/LOAD_SONGS';
-const ADD_SONG = 'songs/RECEIVE_SONG';
-const EDIT_SONG = 'songs/EDIT_SONG';
-const DELETE_SONG = 'songs/DELETE_SONG';
-const LOAD_ONE_SONG = 'songs/LOAD_ONE_SONG';
-
-const loadSongs = (songs) => ({
-  type: LOAD_SONGS,
+export const loadSongs = (songs) => ({
+  type: GET_SONGS,
   songs,
 });
 
-const loadOneSong = (song) => ({
-  type: LOAD_ONE_SONG,
+export const loadOneSong = (song) => ({
+  type: GET_SONG,
   song,
 });
 
-const addSong = (song) => ({
+export const addSong = (song) => ({
   type: ADD_SONG,
   song,
 });
 
-const editSong = (song) => ({
-  type: EDIT_SONG,
+export const editSong = (song) => ({
+  type: UPDATE_SONG,
   song,
 });
 
-const remove = (songId) => ({
+export const remove = (songId) => ({
   type: DELETE_SONG,
   songId,
 });
 
 export const getSongs = () => async (dispatch) => {
-  const res = await csrfFetch('/api/songs', {
+  const res = await fetch('/api/songs', {
     method: 'GET',
   });
 
@@ -43,7 +41,7 @@ export const getSongs = () => async (dispatch) => {
 };
 
 export const getOneSongs = (songId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/songs/${songId}`, {
+  const res = await fetch(`/api/songs/${songId}`, {
     method: 'GET',
   });
 
@@ -54,7 +52,7 @@ export const getOneSongs = (songId) => async (dispatch) => {
 };
 
 export const deleteSong = (songId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/songs/${songId}`, {
+  const res = await fetch(`/api/songs/${songId}`, {
     method: 'DELETE',
   });
 
@@ -64,7 +62,7 @@ export const deleteSong = (songId) => async (dispatch) => {
 };
 
 export const edit = (id, song) => async (dispatch) => {
-  const res = await csrfFetch(`/api/songs/${id}`, {
+  const res = await fetch(`/api/songs/${id}`, {
     method: 'PATCH',
     body: song,
   });
@@ -77,7 +75,7 @@ export const edit = (id, song) => async (dispatch) => {
 };
 
 export const createSong = (song) => async (dispatch) => {
-  const res = await csrfFetch('/api/songs', {
+  const res = await fetch('/api/songs', {
     method: 'POST',
     body: song,
   });
@@ -93,12 +91,12 @@ const initialState = {};
 const songsReducer = (state = initialState, action) => {
   const nextState = { ...state };
   switch (action.type) {
-    case LOAD_SONGS:
+    case GET_SONGS:
       action.songs.forEach((song) => {
         nextState[song.id] = song;
       });
       return nextState;
-    case EDIT_SONG:
+    case UPDATE_SONG:
       nextState[action.song.id] = action.song;
       return nextState;
     case ADD_SONG:
