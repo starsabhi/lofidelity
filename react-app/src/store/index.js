@@ -6,11 +6,11 @@ import sessionReducer from './session';
 import artistReducer from './artist';
 import albumReducer from './album';
 // import songReducer from './song';
-// import userReducer from './user';
+import userReducer from './user';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  // artist: artistReducer,
+  artist: artistReducer,
   album: albumReducer,
   // song: songReducer,
   user: userReducer,
