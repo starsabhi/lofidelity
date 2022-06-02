@@ -12,7 +12,7 @@ song_routes = Blueprint('songs', __name__)
 # GET ALL SONGS
 @song_routes.route('', methods=['GET'])
 def get_all_songs():
-    songs = Song.query.order_by(Song.trackNumber.desc()).all()
+    songs = Song.query.order_by(Song.trackNumber.asc()).all()
 
     # list of song dictionaries
     songs_dict_list = [song.to_dict() for song in songs]

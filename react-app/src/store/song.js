@@ -1,118 +1,230 @@
-export const GET_SONGS = 'songs/LOAD_SONGS';
-export const GET_SONG = 'songs/LOAD_ONE_SONG';
-export const ADD_SONG = 'songs/RECEIVE_SONG';
-export const UPDATE_SONG = 'songs/EDIT_SONG';
+export const GET_SONGS = 'songs/GET_SONGS';
+export const GET_SONG = 'songs/GET_SONG';
+export const ADD_SONG = 'songs/ADD_SONG';
+export const UPDATE_SONG = 'songs/UPDATE_SONG';
+export const UPDATE_SONG_TRACKS = 'songs/UPDATE_SONG_TRACKS';
 export const DELETE_SONG = 'songs/DELETE_SONG';
 
-export const loadSongs = (songs) => ({
+//Regular Action Creators (implicit returns)
+export const getSongs = ({ songsByAlbumId }) => ({
   type: GET_SONGS,
-  songs,
+  payload: { songsByAlbumId },
 });
 
-export const loadOneSong = (song) => ({
+export const getSong = (albumId, songId, song) => ({
   type: GET_SONG,
-  song,
+  payload: { albumId, songId, song },
 });
 
-export const addSong = (song) => ({
+export const addSong = (albumId, song) => ({
   type: ADD_SONG,
-  song,
+  payload: { albumId, song },
 });
 
-export const editSong = (song) => ({
+export const updateSong = (albumId, songId, updatedSong) => ({
   type: UPDATE_SONG,
-  song,
+  payload: { albumId, songId, updatedSong },
 });
 
-export const remove = (songId) => ({
+export const updateSongTracks = (albumId, songList) => ({
+  type: UPDATE_SONG_TRACKS,
+  payload: { albumId, songList },
+});
+
+export const deleteSong = (albumId, songId) => ({
   type: DELETE_SONG,
-  songId,
+  payload: { albumId, songId },
 });
 
-export const getSongs = () => async (dispatch) => {
-  const res = await fetch('/api/songs', {
-    method: 'GET',
-  });
+//THUNK ACTION CREATORS:
+export const getAllSongsThunk = () => async (dispatch) => {
+  const response = await fetch('/api/songs');
 
-  if (res.ok) {
-    const songs = await res.json();
-    dispatch(loadSongs(songs));
-  }
+  if (response.ok) {
+    const songsData = await response.json();
+    dispatch(getSongs(songsData));
+    return response;
+  } else throw response;
 };
 
-export const getOneSongs = (songId) => async (dispatch) => {
-  const res = await fetch(`/api/songs/${songId}`, {
-    method: 'GET',
-  });
+export const getOneSongThunk = (songId) => async (dispatch) => {
+  const response = await fetch(`/api/songs/${songId}`);
 
-  if (res.ok) {
-    const song = await res.json();
-    dispatch(loadOneSong(song));
-  }
+  if (response.ok) {
+    const songData = await response.json();
+    dispatch(getSong(songData.albumId, songId, songData));
+    return response;
+  } else throw response;
 };
 
-export const deleteSong = (songId) => async (dispatch) => {
-  const res = await fetch(`/api/songs/${songId}`, {
+// sends both title, albumId, trackNumber and file to s3 route
+export const addNewSongThunk = (formData) => async (dispatch) => {
+  const response = await fetch('/api/songs', {
+    method: 'POST',
+    // headers: { 'Content-Type': 'application/json' }, //S3 makes own header
+    body: formData,
+  });
+
+  if (response.ok) {
+    const newSong = await response.json();
+    dispatch(addSong(newSong.id, newSong));
+    return response;
+  } else throw response;
+};
+
+export const updateOneSongThunk = (songId, formData) => async (dispatch) => {
+  // use for loop to iterate through song list
+  const response = await fetch(`/api/songs/${songId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      albumId: formData.albumId,
+      title: formData.title,
+      trackNumber: formData.trackNumber,
+    }),
+  });
+
+  if (response.ok) {
+    const updatedSong = await response.json();
+    dispatch(updateSong(formData.albumId, songId, updatedSong));
+    // response.updatedAlbum = updatedAlbum;
+    return response;
+  } else throw response;
+};
+
+export const updateAlbumTracksThunk =
+  (albumId, formDataObj) => async (dispatch) => {
+    // formDataList = {newTrackNum: songObj,newTrackNum: songObj};
+    let songList = [];
+
+    for (let key in formDataObj) {
+      let trackNumber = key;
+      let song = formDataObj[key];
+      const response = await fetch(`/api/songs/${song.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          albumId: song.albumId,
+          title: song.title,
+          trackNumber: trackNumber,
+        }),
+      });
+      if (response.ok) {
+        const updatedSong = await response.json();
+        songList.push(updatedSong);
+        // return response;
+      } else throw response;
+    }
+
+    //re-sort array based on trackNumber in Asc order
+    songList.sort((a, b) => {
+      return a.trackNumber - b.trackNumber;
+    });
+
+    dispatch(updateSongTracks(albumId, songList));
+  };
+
+export const deleteOneSongThunk = (albumId, songId) => async (dispatch) => {
+  const response = await fetch(`/api/songs/${songId}`, {
     method: 'DELETE',
   });
 
-  if (res.ok) {
-    dispatch(remove(songId));
-  }
+  if (response.ok) {
+    const resBody = await response.json();
+    if (resBody.message === 'Success') {
+      dispatch(deleteSong(albumId, songId));
+    }
+    return response;
+  } else throw response;
 };
 
-export const edit = (id, song) => async (dispatch) => {
-  const res = await fetch(`/api/songs/${id}`, {
-    method: 'PATCH',
-    body: song,
-  });
+// const initialState = {};
 
-  if (res.ok) {
-    const song = await res.json();
-    console.log(song);
-    dispatch(editSong(song));
-  }
-};
+// const songsReducer = (state = initialState, action) => {
+//   const nextState = { ...state };
+//   switch (action.type) {
+//     case GET_SONGS:
+//       action.songs.forEach((song) => {
+//         nextState[song.id] = song;
+//       });
+//       return nextState;
+//     case UPDATE_SONG:
+//       nextState[action.song.id] = action.song;
+//       return nextState;
+//     case ADD_SONG:
+//       nextState[action.song.id] = action.song;
+//       return nextState;
+//     case DELETE_SONG:
+//       delete nextState[action.songId];
+//       return nextState;
+//     default:
+//       return state;
+//   }
+// };
 
-export const createSong = (song) => async (dispatch) => {
-  const res = await fetch('/api/songs', {
-    method: 'POST',
-    body: song,
-  });
+// export default songsReducer;
 
-  if (res.ok) {
-    const song = await res.json();
-    dispatch(addSong(song));
-  }
-};
+//TEST THUNKS:
 
-const initialState = {};
+//RUN THESE TWO FIRST BEFORE TESTING UPDATE AND DELETE
 
-const songsReducer = (state = initialState, action) => {
-  const nextState = { ...state };
-  switch (action.type) {
-    case GET_SONGS:
-      action.songs.forEach((song) => {
-        nextState[song.id] = song;
-      });
-      return nextState;
-    case UPDATE_SONG:
-      nextState[action.song.id] = action.song;
-      return nextState;
-    case ADD_SONG:
-      nextState[action.song.id] = action.song;
-      return nextState;
-    case DELETE_SONG:
-      delete nextState[action.songId];
-      return nextState;
-    default:
-      return state;
-  }
-};
+//GET Albums and Get ONE Album
+// window.store.dispatch(window.songActions.getAllSongsThunk())
+// window.store.dispatch(window.songActions.getOneSongThunk(1))
 
-export default songsReducer;
+//ADD Song
+// window.store.dispatch(
+//   window.albumActions.addNewAlbumThunk({
+// artistId: 2,
+// title: "TEST ALBUM",
+// releaseYear: 2022,
+// about: null,
+// // imageUrl: payload.imageUrl,
+// price: 11,
+//   })
+// ).catch(async (res) => { const resBody= await res.json(); console.log(res,resBody)})
 
-// for adding route
-// in python app/__init__.py
-// app.register_blueprint(artist_routes, url_prefix='/api/song')
-//
+//UPDATE Song
+// window.store.dispatch(
+//   window.songActions.updateOneSongThunk(6,{
+//    albumId: 2,
+//    title: "UPDATEd TITLE",
+//    trackNumber: 1,
+//   })
+// ).catch(async (res) => { const resBody= await res.json(); console.log(res,resBody)})
+
+//UPDATE ALBUM TRACKS
+// formDataList = { newTrackNum: songObj, newTrackNum: songObj };
+
+// window.store
+//   .dispatch(
+//     window.songActions.updateAlbumTracksThunk(6, {
+//       3: {
+//         id: 4,
+//         albumId: 2,
+//         title: 'Spring of Mind',
+//         trackNumber: 1,
+//       },
+//       2: {
+//         id: 5,
+//         albumId: 2,
+//         title: 'Lounge',
+//         trackNumber: 2,
+//       },
+//       1: {
+//         id: 6,
+//         albumId: 2,
+//         title: 'Chill Study',
+//         trackNumber: 3,
+//       },
+//     })
+//   )
+//   .catch(async (res) => {
+//     const resBody = await res.json();
+//     console.log(res, resBody);
+//   });
+
+//DELETE SONG
+// window.store.dispatch(window.songActions
+// .deleteOneSongThunk(2, 6)
+// ).catch(async (res) => { const resBody= await res.json(); console.log(res,resBody)})
