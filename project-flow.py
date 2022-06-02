@@ -47,10 +47,10 @@ FRONTEND
 
 
     STORES
-      - users - EK
-      - artists - MO
-      - albums - EK
-      - songs - Group/Abi
+      - users - EK - DONE
+      - artists - MO/AL
+      - albums - EK - DONE
+      - songs - Abi/EK - DONE
 
 MUSIC PLAYER
 
@@ -65,7 +65,7 @@ BACKEND:
     ROUTES -
         -artists - MO - DONE
         -albums - AB - DONE
-        -songs - Abi (revamp)
+        -songs - Abi - DONE
     FORMS
         -artists - EK
         -albums - AB
