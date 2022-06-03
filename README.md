@@ -55,7 +55,7 @@ Welcome to check out a live version of lofidelity here: [lofi-test.com](https://
     - Fan can view all artists on explore page.
     - They can choose particular artist to check that artist's page. 
   - Sign-up Modal:
-    - User can choose to sign-up as artist or as fan 
+    - User can choose to sign-up as artist or as fan.
   -  Login Pages
     - Users are able to sign in to access their account.
     - Users are able to log in as a Demo User account to test the features of the site before signing up.
