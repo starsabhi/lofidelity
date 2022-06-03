@@ -15,13 +15,14 @@ export default function AlbumDetail({ artist }) {
   const songs = useSelector((state) => state.album.songsByAlbumId[albumId]);
 
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
+  const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '')
 
   return (
     <div className='album-detail-container'>
       <div className='album-player-container'>
         <h1>{album?.title}</h1>
-        <span>by {artist?.name}</span>
-
+        <h3>by {artist?.name}</h3>
+        <span>Now playing: {songTitle}</span>
         <Player albumId={albumId} url={url} />
 
         <div className='song-list-container'>
@@ -32,7 +33,10 @@ export default function AlbumDetail({ artist }) {
                 id={`song-${song?.id}-play-btn`}
                 alt='play'
                 src={playButton}
-                onClick={() => setUrl(song?.audioUrl)}
+                onClick={() => {
+                  setUrl(song?.audioUrl)
+                  setSongTitle(song?.title)
+                }}
               />
               <span>
                 {song?.trackNumber}. {song?.title}
