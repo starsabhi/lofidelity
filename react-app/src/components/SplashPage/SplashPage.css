@@ -4,6 +4,8 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
+  /* background-color: aqua; */
 }
 
 .splash-hooks {
@@ -25,4 +27,15 @@
   align-items: center;
   width: max-content;
   margin-top: 10%;
+}
+
+.splash-auth-buttons * {
+  text-decoration: none;
+}
+
+.splash-auth-buttons button {
+  margin: 2% 0%;
+  background-color: white;
+  border: 1px solid black;
+  /* border-radius: 10%; */
 }
