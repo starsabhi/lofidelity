@@ -1,0 +1,28 @@
+.FullPageModal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 6, 9, 0.5);
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 4000;
+}
+
+.FullPageModal-child-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#root.overflow {
+  overflow: hidden;
+}
