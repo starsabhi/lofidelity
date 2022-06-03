@@ -1,0 +1,50 @@
+.splash-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-position: 50%;
+  background-size: cover;
+}
+
+.splash-hooks {
+  text-align: center;
+  color: white;
+}
+
+.splash-hooks h1 {
+  font-size: 450%;
+}
+
+.splash-hooks p {
+  font-size: 135%;
+  margin: 2.5%;
+}
+
+.splash-auth-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  margin-top: 10%;
+}
+
+.splash-auth-buttons * {
+  text-decoration: none;
+}
+
+.splash-auth-buttons button {
+  margin: 2% 0%;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 112%;
+}
+
+.artist-credentials {
+  color: white;
+  text-align: center;
+  position: fixed;
+  bottom: 10%;
+}
