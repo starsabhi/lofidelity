@@ -8,13 +8,15 @@ const SplashPage = () => {
   const [index, setIndex] = useState(0);
   const [artistName, setArtistName] = useState("Lofi McLoferson");
   const [artistLocation, setArtistLocation] = useState('New York');
-  const [artistBackgroundImg, setArtistBackgroundImg] = useState('https://montessorimuddle.org/wp-content/uploads/2020/12/lofi_cali_girl_meme_by_yuumei_de4uk12-490.png')
+  const [artistBackgroundImg, setArtistBackgroundImg] = useState('https://montessorimuddle.org/wp-content/uploads/2020/12/lofi_cali_girl_meme_by_yuumei_de4uk12-490.png');
+  const [artistUrl, setArtistUrl] = useState('/')
 
   useEffect(() => {
     const interval = setTimeout(() => {
       setArtistName(artists[index].name)
       setArtistLocation(artists[index].location)
       setArtistBackgroundImg(artists[index].bgImageUrl)
+      setArtistUrl(artists[index].artistUrl)
       if (index < artists.length - 1) {
         setIndex(index => index + 1)
       } else {
@@ -44,8 +46,8 @@ const SplashPage = () => {
         </button>
       </div>
       <div className='artist-credentials'>
-        <p>Artist Name: {artistName}</p>
-        <p>Artist Location: {artistLocation}</p>
+        <Link to={`/${artistUrl}`} className='splash_artist_link'>{artistName}</Link>
+        <p>from {artistLocation}</p>
       </div>
     </div>
   );
