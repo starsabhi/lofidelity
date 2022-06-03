@@ -1,6 +1,6 @@
 # lofidelity
 
-Inspired by Bandcamp, lofidelity online record store and music community where passionate fans discover, connect with, and directly support the artists they love.
+Inspired by Bandcamp, lofidelity is an online music community where passionate lofi fans discover, connect with, and directly support the artists they love.
 Welcome to check out a live version of lofidelity here: [lofi-test.com](https://lofi-test.herokuapp.com/)
 ![image](https://user-images.githubusercontent.com/95883222/171916446-5698e818-9764-4010-ac23-cb445dff8c01.png)
 
@@ -22,6 +22,7 @@ Welcome to check out a live version of lofidelity here: [lofi-test.com](https://
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment
+   
 4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
 
 5. Get into your pipenv, migrate your database, seed your database, and run your flask app
@@ -42,8 +43,11 @@ Welcome to check out a live version of lofidelity here: [lofi-test.com](https://
    flask run
    ```
 6. Change directory into react-app and install dependencies
+
     `npm install`
+    
 7. Start the app using:
+
     `npm start`
 
  ## Feature List
@@ -52,20 +56,18 @@ Welcome to check out a live version of lofidelity here: [lofi-test.com](https://
     - All visitors are able to see what lofidelity has to offer, regardless of login status.
     - If a visitor is not logged in, they will be prompted to do so.
   - Explore Page
-    - Fan can view all artists on explore page.
-    - They can choose particular artist to check that artist's page. 
+    - Users can view all artists on explore page.
+    - They can choose a particular artist to check out that artist's page. 
   - Sign-up Modal:
-    - User can choose to sign-up as artist or as fan.
-  -  Login Pages:
+    - Users can choose to sign-up as an artist or as a fan.
+  -  Login Page:
     - Users are able to sign in to access their account.
-    - Users are able to log in as a Demo User account to test the features of the site before signing up.
-  -  Artist Page (User's Full CRUD Operations):
-    - Users(Artist) are able to create thier own albums.
-    - Users (Artist) are able to edit and delete thier own album.
+    - Users are able to log in as a Demo User account to test the features of the site as an artist before signing up.
+  -  Artist Page:
+    - Users (Artist) are able to create thier own albums.
+    - Users (Artist) are able to edit and delete thier own albums.
     - Users (Artist/Fan) are able to view all albums from that artist.
   - Album page:
-    - Users/Fan can view all song listed in the album.
-    - Users/Fan can choose perticular song and listen to it.
-    - Artist can only add/udpate/delete song to that album.
-   
-
+    - Users (Artist/Fan) can view all songs listed in the album.
+    - Users (Artist/Fan) can choose a particular song and listen to it.
+    - Users (Artist) can add/update/delete songs in that album.
