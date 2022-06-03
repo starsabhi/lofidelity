@@ -102,7 +102,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Player />
       <Switch>
         <Route path='/' exact={true}>
           {sessionUser ? (
