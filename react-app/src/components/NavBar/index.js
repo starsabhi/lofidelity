@@ -5,7 +5,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 
-import logo from '../../images/logo.png';
+import Navlogo from '../../images/NewNavLogo.png';
 import searchIcon from '../../images/icons/search-icon.svg';
 import notificationsIcon from '../../images/icons/notification-icon.svg';
 
@@ -57,7 +57,7 @@ const NavBar = () => {
           <NavLink exact to='/' className='main-nav-link'>
             <img
               className='main-nav-logo'
-              src={logo}
+              src={Navlogo}
               alt='logo'
               viewBox='0 0 100 100'
               preserveAspectRatio='xMidYMid meet'

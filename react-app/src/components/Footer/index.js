@@ -1,4 +1,7 @@
 import './Footer.css';
+import githubLogo from '../../images/github.svg';
+import linkedInLogo from '../../images/linkedin.svg';
+
 const Footer = () => {
   return (
     <div className='footerDiv'>
@@ -10,14 +13,14 @@ const Footer = () => {
             <div className='divLinks'>
               <a href='https://github.com/Amlovern'>
                 <img
-                  src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr3RdVtDNdUU-Zui7pAKxXoTeLUzT4TRsDYA&usqp=CAU'
+                  src={githubLogo}
                   height='20px'
                   alt='github'
                 ></img>
               </a>
               <a href='https://github.com/Amlovern'>
                 <img
-                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png'
+                  src={linkedInLogo}
                   height='25px'
                   alt='linkedIn'
                 ></img>
@@ -29,14 +32,14 @@ const Footer = () => {
             <div className='divLinks'>
               <a href='https://github.com/otter23'>
                 <img
-                  src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr3RdVtDNdUU-Zui7pAKxXoTeLUzT4TRsDYA&usqp=CAU'
+                  src={githubLogo}
                   height='20px'
                   alt='github'
                 ></img>
               </a>
               <a href='https://www.linkedin.com/in/elankatz/'>
                 <img
-                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png'
+                  src={linkedInLogo}
                   height='25px'
                   alt='linkedIn'
                 ></img>
@@ -48,14 +51,14 @@ const Footer = () => {
             <div className='divLinks'>
               <a href='https://github.com/thisismydisplay'>
                 <img
-                  src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr3RdVtDNdUU-Zui7pAKxXoTeLUzT4TRsDYA&usqp=CAU'
+                  src={githubLogo}
                   height='20px'
                   alt='github'
                 ></img>
               </a>
               <a href='https://github.com/thisismydisplay'>
                 <img
-                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png'
+                  src={linkedInLogo}
                   height='25px'
                   alt='linkedIn'
                 ></img>
@@ -67,14 +70,14 @@ const Footer = () => {
             <div className='divLinks'>
               <a href='https://github.com/starsabhi'>
                 <img
-                  src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr3RdVtDNdUU-Zui7pAKxXoTeLUzT4TRsDYA&usqp=CAU'
+                  src={githubLogo}
                   height='20px'
                   alt='github'
                 ></img>
               </a>
               <a href='https://www.linkedin.com/in/abhishek-bornak-semasna514865/'>
                 <img
-                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png'
+                  src={linkedInLogo}
                   height='25px'
                   alt='linkedIn'
                 ></img>
