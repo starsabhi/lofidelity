@@ -46,4 +46,26 @@ Welcome to check out a live version of lofidelity here: [lofi-test.com](https://
 7. Start the app using:
     `npm start`
 
- 
+ ## Feature List
+
+  - Splash Page
+    - All visitors are able to see what lofidelity has to offer, regardless of login status.
+    - If a visitor is not logged in, they will be prompted to do so.
+  - Explore Page
+    - Fan can view all artists on explore page.
+    - They can choose particular artist to check that artist's page. 
+  - Sign-up Modal:
+    - User can choose to sign-up as artist or as fan 
+  -  Login Pages
+    - Users are able to sign in to access their account.
+    - Users are able to log in as a Demo User account to test the features of the site before signing up.
+  -  Artist Page (User's Full CRUD Operations)
+    - Users(Artist) are able to create thier own albums.
+    - Users (Artist) are able to edit and delete thier own album.
+    - Users (Artist/Fan) are able to view all albums from that artist.
+  - Album page:
+    - Users/Fan can view all song listed in the album.
+    - Users/Fan can choose perticular song and listen to it.
+    - Artist can only add/udpate/delete song to that album.
+   
+
