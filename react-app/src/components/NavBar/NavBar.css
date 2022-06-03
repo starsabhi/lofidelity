@@ -92,8 +92,8 @@
   height: 100%;
 }
 
-.main-nav-login a,
-.main-nav-signup a {
+.main-nav-login-link,
+.main-nav-signup-link {
   display: flex;
   justify-content: center;
   align-items: center;

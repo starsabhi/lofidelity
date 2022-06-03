@@ -1,0 +1,49 @@
+.artist-content {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 975px;
+  background-color: #FFFFFF
+}
+
+.artist-cover {
+  height: 180px;
+  width: 975px;
+  object-fit: cover;
+}
+.albums-container {
+  display: flex;
+
+  width: 795px;
+}
+
+.artist-detail-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 120px;
+}
+
+.bg-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.artist-background {
+  position: absolute;
+  background-repeat: no-repeat;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  padding: 0px;
+}
+.artist-body-div {
+  display: flex;
+  width: 975px;
+  padding: 35px 30px;
+}

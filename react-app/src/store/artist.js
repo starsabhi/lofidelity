@@ -58,6 +58,8 @@ export const getOneArtistThunk = (artistId) => async (dispatch) => {
   } else throw response;
 };
 
+
+
 export const addNewArtistThunk = (formData) => async (dispatch) => {
   const response = await fetch('/api/artists', {
     method: 'POST',
@@ -215,6 +217,8 @@ const artistReducer = (state = initialState, action) => {
       //add artist to artist artistById map
       newState.artistsByArtistId[artistId] = action.payload.artist;
       return newState;
+
+
 
     case ADD_ARTIST:
       artistId = action.payload.artistId;

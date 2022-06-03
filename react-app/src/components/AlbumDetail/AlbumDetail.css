@@ -1,0 +1,27 @@
+.album-detail-container {
+  display: flex;
+  width: 795px;
+  justify-content: space-between;
+}
+.album-detail-image {
+  height: 350px;
+  width: 350px;
+  margin-right: 40px;
+}
+
+.album-detail-image-div{
+
+}
+
+.song-container {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  padding-top: 10px;
+}
+
+.song-play-btn {
+  height: 12px;
+  width:12px;
+  margin-right: 10px;
+}

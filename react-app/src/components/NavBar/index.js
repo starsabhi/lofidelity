@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import FullPageModal from '../FullPageModal';
+import SignUpChoice from '../SignUpChoice';
 
 import Navlogo from '../../images/NewNavLogo.png';
 import searchIcon from '../../images/icons/search-icon.svg';
@@ -13,6 +15,22 @@ const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   const [query, setQuery] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
+  //showModal handlers
+  const openModal = () => {
+    if (showModal) return; // do nothing if modal already showing
+    setShowModal(true);
+    //disable page scrolling:
+    document.getElementById('root').classList.add('overflow');
+  };
+
+  const closeModal = () => {
+    if (!showModal) return; // do nothing if modal already closed
+    setShowModal(false);
+    //enable page scrolling:
+    document.getElementById('root').classList.remove('overflow');
+  };
 
   let sessionLinks;
   //is user, show profile button/menu, else show login/signup links
@@ -37,14 +55,20 @@ const NavBar = () => {
   } else {
     sessionLinks = (
       <>
+        <FullPageModal showModal={showModal} closeModal={closeModal}>
+          <SignUpChoice />
+        </FullPageModal>
+
         <li className='main-nav-signup'>
-          <Link to='/sign-up'>
+          <Link to='#' className='main-nav-signup-link' onClick={openModal}>
             <div>sign up</div>
           </Link>
         </li>
 
         <li className='main-nav-login'>
-          <Link to='/login'>log in</Link>
+          <Link to='/login' className='main-nav-login-link'>
+            log in
+          </Link>
         </li>
       </>
     );

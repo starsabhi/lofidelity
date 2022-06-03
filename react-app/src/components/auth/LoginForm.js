@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 // import { login } from '../../store/session';
@@ -7,12 +7,31 @@ import * as sessionActions from '../../store/session';
 export default function LoginForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const artist = useSelector((state) => state.session.sessionArtist);
 
   //slices of react state for controlled inputs
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
+  const [artistLoaded, setArtistLoaded] = useState(false);
 
+  // If user is an artist, fetch artist details into session state
+  useEffect(() => {
+    if (sessionUser && sessionUser?.isArtist) {
+      (async () => {
+        await dispatch(
+          sessionActions.getSessionArtistThunk(sessionUser.id)
+        ).catch((res) => console.log(res));
+      })();
+    }
+  }, [dispatch, sessionUser]);
+
+  // once artist is loaded, update state
+  useEffect(() => {
+    if (artist) setArtistLoaded(true);
+  }, [dispatch, artist]);
+
+  //login submit handlers
   const submitLogin = async (e) => {
     e.preventDefault();
     setErrors([]); //reset error state
@@ -45,8 +64,11 @@ export default function LoginForm() {
   };
 
   //if redux state updated with user session, redirect to homepage
-  //consider using history if want to be able to use back button
-  if (sessionUser) return <Redirect to='/' />;
+  //ensure artist is loaded into session state before redirecting
+  if (sessionUser)
+    if (sessionUser.isArtist) {
+      if (artistLoaded) return <Redirect to='/' />;
+    } else return <Redirect to='/' />;
 
   return (
     <div className='login-card-container'>
@@ -124,11 +146,11 @@ export default function LoginForm() {
 
           <div className='login-no-account-container'>
             <span>Don't have an account? Sign up as</span>
-            <Link className='login-link-signup' to='/sign-up'>
+            <Link className='login-link-signup' to='/sign-up/fan'>
               a fan
             </Link>
             <span> or </span>
-            <Link className='login-link-signup' to='/sign-up'>
+            <Link className='login-link-signup' to='/sign-up/artist'>
               an artist.
             </Link>
           </div>

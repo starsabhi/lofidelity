@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Artist
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -18,6 +18,17 @@ def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
+
+# GET SESSION (LOGGED IN) ARTIST
+
+@auth_routes.route('/artist/<int:id>')
+def get_session_artist(id):
+    # userId = request.args.get('userId')
+    artist = Artist.query.filter(Artist.userId == id).first()
+    if artist:
+      return artist.to_dict()
+    else:
+      return None
 
 
 @auth_routes.route('/login', methods=['POST'])
