@@ -124,11 +124,11 @@ export default function LoginForm() {
 
           <div className='login-no-account-container'>
             <span>Don't have an account? Sign up as</span>
-            <Link className='login-link-signup' to='/sign-up'>
+            <Link className='login-link-signup' to='/sign-up/fan'>
               a fan
             </Link>
             <span> or </span>
-            <Link className='login-link-signup' to='/sign-up'>
+            <Link className='login-link-signup' to='/sign-up/artist'>
               an artist.
             </Link>
           </div>

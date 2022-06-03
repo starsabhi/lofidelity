@@ -113,13 +113,29 @@
   outline: none;
 }
 
-.signup-sign-in-btn-container {
+.signup-checkbox-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(129, 130, 133);
+  font-size: 14px;
+  width: 300px;
+  padding-bottom: 10px;
+}
+
+.signup-link-terms {
+  text-decoration: none;
+  color: rgb(0, 161, 198);
+  cursor: text;
+}
+
+.signup-sign-up-btn-container {
   display: flex;
   justify-content: center;
   width: 300px;
 }
 
-.signup-sign-in-btn {
+.signup-sign-up-btn {
   margin-top: 12px;
   padding: 10px 15px;
   border: 1px solid rgb(3, 161, 198);
@@ -140,7 +156,7 @@
   transition-delay: 0s;
 }
 
-.signup-sign-in-btn:hover {
+.signup-sign-up-btn:hover {
   background-color: rgba(3, 162, 198, 0.76);
 }
 
@@ -152,33 +168,53 @@
   align-items: center;
 }
 
-.signup-forgot-password {
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  color: rgb(0, 161, 198);
-  border-bottom: 1px dotted rgb(204, 204, 204);
-  /* padding-top: 40px; */
-  padding-bottom: 16px;
-}
-
-.signup-forgot-link {
-  text-decoration: none;
-  color: rgb(0, 161, 198);
-  cursor: text;
-}
-
-.signup-no-account-container {
+.signup-have-account-container {
   width: 100%;
   display: flex;
   gap: 4px;
   justify-content: center;
-  font-size: 14px;
-  padding-top: 16px;
+  font-size: 12px;
+  /* padding-top: 16px; */
   color: rgb(129, 130, 133);
 }
 
-.signup-link-signup {
+.signup-link-login {
+  text-decoration: none;
+  color: rgb(0, 161, 198);
+}
+
+/* ARTIST FORM ONLY */
+.signup-not-artist-container {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  padding-top: 12px;
+
+  font-size: 12px;
+  /* padding-top: 16px; */
+  color: rgb(129, 130, 133);
+}
+
+.signup-link-signup-fan {
+  text-decoration: none;
+  color: rgb(0, 161, 198);
+}
+
+/* Fan FORM ONLY */
+.signup-not-fan-container {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  padding-top: 12px;
+
+  font-size: 12px;
+  /* padding-top: 16px; */
+  color: rgb(129, 130, 133);
+}
+
+.signup-link-signup-artist {
   text-decoration: none;
   color: rgb(0, 161, 198);
 }
