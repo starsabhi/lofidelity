@@ -1,0 +1,135 @@
+.signup-modal-container {
+  background-color: white;
+  width: 500px;
+}
+
+.signup-modal-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(245, 245, 245);
+  padding: 15px 20px;
+  font-size: 18px;
+  color: rgb(46, 51, 50);
+  font-weight: 200px;
+}
+
+.signup-modal-bottom {
+  padding: 30px;
+}
+
+.signup-modal-fan-container {
+  display: flex;
+  border-bottom: 1px solid rgb(204, 204, 204);
+  padding-bottom: 26px;
+}
+
+.signup-modal-fan-left {
+  display: flex;
+  /* padding-left: 10px; */
+  padding-right: 20px;
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  width: 175px;
+  height: 126px;
+}
+
+.signup-modal-fan-icon {
+  object-fit: contain;
+  max-width: 165px;
+  height: 100%;
+}
+
+.signup-modal-artist-icon {
+  object-fit: contain;
+  max-width: 165px;
+  height: 100%;
+}
+
+.signup-modal-fan-right {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.signup-modal-fan-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 15px;
+  text-decoration: none;
+  color: rgb(0, 161, 198);
+  padding: 8px;
+  border: 1px solid rgb(0, 161, 198);
+  border-radius: 3px;
+  width: 100%;
+}
+
+.signup-modal-fan-link:hover {
+  text-decoration: underline;
+}
+
+.signup-modal-fan-text {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  color: rgb(129, 130, 133);
+  font-size: 12px;
+}
+
+/* ARTIST SECTION */
+.signup-modal-artist-container {
+  display: flex;
+  padding-top: 26px;
+}
+
+.signup-modal-artist-left {
+  display: flex;
+  /* padding-left: 10px; */
+  padding-right: 20px;
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  width: 175px;
+  height: 126px;
+}
+
+.signup-modal-artist-right {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.signup-modal-artist-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 15px;
+  text-decoration: none;
+  color: rgb(110, 148, 59);
+  padding: 8px;
+  border: 1px solid rgb(110, 148, 59);
+  border-radius: 3px;
+  width: 100%;
+}
+
+.signup-modal-artist-link:hover {
+  text-decoration: underline;
+}
+
+.signup-modal-artist-text {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  color: rgb(129, 130, 133);
+  font-size: 12px;
+}
