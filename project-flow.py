@@ -74,7 +74,10 @@ BACKEND:
 
 TODO: NEED TO RE-MIGRATE PRODUCTION!
 
-"""
-///
+TODO: ADD GESTURES TO STORE
+TODO: FIX ADD ARTIST SIGNUP
+TODO: ADD SIGNUP MODAL TO SPLASH
 
-allArtists is just Object.values(artistsByArtistId)
+
+
+"""

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 //prettier-ignore
-import { useParams, Route, Switch, Redirect, useLocation } from 'react-router-dom';
+import { useParams, Route, Switch, NavLink, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import AlbumDetail from '../AlbumDetail';
 import ArtistDetail from '../ArtistDetail';
@@ -65,9 +65,32 @@ export default function ArtistPage() {
               src={artist?.coverImageUrl}
             />
           </div>
-          <div className='inner-nav-div'>
-            <p>NAV</p>
+
+          <div className='profile-row-two'>
+            <ul className='profile-row-two-inner'>
+              <li className='profile-music'>
+                <NavLink
+                  to={`/${artistName}`}
+                  className={(state) =>
+                    state ? 'profile-music-link-active' : 'inactive'
+                  }
+                >
+                  <span>Music</span>
+                </NavLink>
+              </li>
+              <li className='profile-community'>
+                <div>
+                  <span>Community</span>
+                </div>
+              </li>
+              <li className='profile-merch'>
+                <div>
+                  <span>Merch</span>
+                </div>
+              </li>
+            </ul>
           </div>
+
           <div className='artist-body-div'>
             <div className='albums-container'>
               <Switch>
