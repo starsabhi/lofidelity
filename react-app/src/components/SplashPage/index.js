@@ -45,14 +45,14 @@ const SplashPage = () => {
         <p>Whether listening to relax, focus on work, or anywhere in between...</p>
         <p>Lofidelity is the hub for all things Lofi!</p>
       </div>
-      {/* <div className='splash-auth-buttons'>
+      <div className='splash-auth-buttons'>
         <button>
           <Link to='/signup'>Sign up for free</Link>
         </button>
         <button>
           <Link to='/login'>Already have an account? Log in</Link>
         </button>
-      </div> */}
+      </div>
       <div className='artist-credentials'>
         <Link to={`/${artistUrl}`} className='splash_artist_link'>{artistName}</Link>
         <p>from {artistLocation}</p>
