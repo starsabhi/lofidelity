@@ -9,13 +9,13 @@ function AlbumDetail({ artist }) {
   const albumId = params.id;
   const album = useSelector((state) => state.album[albumId]);
   const songs = useSelector((state) => state.album.songsByAlbumId[albumId]);
-
+  const [url, setUrl] = useState(songs[0].audioUrl)
   return (
     <div className='album-detail-container'>
       <div className='album-player-container'>
         <h1>{album.title}</h1>
         <span>by {artist.name}</span>
-        <Player albumId={albumId} />
+        <Player albumId={albumId} url={url}/>
         <div className='song-list-container'>
           {songs?.map((song) => (
             <div className='song-container'>
@@ -24,7 +24,7 @@ function AlbumDetail({ artist }) {
                 id={`song-${song.id}-play-btn`}
                 alt='play'
                 src={playButton}
-                onClick={()=>{}}
+                onClick={()=>{setUrl(song.audioUrl)}}
               />
               <span>
                 {song.trackNumber}. {song.title}

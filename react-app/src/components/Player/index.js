@@ -4,15 +4,15 @@ import { useSelector } from 'react-redux';
 
 
 // Render a YouTube video player
-function Player({albumId}) {
-  const artist = useSelector((state) => state.session.sessionArtist)
-  const songs = useSelector((state) => state.album.songsByAlbumId[albumId])
-  const [song, setSong] = useState(null)
-  useEffect(()=>{
-    if (!songs) return
+function Player({albumId, url}) {
+  // const artist = useSelector((state) => state.session.sessionArtist)
+  // const songs = useSelector((state) => state.album.songsByAlbumId[albumId])
+  // const [song, setSong] = useState(null)
+  // useEffect(()=>{
+  //   if (!songs) return
 
-    setSong(songs[0])
-  }, [songs])
+  //   setSong(songs[0])
+  // }, [songs])
 
   // const songs = useSelector((state) => state.album.songsByAlbumId)
   // const songsArr=Object.values(songs)[0]
@@ -32,7 +32,7 @@ function Player({albumId}) {
   // }, [songsArr])
 
   return (
-    <ReactPlayer url={song?.audioUrl} controls width='376px' height='52px' />
+    <ReactPlayer url={url} controls width='376px' height='52px' playing/>
   );
 }
 

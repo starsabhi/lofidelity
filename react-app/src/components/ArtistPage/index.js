@@ -19,9 +19,13 @@ function ArtistPage({detail}) {
   // const sessionUser = useSelector((state) => state.session.user);
   // const userId = sessionUser.id
   // const dispatch = useDispatch();
-
-  const artist = useSelector((state) => state.session.sessionArtist);
-
+  const { artistName }  = useParams();
+  console.log(artistName)
+  // const artist = useSelector((state) => state.session.sessionArtist);
+  const artists = useSelector((state) => state.artist.allArtists);
+  console.log(artists)
+  const [artist] = artists.filter(artist=>artist.artistUrl === artistName)
+  console.log(artist)
   // useEffect(() => {
   //   (async () => {
   //     await dispatch(artistActions.getSessionArtistThunk(userId)).catch(
