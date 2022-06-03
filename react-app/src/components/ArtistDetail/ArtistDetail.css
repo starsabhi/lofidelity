@@ -1,0 +1,14 @@
+.artist-profile{
+  max-width: 120px;
+  max-height: 180px;
+}
+
+.album-navlink{
+  display: flex;
+  flex-direction: column;
+}
+
+.album-thumbnail-container {
+  display: flex;
+  flex-wrap: wrap;
+}

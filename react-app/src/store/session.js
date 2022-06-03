@@ -1,6 +1,9 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const GET_SESSION_ARTIST = 'session/GET_SESSION_ARTIST'
+
+
 
 //Regular Action Creators (implicit returns)
 const setUser = (user) => ({
@@ -11,6 +14,13 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 });
+
+const getSessionArtist = (artist) => ({
+  type: GET_SESSION_ARTIST,
+  payload: artist,
+});
+
+
 
 //THUNK ACTION CREATORS:
 //request to backend to restore User Session based on JWT cookie (if exists)
@@ -99,15 +109,27 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 };
 
+export const getSessionArtistThunk = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/auth/artist/${userId}`);
+
+  if (response.ok) {
+    const artistData = await response.json();
+    dispatch(getSessionArtist(artistData));
+    return response;
+  } else throw response;
+};
+
 //SESSION REDUCER:
-const initialState = { user: null };
+const initialState = { user: null, sessionArtist: null };
 
 export default function sessionReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
-      return { user: action.payload };
+      return { ...state, user: action.payload };
     case REMOVE_USER:
-      return { user: null };
+      return { ...state, user: null, sessionArtist: null };
+    case GET_SESSION_ARTIST:
+      return { ...state, sessionArtist: action.payload };
     default:
       return state;
   }
