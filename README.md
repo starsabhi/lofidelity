@@ -41,4 +41,9 @@ Welcome to check out a live version of lofidelity here: [lofi-test.com](https://
    ```bash
    flask run
    ```
+6. Change directory into react-app and install dependencies
+    `npm install`
+7. Start the app using:
+    `npm start`
+
  
