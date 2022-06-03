@@ -75,3 +75,6 @@ BACKEND:
 TODO: NEED TO RE-MIGRATE PRODUCTION!
 
 """
+///
+
+allArtists is just Object.values(artistsByArtistId)
