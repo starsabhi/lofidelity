@@ -16,7 +16,6 @@ export default function ArtistPage() {
   const location = useLocation();
   const albumId = location.pathname.split('albums/')[1];
   // console.log('ALBUMID', albumId);
-
   const { artistName } = useParams();
   // console.log(artistName);
   // const artist = useSelector((state) => state.session.sessionArtist);
