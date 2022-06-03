@@ -4,8 +4,11 @@ import { BrowserRouter, Route, Switch, Redirect, useLocation } from 'react-route
 import { useDispatch, useSelector } from 'react-redux';
 
 import LoginPage from './components/LoginPage';
+import SignUpForm from './components/auth/SignUpForm';
+import ExplorePage from './components/ExplorePage';
 import SignUpPage from './components/SignUpPage';
 import SplashPage from './components/SplashPage';
+
 
 import NavBar from './components/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -119,7 +122,7 @@ export default function App() {
         </Route>
         <Route path='/explore'>
           {/* displays all the artists on the site */}
-          <h1>WELCOME TO EXPLORE!</h1>
+          <ExplorePage isAuthLoaded={isAuthLoaded} />
         </Route>
         <Route path='/login' exact={true}>
           <LoginPage />
