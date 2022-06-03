@@ -7,7 +7,6 @@ import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 import SplashPage from './components/SplashPage';
 
-
 import NavBar from './components/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
 import * as sessionActions from './store/session';
@@ -133,9 +132,10 @@ export default function App() {
         </Route>
         {/* needs to be last route */}
         <Route path='/:artistName'>
+          <ArtistPage />
           {/* Bonus: redirect non-existent artist to signup form as query parameter, and update placeholder state based on query*/}
           {/* TODO: render different messages depending on artist */}
-          {artist ? <ArtistPage /> : <h1>Artist Does Not Exist</h1>}
+          {/* {artist ? <ArtistPage /> : <h1>Artist Does Not Exist</h1>} */}
         </Route>
 
         <Route>
