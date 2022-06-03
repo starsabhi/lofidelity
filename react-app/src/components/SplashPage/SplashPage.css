@@ -5,19 +5,21 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  /* background-color: aqua; */
+  background-position: 50%;
+  background-size: cover;
 }
 
 .splash-hooks {
   text-align: center;
+  color: white;
 }
 
 .splash-hooks h1 {
-  font-size: 400%;
+  font-size: 450%;
 }
 
 .splash-hooks p {
-  font-size: 125%;
+  font-size: 135%;
   margin: 2.5%;
 }
 
@@ -37,5 +39,12 @@
   margin: 2% 0%;
   background-color: white;
   border: 1px solid black;
-  /* border-radius: 10%; */
+  font-size: 112%;
+}
+
+.artist-credentials {
+  color: white;
+  text-align: center;
+  position: fixed;
+  bottom: 10%;
 }
