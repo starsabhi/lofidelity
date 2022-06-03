@@ -13,16 +13,24 @@ const SplashPage = () => {
 
   useEffect(() => {
     const interval = setTimeout(() => {
-      setArtistName(artists[index].name)
-      setArtistLocation(artists[index].location)
-      setArtistBackgroundImg(artists[index].bgImageUrl)
-      setArtistUrl(artists[index].artistUrl)
-      if (index < artists.length - 1) {
-        setIndex(index => index + 1)
-      } else {
-        setIndex(0)
-      }
-    }, 5000);
+      if (artists[index].bgImageUrl === 'null' || artists[index].bgImageUrl === 'DEFAULT') {
+          if (index < artists.length - 1) {
+            setIndex(index => index + 1)
+          } else {
+            setIndex(0)
+          }  
+        } else {
+          setArtistName(artists[index].name)
+          setArtistLocation(artists[index].location)
+          setArtistBackgroundImg(artists[index].bgImageUrl)
+          setArtistUrl(artists[index].artistUrl)
+          if (index < artists.length - 1) {
+            setIndex(index => index + 1)
+          } else {
+            setIndex(0)
+          }
+        }
+      }, 5000);
     return () => clearTimeout(interval)
   }, [artists, index])
 

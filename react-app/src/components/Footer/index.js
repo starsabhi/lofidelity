@@ -11,14 +11,14 @@ const Footer = () => {
           <div className='smallName'>
             Anthony Lovern
             <div className='divLinks'>
-              <a href='https://github.com/Amlovern'>
+              <a href='https://github.com/Amlovern' target='_blank' rel='noreferrer'>
                 <img
                   src={githubLogo}
                   height='20px'
                   alt='github'
                 ></img>
               </a>
-              <a href='https://github.com/Amlovern'>
+              <a href='https://github.com/Amlovern' target='_blank' rel='noreferrer'>
                 <img
                   src={linkedInLogo}
                   height='25px'
@@ -30,14 +30,14 @@ const Footer = () => {
           <div className='smallName'>
             Elan Katz
             <div className='divLinks'>
-              <a href='https://github.com/otter23'>
+              <a href='https://github.com/otter23' target='_blank' rel='noreferrer'>
                 <img
                   src={githubLogo}
                   height='20px'
                   alt='github'
                 ></img>
               </a>
-              <a href='https://www.linkedin.com/in/elankatz/'>
+              <a href='https://www.linkedin.com/in/elankatz/' target='_blank' rel='noreferrer'>
                 <img
                   src={linkedInLogo}
                   height='25px'
@@ -49,14 +49,14 @@ const Footer = () => {
           <div className='smallName'>
             Mark Osman
             <div className='divLinks'>
-              <a href='https://github.com/thisismydisplay'>
+              <a href='https://github.com/thisismydisplay' target='_blank' rel='noreferrer'>
                 <img
                   src={githubLogo}
                   height='20px'
                   alt='github'
                 ></img>
               </a>
-              <a href='https://github.com/thisismydisplay'>
+              <a href='https://github.com/thisismydisplay' target='_blank' rel='noreferrer'>
                 <img
                   src={linkedInLogo}
                   height='25px'
@@ -68,14 +68,14 @@ const Footer = () => {
           <div className='smallName'>
             Abhishek Bornak
             <div className='divLinks'>
-              <a href='https://github.com/starsabhi'>
+              <a href='https://github.com/starsabhi' target='_blank' rel='noreferrer'>
                 <img
                   src={githubLogo}
                   height='20px'
                   alt='github'
                 ></img>
               </a>
-              <a href='https://www.linkedin.com/in/abhishek-bornak-semasna514865/'>
+              <a href='https://www.linkedin.com/in/abhishek-bornak-semasna514865/' target='_blank' rel='noreferrer'>
                 <img
                   src={linkedInLogo}
                   height='25px'
