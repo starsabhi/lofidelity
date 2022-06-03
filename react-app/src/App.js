@@ -7,8 +7,6 @@ import SignUpForm from './components/auth/SignUpForm';
 
 import NavBar from './components/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
-// import UsersList from './components/UsersList';
-// import User from './components/User';
 import * as sessionActions from './store/session';
 import * as userActions from './store/user';
 import * as artistActions from './store/artist';
@@ -18,118 +16,73 @@ import * as songActions from './store/song';
 import Footer from './components/Footer';
 import Player from './components/Player';
 import ArtistPage from './components/ArtistPage';
-// import UploadPhoto from './components/UploadPhoto';
 
-function App() {
+export default function App() {
   const sessionUser = useSelector((state) => state.session.user);
   const artist = useSelector((state) => state.session.sessionArtist);
 
-
   const dispatch = useDispatch();
 
-  //ensures that app has checked whether a user exists in the session
-  // const [isAuthLoaded, setIsAuthLoaded] = useState(false);
-  // const [loaded, setLoaded] = useState(0)
-  const [loaded, setLoaded] = useState(false);
+  //tracks whether session cookie has been checked
+  const [isAuthLoaded, setIsAuthLoaded] = useState(false);
   const [artistLoaded, setArtistLoaded] = useState(false);
 
-  //on first render, check whether jwt token credentials matches user in db,
-  //if so add user to session Redux State
-
+  //Eager load redux state on first loading of App
+  //prettier-ignore
   useEffect(() => {
     (async () => {
-      await dispatch(sessionActions.authenticate()).catch((res) =>
-        console.log(res)
-      );
-      const userPromise = dispatch(userActions.getAllUsersThunk());
-      const artistPromise = dispatch(artistActions.getAllArtistsThunk());
-      const albumPromise = dispatch(albumActions.getAllAlbumsThunk());
-      const songsPromise = dispatch(songActions.getAllSongsThunk());
-
-      await Promise.all([
-        userPromise,
-        artistPromise,
-        albumPromise,
-        songsPromise,
-      ]);
-      setLoaded(true);
-
+      //on first render, check whether jwt token credentials matches user in db,
+      //if so add user to session Redux State
+      await dispatch(sessionActions.authenticate()).catch((res) =>console.log(res));
+      setIsAuthLoaded(true);
     })();
+
+    //eager load Users, Artists,Albums, Songs from in db into state
+    dispatch(userActions.getAllUsersThunk()).catch((res) => console.log(res));
+    dispatch(artistActions.getAllArtistsThunk()).catch((res) => console.log(res));
+    dispatch(albumActions.getAllAlbumsThunk()).catch((res) => console.log(res));
+    dispatch(songActions.getAllSongsThunk()).catch((res) => console.log(res));
+
   }, [dispatch]);
 
+  // Wait for all redux state to load before entering app
   // useEffect(() => {
   //   (async () => {
   //     await dispatch(sessionActions.authenticate()).catch((res) =>
   //       console.log(res)
   //     );
-  //     setLoaded(currentLoaded => currentLoaded+1)
-  //     console.log('LOADED', loaded)
-  //     //calls setUser() if user is authenticated
-  //     setIsAuthLoaded(true);
-
-  //     //eager load Users, Artists,Albums, Songs from in db into state
-  //     dispatch(userActions.getAllUsersThunk()).then(
-  //       () => setLoaded(currentLoaded => currentLoaded+1)
-  //       // setIsUsersLoaded(true)
-  //     );
-
-  //     dispatch(artistActions.getAllArtistsThunk()).then(
-  //       () => setLoaded(currentLoaded => currentLoaded+1)
-  //       // setIsArtistLoaded(true)
-  //     );
-
-  //     dispatch(albumActions.getAllAlbumsThunk()).then(
-  //       () => setLoaded(currentLoaded => currentLoaded+1)
-  //       // setIsAlbumLoaded(true)
-  //     );
-
-  //     dispatch(songActions.getAllSongsThunk()).then(
-  //       () => setLoaded(currentLoaded => currentLoaded+1)
-  //       // setIsSongLoaded(true)
-  //     );
-
+  //     const userPromise = dispatch(userActions.getAllUsersThunk());
+  //     const artistPromise = dispatch(artistActions.getAllArtistsThunk());
+  //     const albumPromise = dispatch(albumActions.getAllAlbumsThunk());
+  //     const songsPromise = dispatch(songActions.getAllSongsThunk());
+  //     await Promise.all([userPromise,artistPromise,albumPromise,songsPromise,]);
+  //     setLoaded(true);
   //   })();
   // }, [dispatch]);
 
+  // If user is an artist, fetch artist details into session state
   useEffect(() => {
-    if (sessionUser && sessionUser.isArtist) {
+    if (sessionUser && sessionUser?.isArtist) {
       (async () => {
         await dispatch(
           sessionActions.getSessionArtistThunk(sessionUser.id)
-        )
-
-        .catch((res) => console.log(res))
-
+        ).catch((res) => console.log(res));
       })();
     }
   }, [dispatch, sessionUser]);
 
-  // useEffect(()=> {
-  //   if (artist){
-  //     setArtistLoaded(true)
-  //     console.log('artist exists now')
-  //   }
-  //   }, [dispatch, artist])
+  // once artist is loaded, update state
+  useEffect(() => {
+    if (artist) setArtistLoaded(true);
+  }, [dispatch, artist]);
 
-  // if (!isAuthLoaded) {
-  //   return null;
-  // }
+  //only load App after Session Cookie is checked
+  if (!isAuthLoaded) return null;
 
-  // if (loaded < 5) {
-  //   return null;
-  // }
-  // if (sessionUser && !sessionUser.isArtist){
-  //   console.log('sessionUser && !sessionUser.isArtist')
-  //   if (!loaded) return null
-  // }
-  // if (sessionUser && !artistLoaded) {
-  //   return null;
-  // }
-  if (!loaded) {
-    return null;
+  //If session user is artist, only render app once artist is loaded into session
+  if (sessionUser) {
+    if (sessionUser.isArtist && !artistLoaded) return null;
   }
-  console.log('USER:', sessionUser);
-  // console.log('SESSION ARTIST:', artist)
 
   return (
     <BrowserRouter>
@@ -143,6 +96,7 @@ function App() {
               // id should be dynamically update based on artist domain name form Artist table
               //create artist store with userid hasmap
               // <Redirect to={`/${artist.artistUrl}`}></Redirect>
+              //render cycle keeps hitting this redirect until sessionArtist State is updated
               <Redirect to={`/${artist?.artistUrl}`}></Redirect>
             ) : (
               <Redirect to='/explore'></Redirect>
@@ -166,11 +120,11 @@ function App() {
         </Route>
         <Route path='/:artistName' exact={true}>
           {/* redirect non-existent artist to signup form as query parameter, and update placeholder state based on query*/}
-          <ArtistPage detail={false}/>
+          <ArtistPage detail={false} />
         </Route>
         <Route path='/:artistName/albums/:id'>
           {/* redirect non-existent artist to signup form as query parameter, and update placeholder state based on query*/}
-          <ArtistPage detail={true}/>
+          <ArtistPage detail={true} />
         </Route>
 
         <Route>
@@ -191,5 +145,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

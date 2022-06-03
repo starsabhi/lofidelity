@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './ArtistAlbums.css'
-function ArtistAlbums({ artist }) {
+import './ArtistAlbums.css';
+
+export default function ArtistAlbums({ artist }) {
   const albums = useSelector(
-    (state) => state.album.albumsByArtistId[artist.id]
+    (state) => state.album.albumsByArtistId[artist?.id]
   );
   return (
     <div className='album-thumbnail-container'>
       {albums?.map((album) => (
         <NavLink
           className={`album-navlink`}
-          id={`album-${album.id}`}
+          id={`album-${album?.id}`}
           exact
-          to={`/${artist.artistUrl}/albums/${album.id}`}
+          to={`/${artist.artistUrl}/albums/${album?.id}`}
+          key={album?.id}
         >
           <img
             className='album-thumbnail-image'
-            id={`album-${album.id}-image`}
+            id={`album-${album?.id}-image`}
             alt='album-thumbnail'
-            src={album.imageUrl}
+            src={album?.imageUrl}
           />
-          <span className='album-thumbnail-title'>{album.title}</span>
+          <span className='album-thumbnail-title'>{album?.title}</span>
         </NavLink>
       ))}
     </div>
   );
 }
-
-export default ArtistAlbums;
