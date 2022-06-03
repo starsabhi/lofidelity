@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   max-width: 975px;
-  background-color: #FFFFFF
+  background-color: #ffffff;
 }
 
 .artist-cover {
@@ -13,6 +13,51 @@
   width: 975px;
   object-fit: cover;
 }
+
+/* NAV SECOND ROW */
+
+.profile-row-two {
+  background-color: white;
+  position: sticky;
+  top: 48px;
+  left: 0px;
+  width: 100%;
+  z-index: 1000;
+}
+
+.profile-row-two li {
+  list-style-type: none;
+}
+
+.profile-row-two-inner {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.profile-row-two-inner a {
+  text-decoration: none;
+  padding: 12px 20px;
+  color: rgb(0, 145, 220);
+}
+
+.profile-community,
+.profile-merch {
+  cursor: default;
+  /* make links again in future work */
+  color: rgb(102, 102, 102);
+}
+
+li.profile-music a {
+  cursor: pointer;
+}
+
+.profile-music-link-active {
+  border-bottom: 3px solid rgb(0, 145, 220);
+}
+
+/* NAV SECOND ROW */
+
 .albums-container {
   display: flex;
 
