@@ -3,8 +3,9 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import LoginPage from './components/LoginPage';
-import SignUpForm from './components/auth/SignUpForm';
+import SignUpPage from './components/SignUpPage';
 import SplashPage from './components/SplashPage';
+
 
 import NavBar from './components/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -94,8 +95,11 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginPage />
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+        <Route path='/sign-up/fan' exact={true}>
+          <SignUpPage />
+        </Route>
+        <Route path='/sign-up/artist' exact={true}>
+          <SignUpPage />
         </Route>
         <Route path='/:artistName' exact={true}>
           {/* redirect non-existent artist to signup form as query parameter, and update placeholder state based on query*/}
