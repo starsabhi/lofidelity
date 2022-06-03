@@ -30,7 +30,7 @@ function Player({ albumId, url }) {
   //   return ()=> clearTimeout(timeout.current)
   // }, [songsArr])
 
-  return <ReactPlayer url={url} controls width='376px' height='52px' />;
+  return <ReactPlayer url={url} controls width='376px' height='52px' volume={0.5}/>;
 }
 
 export default Player;
