@@ -1,26 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './SplashPage.css';
 
 const SplashPage = () => {
-  const dispatch = useDispatch();
   const artists = useSelector(state => state.artist.allArtists);
   const [index, setIndex] = useState(0);
   const [artistName, setArtistName] = useState("Lofi McLoferson");
   const [artistLocation, setArtistLocation] = useState('New York');
-  const [artistProfileImg, setArtistProfileImg] = useState('https://montessorimuddle.org/wp-content/uploads/2020/12/lofi_cali_girl_meme_by_yuumei_de4uk12-490.png')
-  const defaultArtist = {
-    name: "Lofi McLoferson",
-    location: "New York",
-    profileImageUrl: "https://montessorimuddle.org/wp-content/uploads/2020/12/lofi_cali_girl_meme_by_yuumei_de4uk12-490.png"
-  }
+  const [artistBackgroundImg, setArtistBackgroundImg] = useState('https://montessorimuddle.org/wp-content/uploads/2020/12/lofi_cali_girl_meme_by_yuumei_de4uk12-490.png');
+  const [artistUrl, setArtistUrl] = useState('/')
 
   useEffect(() => {
     const interval = setTimeout(() => {
       setArtistName(artists[index].name)
       setArtistLocation(artists[index].location)
-      setArtistProfileImg(artists[index].profileImageUrl)
+      setArtistBackgroundImg(artists[index].bgImageUrl)
+      setArtistUrl(artists[index].artistUrl)
       if (index < artists.length - 1) {
         setIndex(index => index + 1)
       } else {
@@ -35,7 +31,7 @@ const SplashPage = () => {
   };
 
   return (
-    <div className='splash-page' style={{"backgroundImage": `url(${artistProfileImg})`}}>
+    <div className='splash-page' style={{"backgroundImage": `url(${artistBackgroundImg})`}}>
       <div className='splash-hooks'>
         <h1>Listen your way.</h1>
         <p>Whether listening to relax, focus on work, or anywhere in between...</p>
@@ -50,8 +46,8 @@ const SplashPage = () => {
         </button>
       </div>
       <div className='artist-credentials'>
-        <p>Artist Name: {artistName}</p>
-        <p>Artist Location: {artistLocation}</p>
+        <Link to={`/${artistUrl}`} className='splash_artist_link'>{artistName}</Link>
+        <p>from {artistLocation}</p>
       </div>
     </div>
   );
