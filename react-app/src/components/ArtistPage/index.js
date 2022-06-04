@@ -54,42 +54,55 @@ export default function ArtistPage() {
   return (
     <>
       {/* {artist ? ( */}
-      <div className='bg-div'>
-        <img
+      <div
+        className='artist-bg-div'
+        style={{ backgroundImage: `url(${artist?.bgImageUrl})` }}
+      >
+        {/* <img
           className='artist-background'
           alt='background'
           src={artist?.bgImageUrl}
-        />
+        /> */}
         <div className='artist-content'>
-          <div className='cover-div'>
-            <img
+          <div
+            className='artist-cover-div'
+            style={{ backgroundImage: `url(${artist?.coverImageUrl})` }}
+          >
+            {/* <img
               className='artist-cover'
               alt='cover'
               src={artist?.coverImageUrl}
-            />
+            /> */}
           </div>
 
-          <div className='profile-row-two'>
-            <ul className='profile-row-two-inner'>
-              <li className='profile-music'>
+          <div className='artist-row-two'>
+            <ul className='artist-row-two-inner'>
+              <li className='artist-music'>
                 <NavLink
                   to={`/${artistName}`}
-                  // className={(state) =>
-                  //   state ? 'profile-music-link-active' : 'inactive'
-                  // }
+                  className='artist-inactive-link'
+                  activeClassName={`artist-music-link-active`}
                 >
                   <span>Music</span>
                 </NavLink>
               </li>
-              <li className='profile-community'>
-                <div>
-                  <span>Community</span>
-                </div>
-              </li>
-              <li className='profile-merch'>
-                <div>
+              <li className='artist-merch'>
+                <NavLink
+                  to={`#`}
+                  className='artist-inactive-link'
+                  // activeClassName={`artist-music-link-active`}
+                >
                   <span>Merch</span>
-                </div>
+                </NavLink>
+              </li>
+              <li className='artist-community'>
+                <NavLink
+                  to={`#`}
+                  className='artist-inactive-link'
+                  // activeClassName={`profile-music-link-active`}
+                >
+                  <span>Community</span>
+                </NavLink>
               </li>
             </ul>
           </div>
