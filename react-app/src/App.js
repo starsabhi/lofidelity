@@ -4,11 +4,9 @@ import { BrowserRouter, Route, Switch, Redirect, useLocation } from 'react-route
 import { useDispatch, useSelector } from 'react-redux';
 
 import LoginPage from './components/LoginPage';
-import SignUpForm from './components/auth/SignUpForm';
 import ExplorePage from './components/ExplorePage';
 import SignUpPage from './components/SignUpPage';
 import SplashPage from './components/SplashPage';
-
 
 import NavBar from './components/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -19,7 +17,6 @@ import * as albumActions from './store/album';
 import * as songActions from './store/song';
 
 import Footer from './components/Footer';
-import Player from './components/Player';
 import ArtistPage from './components/ArtistPage';
 
 export default function App() {
@@ -130,6 +127,9 @@ export default function App() {
           <SignUpPage />
         </Route>
         <Route path='/sign-up/artist' exact={true}>
+          <SignUpPage />
+        </Route>
+        <Route path='/sign-up/artist/details' exact={true}>
           <SignUpPage />
         </Route>
         {/* needs to be last route */}
