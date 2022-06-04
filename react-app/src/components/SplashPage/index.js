@@ -10,10 +10,10 @@ import SignUpChoice from '../SignUpChoice';
 const SplashPage = () => {
   const artists = useSelector((state) => state.artist.allArtists);
   const [index, setIndex] = useState(0);
-  const [artistName, setArtistName] = useState('Lofi McLoferson');
-  const [artistLocation, setArtistLocation] = useState('New York');
+  const [artistName, setArtistName] = useState('Gorilla Lofi');
+  const [artistLocation, setArtistLocation] = useState('North Carolina');
   const [artistBackgroundImg, setArtistBackgroundImg] = useState(
-    'https://montessorimuddle.org/wp-content/uploads/2020/12/lofi_cali_girl_meme_by_yuumei_de4uk12-490.png'
+    'https://lofidelity-bucket.s3.amazonaws.com/pexels-photo-2270167.jpeg'
   );
   const [artistUrl, setArtistUrl] = useState('/');
 
