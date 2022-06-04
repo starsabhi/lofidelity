@@ -88,7 +88,7 @@ export const updateOneSongThunk = (songId, formData) => async (dispatch) => {
     const updatedSong = await response.json();
     dispatch(updateSong(formData.albumId, songId, updatedSong));
     // response.updatedAlbum = updatedAlbum;
-    return response;
+    return updatedSong;
   } else throw response;
 };
 

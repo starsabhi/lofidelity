@@ -1,0 +1,10 @@
+.resource-edit-form-container {
+  background-color: rgba(243, 245, 246, 0.7);
+  width: 300px;
+  height: 100px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
