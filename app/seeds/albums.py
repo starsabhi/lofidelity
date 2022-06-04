@@ -8,7 +8,7 @@ def seed_albums():
         # release=datetime.date(2019, 12, 4).year,
         releaseYear=2012,
         about='This is a lofi album about the high points of life.',
-        imageUrl='https://wallpaper.dog/large/20501846.jpg',
+        imageUrl='https://lofidelity-bucket.s3.amazonaws.com/20501846.jpeg',
         price=12.00
     )
 
@@ -17,7 +17,7 @@ def seed_albums():
         title='Distinkt Denial',
         releaseYear=2014,
         about=None,
-        imageUrl='https://wallpaperaccess.com/full/639663.jpg',
+        imageUrl='https://lofidelity-bucket.s3.amazonaws.com/639663.jpeg',
         price=7.75
     )
 
@@ -26,7 +26,7 @@ def seed_albums():
         title='Beyond Generosity',
         releaseYear=2009,
         about='For the kindness inside all of us.',
-        imageUrl=None,
+        imageUrl='https://lofidelity-bucket.s3.amazonaws.com/pexels-andre-moura-4021521.jpg',
         price=10.01
     )
 
@@ -35,7 +35,7 @@ def seed_albums():
         title='Summer Waitlist',
         releaseYear=2020,
         about='Summer vibes for the summer soul.',
-        imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMaxYt8NE0OqBn_hjGHOAXraJOeWWB55SeGg&usqp=CAU',
+        imageUrl='https://lofidelity-bucket.s3.amazonaws.com/skys-and-dust-2314272145.jpeg',
         price=None
     )
 
@@ -44,7 +44,7 @@ def seed_albums():
         title='Water Sounds',
         releaseYear=2012,
         about=None,
-        imageUrl='https://4.bp.blogspot.com/-fHSm-mcrvmQ/W0MImucp82I/AAAAAAAAHSc/-wMiDKwErWEfWUsfcBGlG8tJS2ESvZ7MQCLcBGAs/s640/Chill%2BLofi.jpg',
+        imageUrl='https://lofidelity-bucket.s3.amazonaws.com/chill-lofi-2314241.jpeg',
         price=11.11
     )
 
@@ -53,7 +53,7 @@ def seed_albums():
         title='Steampunk Skyrise',
         releaseYear=2012,
         about='The gears and steam fuel our dreams.',
-        imageUrl='https://wallpaperaccess.com/full/2671935.jpg',
+        imageUrl='https://lofidelity-bucket.s3.amazonaws.com/pexels-anni-roenkae-2860804.jpg',
         price=9.22
     )
 
@@ -62,7 +62,7 @@ def seed_albums():
         title='Frothing Fronds',
         releaseYear=2008,
         about='The fronds sing the song of the ones lost.',
-        imageUrl='https://lh3.googleusercontent.com/vQwKzQ9Q4Uu0K6j-UcB8M9tmRq8HstfPlwRduP_k5IdlUAq0J_ziIfLv3NBSwwrGQsXjUW-gOEsNOXxB0I11lWPH9g=w640-h400-e365-rj-sc0x00ffffff',
+        imageUrl='https://lofidelity-bucket.s3.amazonaws.com/chill-room-1398745.jpeg',
         price=None
     )
 
@@ -71,7 +71,7 @@ def seed_albums():
         title='Trying Fantastically',
         releaseYear=2006,
         about=None,
-        imageUrl='https://i.pinimg.com/736x/92/3f/30/923f300839e8e23354366d47ee1d2966.jpg',
+        imageUrl='https://lofidelity-bucket.s3.amazonaws.com/923f300839e8e23354366d47ee1d2966.jpeg',
         price=15.15
     )
 
@@ -80,7 +80,7 @@ def seed_albums():
         title='Best of Gorilla Lofi',
         releaseYear=2022,
         about='The best of the best from Gorilla Lofi',
-        imageUrl='https://wallpaperforu.com/wp-content/uploads/2020/10/lofi-anime-wallpaper-20101715484312-scaled.jpg',
+        imageUrl='https://lofidelity-bucket.s3.amazonaws.com/lofi-anime-wallpaper-20101715484312-scaled.jpeg',
         price=99.99
     )
 
