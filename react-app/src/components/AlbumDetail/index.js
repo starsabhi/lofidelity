@@ -24,6 +24,7 @@ export default function AlbumDetail({ artist }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false)
   const [songId, setSongId] = useState(null)
+  const [trackNumber, setTrackNumber] = useState(null)
 
   //showModal handlers
   const openDeleteModal = () => {
@@ -58,16 +59,18 @@ export default function AlbumDetail({ artist }) {
   return (
     <>
 
-      <FullPageModal showModal={showDeleteModal} closeModal={closeDeleteModal}>
+      <FullPageModal showModal={showDeleteModal} closeDeleteModal={closeDeleteModal}>
         <SongDeleteForm 
           albumId={album?.id}
           songId={songId}
-        />
+          />
       </FullPageModal>
 
-      <FullPageModal showModal={showEditModal} closeModal={closeEditModal}>
+      <FullPageModal showModal={showEditModal} closeEditModal={closeEditModal}>
         <EditSongForm
+          albumId={album?.id}
           songId={songId}
+          trackNumber={trackNumber}
         />
       </FullPageModal>
 
@@ -106,21 +109,24 @@ export default function AlbumDetail({ artist }) {
                   >
                     <span className='material-symbols-outlined'> delete</span>
                 </div>
+
+                <div
+                  type='button'
+                  className={`song-edit-button
+                  ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
+                  `}
+                  onClick={() => {
+                    openEditModal();
+                    setTrackNumber(song.trackNumber);
+                    setSongId(song.id);
+                  }}
+                >
+                  <span className='material-symbols-outlined'> edit</span>
+                </div>
               </div>
             ))}
           </div>
 
-          <div
-            type='button'
-            className={`song-edit-button
-            ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
-            `}
-            onClick={() => {
-              openEditModal();
-            }}
-          >
-            <span className='material-symbols-outlined'> edit</span>
-          </div>
         </div>
 
         <div className='album-detail-image-div'>
