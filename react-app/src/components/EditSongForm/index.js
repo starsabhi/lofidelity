@@ -1,7 +1,7 @@
-import './EditSong.css'
+import './EditSong.css';
 
 import React, { useState } from 'react';
-import * as songActions from '../../store/song'
+import * as songActions from '../../store/song';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,28 +15,27 @@ export default function EditSongForm({ albumId, songId, trackNumber, closeModal 
     e.preventDefault();
     setEditErrors([]);
 
+
     const formData = {
       albumId: albumId,
       title: title,
       trackNumber: trackNumber
     }
 
-    console.log("FORM DATA", formData)
-    console.log('SONG ID', songId)
-
     try {
-      const resBody = await dispatch(
+      const errors = await dispatch(
         songActions.updateOneSongThunk(songId, formData)
       );
-      console.log('RESBODY', resBody)
-      if (resBody) {
+      if (!errors) {
         closeModal();
+        return;
+      } else {
+        setEditErrors(errors);
         return;
       }
     } catch (errorResponse) {
-      console.log('ERROR RESPONSE', errorResponse)
-      const data = await errorResponse.json();
-      if (data && data.errors) setEditErrors(data.errors);
+      // const data = await errorResponse.json();
+      console.log('Failed Request: ', errorResponse);
     }
   };
 

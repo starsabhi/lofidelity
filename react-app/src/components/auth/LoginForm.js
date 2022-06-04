@@ -17,7 +17,7 @@ export default function LoginForm() {
 
   // If user is an artist, fetch artist details into session state
   useEffect(() => {
-    if (sessionUser && sessionUser?.isArtist) {
+    if (sessionUser?.isArtist) {
       (async () => {
         await dispatch(
           sessionActions.getSessionArtistThunk(sessionUser.id)

@@ -19,16 +19,17 @@ def authenticate():
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
 
-# GET SESSION (LOGGED IN) ARTIST
 
+# GET SESSION (LOGGED IN) ARTIST
 @auth_routes.route('/artist/<int:id>')
 def get_session_artist(id):
     # userId = request.args.get('userId')
     artist = Artist.query.filter(Artist.userId == id).first()
     if artist:
-      return artist.to_dict()
+        return artist.to_dict()
     else:
-      return None
+        # NOTE: can't return None data type, have to return something
+        return {"errors": "No artist found"}, 418
 
 
 @auth_routes.route('/login', methods=['POST'])
@@ -63,7 +64,7 @@ def logout():
 @auth_routes.route('/signup/fan', methods=['POST'])
 def sign_up_fan():
     """
-    Creates a new user and logs them in
+    Creates a new fan user and logs them in
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -84,7 +85,7 @@ def sign_up_fan():
 @auth_routes.route('/signup/artist', methods=['POST'])
 def sign_up_artist():
     """
-    Creates a new user and logs them in
+    Creates a new artist user and logs them in
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']

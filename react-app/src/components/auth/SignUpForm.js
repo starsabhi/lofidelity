@@ -6,21 +6,25 @@ import * as sessionActions from '../../store/session';
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
+
+  // const history = useHistory(); // so that we can redirect after the image upload is successful
   let location = useLocation();
+
   const userType = location.pathname.split('/sign-up/')[1];
 
   const sessionUser = useSelector((state) => state.session.user);
+  const artist = useSelector((state) => state.session.sessionArtist);
 
   const [isArtist, setIsArtist] = useState(userType === 'artist');
 
   //slices of react state for controlled inputs
   const [errors, setErrors] = useState([]);
-  const [artistName, setArtistName] = useState(''); //artist only
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
 
+  //as url changes reset parts of the form
   useEffect(() => {
     setIsArtist(userType === 'artist');
     // allow username and email to move between fan and artist signup pages
@@ -28,6 +32,7 @@ export default function SignUpForm() {
     setPassword('');
   }, [userType]);
 
+  //form submission handler
   const submitSignUp = async (e) => {
     e.preventDefault();
     setErrors([]); //reset error state
@@ -42,6 +47,8 @@ export default function SignUpForm() {
         );
         if (data) {
           setErrors(data);
+        } else {
+          // history.push('/sign-up/artist/details');
         }
       } else {
         const data = await dispatch(
@@ -57,7 +64,20 @@ export default function SignUpForm() {
     // }
   };
 
-  if (sessionUser) return <Redirect to='/' />;
+  // Redirect logged in fan to home page
+  if (sessionUser && !sessionUser.isArtist) {
+    return <Redirect to='/' />;
+  }
+
+  // Redirect logged in already made artist to home page
+  if (sessionUser && artist) {
+    return <Redirect to='/' />;
+  }
+
+  // If logged in artist with no artist in db yet, send to add artist page
+  if (sessionUser && !artist) {
+    return <Redirect to='/sign-up/artist/details' />;
+  }
 
   return (
     <div className='signup-card-container'>
@@ -81,23 +101,6 @@ export default function SignUpForm() {
           autoComplete='off'
           onSubmit={submitSignUp}
         >
-          {isArtist && (
-            <div className={`signup-form-group`}>
-              <label className={`signup-label`} htmlFor='artistName'>
-                <div>Artist/Band Name </div>
-              </label>
-              <input
-                id='artistName'
-                className={`signup-input`}
-                type='text'
-                name='artistName'
-                value={artistName}
-                onChange={(e) => setArtistName(e.target.value)}
-                required
-              />
-            </div>
-          )}
-
           <div className={`signup-form-group`}>
             <label className={`signup-label`} htmlFor='username'>
               <div>Username </div>

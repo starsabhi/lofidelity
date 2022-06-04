@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Album
 from app.forms import AlbumForm
+from .utils import validation_errors_to_error_messages
 
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -73,7 +74,7 @@ def create_new_album():
             title=form.data['title'],
             releaseYear=form.data['releaseYear'],
             about=form.data['about'],
-            imageUrl=None,
+            imageUrl='https://lofidelity-bucket.s3.amazonaws.com/default-bg-image.jpeg',
             price=form.data['price']
         )
 
@@ -84,7 +85,8 @@ def create_new_album():
         return new_album.to_dict()
 
     if form.errors:
-        return form.errors
+        # return form.errors
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 418
 
 
 # UPDATE ONE ALBUM
@@ -112,7 +114,9 @@ def update_album(id):
         return session_album.to_dict()
 
     if form.errors:
-        return form.errors
+        # return form.errors, 401
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 418
+
 
 
 # UPDATE ALBUM IMAGE
@@ -140,7 +144,8 @@ def upload_album_image(id):
     current_album = Album.query.get(id)
     current_album.imageUrl = url
     db.session.commit()
-    return {"url": url}
+    # return {"url": url}
+    return
 
 
 # DELETE ONE ALBUM

@@ -6,78 +6,108 @@ import { useSelector } from 'react-redux';
 
 import playButton from '../../images/play-button.png';
 import Player from '../Player';
+import EditAlbumForm from '../EditAlbumForm';
 
 import FullPageModal from '../FullPageModal';
 import SongDeleteForm from '../DeleteForms/SongDeleteForm';
 import EditSongForm from '../EditSongForm';
 
 export default function AlbumDetail({ artist }) {
+  const sessionArtist = useSelector((state) => state.session.sessionArtist);
+  // console.log(sessionArtist.id);
+
   const params = useParams();
   const albumId = params.id;
 
-  const sessionArtist = useSelector((state) => state.session.sessionArtist);
   const album = useSelector((state) => state.album[albumId]);
   const songs = useSelector((state) => state.album.songsByAlbumId[albumId]);
 
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
-  const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '')
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false)
-  const [songId, setSongId] = useState(null)
+
   const [trackNumber, setTrackNumber] = useState(null)
 
-  //showModal handlers
-  const openDeleteModal = () => {
-    if (showDeleteModal) return; // do nothing if modal already showing
-    setShowDeleteModal(true); // else open modal
+
+  const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
+  const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
+
+  //showModal handlers - SONGS
+  const openDeleteSongModal = () => {
+    if (showDeleteSongModal) return; // do nothing if modal already showing
+    setShowDeleteSongModal(true); // else open modal
+    // disable page scrolling:
     document.getElementById('root').classList.add('overflow');
   };
 
-  const closeDeleteModal = () => {
-    if (!showDeleteModal) return; // do nothing if modal already closed
-    setShowDeleteModal(false); // else close modal
+  const closeDeleteSongModal = () => {
+    if (!showDeleteSongModal) return; // do nothing if modal already closed
+    setShowDeleteSongModal(false); // else close modal
+    // enable page scrolling:
+    document.getElementById('root').classList.remove('overflow');
+  };
+
+  const [showEditSongModal, setShowEditSongModal] = useState(false);
+  const [songId, setSongId] = useState(null);
+
+  //showModal handlers - SONGS
+  const openEditSongModal = () => {
+    if (showEditSongModal) return; // do nothing if modal already showing
+    setShowEditSongModal(true); // else open modal
+    document.getElementById('root').classList.add('overflow');
+  };
+
+  const closeEditSongModal = () => {
+    if (!showEditSongModal) return; // do nothing if modal already closed
+    setShowEditSongModal(false); // else close modal
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
 
-  const openEditModal = () => {
-    if (showEditModal) return; // do nothing if modal already showing
-    setShowEditModal(true); // else open modal
+  const [showAlbumEditModal, setShowAlbumEditModal] = useState(false);
+
+  const openAlbumEditModal = () => {
+    if (showAlbumEditModal) return; // do nothing if modal already showing
+    setShowAlbumEditModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
 
-  const closeEditModal = () => {
-    if (!showEditModal) return; // do nothing if modal already closed
-    setShowEditModal(false); // else close modal
+  const closeAlbumEditModal = () => {
+    if (!showAlbumEditModal) return; // do nothing if modal already closed
+    setShowAlbumEditModal(false); // else close modal
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
-
-
-
 
   return (
     <>
-
-      <FullPageModal showModal={showDeleteModal} closeModal={closeDeleteModal}>
-        <SongDeleteForm 
-          albumId={album?.id}
-          songId={songId}
-          />
+      <FullPageModal
+        showModal={showAlbumEditModal}
+        closeModal={closeAlbumEditModal}
+      >
+        <EditAlbumForm artistId={sessionArtist?.id} albumId={albumId} />
       </FullPageModal>
 
-      <FullPageModal showModal={showEditModal} closeModal={closeEditModal}>
-        <EditSongForm
+      <FullPageModal
+        showModal={showDeleteSongModal}
+        closeModal={closeDeleteSongModal}
+      >
+        <SongDeleteForm albumId={album?.id} songId={songId} />
+      </FullPageModal>
+
+      <FullPageModal
+        showModal={showEditSongModal}
+        closeModal={closeEditSongModal}
+      >
+        <EditSongForm   
           albumId={album?.id}
           songId={songId}
-          trackNumber={trackNumber}
-        />
+          trackNumber={trackNumber} />
       </FullPageModal>
 
       <div className='album-detail-container'>
         <div className='album-player-container'>
           <h1>{album?.title}</h1>
           <h3>by {artist?.name}</h3>
+          <button onClick={openAlbumEditModal}>Edit Album Details</button>
           <span>Now playing: {songTitle}</span>
           <Player albumId={albumId} url={url} />
 
@@ -90,10 +120,10 @@ export default function AlbumDetail({ artist }) {
                   alt='play'
                   src={playButton}
                   onClick={() => {
-                    setUrl(song?.audioUrl)
-                    setSongTitle(song?.title)
+                    setUrl(song?.audioUrl);
+                    setSongTitle(song?.title);
                   }}
-                  />
+                />
                 <span>
                   {song?.trackNumber}. {song?.title}
                 </span>
@@ -103,11 +133,11 @@ export default function AlbumDetail({ artist }) {
                   ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
                   `}
                   onClick={() => {
-                    openDeleteModal();
-                    setSongId(song.id)
+                    openDeleteSongModal();
+                    setSongId(song.id);
                   }}
-                  >
-                    <span className='material-symbols-outlined'> delete</span>
+                >
+                  <span className='material-symbols-outlined'> delete</span>
                 </div>
 
                 <div
@@ -116,7 +146,7 @@ export default function AlbumDetail({ artist }) {
                   ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
                   `}
                   onClick={() => {
-                    openEditModal();
+                    openEditSongModal();
                     setTrackNumber(song.trackNumber);
                     setSongId(song.id);
                   }}
@@ -125,9 +155,7 @@ export default function AlbumDetail({ artist }) {
                 </div>
               </div>
             ))}
-          </div>
-
-        </div>
+          </div>          
 
         <div className='album-detail-image-div'>
           <img
@@ -135,7 +163,7 @@ export default function AlbumDetail({ artist }) {
             id={`album-${album?.id}-image-detail`}
             alt='album cover'
             src={album?.imageUrl}
-            />
+          />
         </div>
       </div>
     </>

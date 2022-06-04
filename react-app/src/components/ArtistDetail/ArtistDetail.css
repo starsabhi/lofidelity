@@ -12,3 +12,10 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.edit-profile-image-button {
+  /* position: absolute;
+  right: 0px;
+  top: 0px; */
+  cursor: pointer;
+}

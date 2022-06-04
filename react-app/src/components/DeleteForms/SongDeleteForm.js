@@ -1,7 +1,7 @@
-import './DeleteForm.css'
+import './DeleteForm.css';
 
 import React, { useState } from 'react';
-import * as songActions from '../../store/song'
+import * as songActions from '../../store/song';
 
 import { useDispatch } from 'react-redux';
 
@@ -36,7 +36,7 @@ export default function DeleteSongForm({ albumId, songId, closeModal }) {
         <div className='resource-error-container'>
           {deleteErrors.map((error, idx) => (
             <p className='resource-error-message' key={idx}>
-            {error}
+              {error}
             </p>
           ))}
         </div>

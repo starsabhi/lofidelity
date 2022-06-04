@@ -68,8 +68,21 @@ export const addNewSongThunk = (formData) => async (dispatch) => {
   if (response.ok) {
     const newSong = await response.json();
     dispatch(addSong(newSong.id, newSong));
-    return response;
-  } else throw response;
+    return null;
+  } else if (response.status < 500) {
+    const resBody = await response.json();
+    if (resBody.errors) {
+      return resBody.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+
+  // if (response.ok) {
+  //   const newSong = await response.json();
+  //   dispatch(addSong(newSong.id, newSong));
+  //   return response;
+  // } else throw response;
 };
 
 export const updateOneSongThunk = (songId, formData) => async (dispatch) => {
@@ -87,9 +100,23 @@ export const updateOneSongThunk = (songId, formData) => async (dispatch) => {
   if (response.ok) {
     const updatedSong = await response.json();
     dispatch(updateSong(formData.albumId, songId, updatedSong));
-    // response.updatedAlbum = updatedAlbum;
-    return updatedSong;
-  } else throw response;
+    return null;
+    //   return updatedSong;
+  } else if (response.status < 500) {
+    const resBody = await response.json();
+    if (resBody.errors) {
+      return resBody.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+
+  // if (response.ok) {
+  //   const updatedSong = await response.json();
+  //   dispatch(updateSong(formData.albumId, songId, updatedSong));
+  //   // response.updatedAlbum = updatedAlbum;
+  //   return updatedSong;
+  // } else throw response;
 };
 
 export const updateAlbumTracksThunk =

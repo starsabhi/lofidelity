@@ -1,11 +1,46 @@
+.artist-bg-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  /* background-position: center; */
+  /* background-size: contain; */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* .artist-background {
+  position: absolute;
+  background-repeat: no-repeat;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  padding: 0px;
+} */
+
 .artist-content {
   display: flex;
   flex-direction: column;
   width: max-content;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   max-width: 975px;
+  height: 100%;
   background-color: #ffffff;
+  margin-bottom: 40px;
+}
+
+.artist-cover-div {
+  height: 180px;
+  width: 975px;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* object-fit: cover; */
 }
 
 .artist-cover {
@@ -16,47 +51,72 @@
 
 /* NAV SECOND ROW */
 
-.profile-row-two {
-  background-color: white;
-  position: sticky;
-  top: 48px;
-  left: 0px;
+.artist-row-two {
+  display: flex;
+  background-color: rgb(242, 242, 242);
+  /* position: sticky; */
+  /* top: 48px; */
+  /* left: 0px; */
   width: 100%;
-  z-index: 1000;
+  /* z-index: 1000; */
+  height: 38px;
 }
 
-.profile-row-two li {
-  list-style-type: none;
-}
-
-.profile-row-two-inner {
+.artist-row-two-inner {
   display: flex;
   width: 100%;
   justify-content: flex-start;
+  gap: 10px;
+  height: 38px;
+  margin: 0px;
+  padding: 0px 15px;
 }
 
-.profile-row-two-inner a {
+.artist-row-two-inner li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  font-size: 14px;
+  font-weight: bolder;
+  /* padding: 0px 15px; */
+  height: 100%;
+}
+
+.artist-inactive-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   text-decoration: none;
-  padding: 12px 20px;
-  color: rgb(0, 145, 220);
-}
-
-.profile-community,
-.profile-merch {
-  cursor: default;
-  /* make links again in future work */
   color: rgb(102, 102, 102);
+
+  height: 100%;
+  padding: 0px 15px;
+}
+/* re enable when links are live */
+/* .artist-inactive-link:hover {
+  border-top: 2px solid rgb(0, 145, 220);
+} */
+
+.artist-merch a,
+.artist-community a {
+  cursor: default;
 }
 
-li.profile-music a {
-  cursor: pointer;
-}
-
-.profile-music-link-active {
-  border-bottom: 3px solid rgb(0, 145, 220);
+.artist-music-link-active {
+  color: rgb(6, 135, 245);
+  border-top: 2px solid rgb(0, 145, 220);
 }
 
 /* NAV SECOND ROW */
+
+.artist-body-div {
+  display: flex;
+  width: 975px;
+  padding: 35px 30px;
+  padding-bottom: 40px;
+}
 
 .albums-container {
   display: flex;
@@ -69,26 +129,4 @@ li.profile-music a {
   flex-direction: column;
   flex-wrap: wrap;
   width: 120px;
-}
-
-.bg-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.artist-background {
-  position: absolute;
-  background-repeat: no-repeat;
-  top: 0;
-  z-index: -1;
-  width: 100%;
-  padding: 0px;
-}
-.artist-body-div {
-  display: flex;
-  width: 975px;
-  padding: 35px 30px;
 }

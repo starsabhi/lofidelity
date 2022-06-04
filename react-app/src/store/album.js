@@ -79,8 +79,21 @@ export const addNewAlbumThunk = (formData) => async (dispatch) => {
   if (response.ok) {
     const newAlbum = await response.json();
     dispatch(addAlbum(formData.artistId, newAlbum.id, newAlbum));
-    return response;
-  } else throw response;
+    return null;
+  } else if (response.status < 500) {
+    const resBody = await response.json();
+    if (resBody.errors) {
+      return resBody.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+
+  // if (response.ok) {
+  //   const newAlbum = await response.json();
+  //   dispatch(addAlbum(formData.artistId, newAlbum.id, newAlbum));
+  //   return response;
+  // } else throw response;
 };
 
 export const updateOneAlbumThunk = (albumId, formData) => async (dispatch) => {
@@ -98,13 +111,28 @@ export const updateOneAlbumThunk = (albumId, formData) => async (dispatch) => {
       price: formData.price,
     }),
   });
+  console.log('Response', response);
+  // const resBody = await response.json();
+  // console.log('ResBody', resBody);s
 
   if (response.ok) {
     const updatedAlbum = await response.json();
     dispatch(updateAlbum(formData.artistId, albumId, updatedAlbum));
-    // response.updatedAlbum = updatedAlbum;
-    return response;
-  } else throw response;
+    return null;
+  } else if (response.status < 500) {
+    const resBody = await response.json();
+    if (resBody.errors) {
+      return resBody.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+  // if (response.ok) {
+  //   const updatedAlbum = await response.json();
+  //   dispatch(updateAlbum(formData.artistId, albumId, updatedAlbum));
+  //   // response.updatedAlbum = updatedAlbum;
+  //   return response;
+  // } else throw response;
 };
 
 export const updateAlbumImageThunk =
@@ -117,8 +145,21 @@ export const updateAlbumImageThunk =
     if (response.ok) {
       const resBody = await response.json();
       dispatch(updateAlbumImage(artistId, albumId, resBody.url));
-      return response;
-    } else throw response;
+      return null;
+    } else if (response.status < 500) {
+      const resBody = await response.json();
+      if (resBody.errors) {
+        return resBody.errors;
+      }
+    } else {
+      return ['An error occurred. Please try again.'];
+    }
+
+    // if (response.ok) {
+    //   const resBody = await response.json();
+    //   dispatch(updateAlbumImage(artistId, albumId, resBody.url));
+    //   return response;
+    // } else throw response;
   };
 
 export const deleteOneAlbumThunk = (artistId, albumId) => async (dispatch) => {
