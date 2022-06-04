@@ -29,7 +29,7 @@ def get_session_artist(id):
         return artist.to_dict()
     else:
         # NOTE: can't return None data type, have to return something
-        return {"errors": "No artist found"}
+        return {"errors": "No artist found"}, 418
 
 
 @auth_routes.route('/login', methods=['POST'])

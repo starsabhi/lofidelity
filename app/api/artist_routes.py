@@ -56,16 +56,6 @@ browsers or HTTP clients redirect with form data reliably or without user
 interaction. Note: this exception is only raised in debug mode"
 """
 
-# GET SESSION (LOGGED IN) ARTIST
-
-@artist_routes.route('/session/<int:id>')
-def get_session_artist(id):
-    # userId = request.args.get('userId')
-    artist = Artist.query.filter(Artist.userId == id).first()
-    if artist:
-      return artist.to_dict()
-    else:
-      return None
 
 # ADD ARTIST - LOGGED-IN USER ONLY
 @artist_routes.route('', methods=['POST'])
