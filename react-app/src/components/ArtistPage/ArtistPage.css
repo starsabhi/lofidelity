@@ -99,6 +99,12 @@
   border-top: 2px solid rgb(0, 145, 220);
 } */
 
+li.artist-merch,
+li.artist-community {
+  /* comment out later */
+  display: none;
+}
+
 .artist-merch a,
 .artist-community a {
   cursor: default;
