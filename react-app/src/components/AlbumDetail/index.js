@@ -24,6 +24,9 @@ export default function AlbumDetail({ artist }) {
 
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
 
+  const [trackNumber, setTrackNumber] = useState(null)
+
+
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
 
@@ -31,13 +34,14 @@ export default function AlbumDetail({ artist }) {
   const openDeleteSongModal = () => {
     if (showDeleteSongModal) return; // do nothing if modal already showing
     setShowDeleteSongModal(true); // else open modal
+    // disable page scrolling:
     document.getElementById('root').classList.add('overflow');
   };
 
   const closeDeleteSongModal = () => {
     if (!showDeleteSongModal) return; // do nothing if modal already closed
     setShowDeleteSongModal(false); // else close modal
-    // disable page scrolling:
+    // enable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
 
@@ -93,7 +97,10 @@ export default function AlbumDetail({ artist }) {
         showModal={showEditSongModal}
         closeModal={closeEditSongModal}
       >
-        <EditSongForm songId={songId} />
+        <EditSongForm   
+          albumId={album?.id}
+          songId={songId}
+          trackNumber={trackNumber} />
       </FullPageModal>
 
       <div className='album-detail-container'>
@@ -132,22 +139,23 @@ export default function AlbumDetail({ artist }) {
                 >
                   <span className='material-symbols-outlined'> delete</span>
                 </div>
+
+                <div
+                  type='button'
+                  className={`song-edit-button
+                  ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
+                  `}
+                  onClick={() => {
+                    openEditSongModal();
+                    setTrackNumber(song.trackNumber);
+                    setSongId(song.id);
+                  }}
+                >
+                  <span className='material-symbols-outlined'> edit</span>
+                </div>
               </div>
             ))}
-          </div>
-
-          <div
-            type='button'
-            className={`song-edit-button
-            ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
-            `}
-            onClick={() => {
-              openEditSongModal();
-            }}
-          >
-            <span className='material-symbols-outlined'> edit</span>
-          </div>
-        </div>
+          </div>          
 
         <div className='album-detail-image-div'>
           <img
