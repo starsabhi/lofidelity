@@ -5,7 +5,7 @@ import * as songActions from '../../store/song'
 
 import { useDispatch } from 'react-redux';
 
-export default function DeleteSongForm({ albumId, songId, closeDeleteModal }) {
+export default function DeleteSongForm({ albumId, songId, closeModal }) {
   const dispatch = useDispatch();
 
   const [deleteErrors, setDeleteErrors] = useState([]);
@@ -21,7 +21,7 @@ export default function DeleteSongForm({ albumId, songId, closeDeleteModal }) {
         songActions.deleteOneSongThunk(albumId, songId)
       );
       if (resBody.message === 'Success') {
-        closeDeleteModal();
+        closeModal();
         return;
       }
     } catch (errorResponse) {
@@ -55,7 +55,7 @@ export default function DeleteSongForm({ albumId, songId, closeDeleteModal }) {
             <button
               className='resource-cancel-btn'
               type='button'
-              onClick={closeDeleteModal}
+              onClick={closeModal}
             >
               Cancel
             </button>

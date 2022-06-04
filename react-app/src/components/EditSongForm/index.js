@@ -5,7 +5,7 @@ import * as songActions from '../../store/song'
 
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function EditSongForm({ albumId, songId, trackNumber, closeEditModal }) {
+export default function EditSongForm({ albumId, songId, trackNumber, closeModal }) {
   const dispatch = useDispatch();
 
   const [editErrors, setEditErrors] = useState([]);
@@ -30,7 +30,7 @@ export default function EditSongForm({ albumId, songId, trackNumber, closeEditMo
       );
       console.log('RESBODY', resBody)
       if (resBody) {
-        closeEditModal();
+        closeModal();
         return;
       }
     } catch (errorResponse) {

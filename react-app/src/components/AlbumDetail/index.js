@@ -59,14 +59,14 @@ export default function AlbumDetail({ artist }) {
   return (
     <>
 
-      <FullPageModal showModal={showDeleteModal} closeDeleteModal={closeDeleteModal}>
+      <FullPageModal showModal={showDeleteModal} closeModal={closeDeleteModal}>
         <SongDeleteForm 
           albumId={album?.id}
           songId={songId}
           />
       </FullPageModal>
 
-      <FullPageModal showModal={showEditModal} closeEditModal={closeEditModal}>
+      <FullPageModal showModal={showEditModal} closeModal={closeEditModal}>
         <EditSongForm
           albumId={album?.id}
           songId={songId}
