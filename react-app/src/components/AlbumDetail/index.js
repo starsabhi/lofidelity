@@ -8,7 +8,8 @@ import playButton from '../../images/play-button.png';
 import Player from '../Player';
 
 import FullPageModal from '../FullPageModal';
-import SongDeleteForm from '../DeleteForms/SongDeleteForm'
+import SongDeleteForm from '../DeleteForms/SongDeleteForm';
+import EditSongForm from '../EditSongForm';
 
 export default function AlbumDetail({ artist }) {
   const params = useParams();
@@ -20,31 +21,52 @@ export default function AlbumDetail({ artist }) {
 
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '')
-  const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false)
   const [songId, setSongId] = useState(null)
 
   //showModal handlers
-  const openModal = () => {
-    if (showModal) return; // do nothing if modal already showing
-    setShowModal(true); // else open modal
+  const openDeleteModal = () => {
+    if (showDeleteModal) return; // do nothing if modal already showing
+    setShowDeleteModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
 
-  const closeModal = () => {
-    if (!showModal) return; // do nothing if modal already closed
-    setShowModal(false); // else close modal
+  const closeDeleteModal = () => {
+    if (!showDeleteModal) return; // do nothing if modal already closed
+    setShowDeleteModal(false); // else close modal
+    // disable page scrolling:
+    document.getElementById('root').classList.remove('overflow');
+  };
+
+  const openEditModal = () => {
+    if (showEditModal) return; // do nothing if modal already showing
+    setShowEditModal(true); // else open modal
+    document.getElementById('root').classList.add('overflow');
+  };
+
+  const closeEditModal = () => {
+    if (!showEditModal) return; // do nothing if modal already closed
+    setShowEditModal(false); // else close modal
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
 
 
 
+
   return (
     <>
 
-      <FullPageModal showModal={showModal} closeModal={closeModal}>
+      <FullPageModal showModal={showDeleteModal} closeModal={closeDeleteModal}>
         <SongDeleteForm 
           albumId={album?.id}
+          songId={songId}
+        />
+      </FullPageModal>
+
+      <FullPageModal showModal={showEditModal} closeModal={closeEditModal}>
+        <EditSongForm
           songId={songId}
         />
       </FullPageModal>
@@ -78,7 +100,7 @@ export default function AlbumDetail({ artist }) {
                   ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
                   `}
                   onClick={() => {
-                    openModal();
+                    openDeleteModal();
                     setSongId(song.id)
                   }}
                   >
@@ -86,6 +108,18 @@ export default function AlbumDetail({ artist }) {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div
+            type='button'
+            className={`song-edit-button
+            ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
+            `}
+            onClick={() => {
+              openEditModal();
+            }}
+          >
+            <span className='material-symbols-outlined'> edit</span>
           </div>
         </div>
 
