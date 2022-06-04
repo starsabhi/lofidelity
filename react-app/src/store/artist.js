@@ -281,7 +281,7 @@ const artistReducer = (state = initialState, action) => {
       genreId = action.payload.genreId;
       artistId = action.payload.artistId;
       let imageType = action.payload.imageType;
-
+        console.log("action.payload", action.payload)
       if (imageType === 'profile') {
         index = newState.artistsByGenreId[genreId].findIndex(
           (artist) => artist.id === parseInt(artistId)
@@ -289,27 +289,29 @@ const artistReducer = (state = initialState, action) => {
 
         //replace artist in artistsByGenreId array
         newState.artistsByGenreId[genreId][index].profileImageUrl =
-          action.payload.ImageUrl;
+          action.payload.imageUrl;
         newState.artistsByArtistId[artistId].profileImageUrl =
-          action.payload.ImageUrl;
+          action.payload.imageUrl;
 
         //find index of artist to update in artistsByGenreId
         index = newState.allArtists.findIndex(
           (artist) => artist.id === parseInt(artistId)
         );
-
         //replace artist in allArtists
-        newState.allArtists[index].profileImageUrl = action.payload.ImageUrl;
-      } else if (imageType === 'cover') {
+        newState.allArtists[index].profileImageUrl = action.payload.imageUrl;
+
+
+      }
+      else if (imageType === 'cover') {
         index = newState.artistsByGenreId[genreId].findIndex(
           (artist) => artist.id === parseInt(artistId)
         );
 
         //replace artist in artistsByGenreId array
         newState.artistsByGenreId[genreId][index].coverImageUrl =
-          action.payload.ImageUrl;
+          action.payload.imageUrl;
         newState.artistsByArtistId[artistId].coverImageUrl =
-          action.payload.ImageUrl;
+          action.payload.imageUrl;
 
         //find index of artist to update in artistsByGenreId
         index = newState.allArtists.findIndex(
@@ -318,16 +320,17 @@ const artistReducer = (state = initialState, action) => {
 
         //replace artist in allArtists
         newState.allArtists[index].coverImageUrl = action.payload.ImageUrl;
-      } else if (imageType === 'background') {
+      }
+      else if (imageType === 'background') {
         index = newState.artistsByGenreId[genreId].findIndex(
           (artist) => artist.id === parseInt(artistId)
         );
 
         //replace artist in artistsByGenreId array
         newState.artistsByGenreId[genreId][index].bgImageUrl =
-          action.payload.ImageUrl;
+          action.payload.imageUrl;
         newState.artistsByArtistId[artistId].bgImageUrl =
-          action.payload.ImageUrl;
+          action.payload.imageUrl;
 
         //find index of artist to update in artistsByGenreId
         index = newState.allArtists.findIndex(
@@ -335,7 +338,7 @@ const artistReducer = (state = initialState, action) => {
         );
 
         //replace artist in allArtists
-        newState.allArtists[index].bgImageUrl = action.payload.ImageUrl;
+        newState.allArtists[index].bgImageUrl = action.payload.imageUrl;
       }
 
       //replace artist in artistByArtistId
