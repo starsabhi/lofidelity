@@ -58,8 +58,6 @@ export const getOneArtistThunk = (artistId) => async (dispatch) => {
   } else throw response;
 };
 
-
-
 export const addNewArtistThunk = (formData) => async (dispatch) => {
   const response = await fetch('/api/artists', {
     method: 'POST',
@@ -83,47 +81,63 @@ export const addNewArtistThunk = (formData) => async (dispatch) => {
   if (response.ok) {
     const newArtist = await response.json();
     dispatch(addArtist(newArtist.id, formData.genreId, newArtist));
-    return response;
-  } else throw response;
+    return null;
+  } else if (response.status < 500) {
+    const resBody = await response.json();
+    if (resBody.errors) {
+      return resBody.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+  // if (response.ok) {
+  //   const newArtist = await response.json();
+  //   dispatch(addArtist(newArtist.id, formData.genreId, newArtist));
+  //   return response;
+  // } else throw response;
 };
 
-export const updateOneArtistThunk =
-  (artist, formData) => async (dispatch) => {
-    let oldGenreId = artist.genreId
-    console.log("oldGenreId", oldGenreId)
-    const response = await fetch(`/api/artists/${artist.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        userId: formData.userId,
-        genreId: formData.genreId,
-        location: formData.location,
-        artistUrl: formData.artistUrl,
-        description: formData.description,
-
-        // bgImageUrl: formData.bgImageUrl,
-        // coverImageUrl: formData.coverImageUrl,
-        // profileImageUrl: formData.profileImageUrl,
-      }),
-    });
-    if (response.ok) {
-      const updatedArtist = await response.json();
-      console.log(updatedArtist)
-      dispatch(updateArtist(oldGenreId, formData.genreId, artist.id, updatedArtist));
-      // response.updatedArtist = updatedArtist;
-      return null;
-    } else if (response.status < 500) {
-      const resBody = await response.json();
-      if (resBody.errors) {
-        return resBody.errors;
-      }
-    } else {
-      return ['An error occurred. Please try again.'];
+export const updateOneArtistThunk = (artist, formData) => async (dispatch) => {
+  let oldGenreId = artist.genreId;
+  console.log('oldGenreId', oldGenreId);
+  const response = await fetch(`/api/artists/${artist.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: formData.name,
+      userId: formData.userId,
+      genreId: formData.genreId,
+      location: formData.location,
+      artistUrl: formData.artistUrl,
+      description: formData.description,
+      // bgImageUrl: formData.bgImageUrl,
+      // coverImageUrl: formData.coverImageUrl,
+      // profileImageUrl: formData.profileImageUrl,
+    }),
+  });
+  if (response.ok) {
+    const updatedArtist = await response.json();
+    //prettier-ignore
+    dispatch(updateArtist(oldGenreId, formData.genreId, artist.id, updatedArtist));
+    return null;
+  } else if (response.status < 500) {
+    const resBody = await response.json();
+    if (resBody.errors) {
+      return resBody.errors;
     }
-  };
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+  // if (response.ok) {
+  //   const updatedArtist = await response.json();
+  //   //prettier-ignore
+  //   dispatch(updateArtist(oldGenreId, formData.genreId, artist.id, updatedArtist));
+  //   //response.updatedArtist = updatedArtist;
+  //   return response;
+  // } else throw response;
+};
 
 export const updateArtistImageThunk =
   //imageType is 'profile', 'cover', or 'background'
@@ -136,8 +150,21 @@ export const updateArtistImageThunk =
     if (response.ok) {
       const resBody = await response.json();
       dispatch(updateArtistImage(genreId, artistId, resBody.url, imageType));
-      return response;
-    } else throw response;
+      return null;
+    } else if (response.status < 500) {
+      const resBody = await response.json();
+      if (resBody.errors) {
+        return resBody.errors;
+      }
+    } else {
+      return ['An error occurred. Please try again.'];
+    }
+
+    // if (response.ok) {
+    //   const resBody = await response.json();
+    //   dispatch(updateArtistImage(genreId, artistId, resBody.url, imageType));
+    //   return response;
+    // } else throw response;
   };
 
 export const deleteOneArtistThunk = (genreId, artistId) => async (dispatch) => {
@@ -154,7 +181,11 @@ export const deleteOneArtistThunk = (genreId, artistId) => async (dispatch) => {
   } else throw response;
 };
 
-const initialState = { artistsByGenreId: {} , artistsByArtistId: {}, allArtists: []};
+const initialState = {
+  artistsByGenreId: {},
+  artistsByArtistId: {},
+  allArtists: [],
+};
 /*
 artistState = {
     artistsByGenreId: {
@@ -226,12 +257,10 @@ const artistReducer = (state = initialState, action) => {
       newState.artistsByArtistId[artistId] = action.payload.artist;
       return newState;
 
-
-
     case ADD_ARTIST:
       artistId = action.payload.artistId;
       genreId = action.payload.genreId;
-      console.log(action.payload)
+      console.log(action.payload);
       //add Artist to end of array sorted by "releaseYear"
       newState.artistsByGenreId[genreId].push(action.payload.artist);
 
@@ -255,20 +284,22 @@ const artistReducer = (state = initialState, action) => {
       let newGenreId = action.payload.newGenreId;
       artistId = action.payload.artistId;
 
-      if (oldGenreId === newGenreId){
-
-      //find index of artist to update in artistsByGenreId
-      index = newState.artistsByGenreId[newGenreId].findIndex(
-        (artist) => artist.id === parseInt(artistId)
-      );
-      //replace artist in artistsByGenreId array
-      newState.artistsByGenreId[newGenreId][index] = action.payload.updatedArtist;
+      if (oldGenreId === newGenreId) {
+        //find index of artist to update in artistsByGenreId
+        index = newState.artistsByGenreId[newGenreId].findIndex(
+          (artist) => artist.id === parseInt(artistId)
+        );
+        //replace artist in artistsByGenreId array
+        newState.artistsByGenreId[newGenreId][index] =
+          action.payload.updatedArtist;
       } else {
         let oldIndex = newState.artistsByGenreId[oldGenreId].findIndex(
           (artist) => artist.id === parseInt(artistId)
         );
         newState.artistsByGenreId[oldGenreId].splice(oldIndex, 1);
-        newState.artistsByGenreId[newGenreId].push(action.payload.updatedArtist)
+        newState.artistsByGenreId[newGenreId].push(
+          action.payload.updatedArtist
+        );
         newState.artistsByGenreId[newGenreId].sort((a, b) => {
           return a.name - b.name;
         });
@@ -289,7 +320,7 @@ const artistReducer = (state = initialState, action) => {
       genreId = action.payload.genreId;
       artistId = action.payload.artistId;
       let imageType = action.payload.imageType;
-        console.log("action.payload", action.payload)
+      console.log('action.payload', action.payload);
       if (imageType === 'profile') {
         index = newState.artistsByGenreId[genreId].findIndex(
           (artist) => artist.id === parseInt(artistId)
@@ -307,10 +338,7 @@ const artistReducer = (state = initialState, action) => {
         );
         //replace artist in allArtists
         newState.allArtists[index].profileImageUrl = action.payload.imageUrl;
-
-
-      }
-      else if (imageType === 'cover') {
+      } else if (imageType === 'cover') {
         index = newState.artistsByGenreId[genreId].findIndex(
           (artist) => artist.id === parseInt(artistId)
         );
@@ -328,8 +356,7 @@ const artistReducer = (state = initialState, action) => {
 
         //replace artist in allArtists
         newState.allArtists[index].coverImageUrl = action.payload.imageUrl;
-      }
-      else if (imageType === 'background') {
+      } else if (imageType === 'background') {
         index = newState.artistsByGenreId[genreId].findIndex(
           (artist) => artist.id === parseInt(artistId)
         );
@@ -413,7 +440,6 @@ export default artistReducer;
 //   })
 // ).catch(async (res) => { const resBody= await res.json(); console.log(res,resBody)})
 
-
 // window.store.dispatch(
 //   window.artistActions.updateOneArtistThunk(window.store.getState().artist.allArtists[2],{
 //     name: 'new name',
@@ -432,7 +458,6 @@ export default artistReducer;
 // window.store.dispatch(window.artistActions
 // .deleteOneArtistThunk(5, 1)
 // ).catch(async (res) => { const resBody= await res.json(); console.log(res,resBody)})
-
 
 // DELETE FAILS - model-cascade delte?
 // artist is connected to user, need userId when adding artist
