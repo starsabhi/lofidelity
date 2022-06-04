@@ -48,12 +48,13 @@ COMPONENTS:
         - ARTIST DETAILS  - MARK
             - Edit artist details DONE - TODO: fixGenreId w remove data-required?
             - 3 upload modals DONE -TODO: ERROR HANDLING
+            - Style artist dashboard
             - NO DELETE -
         - ARTIST ALBUMS - MARK/EK
             - ADD ALBUM
 
         - ALBUM DETAILS - AB
-            - Edit album detail
+            - Edit album detail - DONE - TODO: styling
             - Upload album photo
             - Delete album - DONE
 
