@@ -48,14 +48,14 @@ COMPONENTS:
         - ARTIST DETAILS  - MARK
             - Edit artist details
             - 3 upload modals
-            - NO DELETE - DEMO
+            - NO DELETE -
         - ARTIST ALBUMS - MARK/EK
             - ADD ALBUM
 
         - ALBUM DETAILS - AB
             - Edit album detail
             - Upload album photo
-            - Delete album
+            - Delete album - DONE
 
             - SONG FUNCTIONALITY - AL
                 -add song

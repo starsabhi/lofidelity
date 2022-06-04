@@ -1,4 +1,11 @@
-.album-thumbnail-image{
+.album-thumbnail-image {
   height: 232px;
   width: 232px;
+}
+
+.album-delete-button {
+  /* position: absolute;
+  right: 0px;
+  top: 0px; */
+  cursor: pointer;
 }

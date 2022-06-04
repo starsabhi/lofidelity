@@ -71,9 +71,9 @@ export default function ArtistPage() {
               <li className='profile-music'>
                 <NavLink
                   to={`/${artistName}`}
-                  className={(state) =>
-                    state ? 'profile-music-link-active' : 'inactive'
-                  }
+                  // className={(state) =>
+                  //   state ? 'profile-music-link-active' : 'inactive'
+                  // }
                 >
                   <span>Music</span>
                 </NavLink>

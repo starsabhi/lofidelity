@@ -131,7 +131,7 @@ export const deleteOneAlbumThunk = (artistId, albumId) => async (dispatch) => {
     if (resBody.message === 'Success') {
       dispatch(deleteAlbum(artistId, albumId));
     }
-    return response;
+    return resBody;
   } else throw response;
 };
 

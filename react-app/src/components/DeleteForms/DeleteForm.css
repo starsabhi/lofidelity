@@ -1,4 +1,4 @@
-.imageP-delete-form-container {
+.resource-delete-form-container {
   background-color: rgba(243, 245, 246, 0.7);
   width: 300px;
   height: 100px;
@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.imageP-delete-text1 {
+.resource-delete-text1 {
   display: flex;
   align-items: center;
   height: 53px;
@@ -17,7 +17,7 @@
   font-size: 18px;
 }
 
-.imageP-delete-text2 {
+.resource-delete-text2 {
   display: flex;
   align-items: flex-start;
   height: 60px;
@@ -25,7 +25,7 @@
   font-size: 14px;
 }
 
-.imageP-delete-form {
+.resource-delete-form {
   width: 620px;
   /* border: 1px solid black; */
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
@@ -34,7 +34,7 @@
   background-color: white;
 }
 
-.imageP-delete-form-btn-div {
+.resource-delete-form-btn-div {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -42,7 +42,7 @@
   gap: 10px;
 }
 
-.imageP-cancel-btn {
+.resource-cancel-btn {
   padding: 0px 20px;
   border: 1px solid white;
   border-radius: 3px;
@@ -64,11 +64,11 @@
   transition-delay: 0s;
 }
 
-.imageP-cancel-btn:hover {
+.resource-cancel-btn:hover {
   background-color: rgb(81, 136, 224);
 }
 
-.imageP-delete-btn {
+.resource-delete-btn {
   padding: 0px 20px;
   border: 1px solid white;
   border-radius: 3px;
@@ -91,7 +91,7 @@
   transition-delay: 0s;
 }
 
-.imageP-delete-btn:hover {
+.resource-delete-btn:hover {
   /* background-color: rgb(81, 136, 224); */
   background-color: rgba(209, 61, 54, 1);
   border: 1px solid var(--btnDelete2);
