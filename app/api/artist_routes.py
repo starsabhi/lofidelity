@@ -100,7 +100,8 @@ def post_new_artist():
     if form.errors:  # check if errors exist
         # checks if artistUrl is unique
         # send errors to frontend (sends dictionary in json to frontend)
-        return form.errors
+        # return form.errors
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 418
 
 
 # UPDATE ONE ARTIST - LOGGED-IN USER ONLY

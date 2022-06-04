@@ -2,9 +2,10 @@ from flask import Blueprint, request
 from app.models import db, Song
 from flask_login import login_required
 from app.forms import SongForm
+from .utils import validation_errors_to_error_messages
+
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
-
 
 song_routes = Blueprint('songs', __name__)
 
@@ -120,7 +121,8 @@ def add_song(id):
         return new_song.to_dict()
 
     if form.errors:
-        return form.errors
+        # return form.errors
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 418
 
 
 # UPDATE ONE SONG
@@ -149,7 +151,8 @@ def update_song(id):
         return song_to_update.to_dict()
 
     if form.errors:
-        return form.errors
+        # return form.errors
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 418
 
 
 # DELETE ONE SONG
