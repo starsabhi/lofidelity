@@ -21,7 +21,8 @@
 
 .outerDivdorArtistList {
   background-color: #eef2f3;
-  margin:10px
+  margin: 10px;
+  height: 100%;
 }
 
 .titleOfDivContentforArtist {

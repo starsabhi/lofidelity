@@ -14,6 +14,8 @@ import EditSongForm from '../EditSongForm';
 
 export default function AlbumDetail({ artist }) {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
+  const sessionState = useSelector((state) => state);
+  console.log(sessionState);
   // console.log(sessionArtist.id);
 
   const params = useParams();
@@ -24,8 +26,7 @@ export default function AlbumDetail({ artist }) {
 
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
 
-  const [trackNumber, setTrackNumber] = useState(null)
-
+  const [trackNumber, setTrackNumber] = useState(null);
 
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
@@ -97,17 +98,26 @@ export default function AlbumDetail({ artist }) {
         showModal={showEditSongModal}
         closeModal={closeEditSongModal}
       >
-        <EditSongForm   
+        <EditSongForm
           albumId={album?.id}
           songId={songId}
-          trackNumber={trackNumber} />
+          trackNumber={trackNumber}
+        />
       </FullPageModal>
 
       <div className='album-detail-container'>
         <div className='album-player-container'>
           <h1>{album?.title}</h1>
           <h3>by {artist?.name}</h3>
-          <button onClick={openAlbumEditModal}>Edit Album Details</button>
+          <div>
+            {sessionArtist?.id === album?.artistId ? (
+              <button className='editAlbumDetails' onClick={openAlbumEditModal}>
+                Edit Album Details
+              </button>
+            ) : (
+              ''
+            )}
+          </div>
           <span>Now playing: {songTitle}</span>
           <Player albumId={albumId} url={url} />
 
@@ -155,15 +165,16 @@ export default function AlbumDetail({ artist }) {
                 </div>
               </div>
             ))}
-          </div>          
+          </div>
 
-        <div className='album-detail-image-div'>
-          <img
-            className='album-detail-image'
-            id={`album-${album?.id}-image-detail`}
-            alt='album cover'
-            src={album?.imageUrl}
-          />
+          <div className='album-detail-image-div'>
+            <img
+              className='album-detail-image'
+              id={`album-${album?.id}-image-detail`}
+              alt='album cover'
+              src={album?.imageUrl}
+            />
+          </div>
         </div>
       </div>
     </>

@@ -9,8 +9,7 @@
   margin-right: 40px;
 }
 
-.album-detail-image-div{
-
+.album-detail-image-div {
 }
 
 .song-container {
@@ -22,10 +21,18 @@
 
 .song-play-btn {
   height: 12px;
-  width:12px;
+  width: 12px;
   margin-right: 10px;
 }
 
 .song-delete-button {
+  cursor: pointer;
+}
+
+.editAlbumDetails {
+  padding: 5px;
+  background-color: rgb(148, 135, 135);
+  border-radius: 2px;
+  margin: 5px;
   cursor: pointer;
 }
