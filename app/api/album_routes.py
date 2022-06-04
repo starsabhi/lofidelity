@@ -2,6 +2,8 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Album
 from app.forms import AlbumForm
+from .utils import validation_errors_to_error_messages
+
 
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -112,7 +114,9 @@ def update_album(id):
         return session_album.to_dict()
 
     if form.errors:
-        return form.errors
+        # return form.errors, 401
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 418
+
 
 
 # UPDATE ALBUM IMAGE

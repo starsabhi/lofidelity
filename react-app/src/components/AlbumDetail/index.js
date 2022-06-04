@@ -3,15 +3,18 @@ import './AlbumDetail.css';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import FullPageModal from '../FullPageModal';
 import playButton from '../../images/play-button.png';
 import Player from '../Player';
+import EditAlbumForm from './EditAlbumModal';
 
 import FullPageModal from '../FullPageModal';
 import SongDeleteForm from '../DeleteForms/SongDeleteForm';
 import EditSongForm from '../EditSongForm';
 
 export default function AlbumDetail({ artist }) {
+  const sessionArtist = useSelector((state) => state.session.sessionArtist);
+  console.log(sessionArtist.id);
   const params = useParams();
   const albumId = params.id;
 
@@ -20,10 +23,10 @@ export default function AlbumDetail({ artist }) {
   const songs = useSelector((state) => state.album.songsByAlbumId[albumId]);
 
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
+  
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '')
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false)
-  const [songId, setSongId] = useState(null)
+ 
 
   //showModal handlers
   const openDeleteModal = () => {
@@ -38,7 +41,11 @@ export default function AlbumDetail({ artist }) {
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
+  
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [songId, setSongId] = useState(null)
 
+  //showModal handlers
   const openEditModal = () => {
     if (showEditModal) return; // do nothing if modal already showing
     setShowEditModal(true); // else open modal
@@ -53,10 +60,34 @@ export default function AlbumDetail({ artist }) {
   };
 
 
+  const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
+  const [showAlbumEditModal, setShowAlbumEditModal] = useState(false);
+
+  //showModal handlers
+  const openAlbumEditModal = () => {
+    if (showAlbumEditModal) return; // do nothing if modal already showing
+    setShowAlbumEditModal(true); // else open modal
+    document.getElementById('root').classList.add('overflow');
+  };
+
+  const closeAlbumEditModal = () => {
+    if (!showAlbumEditModal) return; // do nothing if modal already closed
+    setShowAlbumEditModal(false); // else close modal
+    // disable page scrolling:
+    document.getElementById('root').classList.remove('overflow');
+  };
+
 
 
   return (
     <>
+        <FullPageModal showModal={showAlbumEditModal} closeModal={closeAlbumEditModal}>
+          <EditAlbumForm
+            artistId={sessionArtist?.id}
+            albumId={albumId}
+            // deleteRedirect={updateDeleted}
+          />
+        </FullPageModal>
 
       <FullPageModal showModal={showDeleteModal} closeModal={closeDeleteModal}>
         <SongDeleteForm 
@@ -75,6 +106,9 @@ export default function AlbumDetail({ artist }) {
         <div className='album-player-container'>
           <h1>{album?.title}</h1>
           <h3>by {artist?.name}</h3>
+            <button onClick={openAlbumEditModal} >
+            Edit Album Details
+          </button>
           <span>Now playing: {songTitle}</span>
           <Player albumId={albumId} url={url} />
 

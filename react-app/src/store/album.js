@@ -98,13 +98,28 @@ export const updateOneAlbumThunk = (albumId, formData) => async (dispatch) => {
       price: formData.price,
     }),
   });
+  console.log('Response', response);
+  // const resBody = await response.json();
+  // console.log('ResBody', resBody);s
 
   if (response.ok) {
-    const updatedAlbum = await response.json();
-    dispatch(updateAlbum(formData.artistId, albumId, updatedAlbum));
-    // response.updatedAlbum = updatedAlbum;
-    return response;
-  } else throw response;
+    const resBody = await response.json();
+    dispatch(updateAlbum(formData.artistId, albumId, resBody));
+    return null;
+  } else if (response.status < 500) {
+    const resBody = await response.json();
+    if (resBody.errors) {
+      return resBody.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+  // if (response.ok && !resBody.errors) {
+  //   dispatch(updateAlbum(formData.artistId, albumId, resBody));
+  //   // response.updatedAlbum = updatedAlbum;
+  //   // console.log(updatedAlbum, '**************', response);
+  //   return response;
+  // } else throw response;
 };
 
 export const updateAlbumImageThunk =
