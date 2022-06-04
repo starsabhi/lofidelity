@@ -6,6 +6,16 @@ from wtforms.validators import DataRequired, ValidationError
 from app.models import Artist
 
 
+def artistName_exists(form, field):
+    # Check if artistUrl is already in use by another user other than current user
+    name = field.data
+    currentUserId = form.userId.data
+    artist = Artist.query.filter(Artist.name == name).first()
+
+    if artist and artist.userId != currentUserId:
+        raise ValidationError('Artist name is already in use.')
+
+
 def artistUrl_exists(form, field):
     # Check if artistUrl is already in use by another user other than current user
     artistUrl = field.data
@@ -18,7 +28,7 @@ def artistUrl_exists(form, field):
 
 #autopep8: off
 class ArtistForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired(),artistName_exists])
     userId = IntegerField('userId', validators=[DataRequired()])
     genreId = IntegerField('genreId', validators=[DataRequired()])
     location = StringField('location', validators=[DataRequired()])
