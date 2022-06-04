@@ -34,7 +34,7 @@ Initial Project Setup:
 
 
 COMPONENTS:
-    NAV - EK - TODO: add links to profile menu
+    NAV - EK - TODO: add links to profile menu, replace gradient with profile-image
     SIGNUP - EK - DONE - TODO fix artist CRUD
     LOGIN - EK - DONE
     SPLASH PAGE - AL - DONE
@@ -46,8 +46,8 @@ COMPONENTS:
         - PROFILE and COVER PHOTO - MO
         - SECOND NAVBAR - AB
         - ARTIST DETAILS  - MARK
-            - Edit artist details
-            - 3 upload modals
+            - Edit artist details DONE - TODO: fixGenreId w remove data-required?
+            - 3 upload modals DONE -TODO: ERROR HANDLING
             - NO DELETE -
         - ARTIST ALBUMS - MARK/EK
             - ADD ALBUM

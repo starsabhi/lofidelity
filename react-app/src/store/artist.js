@@ -90,6 +90,7 @@ export const addNewArtistThunk = (formData) => async (dispatch) => {
 export const updateOneArtistThunk =
   (artist, formData) => async (dispatch) => {
     let oldGenreId = artist.genreId
+    console.log("oldGenreId", oldGenreId)
     const response = await fetch(`/api/artists/${artist.id}`, {
       method: 'PATCH',
       headers: {
@@ -108,13 +109,20 @@ export const updateOneArtistThunk =
         // profileImageUrl: formData.profileImageUrl,
       }),
     });
-
     if (response.ok) {
       const updatedArtist = await response.json();
+      console.log(updatedArtist)
       dispatch(updateArtist(oldGenreId, formData.genreId, artist.id, updatedArtist));
       // response.updatedArtist = updatedArtist;
-      return response;
-    } else throw response;
+      return null;
+    } else if (response.status < 500) {
+      const resBody = await response.json();
+      if (resBody.errors) {
+        return resBody.errors;
+      }
+    } else {
+      return ['An error occurred. Please try again.'];
+    }
   };
 
 export const updateArtistImageThunk =
@@ -223,7 +231,7 @@ const artistReducer = (state = initialState, action) => {
     case ADD_ARTIST:
       artistId = action.payload.artistId;
       genreId = action.payload.genreId;
-
+      console.log(action.payload)
       //add Artist to end of array sorted by "releaseYear"
       newState.artistsByGenreId[genreId].push(action.payload.artist);
 
@@ -319,7 +327,7 @@ const artistReducer = (state = initialState, action) => {
         );
 
         //replace artist in allArtists
-        newState.allArtists[index].coverImageUrl = action.payload.ImageUrl;
+        newState.allArtists[index].coverImageUrl = action.payload.imageUrl;
       }
       else if (imageType === 'background') {
         index = newState.artistsByGenreId[genreId].findIndex(
