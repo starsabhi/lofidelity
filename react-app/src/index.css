@@ -35,6 +35,10 @@ body,
   position: relative;
 }
 
+.hidden {
+  display: none;
+}
+
 /* too powerful of a selector c id, can't overwrite*/
 /* #root * {
   display: flex;

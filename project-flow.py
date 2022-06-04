@@ -33,31 +33,51 @@ Initial Project Setup:
         - updated app file and decided on overall web site flow/routes, added boilerplate components
 
 
-COMPONENTS
+COMPONENTS:
     NAV - EK - TODO: add links to profile menu
-    FOOTER - AB - REVAMP - TODO
+    SIGNUP - EK - DONE - TODO fix artist CRUD
     LOGIN - EK - DONE
-    SIGNUP - EK - TODO
-    SPLASH PAGE - AL - TODO
-    EXPLORE PAGE - AB - TODO
-    MODALS - delete, uploads, edits - EK - TODO
+    SPLASH PAGE - AL - DONE
+    EXPLORE PAGE - AB - DONE - TODO: styling
+    MODAL - delete, uploads, edits - EK - DONE
+    FOOTER - AB - DONE (though overflow absolute will be issue)
+
     ARTIST PAGE: -
-        - ARTIST DETAILS and COVER PHOTO - MO - TODO
-            - ALL ALBUMS CONTAINER (component) -
-            - ALBUM DETAIL CONTAINER (component) -
+        - PROFILE and COVER PHOTO - MO
+        - SECOND NAVBAR - AB
+        - ARTIST DETAILS  - MARK
+            - Edit artist details
+            - 3 upload modals
+            - NO DELETE -
+        - ARTIST ALBUMS - MARK/EK
+            - ADD ALBUM
 
-STORES
-    - users - EK - DONE
-    - artists - MO/AL - DONE
-    - albums - EK - DONE
-    - songs - AB/EK - DONE
+        - ALBUM DETAILS - AB
+            - Edit album detail
+            - Upload album photo
+            - Delete album - DONE
 
-MUSIC PLAYER - TODO
+            - SONG FUNCTIONALITY - AL
+                -add song
+                -edit song title
+                -delete song
+                -bonus - change tracker
+
+TODO: MUSIC PLAYER - MO - styling and buffering issues
+TODO: ADD GENRES TO STORE - MO
 
 AWS S3 - MO/AB
-    - separate buckets songs vs images (2 keys/secrets)
-    - 2 helper functions
-    - download
+    - TODO: bonus: separate buckets songs vs images (2 keys/secrets), 2 helper functions
+    - Download - DONE
+    - TODO: upload seeder data to s3 and update seeder urls
+
+FRONTEND:
+    STORES
+        - users - EK - DONE
+        - artists - MO/AL - DONE
+        - albums - EK - DONE
+        - songs - AB/EK - DONE
+
 
 BACKEND:
     DB MODELS - AL/EK - DONE
@@ -73,11 +93,5 @@ BACKEND:
         -auth - EK
 
 TODO: NEED TO RE-MIGRATE PRODUCTION!
-
-TODO: ADD GESTURES TO STORE
-TODO: FIX ADD ARTIST SIGNUP
-TODO: ADD SIGNUP MODAL TO SPLASH
-
-
 
 """
