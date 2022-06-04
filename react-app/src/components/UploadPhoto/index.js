@@ -13,7 +13,6 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
   const [imageLoading, setImageLoading] = useState(false);
   const [uploadErrors, setUploadErrors] = useState([]);
 
-
   // const sessionUser = useSelector((state) => state.session.user);
   const id = artist?.id;
   const handleSubmit = async (e) => {
@@ -29,72 +28,65 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
     setImageLoading(true);
     console.log('right before thunk');
 
+    //   const errors = await dispatch(
+    //     albumActions.updateOneAlbumThunk(albumId, formdata)
+    //   );
+    //   console.log('MODAL', errors);
+    //   if (!errors) {
+    //     closeModal();
+    //     return;
+    //   } else {
+    //     setEditErrors(errors);
+    //     return;
+    //   }
+    // };
 
-  //   const errors = await dispatch(
-  //     albumActions.updateOneAlbumThunk(albumId, formdata)
-  //   );
-  //   console.log('MODAL', errors);
-  //   if (!errors) {
-  //     closeModal();
-  //     return;
-  //   } else {
-  //     setEditErrors(errors);
-  //     return;
-  //   }
-  // };
+    // const errors = await dispatch(
+    //   artistActions.updateArtistImageThunk(
+    //     artist.genreId,
+    //     artist.id,
+    //     formData,
+    //     imageType
+    //   )
+    // );
+    //     console.log(errors)
+    // if (!errors) {
+    //   setImageLoading(false);
+    //   closeModal();
 
-
-
-// const errors = await dispatch(
-//   artistActions.updateArtistImageThunk(
-//     artist.genreId,
-//     artist.id,
-//     formData,
-//     imageType
-//   )
-// );
-//     console.log(errors)
-// if (!errors) {
-//   setImageLoading(false);
-//   closeModal();
-
-//   history.push('/');
-// return;
-// } else {
-//   setUploadErrors(errors)
-//   setImageLoading(false);
-//   console.log('error');
-//   return
-// }
-
+    //   history.push('/');
+    // return;
+    // } else {
+    //   setUploadErrors(errors)
+    //   setImageLoading(false);
+    //   console.log('error');
+    //   return
+    // }
 
     try {
-    const res = await dispatch(
-      artistActions.updateArtistImageThunk(
-        artist.genreId,
-        artist.id,
-        formData,
-        imageType
-      )
-    );
-    console.log(res)
-    if (res.url) {
-      setImageLoading(false);
-      closeModal();
+      const res = await dispatch(
+        artistActions.updateArtistImageThunk(
+          artist.genreId,
+          artist.id,
+          formData,
+          imageType
+        )
+      );
+      console.log(res);
+      if (res.url) {
+        setImageLoading(false);
+        closeModal();
 
-      history.push('/');
-    return;
-    }
-
+        history.push('/');
+        return;
+      }
     } catch (errorResponse) {
       setImageLoading(false);
       console.log('error');
-    const data = await errorResponse.json();
-    if (data && data.errors) setUploadErrors(data.errors);
-    console.log(uploadErrors)
+      const data = await errorResponse.json();
+      if (data && data.errors) setUploadErrors(data.errors);
+      console.log(uploadErrors);
     }
-
-
   };
 
   const updateImage = (e) => {
@@ -122,7 +114,7 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
           <span>{`Upload your new ${imageType} image`}</span>
         </div>
         <div className='resource-delete-text2'>
-        <input type='file' accept='image/*' onChange={updateImage} />
+          <input type='file' accept='image/*' onChange={updateImage} />
         </div>
 
         <div className='resource-delete-form-btn-div'>
