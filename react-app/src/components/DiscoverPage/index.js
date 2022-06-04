@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import './ExplorePage.css';
+import './DiscoverPage.css';
 
-const ExplorePage = () => {
+export default function DiscoverPage() {
   const firstList = useSelector((state) => Object.values(state));
   // console.log(firstList[1].allArtists, 'What I am getting from store');
   const allArtists = firstList[1].allArtists;
@@ -36,6 +36,4 @@ const ExplorePage = () => {
       </div>
     </div>
   );
-};
-
-export default ExplorePage;
+}

@@ -102,4 +102,31 @@ BUG: update song player after delete
 
 BONUS: view page as user
 
+ELAN:
+    TODO: EXPLORE OR DISCOVER change navbar
+    TODO: hid row two navbar extras as well.
+    TODO: change terms of use to gray,
+    TODO: forgot password - display as hidden
+    TODO: update explore div to height 100%
+    TODO: update dropdown modal
+
+Anthony:
+    TO DO UPDATE - LOFI MCLOFERSON - doesn't exist
+
+AB
+    - AUTH BUG: fan shouldn't be able to edit album details, also style button
+    -demo user can't edit someone else's stuff add to route protection in backend
+
+BONUS - BUG: when click play it should start the player, not just load the song
+BONUS - BUG: can go to random error and it displays wrong album on page
+
+MAIN CONCERNS
+    -NO DEFAULT BUTTONS
+    -NO ability to change something if not logged in and doesn't belong to users
+    -IF ERROR that user doesn't understand, that will be a deferral
+Priority list:
+    - auth
+    - func
+    - style
+
 """
