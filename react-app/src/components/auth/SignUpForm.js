@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, Link, useLocation, useHistory } from 'react-router-dom';
+import { Redirect, Link, useLocation } from 'react-router-dom';
 // import { signUp } from '../../store/session';
 import * as sessionActions from '../../store/session';
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
 
-  const history = useHistory(); // so that we can redirect after the image upload is successful
+  // const history = useHistory(); // so that we can redirect after the image upload is successful
   let location = useLocation();
 
   const userType = location.pathname.split('/sign-up/')[1];
@@ -19,31 +19,10 @@ export default function SignUpForm() {
 
   //slices of react state for controlled inputs
   const [errors, setErrors] = useState([]);
-  // const [artistName, setArtistName] = useState(''); //artist only
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [terms, setTerms] = useState(false);
-
-  const [artistLoaded, setArtistLoaded] = useState(false);
-
-  // If user is an artist, fetch artist details into session state
-  useEffect(() => {
-    console.log('FIRED dispatch session');
-    if (sessionUser?.isArtist) {
-      (async () => {
-        await dispatch(
-          sessionActions.getSessionArtistThunk(sessionUser.id)
-        ).catch((res) => console.log(res));
-      })();
-    }
-  }, [dispatch, sessionUser]);
-
-  // once artist is loaded, update state
-  useEffect(() => {
-    console.log('FIRED LOADED');
-    if (artist) setArtistLoaded(true);
-  }, [dispatch, artist]);
 
   //as url changes reset parts of the form
   useEffect(() => {
@@ -85,11 +64,20 @@ export default function SignUpForm() {
     // }
   };
 
-  if (sessionUser)
-    if (sessionUser.isArtist) {
-      // if (artistLoaded) return <Redirect to='/' />;
-      if (artistLoaded) history.push('/sign-up/artist/details');
-    } else return <Redirect to='/' />;
+  // Redirect logged in fan to home page
+  if (sessionUser && !sessionUser.isArtist) {
+    return <Redirect to='/' />;
+  }
+
+  // Redirect logged in already made artist to home page
+  if (sessionUser && artist) {
+    return <Redirect to='/' />;
+  }
+
+  // If logged in artist with no artist in db yet, send to add artist page
+  if (sessionUser && !artist) {
+    return <Redirect to='/sign-up/artist/details' />;
+  }
 
   return (
     <div className='signup-card-container'>

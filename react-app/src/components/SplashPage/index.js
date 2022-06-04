@@ -36,20 +36,20 @@ const SplashPage = () => {
   useEffect(() => {
     const interval = setTimeout(() => {
       if (
-        artists[index].bgImageUrl === 'null' ||
-        artists[index].bgImageUrl === 'DEFAULT'
+        artists[index]?.bgImageUrl === 'null' ||
+        artists[index]?.bgImageUrl === 'DEFAULT'
       ) {
-        if (index < artists.length - 1) {
+        if (index < artists?.length - 1) {
           setIndex((index) => index + 1);
         } else {
           setIndex(0);
         }
       } else {
-        setArtistName(artists[index].name);
-        setArtistLocation(artists[index].location);
-        setArtistBackgroundImg(artists[index].bgImageUrl);
-        setArtistUrl(artists[index].artistUrl);
-        if (index < artists.length - 1) {
+        setArtistName(artists[index]?.name);
+        setArtistLocation(artists[index]?.location);
+        setArtistBackgroundImg(artists[index]?.bgImageUrl);
+        setArtistUrl(artists[index]?.artistUrl);
+        if (index < artists?.length - 1) {
           setIndex((index) => index + 1);
         } else {
           setIndex(0);

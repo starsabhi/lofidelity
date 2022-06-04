@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import * as artistActions from '../../store/artist';
 
-export default function SignUpForm() {
+import * as sessionActions from '../../store/session';
+
+export default function AddArtistForm() {
   const dispatch = useDispatch();
-  const history = useHistory(); // so that we can redirect after the image upload is successful
+  // const history = useHistory(); // so that we can redirect after the image upload is successful
 
   const sessionUser = useSelector((state) => state.session.user);
+  const artists = useSelector((state) => state.artist.artistsByArtistId);
   const artist = useSelector((state) => state.session.sessionArtist);
 
   const genreList = {
@@ -41,6 +44,17 @@ export default function SignUpForm() {
   const [description, setDescription] = useState('');
   const [artistUrl, setArtistUrl] = useState('');
 
+  // If user is an artist, fetch artist details into session state
+  useEffect(() => {
+    if (sessionUser?.isArtist) {
+      (async () => {
+        await dispatch(
+          sessionActions.getSessionArtistThunk(sessionUser.id)
+        ).catch((res) => console.log(res));
+      })();
+    }
+  }, [dispatch, sessionUser, artists]);
+
   const submitArtistDetails = async (e) => {
     e.preventDefault();
     setErrors([]); //reset error state
@@ -59,7 +73,8 @@ export default function SignUpForm() {
       const errors = await dispatch(artistActions.addNewArtistThunk(formData));
 
       if (!errors) {
-        history.push(`/${artistUrl}`);
+        // history.push(`/${artistUrl}`);
+        // history.push(`/`);
         return;
       } else {
         setErrors(errors);
@@ -71,8 +86,18 @@ export default function SignUpForm() {
     }
   };
 
-  // Protect route
-  if (sessionUser && !artist.errors) return <Redirect to='/' />;
+  // Redirect logged in already made artist to home page
+  if (sessionUser && artist) {
+    // console.log('ARTIST FIRED');
+    // return <Redirect to='/' />;
+    return <Redirect to={`/${artistUrl}`} />;
+  }
+
+  // Redirect logged in fan to home page
+  if (sessionUser && !sessionUser?.isArtist) {
+    // console.log('FAN FIRED');
+    return <Redirect to='/' />;
+  }
 
   return (
     <div className='signup-card-container'>

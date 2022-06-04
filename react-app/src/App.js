@@ -26,18 +26,19 @@ export default function App() {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
   const artists = useSelector((state) => state.artist.allArtists);
 
-  const location = useLocation();
-  const artistName = location.pathname.split('/')[1];
+  // const location = useLocation();
+  // const artistName = location.pathname.split('/')[1];
 
   //tracks whether session cookie has been checked
   const [isAuthLoaded, setIsAuthLoaded] = useState(false);
   const [artistLoaded, setArtistLoaded] = useState(false);
 
-  const [artist, setArtist] = useState(null);
+  // const [artist, setArtist] = useState(null);
 
-  useEffect(() => {
-    setArtist(artists?.filter((artist) => artist.artistUrl === artistName)[0]);
-  }, [artists, artistName]);
+  //checks that the route is to an artist that exists in the db
+  // useEffect(() => {
+  //   setArtist(artists?.filter((artist) => artist.artistUrl === artistName)[0]);
+  // }, [artists, artistName]);
 
   //Eager load redux state on first loading of App
   //prettier-ignore
@@ -81,7 +82,7 @@ export default function App() {
         ).catch((res) => console.log(res));
       })();
     }
-  }, [dispatch, sessionUser]);
+  }, [dispatch, sessionUser, artists]);
 
   // once artist is loaded, update state
   useEffect(() => {
@@ -91,7 +92,7 @@ export default function App() {
   //only load App after Session Cookie is checked
   if (!isAuthLoaded) return null;
 
-  //If session user is artist, only render app once artist is loaded into session
+  // If session user is artist, only render app once artist is loaded into session
   if (sessionUser) {
     if (sessionUser.isArtist && !artistLoaded) return null;
   }

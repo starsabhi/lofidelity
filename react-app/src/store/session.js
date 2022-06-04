@@ -1,9 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-const GET_SESSION_ARTIST = 'session/GET_SESSION_ARTIST'
-
-
+const GET_SESSION_ARTIST = 'session/GET_SESSION_ARTIST';
 
 //Regular Action Creators (implicit returns)
 const setUser = (user) => ({
@@ -19,8 +17,6 @@ const getSessionArtist = (artist) => ({
   type: GET_SESSION_ARTIST,
   payload: artist,
 });
-
-
 
 //THUNK ACTION CREATORS:
 //request to backend to restore User Session based on JWT cookie (if exists)
@@ -143,8 +139,21 @@ export const getSessionArtistThunk = (userId) => async (dispatch) => {
   if (response.ok) {
     const artistData = await response.json();
     dispatch(getSessionArtist(artistData));
-    return response;
-  } else throw response;
+    return null;
+  } else if (response.status < 500) {
+    const resBody = await response.json();
+    if (resBody.errors) {
+      return resBody.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+
+  // if (response.ok) {
+  //   const artistData = await response.json();
+  //   dispatch(getSessionArtist(artistData));
+  //   return response;
+  // } else throw response;
 };
 
 //SESSION REDUCER:
