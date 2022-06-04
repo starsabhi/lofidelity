@@ -26,16 +26,20 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
       price: price,
     };
 
-    const errors = await dispatch(
-      albumActions.updateOneAlbumThunk(albumId, formdata)
-    );
-    console.log('MODAL', errors);
-    if (!errors) {
-      closeModal();
-      return;
-    } else {
-      setEditErrors(errors);
-      return;
+    try {
+      const errors = await dispatch(
+        albumActions.updateOneAlbumThunk(albumId, formdata)
+      );
+      if (!errors) {
+        closeModal();
+        return;
+      } else {
+        setEditErrors(errors);
+        return;
+      }
+    } catch (errorResponse) {
+      // const data = await errorResponse.json();
+      console.log('Failed Request: ', errorResponse);
     }
   };
 

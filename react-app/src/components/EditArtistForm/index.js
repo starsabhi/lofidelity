@@ -1,24 +1,26 @@
+import './EditArtistForm.css';
+
 import React, { useState, useEffect } from 'react';
 
 import * as artistActions from '../../store/artist';
-import * as sessionActions from '../../store/session'
+// import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './EditArtistForm.css';
 
 export default function EditArtistForm({ genreList, closeModal }) {
   const dispatch = useDispatch('');
-  const history = useHistory()
+  const history = useHistory();
   // const session = useSelector((state) => state);
   // // console.log(session.album[albumId]);
   // let currentAlbum = session.album[albumId];
-  const artist = useSelector((state)=> state.session.sessionArtist)
-  const [genreId, setGenreId] = useState(`${genreList[artist?.genreId]}`);
+  const artist = useSelector((state) => state.session.sessionArtist);
+  const [genreId, setGenreId] = useState(`${artist?.genreId}`);
   const [name, setName] = useState(`${artist?.name}`);
   const [location, setLocation] = useState(`${artist?.location}`);
   const [artistUrl, setArtistUrl] = useState(`${artist?.artistUrl}`);
   const [description, setDescription] = useState(`${artist?.description}`);
   const [editErrors, setEditErrors] = useState([]);
+
   const genreArr = Object.entries(genreList);
 
   useEffect(() => {
@@ -35,20 +37,25 @@ export default function EditArtistForm({ genreList, closeModal }) {
       location: location,
       artistUrl: artistUrl,
       description: description,
-      userId: artist?.userId
+      userId: artist?.userId,
     };
 
-    const errors = await dispatch(
-      artistActions.updateOneArtistThunk(artist, formdata)
-    );
-    console.log('MODAL', errors);
-    if (!errors) {
-      closeModal();
-      history.push(`/${artistUrl}`);
-      return;
-    } else {
-      setEditErrors(errors);
-      return;
+    try {
+      const errors = await dispatch(
+        artistActions.updateOneArtistThunk(artist, formdata)
+      );
+
+      if (!errors) {
+        closeModal();
+        history.push(`/${artistUrl}`);
+        return;
+      } else {
+        setEditErrors(errors);
+        return;
+      }
+    } catch (errorResponse) {
+      // const data = await errorResponse.json();
+      console.log('Failed Request: ', errorResponse);
     }
   };
 
@@ -92,19 +99,15 @@ export default function EditArtistForm({ genreList, closeModal }) {
         className='edit-artist-select'
         onChange={(e) => setGenreId(e.target.value)}
         onMouseMove={(e) => setGenreId(e.target.value)}
-
         defaultValue={genreId}
         value={genreId}
         name='genre'
       >
-        {genreArr?.map((genre, i) => (
-
-            <option key={i} value={i + 1}>
-            {genre}
+        {genreArr?.map(([num, value], i) => (
+          <option key={i} value={i + 1}>
+            {`${value}`}
           </option>
-        )
-
-        )}
+        ))}
       </select>
       <label for='location'>Location</label>
       <input

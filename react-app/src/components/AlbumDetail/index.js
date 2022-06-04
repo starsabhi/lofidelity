@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import playButton from '../../images/play-button.png';
 import Player from '../Player';
-import EditAlbumForm from './EditAlbumModal';
+import EditAlbumForm from '../EditAlbumForm';
 
 import FullPageModal from '../FullPageModal';
 import SongDeleteForm from '../DeleteForms/SongDeleteForm';
