@@ -83,9 +83,9 @@ def post_new_artist():
             location=form.data["location"],
             artistUrl=form.data["artistUrl"],
             description=form.data["description"],
-            bgImageUrl=None,
-            coverImageUrl=None,
-            profileImageUrl=None,
+            bgImageUrl='https://lofidelity-bucket.s3.amazonaws.com/default-bg-image.jpeg',
+            coverImageUrl='https://lofidelity-bucket.s3.amazonaws.com/default-cover-image.jpeg',
+            profileImageUrl='https://lofidelity-bucket.s3.amazonaws.com/default-profile-image.jpeg',
         )
 
         new_artist = Artist(**params)
@@ -168,6 +168,7 @@ def upload_profile_image(id):
     current_artist.profileImageUrl = url
     db.session.commit()
     return {"url": url}
+    # return {'message': 'Success'}
 
 
 # UPDATE ARTIST coverImageUrl
