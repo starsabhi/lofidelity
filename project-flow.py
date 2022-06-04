@@ -35,7 +35,7 @@ Initial Project Setup:
 
 COMPONENTS:
     NAV - EK - TODO: add links to profile menu, replace gradient with profile-image
-    SIGNUP - EK - DONE - TODO fix artist CRUD
+    SIGNUP - EK - DONE - BONUS add non-existent artist route protection
 
     LOGIN - EK - DONE
     SPLASH PAGE - AL - DONE
@@ -46,25 +46,25 @@ COMPONENTS:
     FOOTER - AB - DONE
 
     ARTIST PAGE: -
-        - PROFILE and COVER PHOTO - MO
-        - SECOND NAVBAR - AB
-        - ARTIST DETAILS  - MARK
-            - Edit artist details DONE - TODO: fixGenreId w remove data-required?
+        - PROFILE and COVER PHOTO - MO - DONE
+        - SECOND NAVBAR - AB/EK - DONE
+        - ARTIST DETAILS
+            - Edit artist details DONE
             - 3 upload modals DONE -TODO: ERROR HANDLING
-            - Style artist dashboard
-            - NO DELETE -
+            - Style artist dashboard - TODO
+            - NO DELETE
         - ARTIST ALBUMS
-            - ADD ALBUM - MARK
+            - ADD ALBUM - MO - TODO
 
         - ALBUM DETAILS
             - Edit album detail - AB - DONE - TODO: styling
-            - Upload album photo - AB
+            - Upload album photo - AB - BUG
             - Delete album - EK - DONE
 
             - SONG FUNCTIONALITY - AL
-                -add song
-                -edit song title
-                -delete song
+                -add song - AL - TODO
+                -edit song title - AL - DONE - TODO: Styling
+                -delete song - AL- DONE
                 -Bonus - change track order drag and drop form
 
 TODO: MUSIC PLAYER - MO - styling and buffering issues
@@ -97,10 +97,7 @@ BACKEND:
 
 TODO: NEED TO RE-MIGRATE PRODUCTION!
 
-TODO: update all form route errors
-TODO: update all STORE error handling (none upload routes)
-TODO fix artist CRUD
-
+TODO: ensure continuity of error handling in frontend components (sans delete)
 BUG: update song player after delete
 
 BONUS: view page as user

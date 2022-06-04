@@ -24,8 +24,7 @@ export default function AlbumDetail({ artist }) {
 
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
 
-  const [trackNumber, setTrackNumber] = useState(null)
-
+  const [trackNumber, setTrackNumber] = useState(null);
 
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
@@ -97,10 +96,11 @@ export default function AlbumDetail({ artist }) {
         showModal={showEditSongModal}
         closeModal={closeEditSongModal}
       >
-        <EditSongForm   
+        <EditSongForm
           albumId={album?.id}
           songId={songId}
-          trackNumber={trackNumber} />
+          trackNumber={trackNumber}
+        />
       </FullPageModal>
 
       <div className='album-detail-container'>
@@ -155,15 +155,16 @@ export default function AlbumDetail({ artist }) {
                 </div>
               </div>
             ))}
-          </div>          
+          </div>
 
-        <div className='album-detail-image-div'>
-          <img
-            className='album-detail-image'
-            id={`album-${album?.id}-image-detail`}
-            alt='album cover'
-            src={album?.imageUrl}
-          />
+          <div className='album-detail-image-div'>
+            <img
+              className='album-detail-image'
+              id={`album-${album?.id}-image-detail`}
+              alt='album cover'
+              src={album?.imageUrl}
+            />
+          </div>
         </div>
       </div>
     </>
