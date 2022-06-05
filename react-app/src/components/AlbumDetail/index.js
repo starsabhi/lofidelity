@@ -11,6 +11,7 @@ import EditAlbumForm from '../EditAlbumForm';
 import FullPageModal from '../FullPageModal';
 import SongDeleteForm from '../DeleteForms/SongDeleteForm';
 import EditSongForm from '../EditSongForm';
+import AddSongForm from '../AddSongForm';
 
 export default function AlbumDetail({ artist }) {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
@@ -28,6 +29,27 @@ export default function AlbumDetail({ artist }) {
 
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
+
+  const genreList = {
+    1: 'acoustic',
+    2: 'alternative',
+    3: 'ambient',
+    4: 'blues',
+    5: 'classical',
+    6: 'country',
+    7: 'electronic',
+    8: 'experimental',
+    9: 'folk',
+    10: 'funk',
+    11: 'hiphop_rap',
+    12: 'jazz',
+    13: 'metal',
+    14: 'pop',
+    15: 'punk',
+    16: 'soul',
+    17: 'reggae',
+    18: 'rock',
+  };
 
   //showModal handlers - SONGS
   const openDeleteSongModal = () => {
@@ -47,7 +69,7 @@ export default function AlbumDetail({ artist }) {
   const [showEditSongModal, setShowEditSongModal] = useState(false);
   const [songId, setSongId] = useState(null);
 
-  //showModal handlers - SONGS
+  //showModal handlers - EDIT SONGS
   const openEditSongModal = () => {
     if (showEditSongModal) return; // do nothing if modal already showing
     setShowEditSongModal(true); // else open modal
@@ -60,6 +82,23 @@ export default function AlbumDetail({ artist }) {
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
+
+  const [showAddSongModal, setShowAddSongModal] = useState(false);
+
+    //showModal handlers - ADD SONGS
+    const openAddSongModal = () => {
+      if (showEditSongModal) return; // do nothing if modal already showing
+      setShowAddSongModal(true); // else open modal
+      document.getElementById('root').classList.add('overflow');
+    };
+  
+    const closeAddSongModal = () => {
+      if (!showEditSongModal) return; // do nothing if modal already closed
+      setShowAddSongModal(false); // else close modal
+      // disable page scrolling:
+      document.getElementById('root').classList.remove('overflow');
+    };
+  
 
   const [showAlbumEditModal, setShowAlbumEditModal] = useState(false);
 
@@ -102,6 +141,16 @@ export default function AlbumDetail({ artist }) {
           trackNumber={trackNumber}
         />
       </FullPageModal>
+
+      <FullPageModal
+        showModal={showAddSongModal}
+        closeModal={closeAddSongModal}
+      >
+        <AddSongForm
+          songType={genreList[sessionArtist?.genreId]}
+        />
+      </FullPageModal>
+
 
       <div className='album-detail-container'>
         <div className='album-player-container'>
@@ -156,6 +205,18 @@ export default function AlbumDetail({ artist }) {
               </div>
             ))}
           </div>
+
+          <div
+                  type='button'
+                  className={`song-add-button
+                  ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
+                  `}
+                  onClick={() => {
+                    openAddSongModal();
+                  }}
+                >
+                  <span className='material-symbols-outlined'> add</span>
+                </div>
 
           <div className='album-detail-image-div'>
             <img
