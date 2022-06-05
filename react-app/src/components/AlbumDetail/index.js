@@ -1,6 +1,6 @@
 import './AlbumDetail.css';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -11,6 +11,7 @@ import EditAlbumForm from '../EditAlbumForm';
 import FullPageModal from '../FullPageModal';
 import SongDeleteForm from '../DeleteForms/SongDeleteForm';
 import EditSongForm from '../EditSongForm';
+import UploadAlbumPhoto from '../UploadAlbumPhoto';
 
 export default function AlbumDetail({ artist }) {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
@@ -30,8 +31,24 @@ export default function AlbumDetail({ artist }) {
 
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
-
+  const [showEditAlbumImageModal, setShowEditAlbumImageModal] = useState(false);
+  useEffect(() => {
+    console.log(artist);
+  }, [artist]);
   //showModal handlers - SONGS
+  const openAlbumImageModal = () => {
+    if (showEditAlbumImageModal) return; // do nothing if modal already showing
+    setShowEditAlbumImageModal(true); // else open modal
+    document.getElementById('root').classList.add('overflow');
+  };
+
+  const closeAlbumImageModal = () => {
+    if (!showEditAlbumImageModal) return; // do nothing if modal already closed
+    setShowEditAlbumImageModal(false); // else close modal
+    // disable page scrolling:
+    document.getElementById('root').classList.remove('overflow');
+  };
+
   const openDeleteSongModal = () => {
     if (showDeleteSongModal) return; // do nothing if modal already showing
     setShowDeleteSongModal(true); // else open modal
@@ -104,6 +121,17 @@ export default function AlbumDetail({ artist }) {
           trackNumber={trackNumber}
         />
       </FullPageModal>
+      <FullPageModal
+        showModal={showEditAlbumImageModal}
+        closeModal={closeAlbumImageModal}
+      >
+        <UploadAlbumPhoto
+          // imageType={'cover'}
+          artistId={artist?.id}
+          albumId={albumId}
+          // deleteRedirect={updateDeleted}
+        />
+      </FullPageModal>
 
       <div className='album-detail-container'>
         <div className='album-player-container'>
@@ -174,6 +202,20 @@ export default function AlbumDetail({ artist }) {
               alt='album cover'
               src={album?.imageUrl}
             />
+
+            <div
+              type='button'
+              className={`edit-profile-image-button
+              ${sessionArtist?.id === artist?.id ? '' : 'hidden'}
+              `}
+              onClick={() => {
+                openAlbumImageModal();
+                // setAlbumId(album.id);
+              }}
+            >
+              <span className='material-symbols-outlined'>file_upload</span>
+              <span> Edit album image </span>
+            </div>
           </div>
         </div>
       </div>
