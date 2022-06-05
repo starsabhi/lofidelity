@@ -63,7 +63,7 @@ COMPONENTS:
 
             - SONG FUNCTIONALITY - AL
                 -add song - AL - DONE
-                -edit song title - AL - TODO: Styling
+                -edit song title - AL - DONE
                 -delete song - AL- DONE TODO: Fetch track numbers after deletion - EK
                 -Bonus - change track order drag and drop form
                 - Bonus - Fix play/pause on tracklist - DONE
