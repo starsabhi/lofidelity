@@ -56,7 +56,7 @@ const Footer = () => {
                   alt='github'
                 ></img>
               </a>
-              <a href='https://github.com/thisismydisplay' target='_blank' rel='noreferrer'>
+              <a href='https://www.linkedin.com/in/markrockwellosman/' target='_blank' rel='noreferrer'>
                 <img
                   src={linkedInLogo}
                   height='25px'
