@@ -1,17 +1,18 @@
 # lofidelity
 
 Inspired by Bandcamp, lofidelity is an online music community where passionate lofi fans discover, connect with, and directly support the artists they love.
-Welcome to check out a live version of lofidelity here: [lofi-test.com](https://lofi-test.herokuapp.com/)
+Check out a live version of lofidelity here: [www.lofidelity.com](https://lofidelity.herokuapp.com/)
+
 ![image](https://user-images.githubusercontent.com/95883222/171916446-5698e818-9764-4010-ac23-cb445dff8c01.png)
 
 ## Technologies Used
 <img  src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png"  height=40/><img src="https://camo.githubusercontent.com/27d0b117da00485c56d69aef0fa310a3f8a07abecc8aa15fa38c8b78526c60ac/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e2f69636f6e732f72656163742f72656163742d6f726967696e616c2e737667" height=40/><img src="https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png" height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg" height=40/><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2048px-Python-logo-notext.svg.png" height=50/><img  src="https://datawookie.dev/img/logo/logo-sqlalchemy.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/>
-.
+
 ## Getting started
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/starsabhi/lofidelity.git
    ```
 
 2. Install dependencies
@@ -42,7 +43,7 @@ Welcome to check out a live version of lofidelity here: [lofi-test.com](https://
    ```bash
    flask run
    ```
-6. Change directory into react-app and install dependencies
+6. Change working directory into react-app and install dependencies
 
     `npm install`
     
@@ -55,19 +56,41 @@ Welcome to check out a live version of lofidelity here: [lofi-test.com](https://
   - Splash Page
     - All visitors are able to see what lofidelity has to offer, regardless of login status.
     - If a visitor is not logged in, they will be prompted to do so.
-  - Explore Page
-    - Users can view all artists on explore page.
-    - They can choose a particular artist to check out that artist's page. 
+  - Discover Page
+    - Users can view all artists on the Discover page.
+    - They can select a particular artist to check out that artist's page. 
   - Sign-up Modal:
     - Users can choose to sign-up as an artist or as a fan.
+    - Artists will be prompted to provide more details than fans to improve customability and fan interaction.
   -  Login Page:
     - Users are able to sign in to access their account.
-    - Users are able to log in as a Demo User account to test the features of the site as an artist before signing up.
+    - Users are able to log in as a Demo Fan account or Demo Artist account to experience the site before signing up.
   -  Artist Page:
     - Users (Artist) are able to create thier own albums.
-    - Users (Artist) are able to edit and delete thier own albums.
+    - Users (Artist) are able delete thier own albums.
+    - Users (Artist) are able to edit their details, bio, and profile images.
     - Users (Artist/Fan) are able to view all albums from that artist.
-  - Album page:
-    - Users (Artist/Fan) can view all songs listed in the album.
-    - Users (Artist/Fan) can choose a particular song and listen to it.
-    - Users (Artist) can add/update/delete songs in that album.
+    - Users (Artist/Fan) are able to view that artist's details and bio.
+  - Album Page:
+    - Users (Artist) are able to edit that album's details and album image.
+    - Users (Artist) are able to add songs to that album.
+    - Users (Artist) are able to update a song's title.
+    - Users (Artist) are able to delete songs from that album.
+    - Users (Artist/Fan) are able to view all songs listed in that album.
+    - Users (Artist/Fan) are able to choose a song and listen to it on the song player.
+  - Song Player:
+    - Users are able to skip to different parts of a currently playing song.
+    - Users are able to adjust the volume of the currently playing song.
+    - Users are able to adjust the playback speed of the currently playing song.
+
+ ## Developers
+  - Abhishek Bornak
+    - Github: https://github.com/starsabhi
+    - LinkedIn: https://www.linkedin.com/in/abhishek-bornak-semasna514865/
+  - Anthony Lovern
+    - Github: https://github.com/Amlovern
+  - Elan Katz
+    - Github: https://github.com/otter23
+    - LinkedIn: https://www.linkedin.com/in/elankatz/
+  - Mark Osman
+    - Github: https://github.com/thisismydisplay
