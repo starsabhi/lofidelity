@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import Length, DataRequired, Email, ValidationError, Regexp
+# https://pypi.org/project/wtforms-validators/#AlphaNumeric
 from app.models import User
 
 
@@ -30,7 +31,13 @@ def username_exists(form, field):
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
+        'username', validators=[
+            DataRequired(),
+            Length(min=5, max=25,
+                   message='Username must be between 5 & 25 characters.'),
+            Regexp('^\w+$',
+                   message='Username must contain only letters, numbers or underscore.'),
+            username_exists])
     email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password', validators=[DataRequired()])
     # confirmPassword = StringField(

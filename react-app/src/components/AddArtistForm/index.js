@@ -42,7 +42,7 @@ export default function AddArtistForm() {
   const [genreId, setGenreId] = useState(0);
   const [location, setLocation] = useState('');
   const [description, setDescription] = useState('');
-  const [artistUrl, setArtistUrl] = useState('');
+  const [artistUrl, setArtistUrl] = useState(sessionUser?.username);
 
   // If user is an artist, fetch artist details into session state
   useEffect(() => {
@@ -103,14 +103,15 @@ export default function AddArtistForm() {
     <div className='signup-card-container'>
       <div className='signup-card'>
         <h2 className='signup-header'>
-          {`Welcome, ${sessionUser?.username}!`}{' '}
+          {`Welcome, ${sessionUser?.username}!`}
+          <div>To get started, create an Artist Profile:</div>
         </h2>
 
         {errors.length > 0 && (
           <div className='signup-error-container'>
             {/* <p className='signup-error-message'>Invalid email or password.</p> */}
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div key={ind}>{error?.split(': ')[1]}</div>
             ))}
           </div>
         )}
@@ -192,7 +193,7 @@ export default function AddArtistForm() {
 
           <div className={`signup-form-group`}>
             <label className={`signup-label`} htmlFor='artistUrl'>
-              <div>Profile Address: </div>
+              <div>Artist Profile Url: </div>
             </label>
             {/* <div>.herokuapp.com/</div> */}
             <input
@@ -201,10 +202,19 @@ export default function AddArtistForm() {
               type={'artistUrl'}
               name='artistUrl'
               value={artistUrl}
-              placeholder={`.herokuapp.com/${sessionUser?.username}`}
+              placeholder={`app.com/${sessionUser?.username}`}
               onChange={(e) => setArtistUrl(e.target.value)}
               required
             />
+          </div>
+
+          <div className={`signup-form-group`}>
+            <label className={`signup-label`} htmlFor='artistUrl-show'>
+              {/* <div>Profile Address: </div> */}
+            </label>
+            <div id='artistUrl-show'>
+              <div>{`app.com/${artistUrl}`}</div>
+            </div>
           </div>
 
           <div className='signup-sign-up-btn-container'>
