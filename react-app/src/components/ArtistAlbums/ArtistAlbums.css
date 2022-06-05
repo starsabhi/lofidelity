@@ -1,3 +1,11 @@
+
+.album-card-container {
+  min-height: 232px;
+  margin-right: 30px;
+  margin: 0 26px 30px 0;
+  vertical-align: top;
+}
+
 .album-thumbnail-image {
   height: 232px;
   width: 232px;
@@ -9,3 +17,25 @@
   top: 0px; */
   cursor: pointer;
 }
+
+.album-thumbnail-title {
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0;
+  color: #0000EE
+}
+
+.album-thumbnail-title:hover {
+  text-decoration: underline;
+}
+
+.album-navlink {
+  display: flex;
+  flex-direction: column;
+}
+
+.album-thumbnail-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+

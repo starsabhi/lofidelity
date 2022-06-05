@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 //prettier-ignore
 import { useParams, Route, Switch, NavLink, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AlbumDetail from '../AlbumDetail';
 import ArtistDetail from '../ArtistDetail';
 import ArtistAlbums from '../ArtistAlbums';

@@ -61,8 +61,8 @@ export default function ArtistAlbums({ artist }) {
                 alt='album-thumbnail'
                 src={album?.imageUrl}
               />
-              <span className='album-thumbnail-title'>{album?.title}</span>
             </NavLink>
+            <a href={`/${artist.artistUrl}/albums/${album?.id}`} className='album-thumbnail-title'>{album?.title}</a>
 
             <div
               type='button'
