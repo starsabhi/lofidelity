@@ -1,36 +1,103 @@
-.artistCoverImg {
-  height: 200px;
-  width: 300px;
-  cursor: pointer;
+.discover-cover-div {
+  height: 300px;
+  width: 100%;
+  background-color: rgb(119, 156, 173);
+  /* background-color: rgb(89, 120, 134); */
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.listofArtist {
+/* NAV SECOND ROW */
+
+.discover-row-two {
+  display: flex;
+  background-color: rgb(242, 242, 242);
+
+  width: 100%;
+  height: 38px;
+}
+
+.discover-row-two-inner {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 10px;
+  height: 38px;
+  margin: 0px;
+  padding: 0px 15px;
+}
+
+.discover-row-two-inner li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  font-size: 14px;
+  font-weight: bolder;
+  /* padding: 0px 15px; */
+  height: 100%;
+}
+
+.discover-inactive-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+  color: rgb(102, 102, 102);
+
+  height: 100%;
+  padding: 0px 15px;
+}
+/* re enable when links are live */
+/* .discover-inactive-link:hover {
+  border-top: 2px solid rgb(0, 145, 220);
+} */
+
+.discover-music-link-active {
+  color: rgb(6, 135, 245);
+  border-top: 2px solid rgb(0, 145, 220);
+}
+
+/* NAV SECOND ROW */
+
+.discover-main-container {
+  background-color: rgb(242, 242, 242);
+  height: 100%;
+  width: 100%;
+  padding: 40px 40px;
+}
+
+.discover-artist-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  padding: 0px 40px;
+  flex: 1;
+}
+
+.discover-artist-card-inner {
   width: 300px;
   background-color: #fff;
   box-shadow: 0 0 1px 0 #dfdfdf;
   height: 320px;
 }
 
-.artistListDiv {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1em;
-  padding: 0.25em;
-  flex: 1;
+.discover-artistCoverImg {
+  height: 200px;
+  width: 300px;
+  cursor: pointer;
 }
 
-.outerDivdorArtistList {
-  background-color: #eef2f3;
-  margin:10px
-}
-
-.titleOfDivContentforArtist {
+.discovera-artist-card-bottom {
   display: flex;
-  justify-content: center;
-  color: #408ea3;
+  flex-direction: column;
+  padding: 15px;
 }
 
-.artistNameInnerDiv {
+.discover-artistName {
   display: flex;
   justify-content: center;
   font-weight: bold;
@@ -38,12 +105,10 @@
   padding: 5px;
 }
 
-.artistdescriptionInnerDiv {
-  width: 300px;
-  font-family: Georgia, Times, serif;
-  margin: 5px;
+.discover-artistdescription {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
   font-size: 14px;
-  text-align: center;
   padding: 10px;
-  /* margin-bottom: 9px; */
 }
