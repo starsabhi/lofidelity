@@ -159,8 +159,22 @@ def update_song(id):
 @song_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_song(id):
-    song = Song.query.get(id)
-    db.session.delete(song)
+    songToDelete = Song.query.get(id)
+    albumId = songToDelete.albumId
+
+    album_tracks = Song.query.filter(Song.albumId == albumId).order_by(
+        Song.trackNumber.asc()).all()
+
+    found = False
+    for song in album_tracks:
+        if song == songToDelete:
+            found = True
+        elif not found:
+            continue
+        else:
+            song.trackNumber = (song.trackNumber - 1)
+
+    db.session.delete(songToDelete)
     db.session.commit()
 
     return {'message': 'Success'}

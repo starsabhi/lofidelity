@@ -398,7 +398,16 @@ const albumReducer = (state = initialState, action) => {
         (song) => song.id === parseInt(songId)
       );
 
-      //remove song from songsByAlbumId array
+      //TO DO, not optimized, backend already did this, should just use a second thunk call to update state.
+      //update the trackNumbers and remove song from songsByAlbumId array
+      //note array must be ordered in ascending order
+      let found = false;
+      for (let [i, song] of newState.songsByAlbumId[albumId].entries()) {
+        if (i === index) found = true;
+        else if (!found) continue;
+        else song.trackNumber = song.trackNumber - 1;
+      }
+
       newState.songsByAlbumId[albumId].splice(index, 1);
       return newState;
 
