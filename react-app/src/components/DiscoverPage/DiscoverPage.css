@@ -64,18 +64,39 @@
 /* NAV SECOND ROW */
 
 .discover-main-container {
-  background-color: rgb(242, 242, 242);
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* height: 100%; */
+  height: auto;
   width: 100%;
+  flex-grow: 1;
+
+  background-color: rgb(242, 242, 242);
   padding: 40px 40px;
 }
-
 .discover-artist-card-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1em;
-  padding: 0px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  width: 80%;
+}
+.discover-artist-card-container-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  width: 100%;
+
+  gap: 40px;
   flex: 1;
+
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr); */
 }
 
 .discover-artist-card-inner {
@@ -91,7 +112,7 @@
   cursor: pointer;
 }
 
-.discovera-artist-card-bottom {
+.discover-artist-card-bottom {
   display: flex;
   flex-direction: column;
   padding: 15px;
