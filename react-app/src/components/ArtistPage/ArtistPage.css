@@ -128,8 +128,9 @@ li.artist-community {
 .albums-container {
   display: flex;
   height: 100%;
-
   width: 795px;
+  margin: 0;
+  padding: 0;
 }
 
 .artist-detail-container {
