@@ -8,12 +8,11 @@ import * as artistActions from '../../store/artist';
 export default function UploadPhoto({ imageType, closeModal, artist }) {
   const history = useHistory(); // so that we can redirect after the image upload is successful
   const dispatch = useDispatch();
-  // const artist = useSelector((state)=> state.session.sessionArtist)
+
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
   const [uploadErrors, setUploadErrors] = useState([]);
 
-  // const sessionUser = useSelector((state) => state.session.user);
   const id = artist?.id;
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,48 +22,10 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
     formData.append('image', image);
     console.log(id);
 
-    // aws uploads can be a bit slow—displaying
-    // some sort of loading message is a good idea
     setImageLoading(true);
-    console.log('right before thunk');
-
-    //   const errors = await dispatch(
-    //     albumActions.updateOneAlbumThunk(albumId, formdata)
-    //   );
-    //   console.log('MODAL', errors);
-    //   if (!errors) {
-    //     closeModal();
-    //     return;
-    //   } else {
-    //     setEditErrors(errors);
-    //     return;
-    //   }
-    // };
-
-    // const errors = await dispatch(
-    //   artistActions.updateArtistImageThunk(
-    //     artist.genreId,
-    //     artist.id,
-    //     formData,
-    //     imageType
-    //   )
-    // );
-    //     console.log(errors)
-    // if (!errors) {
-    //   setImageLoading(false);
-    //   closeModal();
-
-    //   history.push('/');
-    // return;
-    // } else {
-    //   setUploadErrors(errors)
-    //   setImageLoading(false);
-    //   console.log('error');
-    //   return
-    // }
 
     try {
-      const res = await dispatch(
+      const errors = await dispatch(
         artistActions.updateArtistImageThunk(
           artist.genreId,
           artist.id,
@@ -72,24 +33,21 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
           imageType
         )
       );
-      console.log(res);
-      if (res.url) {
-        setImageLoading(false);
+      if (!errors) {
         closeModal();
 
-        history.push('/');
+        // history.push('/');
         return;
+      }else {
+        setImageLoading(false)
+        setUploadErrors(errors);
       }
     } catch (errorResponse) {
       setImageLoading(false);
-      closeModal();
-      console.log('ERROR', errorResponse);
-      // setImageLoading(false);
-      // console.log('error');
+      // closeModal();
+      setUploadErrors(['Something went wrong, please try again.']);
 
-      // const data = await errorResponse.json();
-      // if (data && data.errors) setUploadErrors(data.errors);
-      // console.log(uploadErrors);
+      console.log('error');
     }
   };
 
@@ -101,6 +59,13 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
 
   return (
     <div className={`resource-delete-form-container`}>
+      <form className='resource-delete-form' onSubmit={handleSubmit}>
+        <div className='resource-delete-text1'>
+          <span>{`Upload ${imageType} image`}</span>
+        </div>
+        <div className='resource-delete-text2'>
+          <span>{`Upload your new ${imageType} image`}</span>
+        </div>
       {uploadErrors.length > 0 && (
         <div className='resource-error-container'>
           {uploadErrors.map((error, idx) => (
@@ -110,13 +75,6 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
           ))}
         </div>
       )}
-      <form className='resource-delete-form' onSubmit={handleSubmit}>
-        <div className='resource-delete-text1'>
-          <span>{`Upload ${imageType} image`}</span>
-        </div>
-        <div className='resource-delete-text2'>
-          <span>{`Upload your new ${imageType} image`}</span>
-        </div>
         <div className='resource-delete-text2'>
           <input type='file' accept='image/*' onChange={updateImage} />
         </div>
