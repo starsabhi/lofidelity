@@ -94,3 +94,11 @@ Check out a live version of lofidelity here: [www.lofidelity.com](https://lofide
     - LinkedIn: https://www.linkedin.com/in/elankatz/
   - Mark Osman
     - Github: https://github.com/thisismydisplay
+    - LinkedIn: https://www.linkedin.com/in/markrockwellosman/
+
+ ## Future Features
+  - Artists will have the ability to change track order through a drag and drop menu
+  - Implement Search bar functionality
+  - Add Merch and Community links and functionality to inner nav bar in artist page
+  - Add Forgot Password functionality to login page
+  - Display price for albums and set up cart functionality
