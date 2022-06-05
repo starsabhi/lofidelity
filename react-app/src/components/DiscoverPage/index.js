@@ -33,29 +33,34 @@ export default function DiscoverPage() {
         {/* <h1 className='discover-heading'>Discover</h1> */}
 
         <div className='discover-artist-card-container'>
-          {allArtists?.map((artist) => {
-            return (
-              <div className='discover-artist-card' key={artist.id}>
-                <div className='discover-artist-card-inner'>
-                  <Link to={`/${artist.artistUrl}`}>
-                    <img
-                      className='discover-artistCoverImg'
-                      src={artist.profileImageUrl}
-                      alt='coverImage'
-                    ></img>
-                  </Link>
-                  <div className='discovera-artist-card-bottom'>
-                    <div className='discover-artistName' id='artistNameInnerId'>
-                      <div>{artist.name}</div>
-                    </div>
-                    <div className='discover-artistdescription'>
-                      <div>{artist.description}</div>
+          <div className='discover-artist-card-container-inner'>
+            {allArtists?.map((artist) => {
+              return (
+                <div className='discover-artist-card' key={artist.id}>
+                  <div className='discover-artist-card-inner'>
+                    <Link to={`/${artist.artistUrl}`}>
+                      <img
+                        className='discover-artistCoverImg'
+                        src={artist.profileImageUrl}
+                        alt='coverImage'
+                      ></img>
+                    </Link>
+                    <div className='discover-artist-card-bottom'>
+                      <div
+                        className='discover-artistName'
+                        id='artistNameInnerId'
+                      >
+                        <div>{artist.name}</div>
+                      </div>
+                      <div className='discover-artistdescription'>
+                        <div>{artist.description}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </>
