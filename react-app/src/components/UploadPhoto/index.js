@@ -83,8 +83,10 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
     } catch (errorResponse) {
       setImageLoading(false);
       closeModal();
+      console.log('ERROR', errorResponse);
+      // setImageLoading(false);
+      // console.log('error');
 
-      console.log('error');
       // const data = await errorResponse.json();
       // if (data && data.errors) setUploadErrors(data.errors);
       // console.log(uploadErrors);

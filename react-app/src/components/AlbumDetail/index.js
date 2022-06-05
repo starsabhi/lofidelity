@@ -15,6 +15,8 @@ import UploadAlbumPhoto from '../UploadAlbumPhoto';
 
 export default function AlbumDetail({ artist }) {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
+  const sessionState = useSelector((state) => state);
+  console.log(sessionState);
   // console.log(sessionArtist.id);
 
   const params = useParams();
@@ -135,7 +137,15 @@ export default function AlbumDetail({ artist }) {
         <div className='album-player-container'>
           <h1>{album?.title}</h1>
           <h3>by {artist?.name}</h3>
-          <button onClick={openAlbumEditModal}>Edit Album Details</button>
+          <div>
+            {sessionArtist?.id === album?.artistId ? (
+              <button className='editAlbumDetails' onClick={openAlbumEditModal}>
+                Edit Album Details
+              </button>
+            ) : (
+              ''
+            )}
+          </div>
           <span>Now playing: {songTitle}</span>
           <Player albumId={albumId} url={url} />
 

@@ -88,7 +88,13 @@ const NavBar = () => {
             />
           </NavLink>
 
-          <Link to='/explore' className='main-nav-search'>
+          <div className='main-nav-discover'>
+            <Link to='/discover' className='main-nav-discover-link'>
+              Discover
+            </Link>
+          </div>
+
+          <Link to='/discover' className='main-nav-search'>
             <input
               id='search'
               className='main-nav-search-input'

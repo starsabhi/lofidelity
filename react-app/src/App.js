@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect, useLocation } from 'react-route
 import { useDispatch, useSelector } from 'react-redux';
 
 import LoginPage from './components/LoginPage';
-import ExplorePage from './components/ExplorePage';
+import DiscoverPage from './components/DiscoverPage';
 import SignUpPage from './components/SignUpPage';
 import SplashPage from './components/SplashPage';
 
@@ -108,8 +108,8 @@ export default function App() {
               //render cycle keeps hitting this redirect until sessionArtist State is updated
               <Redirect to={`/${sessionArtist?.artistUrl}`}></Redirect>
             ) : (
-              // If fan logged in show explore page
-              <Redirect to='/explore'></Redirect>
+              // If fan logged in show discover page
+              <Redirect to='/discover'></Redirect>
             )
           ) : (
             // else show splash page
@@ -117,9 +117,9 @@ export default function App() {
             <SplashPage />
           )}
         </Route>
-        <Route path='/explore'>
+        <Route path='/discover'>
           {/* displays all the artists on the site */}
-          <ExplorePage isAuthLoaded={isAuthLoaded} />
+          <DiscoverPage isAuthLoaded={isAuthLoaded} />
         </Route>
         <Route path='/login' exact={true}>
           <LoginPage />
