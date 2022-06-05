@@ -1,11 +1,11 @@
-import './UploadPhoto.css';
+import './UploadAlbumPhoto.css';
 
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import * as artistActions from '../../store/artist';
+import * as albumActions from '../../store/album';
 
-export default function UploadPhoto({ imageType, closeModal, artist }) {
+export default function UploadAlbumPhoto({ artistId, albumId, closeModal }) {
   const history = useHistory(); // so that we can redirect after the image upload is successful
   const dispatch = useDispatch();
   // const artist = useSelector((state)=> state.session.sessionArtist)
@@ -14,14 +14,14 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
   const [uploadErrors, setUploadErrors] = useState([]);
 
   // const sessionUser = useSelector((state) => state.session.user);
-  const id = artist?.id;
+  // const id = artist?.id;
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUploadErrors([]); //reset error state
 
     const formData = new FormData();
     formData.append('image', image);
-    console.log(id);
+    // console.log(id);
 
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
@@ -65,11 +65,11 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
 
     try {
       const res = await dispatch(
-        artistActions.updateArtistImageThunk(
-          artist.genreId,
-          artist.id,
+        albumActions.updateAlbumImageThunk(
+          artistId,
+          albumId,
           formData,
-          imageType
+
         )
       );
       console.log(res);
@@ -110,10 +110,10 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
       )}
       <form className='resource-delete-form' onSubmit={handleSubmit}>
         <div className='resource-delete-text1'>
-          <span>{`Upload ${imageType} image`}</span>
+          <span>{`Upload Album image`}</span>
         </div>
         <div className='resource-delete-text2'>
-          <span>{`Upload your new ${imageType} image`}</span>
+          <span>{`Upload your new Album image`}</span>
         </div>
         <div className='resource-delete-text2'>
           <input type='file' accept='image/*' onChange={updateImage} />

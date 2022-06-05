@@ -144,7 +144,7 @@ def upload_album_image(id):
     current_album = Album.query.get(id)
     current_album.imageUrl = url
     db.session.commit()
-    # return {"url": url}
+    return {"url": url}
     return
 
 
