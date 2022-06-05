@@ -1,9 +1,9 @@
-.artist-profile{
+.artist-profile {
   max-width: 120px;
   max-height: 180px;
 }
 
-.album-navlink{
+.album-navlink {
   display: flex;
   flex-direction: column;
 }
@@ -18,4 +18,21 @@
   right: 0px;
   top: 0px; */
   cursor: pointer;
+}
+
+.addalbumBtn {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(75, 75, 111);
+  border-radius: 10px;
+  animation: addalbumBtnani 3s infinite;
+}
+
+@keyframes addalbumBtnani {
+  0% {
+    color: black;
+  }
+  80% {
+    color: white;
+  }
 }

@@ -63,22 +63,20 @@ export const getOneAlbumThunk = (albumId) => async (dispatch) => {
 export const addNewAlbumThunk = (formData) => async (dispatch) => {
   const response = await fetch('/api/albums', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      artistId: formData.artistId,
-      title: formData.title,
-      releaseYear: formData.releaseYear,
-      about: formData.about,
-      // imageUrl: formData.imageUrl,
-      price: formData.price,
-    }),
+    body: formData,
+    // body: JSON.stringify({
+    //   artistId: formData.artistId,
+    //   title: formData.title,
+    //   releaseYear: formData.releaseYear,
+    //   about: formData.about,
+    //   // imageUrl: formData.imageUrl,
+    //   price: formData.price,
+    // }),
   });
 
   if (response.ok) {
     const newAlbum = await response.json();
-    dispatch(addAlbum(formData.artistId, newAlbum.id, newAlbum));
+    dispatch(addAlbum(newAlbum.artistId, newAlbum.id, newAlbum));
     return null;
   } else if (response.status < 500) {
     const resBody = await response.json();
@@ -253,7 +251,7 @@ const albumReducer = (state = initialState, action) => {
     case ADD_ALBUM:
       artistId = action.payload.artistId;
       albumId = action.payload.albumId;
-
+      console.log('actionPayload***', action.payload);
       //add Album to end of array sorted by "releaseYear"
       newState.albumsByArtistId[artistId].push(action.payload.album);
 
