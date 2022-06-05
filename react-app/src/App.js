@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 //prettier-ignore
+// eslint-disable-next-line
 import { BrowserRouter, Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 

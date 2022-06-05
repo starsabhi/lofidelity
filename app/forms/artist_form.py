@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms.fields import (
     PasswordField, SelectField, SelectMultipleField, StringField, IntegerField
 )
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Regexp
 from app.models import Artist
 
 
@@ -30,9 +30,12 @@ def artistUrl_exists(form, field):
 class ArtistForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(),artistName_exists])
     userId = IntegerField('userId', validators=[DataRequired()])
-    genreId = IntegerField('genreId', validators=[DataRequired()])
+    genreId = IntegerField('genreId', validators=[DataRequired(message='Please select a genre.')])
     location = StringField('location', validators=[DataRequired()])
-    artistUrl = StringField('artistUrl', validators=[DataRequired(),artistUrl_exists])
+    artistUrl = StringField('artistUrl', validators=[DataRequired(),
+        Regexp('^[\w\-]+$',
+            message='Artist Profile Url must contain only letters, numbers or underscore.'),
+        artistUrl_exists])
     description = StringField('description', validators=[DataRequired()])
     # bgImageUrl = StringField('bgImageUrl', validators=[DataRequired()])
     # coverImageUrl = StringField('coverImageUrl', validators=[DataRequired()])

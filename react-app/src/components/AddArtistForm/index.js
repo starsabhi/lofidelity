@@ -111,7 +111,7 @@ export default function AddArtistForm() {
           <div className='signup-error-container'>
             {/* <p className='signup-error-message'>Invalid email or password.</p> */}
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div key={ind}>{error?.split(': ')[1]}</div>
             ))}
           </div>
         )}
