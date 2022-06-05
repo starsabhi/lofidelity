@@ -43,7 +43,7 @@ export default function LoginForm() {
     }
   };
 
-  const demoLogin = async (e) => {
+  const demoArtistLogin = async (e) => {
     e.preventDefault();
     try {
       const data = await dispatch(
@@ -56,10 +56,28 @@ export default function LoginForm() {
 
       if (data) setErrors(data);
     } catch (errorResponse) {
+      console.log(errorResponse);
       //should not return errors unless demo user no longer in database
       //also flask does not send a response object, so .json() won't work
       // const data = await errorResponse.json();
       // if (data && data.errors) setErrors(data.errors);
+    }
+  };
+
+  const demoFanLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await dispatch(
+        sessionActions.login({
+          // credential: 'demofan@user.io',
+          credential: 'DemoFan',
+          password: 'password',
+        })
+      );
+
+      if (data) setErrors(data);
+    } catch (errorResponse) {
+      console.log(errorResponse);
     }
   };
 
@@ -129,9 +147,19 @@ export default function LoginForm() {
             <button
               className='demo-sign-in-btn'
               type='button'
-              onClick={demoLogin}
+              onClick={demoArtistLogin}
             >
-              Demo User Log In
+              Demo Artist Log In
+            </button>
+          </div>
+
+          <div className='demo-sign-in-btn-container'>
+            <button
+              className='demo-sign-in-btn'
+              type='button'
+              onClick={demoFanLogin}
+            >
+              Demo Fan Log In
             </button>
           </div>
         </form>

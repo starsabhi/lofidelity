@@ -6,6 +6,7 @@ import * as sessionActions from '../../store/session';
 export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
 
+  const sessionUser = useSelector((state) => state.session.user);
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
 
   const menu = useRef(null);
@@ -62,14 +63,25 @@ export default function ProfileButton({ user }) {
               <div className='nav-user-dropdown-welcome'>
                 <div>Welcome {user?.username}!</div>
               </div>
+
               {sessionArtist && (
                 <Link
                   className='nav-user-dropdown-artist-link'
                   to={`/${sessionArtist?.artistUrl}`}
                 >
-                  <div>See Your Artist Profile </div>
+                  <div>Artist Profile Page</div>
                 </Link>
               )}
+
+              {sessionUser?.isArtist && !sessionArtist && (
+                <Link
+                  className='nav-user-dropdown-artist-link'
+                  to={`/sign-up/artist/details`}
+                >
+                  <div>Create an Artist Profile </div>
+                </Link>
+              )}
+
               <div className='nav-user-logout'>
                 <button
                   className='nav-user-logout-btn'

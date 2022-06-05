@@ -31,10 +31,9 @@ export default function App() {
 
   //tracks whether session cookie has been checked
   const [isAuthLoaded, setIsAuthLoaded] = useState(false);
-  const [artistLoaded, setArtistLoaded] = useState(false);
+  const [artistPageExist, setArtistPageExist] = useState(false);
 
   // const [artist, setArtist] = useState(null);
-
   //checks that the route is to an artist that exists in the db
   // useEffect(() => {
   //   setArtist(artists?.filter((artist) => artist.artistUrl === artistName)[0]);
@@ -73,6 +72,17 @@ export default function App() {
   //   })();
   // }, [dispatch]);
 
+  // If user is an artist, check if created artist page yet
+  useEffect(() => {
+    if (sessionUser) {
+      //find index of artist to update in artistsByGenreId
+      const index = artists.findIndex(
+        (artist) => artist.userId === sessionUser.id
+      );
+      if (index !== -1) setArtistPageExist(true);
+    }
+  }, [dispatch, sessionUser, artists]);
+
   // If user is an artist, fetch artist details into session state
   useEffect(() => {
     if (sessionUser && sessionUser?.isArtist) {
@@ -84,18 +94,8 @@ export default function App() {
     }
   }, [dispatch, sessionUser, artists]);
 
-  // once artist is loaded, update state
-  useEffect(() => {
-    if (sessionArtist) setArtistLoaded(true);
-  }, [dispatch, sessionArtist]);
-
   //only load App after Session Cookie is checked
   if (!isAuthLoaded) return null;
-
-  // If session user is artist, only render app once artist is loaded into session
-  if (sessionUser) {
-    if (sessionUser.isArtist && !artistLoaded) return null;
-  }
 
   return (
     <BrowserRouter>
@@ -103,17 +103,27 @@ export default function App() {
       <Switch>
         <Route path='/' exact={true}>
           {sessionUser ? (
-            // If artist logged in show artist page
+            // If user logged in:
             sessionUser.isArtist ? (
-              //render cycle keeps hitting this redirect until sessionArtist State is updated
-              <Redirect to={`/${sessionArtist?.artistUrl}`}></Redirect>
+              //If logged in user is artist:
+              sessionArtist ? (
+                //If artist loaded in session:
+                //render cycle keeps hitting this redirect until sessionArtist State is updated
+                <Redirect to={`/${sessionArtist?.artistUrl}`}></Redirect>
+              ) : artistPageExist ? (
+                // if artist has already create a page:
+                // <Redirect to={`/${sessionArtist?.artistUrl}`}></Redirect>
+                <Redirect to={`/`}></Redirect>
+              ) : (
+                //if artist needs to create page:
+                <Redirect to={`/sign-up/artist/details`}></Redirect>
+              )
             ) : (
-              // If fan logged in show discover page
+              // If logged in user is fan:
               <Redirect to='/discover'></Redirect>
             )
           ) : (
             // else show splash page
-            // <SplashPage isLoaded={isLoaded} />
             <SplashPage />
           )}
         </Route>

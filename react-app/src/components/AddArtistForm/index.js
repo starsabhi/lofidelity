@@ -103,7 +103,8 @@ export default function AddArtistForm() {
     <div className='signup-card-container'>
       <div className='signup-card'>
         <h2 className='signup-header'>
-          {`Welcome, ${sessionUser?.username}!`}{' '}
+          {`Welcome, ${sessionUser?.username}!`}
+          <div>To get started, create an Artist Profile:</div>
         </h2>
 
         {errors.length > 0 && (
@@ -192,7 +193,7 @@ export default function AddArtistForm() {
 
           <div className={`signup-form-group`}>
             <label className={`signup-label`} htmlFor='artistUrl'>
-              <div>Profile Address: </div>
+              <div>Artist Profile Url: </div>
             </label>
             {/* <div>.herokuapp.com/</div> */}
             <input
