@@ -32,7 +32,7 @@ export default function SignUpChoice({ closeModal }) {
             <div className='signup-modal-fan-text'>
               <div>
                 Checkout your favorite lofi artists, stream their music, and
-                explore the music of the lofidelity community.
+                discover the music of the lofidelity community.
               </div>
             </div>
           </div>

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 
-function ProfileButton({ user }) {
+export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
+
+  const sessionArtist = useSelector((state) => state.session.sessionArtist);
 
   const menu = useRef(null);
   const [showMenu, setShowMenu] = useState(false);
@@ -51,9 +54,16 @@ function ProfileButton({ user }) {
           <>
             <div className='nav-user-dropdown-container' ref={menu}>
               <div className='nav-user-dropdown-welcome'>
-                Welcome {user.username}!
+                <div>Welcome {user?.username}!</div>
               </div>
-              <div className='nav-user-dropdown-artist'>Artist Page</div>
+              {sessionArtist && (
+                <Link
+                  className='nav-user-dropdown-artist-link'
+                  to={`/${sessionArtist?.artistUrl}`}
+                >
+                  <div>See Your Artist Profile </div>
+                </Link>
+              )}
               <div className='nav-user-logout'>
                 <button
                   className='nav-user-logout-btn'
@@ -70,5 +80,3 @@ function ProfileButton({ user }) {
     </div>
   );
 }
-
-export default ProfileButton;

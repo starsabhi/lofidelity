@@ -158,10 +158,13 @@ export default function SignUpForm() {
                 onChange={(e) => setTerms((prevVal) => !prevVal)}
               />
               <span>
-                I have read and agree to the &nbsp;
-                <Link className='signup-link-terms' to='#'>
+                I have read and agree to the&nbsp;
+                {/* <Link className='signup-link-terms' to='#'>
                   Terms of Use
-                </Link>
+                </Link> */}
+                <span className='signup-link-terms' to='#'>
+                  Terms of Use
+                </span>
                 .
               </span>
             </label>
