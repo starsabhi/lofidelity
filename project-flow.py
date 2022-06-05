@@ -14,10 +14,11 @@ added other models files and seed files
 
 #Heroku Database Commands
     github build, automatically runs the db migrate and upgrade, but not seed
+
 #resetting database, on Heroku database GUI resets PK ids
-    ~$ heroku run -a lofi-test flask db migrate
-    ~$ heroku run -a lofi-test flask db upgrade
-    ~$ heroku run -a lofi-test flask seed all
+    ~$ heroku run -a lofi-test-new flask db migrate
+    ~$ heroku run -a lofi-test-new flask db upgrade
+    ~$ heroku run -a lofi-test-new flask seed all
 
     ~$ heroku pg:psql postgresql-pointy-72360 --app lofi-test
         \d check tables
@@ -34,54 +35,49 @@ Initial Project Setup:
 
 
 COMPONENTS:
-    NAV - EK - TODO: replace gradient with profile-image
+    NAV - EK - DONE
     SIGNUP - EK - DONE - BONUS add non-existent artist route protection
-
     LOGIN - EK - DONE
     SPLASH PAGE - AL - DONE
-
     EXPLORE PAGE - AB - DONE
-
     MODAL - delete, uploads, edits - EK - DONE
     FOOTER - AB - DONE
-
     ARTIST PAGE: -
         - PROFILE and COVER PHOTO - MO - DONE
         - SECOND NAVBAR - AB/EK - DONE
         - ARTIST DETAILS
-            - Edit artist details DONE
-            - 3 upload modals DONE -TODO: ERROR HANDLING - MO
-            - Style artist dashboard - TODO
+            - EDIT artist details -  DONE
+            - UPLOAD IMAGE x3 - DONE
+            - Style artist dashboard - TODO - AL or first come
             - NO DELETE
         - ARTIST ALBUMS
-            - ADD ALBUM - AB - TODO  
+            - ADD ALBUM - AB - TODO: styling and error handling
 
         - ALBUM DETAILS
-            - Edit album detail - AB - DONE - TODO: styling
-            - Upload album photo - AB - TODO: MO to update to match songs
-            - Delete album - EK - DONE
+            - READ Album details - AB
+            - UPDATE Album detail - AB - DONE - TODO: styling
+            - UPLOAD Album photo - AB/MO - DONE
+            - DELETE Album - EK - DONE
 
             - SONG FUNCTIONALITY - AL
-                -add song - AL - DONE
-                -edit song title - AL - TODO: Styling and update song player
-                -delete song - AL- DONE TODO: Fetch track numbers after deletion - EK
-                -Bonus - change track order drag and drop form
+                -ADD Song - AL - DONE
+                -UPDATE Song Title - AL - DONE TODO: Styling and update song player
+                -DELETE Song - AL - DONE - TODO: Fetch track numbers after deletion - EK
+                -BONUS - change track order drag and drop form
 
- MUSIC PLAYER - MO - DONE
- ADD GENRES TO STORE - MO - DONE - hard coded instead
+MUSIC PLAYER - MO - DONE
+GENRES - ADD TO STORE - MO - DONE - hard coded instead
 
 AWS S3 - MO/AB
     - bonus: separate buckets songs vs images (2 keys/secrets), 2 helper functions
     - Download - DONE
     - upload seeder data to s3 and update seeder urls - DONE
-
 FRONTEND:
     STORES
         - users - EK - DONE
         - artists - MO/AL - DONE
         - albums - EK - DONE
         - songs - AB/EK - DONE
-
 BACKEND:
     DB MODELS - AL/EK - DONE
     SEEDS - AL/EK - DONE
@@ -95,35 +91,39 @@ BACKEND:
         -songs - AB - DONE
         -auth - EK - DONE
 
+
+
+TODO: ensure continuity of error handling in frontend components (sans delete) - ALL
+
+BUG: update song player after delete - Fix track numbers and then default to track 1 after delete - EK
+
+TODO: BONUS - Update form styling throughout - EK
+TODO: Style album detail -AB
+TODO: add backend route protection so a logged in user can't update other user's things
+    - passing, but bad actor could exploit
 TODO: NEED TO RE-MIGRATE PRODUCTION!
 
-TODO: ensure continuity of error handling in frontend components (sans delete) - MO
-BUG: update song player after delete - Fix track numbers and then default to track 1 after delete
 
-BONUS: view page as user
+MAIN CONCERNS
+    -NO DEFAULT BUTTONS
+    -NO ability to change something if not logged in and doesn't belong to users
+    -IF ERROR that user doesn't understand, that will be a deferral
+
+PRIORITY LIST:
+    - auth
+    - func
+    - style
+
+
+
+
+BONUS - BUG: when click play it should start the player, not just load the song
+BONUS - BUG: artist can manually enter album number in url and edit info on that album regardless of ownership
+BONUS: let artist view page as user (clear session state, then use session thunk to update again)
 
 Unhide/Unchange in Future:
     - Discover Search Bar in Nav
     - Extra inner navbar links (merch and community)
     - Forgot Password? on login page
     - change back color of terms of use on signup page
-
-AB
-    TODO: Style album detail
-    -demo user can't edit someone else's stuff add to route protection in backend - passing, but need to work on fetch protection
-
-BONUS - BUG: when click play it should start the player, not just load the song
-BONUS - BUG: artist can manually enter album number in url and edit info on that album regardless of ownership
-
-MAIN CONCERNS
-    -NO DEFAULT BUTTONS
-    -NO ability to change something if not logged in and doesn't belong to users
-    -IF ERROR that user doesn't understand, that will be a deferral
-Priority list:
-    - auth
-    - func
-    - style
-
-TODO: BONUS - Update form styling throughout
-
 """
