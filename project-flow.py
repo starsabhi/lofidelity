@@ -95,9 +95,8 @@ BACKEND:
         -auth - EK - DONE
 
 
-1) TODO: Fetch track numbers after deletion - EK or if someone else wants to
 2) TODO: ensure continuity of error handling in frontend components (sans delete) - ALL
-3) BUG: update song player after delete - Fix track numbers and then default to track 1 after delete - EK
+3) BUG: update song playing when click new song, also after delete
 4) TODO: Style album detail -AB
 5) TODO: BONUS - Update form styling throughout - EK
 6) TODO: UPDATE CHOOSE FILE BUTTON

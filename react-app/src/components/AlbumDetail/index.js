@@ -171,7 +171,7 @@ export default function AlbumDetail({ artist }) {
         <AddSongForm songType={genreList[sessionArtist?.genreId]} />
       </FullPageModal>
 
-      <div className='album-detail-container'>
+      <div className='album-detail-container-inner'>
         <div className='album-player-container'>
           <h1>{album?.title}</h1>
           <h3>by {artist?.name}</h3>
