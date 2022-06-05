@@ -175,13 +175,23 @@
 }
 
 .nav-user-dropdown-welcome,
-.nav-user-dropdown-artist {
+.nav-user-dropdown-artist-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   padding: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-user-dropdown-artist-link:hover {
+  background-color: rgb(243, 243, 243);
 }
 
 .nav-user-logout {
-  padding: 0px 15px;
-  padding-bottom: 15px;
+  padding: 15px;
+  /* padding-bottom: 15px; */
 }
 
 .nav-user-logout-btn {

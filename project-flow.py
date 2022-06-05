@@ -103,12 +103,12 @@ BUG: update song player after delete
 BONUS: view page as user
 
 ELAN:
-    TODO: EXPLORE OR DISCOVER change navbar
-    TODO: hid row two navbar extras as well.
-    TODO: change terms of use to gray,
-    TODO: forgot password - display as hidden
-    TODO: update explore div to height 100%
-    TODO: update dropdown modal
+
+Unhide/Unchange in Future:
+    - Discover Search Bar in Nav
+    - Extra inner navbar links (merch and community)
+    - Forgot Password? on login page
+    - change back color of terms of use on signup page
 
 Anthony:
     TO DO UPDATE - LOFI MCLOFERSON - doesn't exist

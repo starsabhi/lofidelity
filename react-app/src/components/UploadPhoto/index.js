@@ -81,11 +81,12 @@ export default function UploadPhoto({ imageType, closeModal, artist }) {
         return;
       }
     } catch (errorResponse) {
-      setImageLoading(false);
-      console.log('error');
-      const data = await errorResponse.json();
-      if (data && data.errors) setUploadErrors(data.errors);
-      console.log(uploadErrors);
+      console.log('ERROR', errorResponse);
+      // setImageLoading(false);
+      // console.log('error');
+      // const data = await errorResponse.json();
+      // if (data && data.errors) setUploadErrors(data.errors);
+      // console.log(uploadErrors);
     }
   };
 
