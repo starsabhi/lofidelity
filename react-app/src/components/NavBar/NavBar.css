@@ -129,6 +129,9 @@
   height: 53px;
   position: relative;
   cursor: default;
+
+  /* comment out in future */
+  display: none;
 }
 
 /* .main-nav-notification-container:hover {
