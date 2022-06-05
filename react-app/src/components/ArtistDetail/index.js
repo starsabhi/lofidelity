@@ -20,6 +20,11 @@ export default function ArtistDetail({ artist }) {
   const [showEditArtistDetailsModal, setShowEditArtistDetailsModal] =
     useState(false);
   const [showAddAlbumModal, setShowAddAlbumModal] = useState(false);
+  const [showArtistDashboard, setShowArtistDashboard] = useState(false);
+
+  const toggleArtistDashboard = () => {
+    setShowArtistDashboard(!showArtistDashboard);
+  };
 
   // useEffect(() => {
   // console.log('ARTIST: ', artist);
@@ -86,79 +91,81 @@ export default function ArtistDetail({ artist }) {
   };
 
   const genreList = {
-    1: 'acoustic',
-    2: 'alternative',
-    3: 'ambient',
-    4: 'blues',
-    5: 'classical',
-    6: 'country',
-    7: 'electronic',
-    8: 'experimental',
-    9: 'folk',
-    10: 'funk',
-    11: 'hiphop_rap',
-    12: 'jazz',
-    13: 'metal',
-    14: 'pop',
-    15: 'punk',
-    16: 'soul',
-    17: 'reggae',
-    18: 'rock',
+    1: 'Acoustic',
+    2: 'Alternative',
+    3: 'Ambient',
+    4: 'Blues',
+    5: 'Classical',
+    6: 'Country',
+    7: 'Electronic',
+    8: 'Experimental',
+    9: 'Folk',
+    10: 'Funk',
+    11: 'Hip-hop/Rap',
+    12: 'Jazz',
+    13: 'Metal',
+    14: 'Pop',
+    15: 'Punk',
+    16: 'Soul',
+    17: 'Reggae',
+    18: 'Rock',
   };
 
   return (
     <div className='artist-detail-container'>
-      {sessionArtist && sessionArtist?.id === artist?.id && (
-        <div className={`artist-dashboard`}>
-          <div>
-            <span>Artist Dashboard</span>
+      {/* <div className='artist-edit-container'>
+        {sessionArtist && sessionArtist?.id === artist?.id && (
+          <div className={`artist-dashboard`}>
+            <div>
+              <span>Artist Dashboard</span>
+            </div>
+            <div
+              type='button'
+              className={`edit-artist-details-button`}
+              onClick={() => {
+                openArtistDetailsModal();
+                // setAlbumId(album.id);
+              }}
+              >
+              <span className='material-symbols-outlined'>file_upload</span>
+              <span> Edit {artist?.name} Details </span>
+            </div>
+            <div
+              type='button'
+              className={`edit-profile-image-button`}
+              onClick={() => {
+                openProfileModal();
+                // setAlbumId(album.id);
+              }}
+              >
+              <span className='material-symbols-outlined'>file_upload</span>
+              <span> Edit profile image </span>
+            </div>
+            <div
+              type='button'
+              className={`edit-cover-image-button`}
+              onClick={() => {
+                openCoverModal();
+                // setAlbumId(album.id);
+              }}
+              >
+              <span className='material-symbols-outlined'>file_upload</span>
+              <span> Edit cover image </span>
+            </div>
+            <div
+              type='button'
+              className={`edit-background-image-button`}
+              onClick={() => {
+                openBackgroundModal();
+                // setAlbumId(album.id);
+              }}
+              >
+              <span className='material-symbols-outlined'>file_upload</span>
+              <span> Edit background image </span>
+            </div>
           </div>
-          <div
-            type='button'
-            className={`edit-artist-details-button`}
-            onClick={() => {
-              openArtistDetailsModal();
-              // setAlbumId(album.id);
-            }}
-          >
-            <span className='material-symbols-outlined'>file_upload</span>
-            <span> Edit {artist?.name} Details </span>
-          </div>
-          <div
-            type='button'
-            className={`edit-profile-image-button`}
-            onClick={() => {
-              openProfileModal();
-              // setAlbumId(album.id);
-            }}
-          >
-            <span className='material-symbols-outlined'>file_upload</span>
-            <span> Edit profile image </span>
-          </div>
-          <div
-            type='button'
-            className={`edit-cover-image-button`}
-            onClick={() => {
-              openCoverModal();
-              // setAlbumId(album.id);
-            }}
-          >
-            <span className='material-symbols-outlined'>file_upload</span>
-            <span> Edit cover image </span>
-          </div>
-          <div
-            type='button'
-            className={`edit-background-image-button`}
-            onClick={() => {
-              openBackgroundModal();
-              // setAlbumId(album.id);
-            }}
-          >
-            <span className='material-symbols-outlined'>file_upload</span>
-            <span> Edit background image </span>
-          </div>
-        </div>
-      )}
+        )}
+      </div> */}
 
       {/* <FullPageModal showEditProfileImageModal={showEditProfileImageModal} closeModal={closeModal}>
         <EditArtist
@@ -216,22 +223,85 @@ export default function ArtistDetail({ artist }) {
         />
       </FullPageModal>
 
-      <img
-        className='artist-profile'
-        alt='profile'
-        src={artist?.profileImageUrl}
-      />
+      <div className='artist-bio-container'>
+        <img
+          className='artist-profile'
+          alt='profile'
+          src={artist?.profileImageUrl}
+          />
 
-      <span className='artist-name'>{artist?.name}</span>
-      <span className='artist-genre'>{genreList[artist?.genreId]}</span>
-      <span className='artist-location'>{artist?.location}</span>
-      <p>{artist?.description}</p>
+        <span className='artist-name'>{artist?.name}</span>
+        <span className='artist-genre'>{genreList[artist?.genreId]}</span>
+        <span className='artist-location'>{artist?.location}</span>
+        <p className='artist-description'>{artist?.description}</p>
 
-      {sessionArtist && sessionArtist?.id === artist?.id && (
-        <button className='addalbumBtn' onClick={openAddAlbumModal}>
-          Add album
-        </button>
-      )}
-    </div>
-  );
-}
+        {sessionArtist && sessionArtist?.id === artist?.id && (
+          <button className='addalbumBtn' onClick={openAddAlbumModal}>
+            Add album
+          </button>
+        )}
+      </div>
+
+      <div className='artist-edit-container'>
+        {sessionArtist && sessionArtist?.id === artist?.id && (
+          <div className={`artist-dashboard`}>
+            <div>
+              <span className='artist-dashboard-header' onClick={toggleArtistDashboard}>Artist Dashboard</span>
+            </div>
+            {showArtistDashboard ? 
+              <>  
+                <div
+                type='button'
+                className={`edit-artist-details-button`}
+                onClick={() => {
+                  openArtistDetailsModal();
+                  // setAlbumId(album.id);
+                }}
+                >
+                  <span className='material-symbols-outlined'>file_upload</span>
+                  <span> Edit {artist?.name} Details </span>
+                </div>
+                <div
+                type='button'
+                className={`edit-profile-image-button`}
+                onClick={() => {
+                  openProfileModal();
+                  // setAlbumId(album.id);
+                }}
+                >
+                  <span className='material-symbols-outlined'>file_upload</span>
+                  <span> Edit profile image </span>
+                </div>
+                <div
+                type='button'
+                className={`edit-cover-image-button`}
+                onClick={() => {
+                  openCoverModal();
+                  // setAlbumId(album.id);
+                }}
+                  >
+                  <span className='material-symbols-outlined'>file_upload</span>
+                  <span> Edit cover image </span>
+                </div>
+                <div
+                type='button'
+                className={`edit-background-image-button`}
+                onClick={() => {
+                  openBackgroundModal();
+                  // setAlbumId(album.id);
+                }}
+                >
+                  <span className='material-symbols-outlined'>file_upload</span>
+                  <span> Edit background image </span>
+                </div>
+            </>
+          : null
+          }
+          </div>
+          )}
+          </div>
+          
+          </div>
+          );
+        }
+        

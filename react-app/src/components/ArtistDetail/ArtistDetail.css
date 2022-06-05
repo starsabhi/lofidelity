@@ -1,16 +1,26 @@
+.artist-detail-container {
+  width: 120px;
+  float: right;
+  word-wrap: break-word;
+}
+
+.artist-bio-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.75em;
+}
+
+.artist-edit-container * {
+  margin-top: 4%;
+}
+
+.artist-bio-container *:not(img) {
+  margin-top: 6%;
+}
+
 .artist-profile {
   max-width: 120px;
   max-height: 180px;
-}
-
-.album-navlink {
-  display: flex;
-  flex-direction: column;
-}
-
-.album-thumbnail-container {
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .edit-profile-image-button {
@@ -35,4 +45,15 @@
   80% {
     color: white;
   }
+}
+
+.artist-dashboard-header {
+  font-weight: 600;
+  font-size: 18px;
+  color: #0000EE
+}
+
+.artist-dashboard-header:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }

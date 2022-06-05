@@ -28,3 +28,14 @@
 .album-thumbnail-title:hover {
   text-decoration: underline;
 }
+
+.album-navlink {
+  display: flex;
+  flex-direction: column;
+}
+
+.album-thumbnail-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
