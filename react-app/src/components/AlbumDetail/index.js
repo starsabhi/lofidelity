@@ -14,7 +14,6 @@ import EditSongForm from '../EditSongForm';
 import AddSongForm from '../AddSongForm';
 import UploadAlbumPhoto from '../UploadAlbumPhoto';
 
-
 export default function AlbumDetail({ artist }) {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
   const sessionState = useSelector((state) => state);
@@ -33,7 +32,6 @@ export default function AlbumDetail({ artist }) {
 
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
-
 
   const genreList = {
     1: 'acoustic',
@@ -56,9 +54,8 @@ export default function AlbumDetail({ artist }) {
     18: 'rock',
   };
 
-
   const [showEditAlbumImageModal, setShowEditAlbumImageModal] = useState(false);
-  
+
   useEffect(() => {
     console.log(artist);
   }, [artist]);
@@ -110,20 +107,19 @@ export default function AlbumDetail({ artist }) {
 
   const [showAddSongModal, setShowAddSongModal] = useState(false);
 
-    //showModal handlers - ADD SONGS
-    const openAddSongModal = () => {
-      if (showEditSongModal) return; // do nothing if modal already showing
-      setShowAddSongModal(true); // else open modal
-      document.getElementById('root').classList.add('overflow');
-    };
-  
-    const closeAddSongModal = () => {
-      if (!showEditSongModal) return; // do nothing if modal already closed
-      setShowAddSongModal(false); // else close modal
-      // disable page scrolling:
-      document.getElementById('root').classList.remove('overflow');
-    };
-  
+  //showModal handlers - ADD SONGS
+  const openAddSongModal = () => {
+    if (showAddSongModal) return; // do nothing if modal already showing
+    setShowAddSongModal(true); // else open modal
+    document.getElementById('root').classList.add('overflow');
+  };
+
+  const closeAddSongModal = () => {
+    if (!showAddSongModal) return; // do nothing if modal already closed
+    setShowAddSongModal(false); // else close modal
+    // disable page scrolling:
+    document.getElementById('root').classList.remove('overflow');
+  };
 
   const [showAlbumEditModal, setShowAlbumEditModal] = useState(false);
 
@@ -182,11 +178,8 @@ export default function AlbumDetail({ artist }) {
         showModal={showAddSongModal}
         closeModal={closeAddSongModal}
       >
-        <AddSongForm
-          songType={genreList[sessionArtist?.genreId]}
-        />
+        <AddSongForm songType={genreList[sessionArtist?.genreId]} />
       </FullPageModal>
-
 
       <div className='album-detail-container'>
         <div className='album-player-container'>
@@ -251,16 +244,16 @@ export default function AlbumDetail({ artist }) {
           </div>
 
           <div
-                  type='button'
-                  className={`song-add-button
+            type='button'
+            className={`song-add-button
                   ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
                   `}
-                  onClick={() => {
-                    openAddSongModal();
-                  }}
-                >
-                  <span className='material-symbols-outlined'> add</span>
-                </div>
+            onClick={() => {
+              openAddSongModal();
+            }}
+          >
+            <span className='material-symbols-outlined'> add</span>
+          </div>
 
           <div className='album-detail-image-div'>
             <img
