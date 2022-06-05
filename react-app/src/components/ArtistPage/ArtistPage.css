@@ -122,10 +122,12 @@ li.artist-community {
   width: 975px;
   padding: 35px 30px;
   padding-bottom: 40px;
+  height: 100%;
 }
 
 .albums-container {
   display: flex;
+  height: 100%;
 
   width: 795px;
 }

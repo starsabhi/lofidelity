@@ -67,7 +67,7 @@ export const addNewSongThunk = (formData) => async (dispatch) => {
 
   if (response.ok) {
     const newSong = await response.json();
-    dispatch(addSong(newSong.id, newSong));
+    dispatch(addSong(newSong.albumId, newSong));
     return null;
   } else if (response.status < 500) {
     const resBody = await response.json();

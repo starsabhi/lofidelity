@@ -72,7 +72,7 @@ def get_one_song(id):
 # ADD ONE SONG
 @song_routes.route("", methods=["POST"])
 @login_required
-def add_song(id):
+def add_song():
 
     form = SongForm()
 
@@ -80,17 +80,17 @@ def add_song(id):
 
     if form.validate_on_submit():
 
-        if "image" not in request.files:
-            return {"errors": "image required"}, 400
+        if "song" not in request.files:
+            return {"errors": ["Please choose a Song file"]}, 400
 
-        image = request.files["image"]
+        song = request.files["song"]
 
-        if not allowed_file(image.filename):
-            return {"errors": "file type not permitted"}, 400
+        if not allowed_file(song.filename):
+            return {"errors": ["File type not permitted"]}, 400
 
-        image.filename = get_unique_filename(image.filename)
+        song.filename = get_unique_filename(song.filename)
 
-        upload = upload_file_to_s3(image)
+        upload = upload_file_to_s3(song)
 
         if "url" not in upload:
             return upload, 400
@@ -100,7 +100,7 @@ def add_song(id):
         albumId = form.data['albumId']
 
         album_last_track = Song.query.filter(
-            Song.albumId == albumId).order_by(Song.trackNumber.asc()).first()
+            Song.albumId == albumId).order_by(Song.trackNumber.desc()).first()
 
         if album_last_track:
             trackNumber = album_last_track.trackNumber + 1
