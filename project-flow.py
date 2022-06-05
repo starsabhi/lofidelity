@@ -52,7 +52,7 @@ COMPONENTS:
             - NO DELETE
         - ARTIST ALBUMS
 
-            - ADD ALBUM - AB - TODO: styling and error handling
+            - ADD ALBUM - AB - TODO: styling
 
 
         - ALBUM DETAILS
@@ -117,6 +117,7 @@ PRIORITY LIST:
     - func
     - style
 
+TODO: remove price and set default on backend to 0
 
 
 
@@ -129,4 +130,5 @@ Unhide/Unchange in Future:
     - Extra inner navbar links (merch and community)
     - Forgot Password? on login page
     - change back color of terms of use on signup page
+
 """
