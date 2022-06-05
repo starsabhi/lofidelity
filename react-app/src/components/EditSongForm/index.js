@@ -3,7 +3,7 @@ import './EditSong.css';
 import React, { useState } from 'react';
 import * as songActions from '../../store/song';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 export default function EditSongForm({ albumId, songId, trackNumber, closeModal }) {
   const dispatch = useDispatch();

@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import playButton from '../../images/play-button.png';
+import playButton from '../../images/play-button.svg';
+import pauseButton from '../../images/pause-button.svg';
 import Player from '../Player';
 import EditAlbumForm from '../EditAlbumForm';
 
@@ -31,7 +32,16 @@ export default function AlbumDetail({ artist }) {
   const [trackNumber, setTrackNumber] = useState(null);
 
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
+  const [currentTrack, setCurrentTrack] = useState(1)
   const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(false)
+
+  useEffect(() => {
+    if (songs) {
+      setSongTitle(songs[currentTrack - 1]?.title)
+    }
+  }, [songs])
+  
 
   const genreList = {
     1: 'acoustic',
@@ -136,6 +146,10 @@ export default function AlbumDetail({ artist }) {
     document.getElementById('root').classList.remove('overflow');
   };
 
+  if (!url) {
+    return null
+  }
+
   return (
     <>
       <FullPageModal
@@ -194,8 +208,9 @@ export default function AlbumDetail({ artist }) {
               ''
             )}
           </div>
+          
           <span>Now playing: {songTitle}</span>
-          <Player albumId={albumId} url={url} />
+          <Player albumId={albumId} url={url} playing={autoPlay} />
 
           <div className='song-list-container'>
             {songs?.map((song) => (
@@ -204,10 +219,16 @@ export default function AlbumDetail({ artist }) {
                   className='song-play-btn'
                   id={`song-${song?.id}-play-btn`}
                   alt='play'
-                  src={playButton}
+                  src={(autoPlay && (currentTrack === song?.trackNumber)) ? pauseButton : playButton}
                   onClick={() => {
                     setUrl(song?.audioUrl);
                     setSongTitle(song?.title);
+                    if (currentTrack === song?.trackNumber) {
+                      setAutoPlay(!autoPlay)
+                    } else {
+                      setAutoPlay(true)
+                    }
+                    setCurrentTrack(song?.trackNumber)
                   }}
                 />
                 <span>
