@@ -54,7 +54,7 @@ COMPONENTS:
             - Style artist dashboard - TODO
             - NO DELETE
         - ARTIST ALBUMS
-            - ADD ALBUM - AB - TODO  
+            - ADD ALBUM - AB - TODO
 
         - ALBUM DETAILS
             - Edit album detail - AB - DONE - TODO: styling
@@ -67,7 +67,7 @@ COMPONENTS:
                 -delete song - AL- DONE TODO: Fetch track numbers after deletion - EK
                 -Bonus - change track order drag and drop form
 
- MUSIC PLAYER - MO - DONE
+ MUSIC PLAYER - MO - DONE TODO: autoplay from track select, track-play/pause on track button
  ADD GENRES TO STORE - MO - DONE - hard coded instead
 
 AWS S3 - MO/AB

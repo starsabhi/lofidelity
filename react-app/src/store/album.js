@@ -155,11 +155,6 @@ export const updateAlbumImageThunk =
       return ['An error occurred. Please try again.'];
     }
 
-    // if (response.ok) {
-    //   const resBody = await response.json();
-    //   dispatch(updateAlbumImage(artistId, albumId, resBody.url));
-    //   return response;
-    // } else throw response;
   };
 
 export const deleteOneAlbumThunk = (artistId, albumId) => async (dispatch) => {

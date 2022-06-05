@@ -37,6 +37,8 @@ export default function AddSongForm({ songType, closeModal }) {
         // history.push('/');
         return;
       } else {
+        setSongLoading(false);
+
         setUploadErrors(errors);
       }
     } catch (errorResponse) {

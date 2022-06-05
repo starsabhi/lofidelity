@@ -8,63 +8,22 @@ import * as albumActions from '../../store/album';
 export default function UploadAlbumPhoto({ artistId, albumId, closeModal }) {
   const history = useHistory(); // so that we can redirect after the image upload is successful
   const dispatch = useDispatch();
-  // const artist = useSelector((state)=> state.session.sessionArtist)
+
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
   const [uploadErrors, setUploadErrors] = useState([]);
 
-  // const sessionUser = useSelector((state) => state.session.user);
-  // const id = artist?.id;
-  const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
     setUploadErrors([]); //reset error state
 
     const formData = new FormData();
     formData.append('image', image);
-    // console.log(id);
 
-    // aws uploads can be a bit slow—displaying
-    // some sort of loading message is a good idea
     setImageLoading(true);
-    console.log('right before thunk');
-
-    //   const errors = await dispatch(
-    //     albumActions.updateOneAlbumThunk(albumId, formdata)
-    //   );
-    //   console.log('MODAL', errors);
-    //   if (!errors) {
-    //     closeModal();
-    //     return;
-    //   } else {
-    //     setEditErrors(errors);
-    //     return;
-    //   }
-    // };
-
-    // const errors = await dispatch(
-    //   artistActions.updateArtistImageThunk(
-    //     artist.genreId,
-    //     artist.id,
-    //     formData,
-    //     imageType
-    //   )
-    // );
-    //     console.log(errors)
-    // if (!errors) {
-    //   setImageLoading(false);
-    //   closeModal();
-
-    //   history.push('/');
-    // return;
-    // } else {
-    //   setUploadErrors(errors)
-    //   setImageLoading(false);
-    //   console.log('error');
-    //   return
-    // }
 
     try {
-      const res = await dispatch(
+      const errors = await dispatch(
         albumActions.updateAlbumImageThunk(
           artistId,
           albumId,
@@ -72,22 +31,21 @@ export default function UploadAlbumPhoto({ artistId, albumId, closeModal }) {
 
         )
       );
-      console.log(res);
-      if (res.url) {
-        setImageLoading(false);
+      if (!errors) {
         closeModal();
 
-        history.push('/');
+        // history.push('/');
         return;
+      }else {
+        setImageLoading(false)
+        setUploadErrors(errors);
       }
     } catch (errorResponse) {
       setImageLoading(false);
-      closeModal();
+      // closeModal();
+      setUploadErrors(['Something went wrong, please try again.']);
 
       console.log('error');
-      // const data = await errorResponse.json();
-      // if (data && data.errors) setUploadErrors(data.errors);
-      // console.log(uploadErrors);
     }
   };
 
@@ -99,6 +57,13 @@ export default function UploadAlbumPhoto({ artistId, albumId, closeModal }) {
 
   return (
     <div className={`resource-delete-form-container`}>
+      <form className='resource-delete-form' onSubmit={handleSubmit}>
+        <div className='resource-delete-text1'>
+          <span>{`Upload Album image`}</span>
+        </div>
+        <div className='resource-delete-text2'>
+          <span>{`Upload your new Album image`}</span>
+        </div>
       {uploadErrors.length > 0 && (
         <div className='resource-error-container'>
           {uploadErrors.map((error, idx) => (
@@ -108,13 +73,6 @@ export default function UploadAlbumPhoto({ artistId, albumId, closeModal }) {
           ))}
         </div>
       )}
-      <form className='resource-delete-form' onSubmit={handleSubmit}>
-        <div className='resource-delete-text1'>
-          <span>{`Upload Album image`}</span>
-        </div>
-        <div className='resource-delete-text2'>
-          <span>{`Upload your new Album image`}</span>
-        </div>
         <div className='resource-delete-text2'>
           <input type='file' accept='image/*' onChange={updateImage} />
         </div>
