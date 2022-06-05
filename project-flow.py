@@ -67,7 +67,7 @@ COMPONENTS:
                 -delete song - AL- DONE TODO: Fetch track numbers after deletion - EK
                 -Bonus - change track order drag and drop form
 
- MUSIC PLAYER - MO - DONE TODO: autoplay from track select, track-play/pause on track button
+ MUSIC PLAYER - MO - DONE 
  ADD GENRES TO STORE - MO - DONE - hard coded instead
 
 AWS S3 - MO/AB
