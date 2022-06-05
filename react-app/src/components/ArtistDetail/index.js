@@ -23,7 +23,7 @@ export default function ArtistDetail({ artist }) {
   const [showArtistDashboard, setShowArtistDashboard] = useState(false);
 
   const toggleArtistDashboard = () => {
-    setShowArtistDashboard(!showArtistDashboard);
+    setShowArtistDashboard(showArtistDashboard => !showArtistDashboard);
   };
 
   // useEffect(() => {
