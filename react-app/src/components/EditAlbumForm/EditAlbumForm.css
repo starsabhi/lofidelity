@@ -1,0 +1,52 @@
+.resource-update-form {
+  height: 440px;
+  width: 500px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px rgb(95, 92, 92);
+}
+
+.resource-error-update-container {
+  color: red;
+  background-color: white;
+  /* display: flex; */
+  /* justify-content: center; */
+  margin-left: 85px;
+}
+.resource-update-form-container {
+  margin-left: 50px;
+  background-color: white;
+  /* margin-left: 50px; */
+}
+
+.Edit-Album_title {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  font-size: 22px;
+}
+
+.inputfieldDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 350px;
+  margin: 5px;
+  margin-left: 80px;
+  padding: 5px;
+}
+
+.titleForanInput {
+  margin: 5px;
+}
+
+.resource-update-form-update-container {
+  margin: 0%;
+  padding: 0%;
+}
+
+.resource-error-message {
+  margin: 2px;
+  padding: 2px;
+}
