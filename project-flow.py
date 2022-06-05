@@ -52,7 +52,7 @@ COMPONENTS:
             - NO DELETE
         - ARTIST ALBUMS
 
-            - ADD ALBUM - AB - TODO: styling and error handling
+            - ADD ALBUM - AB - TODO: styling
 
 
         - ALBUM DETAILS
@@ -95,15 +95,19 @@ BACKEND:
         -auth - EK - DONE
 
 
+1) TODO: Fetch track numbers after deletion - EK or if someone else wants to
+2) TODO: ensure continuity of error handling in frontend components (sans delete) - ALL
+3) BUG: update song player after delete - Fix track numbers and then default to track 1 after delete - EK
+4) TODO: Style album detail -AB
+5) TODO: BONUS - Update form styling throughout - EK
+6) TODO: UPDATE CHOOSE FILE BUTTON
+6) TODO: update styling through out
+7) TODO: EXTENSIVE QA OF ALL CRUD AND ROUTES AND LOG INS
+8) ADD delete to album page with redirect to artist page
 
-TODO: ensure continuity of error handling in frontend components (sans delete) - ALL
-
-BUG: update song player after delete - Fix track numbers and then default to track 1 after delete - EK
-
-TODO: BONUS - Update form styling throughout - EK
-TODO: Style album detail -AB
-TODO: add backend route protection so a logged in user can't update other user's things
+TODO: BONUS add backend route protection so a logged in user can't update other user's things
     - passing, but bad actor could exploit
+
 TODO: NEED TO RE-MIGRATE PRODUCTION!
 
 
@@ -117,16 +121,15 @@ PRIORITY LIST:
     - func
     - style
 
-
-
-
 BONUS - BUG: when click play it should start the player, not just load the song
 BONUS - BUG: artist can manually enter album number in url and edit info on that album regardless of ownership
 BONUS: let artist view page as user (clear session state, then use session thunk to update again)
 
-Unhide/Unchange in Future:
-    - Discover Search Bar in Nav
+Unhide/Un-change in Future:
+    - Discover Search Bar and notification bell in Nav
     - Extra inner navbar links (merch and community)
     - Forgot Password? on login page
     - change back color of terms of use on signup page
+    - add price back in
+
 """

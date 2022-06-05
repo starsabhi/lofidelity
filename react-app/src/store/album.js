@@ -152,7 +152,6 @@ export const updateAlbumImageThunk =
     } else {
       return ['An error occurred. Please try again.'];
     }
-
   };
 
 export const deleteOneAlbumThunk = (artistId, albumId) => async (dispatch) => {
@@ -248,7 +247,12 @@ const albumReducer = (state = initialState, action) => {
       albumId = action.payload.albumId;
       console.log('actionPayload***', action.payload);
       //add Album to end of array sorted by "releaseYear"
-      newState.albumsByArtistId[artistId].push(action.payload.album);
+      if (newState.albumsByArtistId[artistId]) {
+        newState.albumsByArtistId[artistId].push(action.payload.album);
+      } else {
+        newState.albumsByArtistId[artistId] = [];
+        newState.albumsByArtistId[artistId].push(action.payload.album);
+      }
 
       //re-sort array based on releaseYear in Desc order
       newState.albumsByArtistId[artistId].sort((a, b) => {
@@ -354,7 +358,12 @@ const albumReducer = (state = initialState, action) => {
       // songId = action.payload.songId;
 
       //add Song to end of array sorted by "trackNumber"
-      newState.songsByAlbumId[albumId].push(action.payload.song);
+      if (newState.songsByAlbumId[albumId]) {
+        newState.songsByAlbumId[albumId].push(action.payload.song);
+      } else {
+        newState.songsByAlbumId[albumId] = [];
+        newState.songsByAlbumId[albumId].push(action.payload.song);
+      }
 
       //not specifying trackNumber, when add new song
       //re-sort array based on trackNumber in Asc order

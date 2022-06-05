@@ -11,7 +11,7 @@ export default function AddArtistForm() {
 
   const sessionUser = useSelector((state) => state.session.user);
   const artists = useSelector((state) => state.artist.artistsByArtistId);
-  const artist = useSelector((state) => state.session.sessionArtist);
+  const sessionArtist = useSelector((state) => state.session.sessionArtist);
 
   const genreList = {
     1: 'acoustic',
@@ -87,10 +87,10 @@ export default function AddArtistForm() {
   };
 
   // Redirect logged in already made artist to home page
-  if (sessionUser && artist) {
+  if (sessionUser && sessionArtist) {
     // console.log('ARTIST FIRED');
     // return <Redirect to='/' />;
-    return <Redirect to={`/${artistUrl}`} />;
+    return <Redirect to={`/${sessionArtist?.artistUrl}`} />;
   }
 
   // Redirect logged in fan to home page

@@ -17,9 +17,6 @@ import UploadAlbumPhoto from '../UploadAlbumPhoto';
 
 export default function AlbumDetail({ artist }) {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
-  const sessionState = useSelector((state) => state);
-  console.log(sessionState);
-  // console.log(sessionArtist.id);
 
   const params = useParams();
   const albumId = params.id;
@@ -27,21 +24,20 @@ export default function AlbumDetail({ artist }) {
   const album = useSelector((state) => state.album[albumId]);
   const songs = useSelector((state) => state.album.songsByAlbumId[albumId]);
 
+  // slices of state
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
-
   const [trackNumber, setTrackNumber] = useState(null);
-
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
-  const [currentTrack, setCurrentTrack] = useState(1)
-  const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
-  const [autoPlay, setAutoPlay] = useState(false)
+  const [currentTrack, setCurrentTrack] = useState(1);
+  const [autoPlay, setAutoPlay] = useState(false);
+  const [songId, setSongId] = useState(null);
 
   useEffect(() => {
     if (songs) {
-      setSongTitle(songs[currentTrack - 1]?.title)
+      setSongTitle(songs[currentTrack - 1]?.title);
+      setUrl(songs[0]?.audioUrl);
     }
-  }, [songs])
-  
+  }, [songs, currentTrack]);
 
   const genreList = {
     1: 'acoustic',
@@ -65,18 +61,11 @@ export default function AlbumDetail({ artist }) {
   };
 
   const [showEditAlbumImageModal, setShowEditAlbumImageModal] = useState(false);
-
-  useEffect(() => {
-    console.log(artist);
-  }, [artist]);
-
-  //showModal handlers - SONGS
   const openAlbumImageModal = () => {
     if (showEditAlbumImageModal) return; // do nothing if modal already showing
     setShowEditAlbumImageModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
-
   const closeAlbumImageModal = () => {
     if (!showEditAlbumImageModal) return; // do nothing if modal already closed
     setShowEditAlbumImageModal(false); // else close modal
@@ -84,13 +73,13 @@ export default function AlbumDetail({ artist }) {
     document.getElementById('root').classList.remove('overflow');
   };
 
+  const [showDeleteSongModal, setShowDeleteSongModal] = useState(false);
   const openDeleteSongModal = () => {
     if (showDeleteSongModal) return; // do nothing if modal already showing
     setShowDeleteSongModal(true); // else open modal
     // disable page scrolling:
     document.getElementById('root').classList.add('overflow');
   };
-
   const closeDeleteSongModal = () => {
     if (!showDeleteSongModal) return; // do nothing if modal already closed
     setShowDeleteSongModal(false); // else close modal
@@ -99,15 +88,11 @@ export default function AlbumDetail({ artist }) {
   };
 
   const [showEditSongModal, setShowEditSongModal] = useState(false);
-  const [songId, setSongId] = useState(null);
-
-  //showModal handlers - EDIT SONGS
   const openEditSongModal = () => {
     if (showEditSongModal) return; // do nothing if modal already showing
     setShowEditSongModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
-
   const closeEditSongModal = () => {
     if (!showEditSongModal) return; // do nothing if modal already closed
     setShowEditSongModal(false); // else close modal
@@ -116,14 +101,11 @@ export default function AlbumDetail({ artist }) {
   };
 
   const [showAddSongModal, setShowAddSongModal] = useState(false);
-
-  //showModal handlers - ADD SONGS
   const openAddSongModal = () => {
     if (showAddSongModal) return; // do nothing if modal already showing
     setShowAddSongModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
-
   const closeAddSongModal = () => {
     if (!showAddSongModal) return; // do nothing if modal already closed
     setShowAddSongModal(false); // else close modal
@@ -132,23 +114,17 @@ export default function AlbumDetail({ artist }) {
   };
 
   const [showAlbumEditModal, setShowAlbumEditModal] = useState(false);
-
   const openAlbumEditModal = () => {
     if (showAlbumEditModal) return; // do nothing if modal already showing
     setShowAlbumEditModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
-
   const closeAlbumEditModal = () => {
     if (!showAlbumEditModal) return; // do nothing if modal already closed
     setShowAlbumEditModal(false); // else close modal
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
-
-  if (!url) {
-    return null
-  }
 
   return (
     <>
@@ -199,82 +175,92 @@ export default function AlbumDetail({ artist }) {
         <div className='album-player-container'>
           <h1>{album?.title}</h1>
           <h3>by {artist?.name}</h3>
-          <div>
-            {sessionArtist?.id === album?.artistId ? (
+
+          {sessionArtist && sessionArtist?.id === album?.artistId && (
+            <div>
               <button className='editAlbumDetails' onClick={openAlbumEditModal}>
                 Edit Album Details
               </button>
-            ) : (
-              ''
-            )}
-          </div>
-          
-          <span>Now playing: {songTitle}</span>
-          <Player albumId={albumId} url={url} playing={autoPlay} />
+            </div>
+          )}
 
-          <div className='song-list-container'>
-            {songs?.map((song) => (
-              <div className='song-container' key={song?.id}>
-                <img
-                  className='song-play-btn'
-                  id={`song-${song?.id}-play-btn`}
-                  alt='play'
-                  src={(autoPlay && (currentTrack === song?.trackNumber)) ? pauseButton : playButton}
-                  onClick={() => {
-                    setUrl(song?.audioUrl);
-                    setSongTitle(song?.title);
-                    if (currentTrack === song?.trackNumber) {
-                      setAutoPlay(!autoPlay)
-                    } else {
-                      setAutoPlay(true)
-                    }
-                    setCurrentTrack(song?.trackNumber)
-                  }}
-                />
-                <span>
-                  {song?.trackNumber}. {song?.title}
-                </span>
-                <div
-                  type='button'
-                  className={`song-delete-button
-                  ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
-                  `}
-                  onClick={() => {
-                    openDeleteSongModal();
-                    setSongId(song.id);
-                  }}
-                >
-                  <span className='material-symbols-outlined'> delete</span>
-                </div>
+          {url && (
+            <>
+              <span>Now playing: {songTitle}</span>
+              <Player albumId={albumId} url={url} playing={autoPlay} />
 
-                <div
-                  type='button'
-                  className={`song-edit-button
-                  ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
-                  `}
-                  onClick={() => {
-                    openEditSongModal();
-                    setTrackNumber(song.trackNumber);
-                    setSongId(song.id);
-                  }}
-                >
-                  <span className='material-symbols-outlined'> edit</span>
-                </div>
+              <div className='song-list-container'>
+                {songs?.map((song) => (
+                  <div className='song-container' key={song?.id}>
+                    <img
+                      className='song-play-btn'
+                      id={`song-${song?.id}-play-btn`}
+                      alt='play'
+                      src={
+                        autoPlay && currentTrack === song?.trackNumber
+                          ? pauseButton
+                          : playButton
+                      }
+                      onClick={() => {
+                        setUrl(song?.audioUrl);
+                        setSongTitle(song?.title);
+                        if (currentTrack === song?.trackNumber) {
+                          setAutoPlay(!autoPlay);
+                        } else {
+                          setAutoPlay(true);
+                        }
+                        setCurrentTrack(song?.trackNumber);
+                      }}
+                    />
+                    <span>
+                      {song?.trackNumber}. {song?.title}
+                    </span>
+
+                    {sessionArtist && sessionArtist?.id === album?.artistId && (
+                      <>
+                        <div
+                          type='button'
+                          className={`song-delete-button`}
+                          onClick={() => {
+                            openDeleteSongModal();
+                            setSongId(song.id);
+                          }}
+                        >
+                          <span className='material-symbols-outlined'>
+                            delete
+                          </span>
+                        </div>
+
+                        <div
+                          type='button'
+                          className={`song-edit-button`}
+                          onClick={() => {
+                            openEditSongModal();
+                            setTrackNumber(song.trackNumber);
+                            setSongId(song.id);
+                          }}
+                        >
+                          <span className='material-symbols-outlined'>
+                            edit
+                          </span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
 
-          <div
-            type='button'
-            className={`song-add-button
-                  ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
-                  `}
-            onClick={() => {
-              openAddSongModal();
-            }}
-          >
-            <span className='material-symbols-outlined'> add</span>
-          </div>
+          {sessionArtist && sessionArtist?.id === album?.artistId && (
+            <div
+              type='button'
+              className={`song-add-button`}
+              onClick={openAddSongModal}
+            >
+              <span className='material-symbols-outlined'> add</span>
+            </div>
+          )}
         </div>
         <div className='album-detail-image-div'>
           <img
@@ -284,19 +270,19 @@ export default function AlbumDetail({ artist }) {
             src={album?.imageUrl}
           />
 
-          <div
-            type='button'
-            className={`edit-profile-image-button
-              ${sessionArtist?.id === artist?.id ? '' : 'hidden'}
-              `}
-            onClick={() => {
-              openAlbumImageModal();
-              // setAlbumId(album.id);
-            }}
-          >
-            <span className='material-symbols-outlined'>file_upload</span>
-            <span> Edit album image </span>
-          </div>
+          {sessionArtist && sessionArtist?.id === album?.artistId && (
+            <div
+              type='button'
+              className={`edit-profile-image-button`}
+              onClick={() => {
+                openAlbumImageModal();
+                // setAlbumId(album.id);
+              }}
+            >
+              <span className='material-symbols-outlined'>file_upload</span>
+              <span> Edit album image </span>
+            </div>
+          )}
         </div>
       </div>
     </>

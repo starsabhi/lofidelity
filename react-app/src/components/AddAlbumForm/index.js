@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import * as albumActions from '../../store/album';
-import { useDispatch, useSelector } from 'react-redux';
 import './AddAlbumForm.css';
+
+import React, { useState } from 'react';
+import * as albumActions from '../../store/album';
+import { useDispatch } from 'react-redux';
+
 export default function AddAlbumForm({ artist, closeModal }) {
   const dispatch = useDispatch('');
   const [image, setImage] = useState(null);
-  const session = useSelector((state) => state);
   const artistId = artist.id;
 
   const [imageLoading, setImageLoading] = useState(false);
@@ -13,7 +14,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
   const [title, setTitle] = useState('');
   const [releaseYear, setReleaseYear] = useState('');
   const [about, setAbout] = useState('');
-  const [price, setPrice] = useState('');
+  // const [price, setPrice] = useState('');
   const [albumErrors, setAlbumErrors] = useState([]);
   // const [newEditErros, setNewEditErros] = useState([]);
 
@@ -28,7 +29,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
     formData.append('title', title);
     formData.append('releaseYear', releaseYear);
     formData.append('about', about);
-    formData.append('price', price);
+    // formData.append('price', price);
 
     setImageLoading(true);
     // let formdata = {
@@ -86,6 +87,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
             value={title}
             placeholder='Title'
             name='name'
+            required
           ></input>
         </div>
         <div className='inputfieldDiv'>
@@ -97,6 +99,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
             value={releaseYear}
             placeholder='ReleaseYear'
             name='name'
+            required
           ></input>
         </div>
         <div className='inputfieldDiv'>
@@ -108,9 +111,11 @@ export default function AddAlbumForm({ artist, closeModal }) {
             value={about}
             placeholder='Title'
             name='name'
+            required
           ></input>
         </div>
-        <div className='inputfieldDiv'>
+
+        {/* <div className='inputfieldDiv'>
           <label className='titleForanInput'>Price</label>
           <input
             className='allInputforCreateB'
@@ -120,7 +125,8 @@ export default function AddAlbumForm({ artist, closeModal }) {
             placeholder='Title'
             name='name'
           ></input>
-        </div>
+        </div> */}
+
         <div className='resource-delete-text2'>
           <input type='file' accept='image/*' onChange={AddImage} />
         </div>

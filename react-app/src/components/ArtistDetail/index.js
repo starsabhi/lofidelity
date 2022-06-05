@@ -1,16 +1,17 @@
 import './ArtistDetail.css';
 
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+// import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import FullPageModal from '../FullPageModal';
 import EditArtistForm from '../EditArtistForm';
 import UploadPhoto from '../UploadPhoto';
-import AddAlbumForm from '../AddAlbum';
+import AddAlbumForm from '../AddAlbumForm';
 
 export default function ArtistDetail({ artist }) {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
+
   const [showEditProfileImageModal, setShowEditProfileImageModal] =
     useState(false);
   const [showEditCoverImageModal, setShowEditCoverImageModal] = useState(false);
@@ -18,60 +19,53 @@ export default function ArtistDetail({ artist }) {
     useState(false);
   const [showEditArtistDetailsModal, setShowEditArtistDetailsModal] =
     useState(false);
-
-  //add Album -----------------------------------------
   const [showAddAlbumModal, setShowAddAlbumModal] = useState(false);
-  //showEditProfileImageModal handlers
 
-  useEffect(() => {
-    console.log(artist);
-  }, [artist]);
+  // useEffect(() => {
+  // console.log('ARTIST: ', artist);
+  // }, [artist]);
 
-  console.log('*****************************************************', artist);
-
-  console.log('ARTIST: ', artist);
   const openProfileModal = () => {
     if (showEditProfileImageModal) return; // do nothing if modal already showing
     setShowEditProfileImageModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
-
   const closeProfileModal = () => {
     if (!showEditProfileImageModal) return; // do nothing if modal already closed
     setShowEditProfileImageModal(false); // else close modal
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
+
   const openCoverModal = () => {
     if (showEditCoverImageModal) return; // do nothing if modal already showing
     setShowEditCoverImageModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
-
   const closeCoverModal = () => {
     if (!showEditCoverImageModal) return; // do nothing if modal already closed
     setShowEditCoverImageModal(false); // else close modal
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
+
   const openBackgroundModal = () => {
     if (showEditBackgroundImageModal) return; // do nothing if modal already showing
     setShowEditBackgroundImageModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
-
   const closeBackgroundModal = () => {
     if (!showEditBackgroundImageModal) return; // do nothing if modal already closed
     setShowEditBackgroundImageModal(false); // else close modal
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
+
   const openArtistDetailsModal = () => {
     if (showEditArtistDetailsModal) return; // do nothing if modal already showing
     setShowEditArtistDetailsModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
-
   const closeArtistDetailsModal = () => {
     if (!showEditArtistDetailsModal) return; // do nothing if modal already closed
     setShowEditArtistDetailsModal(false); // else close modal
@@ -79,25 +73,18 @@ export default function ArtistDetail({ artist }) {
     document.getElementById('root').classList.remove('overflow');
   };
 
-  //Add album---------------------------------------------------------------------
-  const openaddAlbumModal = () => {
+  const openAddAlbumModal = () => {
     if (showAddAlbumModal) return; // do nothing if modal already showing
     setShowAddAlbumModal(true); // else open modal
     document.getElementById('root').classList.add('overflow');
   };
-
-  const closeaddAlbumModal = () => {
+  const closeAddAlbumModal = () => {
     if (!showAddAlbumModal) return; // do nothing if modal already closed
     setShowAddAlbumModal(false); // else close modal
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
 
-  //------------------------------------------------------------------------------------------
-
-  // const handleMouseOver = () => {
-
-  // }
   const genreList = {
     1: 'acoustic',
     2: 'alternative',
@@ -118,69 +105,61 @@ export default function ArtistDetail({ artist }) {
     17: 'reggae',
     18: 'rock',
   };
+
   return (
     <div className='artist-detail-container'>
-      <div
-        className={`artist-dashboard
-              ${sessionArtist?.id === artist?.id ? '' : 'hidden'}
-              `}
-      >
-        <div>
-          <span>Artist Dashboard</span>
+      {sessionArtist && sessionArtist?.id === artist?.id && (
+        <div className={`artist-dashboard`}>
+          <div>
+            <span>Artist Dashboard</span>
+          </div>
+          <div
+            type='button'
+            className={`edit-artist-details-button`}
+            onClick={() => {
+              openArtistDetailsModal();
+              // setAlbumId(album.id);
+            }}
+          >
+            <span className='material-symbols-outlined'>file_upload</span>
+            <span> Edit {artist?.name} Details </span>
+          </div>
+          <div
+            type='button'
+            className={`edit-profile-image-button`}
+            onClick={() => {
+              openProfileModal();
+              // setAlbumId(album.id);
+            }}
+          >
+            <span className='material-symbols-outlined'>file_upload</span>
+            <span> Edit profile image </span>
+          </div>
+          <div
+            type='button'
+            className={`edit-cover-image-button`}
+            onClick={() => {
+              openCoverModal();
+              // setAlbumId(album.id);
+            }}
+          >
+            <span className='material-symbols-outlined'>file_upload</span>
+            <span> Edit cover image </span>
+          </div>
+          <div
+            type='button'
+            className={`edit-background-image-button`}
+            onClick={() => {
+              openBackgroundModal();
+              // setAlbumId(album.id);
+            }}
+          >
+            <span className='material-symbols-outlined'>file_upload</span>
+            <span> Edit background image </span>
+          </div>
         </div>
-        <div
-          type='button'
-          className={`edit-artist-details-button
-              ${sessionArtist?.id === artist?.id ? '' : 'hidden'}
-              `}
-          onClick={() => {
-            openArtistDetailsModal();
-            // setAlbumId(album.id);
-          }}
-        >
-          <span className='material-symbols-outlined'>file_upload</span>
-          <span> Edit {artist?.name} Details </span>
-        </div>
-        <div
-          type='button'
-          className={`edit-profile-image-button
-              ${sessionArtist?.id === artist?.id ? '' : 'hidden'}
-              `}
-          onClick={() => {
-            openProfileModal();
-            // setAlbumId(album.id);
-          }}
-        >
-          <span className='material-symbols-outlined'>file_upload</span>
-          <span> Edit profile image </span>
-        </div>
-        <div
-          type='button'
-          className={`edit-cover-image-button
-              ${sessionArtist?.id === artist?.id ? '' : 'hidden'}
-              `}
-          onClick={() => {
-            openCoverModal();
-            // setAlbumId(album.id);
-          }}
-        >
-          <span className='material-symbols-outlined'>file_upload</span>
-          <span> Edit cover image </span>
-        </div>
-        <div
-          type='button'
-          className={`edit-background-image-button
-              ${sessionArtist?.id === artist?.id ? '' : 'hidden'}
-              `}
-          onClick={() => {
-            openBackgroundModal();
-            // setAlbumId(album.id);
-          }}
-        >
-          <span className='material-symbols-outlined'>file_upload</span>
-          <span> Edit background image </span>
-        </div>
-      </div>
+      )}
+
       {/* <FullPageModal showEditProfileImageModal={showEditProfileImageModal} closeModal={closeModal}>
         <EditArtist
         // artistId={sessionArtist?.id}
@@ -188,6 +167,7 @@ export default function ArtistDetail({ artist }) {
         // deleteRedirect={updateDeleted}
         />
       </FullPageModal> */}
+
       <FullPageModal
         showModal={showEditArtistDetailsModal}
         closeModal={closeArtistDetailsModal}
@@ -195,14 +175,12 @@ export default function ArtistDetail({ artist }) {
         <EditArtistForm genreList={genreList} />
       </FullPageModal>
 
-      {/* add Album -------------------------------------------- */}
       <FullPageModal
         showModal={showAddAlbumModal}
-        closeModal={closeaddAlbumModal}
+        closeModal={closeAddAlbumModal}
       >
-        <AddAlbumForm artist={artist} closeModal={closeaddAlbumModal} />
+        <AddAlbumForm artist={artist} closeModal={closeAddAlbumModal} />
       </FullPageModal>
-      {/* -------------------------------------------------------- */}
 
       <FullPageModal
         showModal={showEditCoverImageModal}
@@ -237,6 +215,7 @@ export default function ArtistDetail({ artist }) {
           // deleteRedirect={updateDeleted}
         />
       </FullPageModal>
+
       <img
         className='artist-profile'
         alt='profile'
@@ -247,12 +226,11 @@ export default function ArtistDetail({ artist }) {
       <span className='artist-genre'>{genreList[artist?.genreId]}</span>
       <span className='artist-location'>{artist?.location}</span>
       <p>{artist?.description}</p>
-      {sessionArtist?.id === artist?.id ? (
-        <button className='addalbumBtn' onClick={openaddAlbumModal}>
+
+      {sessionArtist && sessionArtist?.id === artist?.id && (
+        <button className='addalbumBtn' onClick={openAddAlbumModal}>
           Add album
         </button>
-      ) : (
-        'hidden'
       )}
     </div>
   );
