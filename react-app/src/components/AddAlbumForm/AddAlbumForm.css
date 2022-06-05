@@ -1,9 +1,105 @@
-.addalbumform {
-  background-color: white;
-  height: 100px;
-  width: 100px;
+.add-album {
+  height: 600px;
+  border: 1px solid rgb(126, 126, 126);
+  background-color: rgb(243, 243, 243);
 }
 
+.add-album-header {
+  text-align: center;
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 400;
+  color: rgb(33, 33, 36);
+  text-size-adjust: 100%;
+  padding-bottom: 36px;
+  border-bottom: 2px dotted rgb(204, 204, 204);
+}
+
+input[type='file']::file-selector-button {
+  border: 1px solid rgb(3, 161, 198);
+  cursor: pointer;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  color: white;
+  background-color: rgb(3, 161, 198);
+  transition: 1s;
+}
+
+input[type='file']::file-selector-button:hover {
+  background-color: red;
+  border: 1px solid rgb(25, 62, 71);
+}
+
+.resource-add-text2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* .resource-add-error-form {
   max-height: fit-content;
 } */
+
+/* .resource-add-error-form {
+  background-color: rgb(243, 243, 243);
+  border: 1px solid rgb(126, 126, 126);
+} */
+
+.allInputforCreateB {
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  height: 40px;
+  width: 300px;
+  border: 1px solid rgb(126, 126, 126);
+  padding-left: 10px;
+}
+
+.resource-btn-container {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+}
+
+.resource-delete-btn {
+  margin-top: 12px;
+  /* padding: 10px 15px; */
+  border: 1px solid rgb(15, 62, 72);
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 200;
+  color: white;
+  background-color: rgba(230, 16, 16, 0.734);
+  cursor: pointer;
+  /* transition: border 0.5s, background-color 0.5s, color 0.5s; */
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+.resource-cancel-btn {
+  margin-top: 12px;
+  /* padding: 10px 15px; */
+  border: 1px solid rgb(18, 69, 81);
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 200;
+  color: white;
+  background-color: rgba(105, 125, 130, 0.59);
+  cursor: pointer;
+  /* transition: border 0.5s, background-color 0.5s, color 0.5s; */
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+.resource-cancel-btn:hover {
+  background-color: gray;
+}

@@ -206,8 +206,9 @@ export default function AlbumDetail({ artist }) {
           <h3>by {artist?.name}</h3>
 
           {sessionArtist && sessionArtist?.id === album?.artistId && (
-            <div>
+            <div className='DivEditdetailsforalbum'>
               <button className='editAlbumDetails' onClick={openAlbumEditModal}>
+                <span class='material-symbols-outlined'>edit_note</span>
                 Edit Album Details
               </button>
             </div>
