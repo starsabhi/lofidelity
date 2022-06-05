@@ -125,8 +125,9 @@
 
 .signup-link-terms {
   text-decoration: none;
-  color: rgb(0, 161, 198);
-  cursor: text;
+  /* color: rgb(0, 161, 198); */
+  color: rgb(129, 130, 133);
+  cursor: default;
 }
 
 .signup-sign-up-btn-container {

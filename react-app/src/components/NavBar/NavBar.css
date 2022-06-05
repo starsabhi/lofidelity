@@ -3,7 +3,7 @@
 .main-nav {
   background-color: white;
   border: 1px solid rgb(238, 238, 238);
-  height: 53px;
+  height: 55px;
   width: 100%;
 
   position: sticky;
@@ -41,6 +41,8 @@
   width: 342px;
   border-radius: 3px;
   position: relative;
+  /* comment out in future */
+  display: none;
 }
 
 .main-nav-search-input {
@@ -84,7 +86,8 @@
 }
 
 .main-nav-login,
-.main-nav-signup {
+.main-nav-signup,
+.main-nav-discover {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,7 +96,8 @@
 }
 
 .main-nav-login-link,
-.main-nav-signup-link {
+.main-nav-signup-link,
+.main-nav-discover-link {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,7 +110,8 @@
 }
 
 .main-nav-login:hover,
-.main-nav-signup:hover {
+.main-nav-signup:hover,
+.main-nav-discover:hover {
   background-color: rgb(243, 243, 243);
   cursor: pointer;
 }
@@ -170,13 +175,23 @@
 }
 
 .nav-user-dropdown-welcome,
-.nav-user-dropdown-artist {
+.nav-user-dropdown-artist-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   padding: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-user-dropdown-artist-link:hover {
+  background-color: rgb(243, 243, 243);
 }
 
 .nav-user-logout {
-  padding: 0px 15px;
-  padding-bottom: 15px;
+  padding: 15px;
+  /* padding-bottom: 15px; */
 }
 
 .nav-user-logout-btn {
