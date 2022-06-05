@@ -46,7 +46,7 @@ export default function ArtistAlbums({ artist }) {
         />
       </FullPageModal>
 
-      <div className='album-thumbnail-container'>
+      <div className='album-list-container-inner'>
         {albums?.map((album) => (
           <div className={`album-card-container`} key={album?.id}>
             <NavLink
@@ -62,7 +62,12 @@ export default function ArtistAlbums({ artist }) {
                 src={album?.imageUrl}
               />
             </NavLink>
-            <a href={`/${artist.artistUrl}/albums/${album?.id}`} className='album-thumbnail-title'>{album?.title}</a>
+            <a
+              href={`/${artist.artistUrl}/albums/${album?.id}`}
+              className='album-thumbnail-title'
+            >
+              {album?.title}
+            </a>
 
             <div
               type='button'

@@ -107,8 +107,8 @@ export default function ArtistPage() {
             </ul>
           </div>
 
-          <div className='artist-body-div'>
-            <div className='albums-container'>
+          <div className='artist-main-container'>
+            <div className='artist-albums-list-container'>
               <Switch>
                 <Route path='/:artistName' exact={true}>
                   <ArtistAlbums artist={artist} />
@@ -126,7 +126,9 @@ export default function ArtistPage() {
               </Switch>
             </div>
             <div className='artist-detail-container'>
-              <ArtistDetail artist={artist} />
+              <div className='artist-detail-container-inner'>
+                <ArtistDetail artist={artist} />
+              </div>
             </div>
           </div>
         </div>
