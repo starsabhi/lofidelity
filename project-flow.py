@@ -94,7 +94,8 @@ BACKEND:
         -songs - AB - DONE
         -auth - EK - DONE
 
-1) TODO: Fetch track numbers after deletion - EK
+
+1) TODO: Fetch track numbers after deletion - EK or if someone else wants to
 2) TODO: ensure continuity of error handling in frontend components (sans delete) - ALL
 3) BUG: update song player after delete - Fix track numbers and then default to track 1 after delete - EK
 4) TODO: Style album detail -AB
@@ -102,6 +103,7 @@ BACKEND:
 6) TODO: UPDATE CHOOSE FILE BUTTON
 6) TODO: update styling through out
 7) TODO: EXTENSIVE QA OF ALL CRUD AND ROUTES AND LOG INS
+8) ADD delete to album page with redirect to artist page
 
 TODO: BONUS add backend route protection so a logged in user can't update other user's things
     - passing, but bad actor could exploit
@@ -124,10 +126,10 @@ BONUS - BUG: artist can manually enter album number in url and edit info on that
 BONUS: let artist view page as user (clear session state, then use session thunk to update again)
 
 Unhide/Un-change in Future:
-    - Discover Search Bar in Nav
+    - Discover Search Bar and notification bell in Nav
     - Extra inner navbar links (merch and community)
     - Forgot Password? on login page
     - change back color of terms of use on signup page
-    -add price back in
+    - add price back in
 
 """
