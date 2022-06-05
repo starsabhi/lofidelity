@@ -50,13 +50,13 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
     for (let i = 0; i < editErrors.length; i++) {
       console.log(editErrors[i]);
       if (editErrors[i] == 'title : This field is required.') {
-        changedError.push('PLEASE PROVIDE VALID TITLE');
+        changedError.push('Please provide valid title');
       }
       if (editErrors[i] == 'releaseYear : This field is required.') {
-        changedError.push('PLEASE PROVIDE VALID RELEASE YEAR');
+        changedError.push('Please provide valid release year');
       }
       if (editErrors[i] == 'price : Not a valid float value') {
-        changedError.push('PLEASE PROVIDE VALID PRICE');
+        changedError.push('Please provide valid price');
       }
     }
     console.log(changedError);
