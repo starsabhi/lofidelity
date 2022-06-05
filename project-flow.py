@@ -34,13 +34,13 @@ Initial Project Setup:
 
 
 COMPONENTS:
-    NAV - EK - TODO: add links to profile menu, replace gradient with profile-image
+    NAV - EK - TODO: replace gradient with profile-image
     SIGNUP - EK - DONE - BONUS add non-existent artist route protection
 
     LOGIN - EK - DONE
     SPLASH PAGE - AL - DONE
 
-    EXPLORE PAGE - AB - DONE - TODO: styling
+    EXPLORE PAGE - AB - DONE
 
     MODAL - delete, uploads, edits - EK - DONE
     FOOTER - AB - DONE
@@ -50,30 +50,30 @@ COMPONENTS:
         - SECOND NAVBAR - AB/EK - DONE
         - ARTIST DETAILS
             - Edit artist details DONE
-            - 3 upload modals DONE -TODO: ERROR HANDLING
+            - 3 upload modals DONE -TODO: ERROR HANDLING - MO
             - Style artist dashboard - TODO
             - NO DELETE
         - ARTIST ALBUMS
-            - ADD ALBUM - MO - TODO
+            - ADD ALBUM - AB - TODO  
 
         - ALBUM DETAILS
             - Edit album detail - AB - DONE - TODO: styling
-            - Upload album photo - AB - BUG
+            - Upload album photo - AB - TODO: MO to update to match songs
             - Delete album - EK - DONE
 
             - SONG FUNCTIONALITY - AL
-                -add song - AL - TODO
-                -edit song title - AL - DONE - TODO: Styling
-                -delete song - AL- DONE
+                -add song - AL - DONE
+                -edit song title - AL - TODO: Styling and update song player
+                -delete song - AL- DONE TODO: Fetch track numbers after deletion - EK
                 -Bonus - change track order drag and drop form
 
-TODO: MUSIC PLAYER - MO - styling and buffering issues
-TODO: ADD GENRES TO STORE - MO - DONE - hard coded instead
+ MUSIC PLAYER - MO - DONE
+ ADD GENRES TO STORE - MO - DONE - hard coded instead
 
 AWS S3 - MO/AB
-    - TODO: bonus: separate buckets songs vs images (2 keys/secrets), 2 helper functions
+    - bonus: separate buckets songs vs images (2 keys/secrets), 2 helper functions
     - Download - DONE
-    - TODO: upload seeder data to s3 and update seeder urls
+    - upload seeder data to s3 and update seeder urls - DONE
 
 FRONTEND:
     STORES
@@ -97,12 +97,10 @@ BACKEND:
 
 TODO: NEED TO RE-MIGRATE PRODUCTION!
 
-TODO: ensure continuity of error handling in frontend components (sans delete)
-BUG: update song player after delete
+TODO: ensure continuity of error handling in frontend components (sans delete) - MO
+BUG: update song player after delete - Fix track numbers and then default to track 1 after delete
 
 BONUS: view page as user
-
-ELAN:
 
 Unhide/Unchange in Future:
     - Discover Search Bar in Nav
@@ -110,15 +108,12 @@ Unhide/Unchange in Future:
     - Forgot Password? on login page
     - change back color of terms of use on signup page
 
-Anthony:
-    TO DO UPDATE - LOFI MCLOFERSON - doesn't exist
-
 AB
-    - AUTH BUG: fan shouldn't be able to edit album details, also style button
-    -demo user can't edit someone else's stuff add to route protection in backend
+    TODO: Style album detail
+    -demo user can't edit someone else's stuff add to route protection in backend - passing, but need to work on fetch protection
 
 BONUS - BUG: when click play it should start the player, not just load the song
-BONUS - BUG: can go to random error and it displays wrong album on page
+BONUS - BUG: artist can manually enter album number in url and edit info on that album regardless of ownership
 
 MAIN CONCERNS
     -NO DEFAULT BUTTONS
@@ -129,7 +124,6 @@ Priority list:
     - func
     - style
 
-TODO: fix track number update on delete
-TODO: update edit song title for song player
+TODO: BONUS - Update form styling throughout
 
 """
