@@ -48,7 +48,13 @@ export default function ProfileButton({ user }) {
     <div className='nav-user-image-container' onClick={openMenu}>
       <div
         className='nav-user-image'
-        // style={{ backgroundImage: `url(${userIcon})` }}
+        style={
+          sessionArtist?.profileImageUrl
+            ? {
+                backgroundImage: `url(${sessionArtist?.profileImageUrl})`,
+              }
+            : { backgroundImage: '' }
+        }
       >
         {showMenu && (
           <>
