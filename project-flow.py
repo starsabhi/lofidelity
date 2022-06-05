@@ -129,4 +129,7 @@ Priority list:
     - func
     - style
 
+TODO: fix track number update on delete
+TODO: update edit song title for song player
+
 """

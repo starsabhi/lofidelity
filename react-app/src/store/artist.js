@@ -150,7 +150,7 @@ export const updateArtistImageThunk =
     if (response.ok) {
       const resBody = await response.json();
       dispatch(updateArtistImage(genreId, artistId, resBody.url, imageType));
-      return resBody;
+      return null;
     } else if (response.status < 500) {
       const resBody = await response.json();
       if (resBody.errors) {

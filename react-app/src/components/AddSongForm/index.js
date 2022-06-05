@@ -1,26 +1,21 @@
 import './AddSongForm.css';
 
 import React, { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import * as songActions from '../../store/song';
 
-
 export default function AddSongForm({ songType, closeModal }) {
-  const history = useHistory();
   const dispatch = useDispatch();
-  const currentArtist = useSelector((state) => state.session.sessionArtist)
 
   const params = useParams();
   const albumId = params.id;
 
   const [song, setSong] = useState(false);
   const [title, setTitle] = useState('');
-  const [trackNumber, setTrackNumber] = useState(null);
   const [songLoading, setSongLoading] = useState(false);
   const [uploadErrors, setUploadErrors] = useState([]);
 
-  const id = currentArtist?.id;
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUploadErrors([]);
@@ -30,26 +25,24 @@ export default function AddSongForm({ songType, closeModal }) {
     formData.append('song', song);
     formData.append('albumId', albumId);
     formData.append('title', title);
-    formData.append('trackNumber', trackNumber);
-    console.log(id);
 
     setSongLoading(true);
-    console.log('right before thunk');
 
     try {
-      const res = await dispatch(
-        songActions.addNewSongThunk(formData)
-      )
-      console.log(res);
-      if (res.url) {
-        setSongLoading(false);
+      const errors = await dispatch(songActions.addNewSongThunk(formData));
+      if (!errors) {
+        // setSongLoading(false);
         closeModal();
 
-        history.push('/');
+        // history.push('/');
         return;
+      } else {
+        setUploadErrors(errors);
       }
     } catch (errorResponse) {
       setSongLoading(false);
+      // closeModal();
+      setUploadErrors(['Something went wrong, please try again.']);
       console.log('error');
     }
   };
@@ -57,7 +50,7 @@ export default function AddSongForm({ songType, closeModal }) {
   const updateSong = (e) => {
     const file = e.target.files[0];
     console.log(file);
-    setSong(file)
+    setSong(file);
   };
 
   return (
@@ -90,7 +83,7 @@ export default function AddSongForm({ songType, closeModal }) {
             />
           </div>
 
-          <div className='add-song-form-group'>
+          {/* <div className='add-song-form-group'>
             <label className='add-song-label' htmlFor='trackNumber'>
               <div>Track Number </div>
             </label>
@@ -103,9 +96,8 @@ export default function AddSongForm({ songType, closeModal }) {
               onChange={(e) => setTrackNumber(e.target.value)}
               required
             />
-          </div>
+          </div> */}
 
-          
           <div className='resource-add-text1'>
             <span>{`Upload ${songType} song`}</span>
           </div>
@@ -113,14 +105,15 @@ export default function AddSongForm({ songType, closeModal }) {
             <span>{`Upload your new ${songType} song`}</span>
           </div>
           <div className='resource-add-text2'>
-            <input type='file' accept='song/*' onChange={updateSong} />
+            <input type='file' accept='audio/*' onChange={updateSong} />
           </div>
 
           <div className='resource-add-form-btn-div'>
             <div className='resource-btn-container'>
               <button
-                className='resource-btn'
+                className={`resource-btn`}
                 type='button'
+                disabled={songLoading}
                 onClick={closeModal}
               >
                 Cancel
@@ -128,15 +121,19 @@ export default function AddSongForm({ songType, closeModal }) {
             </div>
 
             <div className='resource-btn-container'>
-              <button className='resource-btn' type='submit'>
+              <button
+                className={`resource-btn`}
+                type='submit'
+                disabled={songLoading}
+              >
                 Submit
               </button>
             </div>
           </div>
 
-          {songLoading && <p>Loading...</p>}
+          {songLoading && <p>Uploading File please wait...</p>}
         </form>
       </div>
     </div>
   );
-};
+}

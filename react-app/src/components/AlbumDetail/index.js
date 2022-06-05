@@ -254,28 +254,27 @@ export default function AlbumDetail({ artist }) {
           >
             <span className='material-symbols-outlined'> add</span>
           </div>
+        </div>
+        <div className='album-detail-image-div'>
+          <img
+            className='album-detail-image'
+            id={`album-${album?.id}-image-detail`}
+            alt='album cover'
+            src={album?.imageUrl}
+          />
 
-          <div className='album-detail-image-div'>
-            <img
-              className='album-detail-image'
-              id={`album-${album?.id}-image-detail`}
-              alt='album cover'
-              src={album?.imageUrl}
-            />
-
-            <div
-              type='button'
-              className={`edit-profile-image-button
+          <div
+            type='button'
+            className={`edit-profile-image-button
               ${sessionArtist?.id === artist?.id ? '' : 'hidden'}
               `}
-              onClick={() => {
-                openAlbumImageModal();
-                // setAlbumId(album.id);
-              }}
-            >
-              <span className='material-symbols-outlined'>file_upload</span>
-              <span> Edit album image </span>
-            </div>
+            onClick={() => {
+              openAlbumImageModal();
+              // setAlbumId(album.id);
+            }}
+          >
+            <span className='material-symbols-outlined'>file_upload</span>
+            <span> Edit album image </span>
           </div>
         </div>
       </div>

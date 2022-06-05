@@ -2,7 +2,13 @@
   display: flex;
   width: 795px;
   justify-content: space-between;
+  height: 100%;
 }
+.album-player-detail {
+  display: flex;
+  height: 100%;
+}
+
 .album-detail-image {
   height: 350px;
   width: 350px;
