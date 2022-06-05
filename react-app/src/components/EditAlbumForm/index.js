@@ -62,6 +62,11 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
       if (editErrors[i] === 'price : Not a valid float value') {
         changedError.push('Please provide valid price');
       }
+      if (
+        editErrors[i] === 'releaseYear : Number must be between 1900 and 2023.'
+      ) {
+        changedError.push('Year must be between 1900 and 2023');
+      }
     }
     // console.log(changedError);
     setNewEditErros(changedError);

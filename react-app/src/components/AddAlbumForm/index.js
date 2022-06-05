@@ -1,6 +1,6 @@
 import './AddAlbumForm.css';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as albumActions from '../../store/album';
 import { useDispatch } from 'react-redux';
 
@@ -16,6 +16,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
   const [about, setAbout] = useState('');
   // const [price, setPrice] = useState('');
   const [albumErrors, setAlbumErrors] = useState([]);
+  const [newAddErros, setAddEditErros] = useState([]);
   // const [newEditErros, setNewEditErros] = useState([]);
 
   const handleAddSubmit = async (e) => {
@@ -62,16 +63,36 @@ export default function AddAlbumForm({ artist, closeModal }) {
     setImage(file);
   };
 
+  useEffect(() => {
+    let changedError = [];
+    for (let i = 0; i < albumErrors.length; i++) {
+      console.log(albumErrors[i]);
+      if (albumErrors[i] === 'title : This field is required.') {
+        changedError.push('Please provide valid title');
+      }
+      if (albumErrors[i] === 'releaseYear : This field is required.') {
+        changedError.push('Year must be between 1900 and 2023');
+      }
+      if (
+        albumErrors[i] === 'releaseYear : Number must be between 1900 and 2023.'
+      ) {
+        changedError.push('Year must be between 1900 and 2023');
+      }
+    }
+    // console.log(changedError);
+    setAddEditErros(changedError);
+  }, [albumErrors]);
+
   return (
     <>
-      <h2 className='add-song-header'>Add Song</h2>
       <form
-        className='resource-update-form resource-add-error-form'
+        className='resource-update-form add-album'
         onSubmit={handleAddSubmit}
       >
-        {albumErrors.length > 0 && (
+        <h2 className='add-album-header'>Add Album</h2>
+        {newAddErros.length > 0 && (
           <div className='resource-error-container'>
-            {albumErrors.map((error, idx) => (
+            {newAddErros.map((error, idx) => (
               <p className='resource-error-message' key={idx}>
                 {error}
               </p>
@@ -127,7 +148,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
           ></input>
         </div> */}
 
-        <div className='resource-delete-text2'>
+        <div className='resource-delete-text2 resource-add-text2'>
           <input type='file' accept='image/*' onChange={AddImage} />
         </div>
 
