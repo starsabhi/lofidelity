@@ -93,7 +93,6 @@ export const updateOneSongThunk = (songId, formData) => async (dispatch) => {
     body: JSON.stringify({
       albumId: formData.albumId,
       title: formData.title,
-      trackNumber: formData.trackNumber,
     }),
   });
 

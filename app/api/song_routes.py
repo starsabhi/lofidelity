@@ -143,7 +143,7 @@ def update_song(id):
 
         song_to_update.albumId = form.data['albumId'],
         song_to_update.title = form.data['title'],
-        song_to_update.trackNumber = form.data['trackNumber'],
+        # song_to_update.trackNumber = form.data['trackNumber'],
         # song_to_update.audioUrl = form.data['audioUrl']
 
         db.session.commit()

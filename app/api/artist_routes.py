@@ -138,12 +138,12 @@ def patch_artist(id):
 def upload_profile_image(id):
 
     if "image" not in request.files:
-        return {"errors": "image required"}, 400
+        return {"errors": ["Please choose an image file"]}, 400
 
     image = request.files["image"]
 
     if not allowed_file(image.filename):
-        return {"errors": "file type not permitted"}, 400
+        return {"errors": ["file type not permitted"]}, 400
 
     image.filename = get_unique_filename(image.filename)
 
@@ -170,12 +170,12 @@ def upload_profile_image(id):
 def upload_cover_image(id):
 
     if "image" not in request.files:
-        return {"errors": "image required"}, 400
+        return {"errors": ["Please choose an image file"]}, 400
 
     image = request.files["image"]
 
     if not allowed_file(image.filename):
-        return {"errors": "file type not permitted"}, 400
+        return {"errors": ["file type not permitted"]}, 400
 
     image.filename = get_unique_filename(image.filename)
 
@@ -201,12 +201,12 @@ def upload_cover_image(id):
 def upload_background_image(id):
 
     if "image" not in request.files:
-        return {"errors": "image required"}, 400
+        return {"errors": ["Please choose an image file"]}, 400
 
     image = request.files["image"]
 
     if not allowed_file(image.filename):
-        return {"errors": "file type not permitted"}, 400
+        return {"errors": ["file type not permitted"]}, 400
 
     image.filename = get_unique_filename(image.filename)
 

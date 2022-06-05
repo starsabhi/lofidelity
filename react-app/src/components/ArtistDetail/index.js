@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import FullPageModal from '../FullPageModal';
 import EditArtistForm from '../EditArtistForm';
 import UploadPhoto from '../UploadPhoto';
+import AddAlbumForm from '../AddAlbum';
 
 export default function ArtistDetail({ artist }) {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);
@@ -17,11 +18,16 @@ export default function ArtistDetail({ artist }) {
     useState(false);
   const [showEditArtistDetailsModal, setShowEditArtistDetailsModal] =
     useState(false);
+
+  //add Album -----------------------------------------
+  const [showAddAlbumModal, setShowAddAlbumModal] = useState(false);
   //showEditProfileImageModal handlers
 
   useEffect(() => {
     console.log(artist);
   }, [artist]);
+
+  console.log('*****************************************************', artist);
 
   console.log('ARTIST: ', artist);
   const openProfileModal = () => {
@@ -72,6 +78,22 @@ export default function ArtistDetail({ artist }) {
     // disable page scrolling:
     document.getElementById('root').classList.remove('overflow');
   };
+
+  //Add album---------------------------------------------------------------------
+  const openaddAlbumModal = () => {
+    if (showAddAlbumModal) return; // do nothing if modal already showing
+    setShowAddAlbumModal(true); // else open modal
+    document.getElementById('root').classList.add('overflow');
+  };
+
+  const closeaddAlbumModal = () => {
+    if (!showAddAlbumModal) return; // do nothing if modal already closed
+    setShowAddAlbumModal(false); // else close modal
+    // disable page scrolling:
+    document.getElementById('root').classList.remove('overflow');
+  };
+
+  //------------------------------------------------------------------------------------------
 
   // const handleMouseOver = () => {
 
@@ -166,9 +188,22 @@ export default function ArtistDetail({ artist }) {
         // deleteRedirect={updateDeleted}
         />
       </FullPageModal> */}
-      <FullPageModal showModal={showEditArtistDetailsModal} closeModal={closeArtistDetailsModal}>
-        <EditArtistForm genreList={genreList}/>
+      <FullPageModal
+        showModal={showEditArtistDetailsModal}
+        closeModal={closeArtistDetailsModal}
+      >
+        <EditArtistForm genreList={genreList} />
       </FullPageModal>
+
+      {/* add Album -------------------------------------------- */}
+      <FullPageModal
+        showModal={showAddAlbumModal}
+        closeModal={closeaddAlbumModal}
+      >
+        <AddAlbumForm artist={artist} closeModal={closeaddAlbumModal} />
+      </FullPageModal>
+      {/* -------------------------------------------------------- */}
+
       <FullPageModal
         showModal={showEditCoverImageModal}
         closeModal={closeCoverModal}
@@ -212,6 +247,13 @@ export default function ArtistDetail({ artist }) {
       <span className='artist-genre'>{genreList[artist?.genreId]}</span>
       <span className='artist-location'>{artist?.location}</span>
       <p>{artist?.description}</p>
+      {sessionArtist?.id === artist?.id ? (
+        <button className='addalbumBtn' onClick={openaddAlbumModal}>
+          Add album
+        </button>
+      ) : (
+        'hidden'
+      )}
     </div>
   );
 }

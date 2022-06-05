@@ -3,7 +3,7 @@ import './EditSong.css';
 import React, { useState } from 'react';
 import * as songActions from '../../store/song';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 export default function EditSongForm({ albumId, songId, trackNumber, closeModal }) {
   const dispatch = useDispatch();
@@ -41,41 +41,42 @@ export default function EditSongForm({ albumId, songId, trackNumber, closeModal 
 
   return (
     <div className='resource-edit-form-container'>
-      <div className='resource-edit-card'>
-        <h2 className='resource-edit-header'>Edit Song</h2>
-
+      <div className='edit-song-card'>
+        <h2 className='edit-song-header'>Edit Song</h2>
         {editErrors.length > 0 && (
-          <div className='resource-edit-error-container'>
+          <div className='resource-error-container'>
             {editErrors.map((error, idx) => (
-              <div key={idx}>{error.split(': ')[1]}</div>
+              <div className='resource-error-message' key={idx}>
+                {error.split(': ')[1]}
+              </div>
             ))}
           </div>
         )}
 
         <form
-          className={'resource-edit-form-control'}
+          className={'resource-edit-form'}
           autoComplete='off'
           onSubmit={handleEditSubmit}
         >
-          <div className='resource-edit-form-group'>
-              <label className='resource-edit-label' htmlFor='songTitle'>
-                <div>Song Title</div>
-              </label>
-              <input 
-                id='songTitle'
-                className='resource-edit-input'
-                type='text'
-                name='songTitle'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
+          <div className='edit-song-form-group'>
+            <label className='edit-song-label' htmlFor='songTitle'>
+              <div>Song Title </div>
+            </label>
+            <input 
+              id='songTitle'
+              className='edit-song-input'
+              type='text'
+              name='songTitle'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
           </div>
 
-          <div className='resource-edit-btn-container'>
-              <button className='resource-edit-submit-btn' type='submit'>
-                Submit
-              </button>
+          <div className='resource-btn-container'>
+            <button className='resource-btn' type='submit'>
+              Submit
+            </button>
           </div>
         </form>
       </div>

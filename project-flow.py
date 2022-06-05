@@ -51,7 +51,9 @@ COMPONENTS:
             - Style artist dashboard - TODO - AL or first come
             - NO DELETE
         - ARTIST ALBUMS
+
             - ADD ALBUM - AB - TODO: styling and error handling
+
 
         - ALBUM DETAILS
             - READ Album details - AB
@@ -67,6 +69,7 @@ COMPONENTS:
 
 MUSIC PLAYER - MO - DONE
 GENRES - ADD TO STORE - MO - DONE - hard coded instead
+
 
 AWS S3 - MO/AB
     - bonus: separate buckets songs vs images (2 keys/secrets), 2 helper functions
