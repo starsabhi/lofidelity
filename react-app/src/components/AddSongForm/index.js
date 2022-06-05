@@ -82,6 +82,7 @@ export default function AddSongForm({ songType, closeModal }) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
+              disabled={songLoading}
             />
           </div>
 

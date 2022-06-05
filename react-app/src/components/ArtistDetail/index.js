@@ -1,13 +1,13 @@
 import './ArtistDetail.css';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import FullPageModal from '../FullPageModal';
 import EditArtistForm from '../EditArtistForm';
 import UploadPhoto from '../UploadPhoto';
-import AddAlbumForm from '../AddAlbum';
+import AddAlbumForm from '../AddAlbumForm';
 
 export default function ArtistDetail({ artist }) {
   const sessionArtist = useSelector((state) => state.session.sessionArtist);

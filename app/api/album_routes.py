@@ -91,7 +91,8 @@ def create_new_album():
             releaseYear=form.data['releaseYear'],
             about=form.data['about'],
             imageUrl=url,
-            price=form.data['price']
+            # price=form.data['price']
+            price=9.99
         )
 
         new_album = Album(**params)
@@ -123,7 +124,7 @@ def update_album(id):
         session_album.title = form.data['title']
         session_album.releaseYear = form.data['releaseYear']
         session_album.about = form.data['about']
-        session_album.price = form.data['price']
+        # session_album.price = form.data['price']
 
         db.session.commit()
 
@@ -132,7 +133,6 @@ def update_album(id):
     if form.errors:
         # return form.errors, 401
         return {'errors': validation_errors_to_error_messages(form.errors)}, 418
-
 
 
 # UPDATE ALBUM IMAGE

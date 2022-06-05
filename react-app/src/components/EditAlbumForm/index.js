@@ -1,17 +1,20 @@
+import './EditAlbumForm.css';
+
 import React, { useState, useEffect } from 'react';
 import * as albumActions from '../../store/album';
 import { useDispatch, useSelector } from 'react-redux';
-import './EditAlbumForm.css';
 
 export default function EditAlbumForm({ artistId, albumId, closeModal }) {
   const dispatch = useDispatch('');
-  const session = useSelector((state) => state);
-  // console.log(session.album[albumId]);
-  let currentAlbum = session.album[albumId];
+
+  const albums = useSelector((state) => state.album);
+  let currentAlbum = albums[albumId];
+
+  //Controlled input
   const [title, setTitle] = useState(`${currentAlbum.title}`);
   const [releaseYear, setReleaseYear] = useState(`${currentAlbum.releaseYear}`);
   const [about, setAbout] = useState(`${currentAlbum.about}`);
-  const [price, setPrice] = useState(`${currentAlbum.price}`);
+  // const [price, setPrice] = useState(`${currentAlbum.price}`);
   const [editErrors, setEditErrors] = useState([]);
   const [newEditErros, setNewEditErros] = useState([]);
 
@@ -19,17 +22,17 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
     e.preventDefault();
     setEditErrors([]);
 
-    let formdata = {
+    let formData = {
       artistId: artistId,
       title: title,
       releaseYear: releaseYear,
       about: about,
-      price: price,
+      // price: price,
     };
 
     try {
       const errors = await dispatch(
-        albumActions.updateOneAlbumThunk(albumId, formdata)
+        albumActions.updateOneAlbumThunk(albumId, formData)
       );
       if (!errors) {
         closeModal();
@@ -40,29 +43,30 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
       }
     } catch (errorResponse) {
       // const data = await errorResponse.json();
+      setEditErrors(['Something went wrong please try again']);
       console.log('Failed Request: ', errorResponse);
     }
   };
 
-  console.log(editErrors);
+  // console.log(editErrors);
   useEffect(() => {
     let changedError = [];
     for (let i = 0; i < editErrors.length; i++) {
       console.log(editErrors[i]);
-      if (editErrors[i] == 'title : This field is required.') {
+      if (editErrors[i] === 'title : This field is required.') {
         changedError.push('Please provide valid title');
       }
-      if (editErrors[i] == 'releaseYear : This field is required.') {
+      if (editErrors[i] === 'releaseYear : This field is required.') {
         changedError.push('Please provide valid release year');
       }
-      if (editErrors[i] == 'price : Not a valid float value') {
+      if (editErrors[i] === 'price : Not a valid float value') {
         changedError.push('Please provide valid price');
       }
     }
-    console.log(changedError);
+    // console.log(changedError);
     setNewEditErros(changedError);
   }, [editErrors]);
-  console.log(newEditErros);
+  // console.log(newEditError);
 
   return (
     <form className='resource-update-form' onSubmit={handleEditSubmit}>
@@ -80,6 +84,7 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
           </div>
         )}
       </div>
+
       <div className='inputfieldDiv'>
         <label className='titleForanInput'>Title</label>
         <input
@@ -91,6 +96,7 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
           name='name'
         ></input>
       </div>
+
       <div className='inputfieldDiv'>
         <label className='titleForanInput'>ReleaseYear</label>
         <input
@@ -102,6 +108,7 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
           name='name'
         ></input>
       </div>
+
       <div className='inputfieldDiv'>
         <label className='titleForanInput'>About</label>
         <input
@@ -113,7 +120,8 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
           name='name'
         ></input>
       </div>
-      <div className='inputfieldDiv'>
+
+      {/* <div className='inputfieldDiv'>
         <label className='titleForanInput'>Price</label>
         <input
           className='allInputforCreateB'
@@ -123,7 +131,7 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
           // placeholder='Title'
           name='name'
         ></input>
-      </div>
+      </div> */}
 
       <div className='resource-delete-form-btn-div'>
         <div className='resource-btn-container'>

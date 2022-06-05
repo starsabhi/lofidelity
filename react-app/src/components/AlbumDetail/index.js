@@ -35,8 +35,9 @@ export default function AlbumDetail({ artist }) {
   useEffect(() => {
     if (songs) {
       setSongTitle(songs[currentTrack - 1]?.title);
+      setUrl(songs[0]?.audioUrl);
     }
-  }, [songs]);
+  }, [songs, currentTrack]);
 
   const genreList = {
     1: 'acoustic',
