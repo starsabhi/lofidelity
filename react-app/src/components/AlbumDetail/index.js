@@ -30,14 +30,43 @@ export default function AlbumDetail({ artist }) {
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [currentTrack, setCurrentTrack] = useState(1);
   const [autoPlay, setAutoPlay] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [songId, setSongId] = useState(null);
+  const [deleted, setDeleted] = useState(false)
+  const [image, setImage] = useState(playButton)
+
+  const updatePlaying = () =>{
+    setPlaying(!playing)
+  }
+
+  const updatePlayButton = () => {
+    setImage(playButton)
+  }
+
+  const updatePauseButton = () => {
+    setImage(pauseButton)
+  }
+
 
   useEffect(() => {
     if (songs) {
+      if (deleted) {
+        setCurrentTrack(1)
+        setDeleted(false)
+        setAutoPlay(false)
+        // setPlaying(false)
+      }
+      // console.log('use effect songs,', songs)
+      // console.log('use effect song title before:', songTitle)
+      // console.log('use effect song url before:', url)
+      // console.log('use effect current track', currentTrack)
       setSongTitle(songs[currentTrack - 1]?.title);
-      setUrl(songs[0]?.audioUrl);
+      setUrl(songs[currentTrack - 1]?.audioUrl);
     }
-  }, [songs, currentTrack]);
+  }, [songs, currentTrack, songTitle, url]);
+
+
+
 
   const genreList = {
     1: 'acoustic',
@@ -187,7 +216,7 @@ export default function AlbumDetail({ artist }) {
           {url && (
             <>
               <span>Now playing: {songTitle}</span>
-              <Player albumId={albumId} url={url} playing={autoPlay} />
+              <Player albumId={albumId} url={url} autoPlay={autoPlay} updatePauseButton={updatePauseButton} updatePlayButton={updatePlayButton}/>
 
               <div className='song-list-container'>
                 {songs?.map((song) => (
@@ -196,20 +225,49 @@ export default function AlbumDetail({ artist }) {
                       className='song-play-btn'
                       id={`song-${song?.id}-play-btn`}
                       alt='play'
+                      // src={
+                      //   image
+                      // }
+                      // src={
+                      //   (autoPlay && currentTrack === song?.trackNumber)
+                      //     ? image === playButton
+                      //     ? setImage(pauseButton)
+                      //     : pauseButton
+                      //     : playButton
+                      // }
+
                       src={
                         autoPlay && currentTrack === song?.trackNumber
                           ? pauseButton
                           : playButton
                       }
+
+                      // src={image}
                       onClick={() => {
+                        console.log('ONCLICK song title before:', songTitle)
+                        console.log('ONCLICK song url before:', url)
+                       console.log('ONCLICK current track', currentTrack)
+                       console.log('ONCLICK songs,', songs)
+
+                      //  image === playButton ? setImage(pauseButton) : setImage(playButton)
                         setUrl(song?.audioUrl);
                         setSongTitle(song?.title);
                         if (currentTrack === song?.trackNumber) {
                           setAutoPlay(!autoPlay);
-                        } else {
+                        }
+                          // if (image === playButton){
+                          //   setImage(pauseButton)
+                          // }
+                          // else {
+                          //   setImage(pauseButton)
+                          // }
+                        // }
+                        else {
                           setAutoPlay(true);
                         }
                         setCurrentTrack(song?.trackNumber);
+
+
                       }}
                     />
                     <span>
@@ -224,6 +282,11 @@ export default function AlbumDetail({ artist }) {
                           onClick={() => {
                             openDeleteSongModal();
                             setSongId(song.id);
+                            setDeleted(true)
+                            console.log('DELETE song title before:', songTitle)
+                        console.log('DELTE song url before:', url)
+                       console.log('DELETE current track', currentTrack)
+                       console.log('DELETE songs', songs)
                           }}
                         >
                           <span className='material-symbols-outlined'>

@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import { useSelector } from 'react-redux';
 
 // Render a YouTube video player
-function Player({ albumId, url, playing }) {
+function Player({ albumId, url, autoPlay, updatePlayButton, updatePauseButton }) {
   // const artist = useSelector((state) => state.session.sessionArtist)
   // const songs = useSelector((state) => state.album.songsByAlbumId[albumId])
   // const [song, setSong] = useState(null)
@@ -30,7 +30,7 @@ function Player({ albumId, url, playing }) {
   //   return ()=> clearTimeout(timeout.current)
   // }, [songsArr])
 
-  return <ReactPlayer url={url} controls width='376px' height='52px' volume={0.5} playing={playing}/>;
+  return <ReactPlayer url={url} width='376px' height='52px' volume={0.3} playing={autoPlay} onPlay={updatePlayButton} controls onPause={updatePauseButton}/>;
 }
 
 export default Player;
