@@ -82,17 +82,28 @@
   justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
-  width: 80%;
+  max-width: 975px;
+
+  /* width: 80%; */
+  width: 100%;
 }
+
 .discover-artist-card-container-inner {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  align-content: flex-start;
+  align-content: flex-start; */
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, max-content));
+  grid-gap: 16px;
+  justify-content: center;
+  padding: initial;
+
   width: 100%;
 
-  gap: 40px;
+  gap: 20px;
   flex: 1;
 
   /* display: grid;
@@ -106,23 +117,42 @@
   height: 320px;
 }
 
+.discover-artist-card {
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+}
+
+.discover-artist-card:link {
+  text-decoration: none;
+  /* text-decoration: none !important; */
+}
+
+.discover-artist-card:hover {
+  transform: scale(1.03);
+  /* border: 2px solid rgba(60, 145, 214, 1); */
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  /* box-shadow: 0px 0px 1px 4px rgba(60, 145, 214, 1); */
+  outline: 1px solid rgba(0, 0, 0, 0.5);
+  text-decoration: underline;
+  text-decoration-style: black;
+}
+
 .discover-artistCoverImg {
   height: 200px;
   width: 300px;
-  cursor: pointer;
 }
 
 .discover-artist-card-bottom {
   display: flex;
   flex-direction: column;
   padding: 15px;
+  color: black;
 }
 
 .discover-artistName {
   display: flex;
   justify-content: center;
   font-weight: bold;
-  color: black;
   padding: 5px;
 }
 
