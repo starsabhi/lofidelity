@@ -20,7 +20,7 @@ export default function EditArtistForm({ genreList, closeModal }) {
   const [artistUrl, setArtistUrl] = useState(`${artist?.artistUrl}`);
   const [description, setDescription] = useState(`${artist?.description}`);
   const [editErrors, setEditErrors] = useState([]);
-  const [newAddErros, setAddEditErros] = useState([]);
+  // const [newAddErros, setAddEditErros] = useState([]);
 
   const genreArr = Object.entries(genreList);
 
@@ -60,27 +60,27 @@ export default function EditArtistForm({ genreList, closeModal }) {
     }
   };
 
-  useEffect(() => {
-    let changedError = [];
-    for (let i = 0; i < editErrors.length; i++) {
-      console.log(editErrors[i]);
-      if (editErrors[i] === 'name : This field is required.') {
-        changedError.push('Please provide valid Name');
-      }
-      if (editErrors[i] === 'location : This field is required.') {
-        changedError.push('Please provide valid Location');
-      }
-      if (editErrors[i] === 'artistUrl : This field is required.') {
-        changedError.push('Please provide valid Location');
-      }
-      if (editErrors[i] === 'description : This field is required.') {
-        changedError.push('Please provide valid description');
-      }
-    }
-    // console.log(changedError);
-    setAddEditErros(changedError);
-  }, [editErrors]);
-  console.log('*************', newAddErros);
+  // useEffect(() => {
+  //   let changedError = [];
+  //   for (let i = 0; i < editErrors.length; i++) {
+  //     console.log(editErrors[i]);
+  //     if (editErrors[i] === 'name : This field is required.') {
+  //       changedError.push('Please provide valid Name');
+  //     }
+  //     if (editErrors[i] === 'location : This field is required.') {
+  //       changedError.push('Please provide valid Location');
+  //     }
+  //     if (editErrors[i] === 'artistUrl : This field is required.') {
+  //       changedError.push('Please provide valid Location');
+  //     }
+  //     if (editErrors[i] === 'description : This field is required.') {
+  //       changedError.push('Please provide valid description');
+  //     }
+  //   }
+  //   // console.log(changedError);
+  //   setAddEditErros(changedError);
+  // }, [editErrors]);
+  // console.log('*************', newAddErros);
 
   //   name : This field is required.
   // location : This field is required.
@@ -95,11 +95,11 @@ export default function EditArtistForm({ genreList, closeModal }) {
       <h2 className='add-artist-header edit-artist-htag'>
         Edit Artist Details
       </h2>
-      {newAddErros.length > 0 && (
+      {editErrors.length > 0 && (
         <div className='resource-error-containerr edit-artist-error-div'>
-          {newAddErros.map((error, idx) => (
+          {editErrors.map((error, idx) => (
             <p className='resource-error-message ptagErrorMessage' key={idx}>
-              {error}
+              {error?.split(': ')[1]}
             </p>
           ))}
         </div>
