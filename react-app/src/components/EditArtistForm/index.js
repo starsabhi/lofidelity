@@ -168,11 +168,12 @@ export default function EditArtistForm({ genreList, closeModal }) {
           Description
         </label>
         <textarea
-          className='allInputforCreateB textareaForArtistEdit'
+          className='textareaForArtistEdit'
           onChange={(e) => setDescription(e.target.value)}
           value={description}
           // placeholder='Title'
           name='description'
+          rows={5}
         ></textarea>
       </div>
 

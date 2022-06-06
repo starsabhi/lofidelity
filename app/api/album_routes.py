@@ -69,12 +69,12 @@ def create_new_album():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         if "image" not in request.files:
-            return {"errors": ["Please choose a Image file"]}, 400
+            return {"errors": ["type: Please choose a Image file"]}, 400
 
         image = request.files["image"]
 
         if not allowed_file(image.filename):
-            return {"errors": ["File type not permitted (Only .png, .jpg, .jpeg, .gif permitted)"]}, 400
+            return {"errors": ["type: File type not permitted (Only .png, .jpg, .jpeg, .gif permitted)"]}, 400
 
         image.filename = get_unique_filename(image.filename)
 

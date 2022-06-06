@@ -10,11 +10,11 @@ from datetime import datetime
 class AlbumForm(FlaskForm):
     artistId = IntegerField('artistId', validators=[DataRequired()])
     title = StringField('name', validators=[
-        DataRequired(),
+        DataRequired(message="Please enter an album title"),
         Length(min=0, max=255,
                message='Title must be less than 255 characters.'), ])
     releaseYear = IntegerField('releaseYear', validators=[
-        DataRequired(),
+        DataRequired(message="Please enter the release year"),
         NumberRange(min=1900, max=datetime.now().year+1)])
     about = TextAreaField('about')
     # price = FloatField('price')
