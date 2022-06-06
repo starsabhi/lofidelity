@@ -78,6 +78,9 @@ export default function AddAlbumForm({ artist, closeModal }) {
       ) {
         changedError.push('Year must be between 1900 and 2023');
       }
+      if (albumErrors[i] === 'Please choose a Image file') {
+        changedError.push('Please choose a Image file');
+      }
     }
     // console.log(changedError);
     setAddEditErros(changedError);
@@ -89,7 +92,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
         className='resource-update-form add-album'
         onSubmit={handleAddSubmit}
       >
-        <h2 className='add-album-header'>Add Album</h2>
+        <h2 className='add-album-header add-album-header-fix'>Add Album</h2>
         {newAddErros.length > 0 && (
           <div className='resource-error-container'>
             {newAddErros.map((error, idx) => (
