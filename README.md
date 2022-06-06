@@ -74,7 +74,7 @@ Check out a live version of lofidelity here: [https://lofidelity.herokuapp.com](
     - Users (Artist/Fan) are able to view all albums from that artist.
     - Users (Artist/Fan) are able to view that artist's details and bio.
   - Album Page:
-  - ![ZelpApp10](https://user-images.githubusercontent.com/95883222/172135268-19ea3c80-84ba-4abb-91a4-da99927941c1.gif)
+  ![ZelpApp12](https://user-images.githubusercontent.com/95883222/172138814-16bc6294-5e6e-46c2-89e4-9a24d0609993.gif)
     - Users (Artist) are able to edit that album's details and album image.
     - Users (Artist) are able to add songs to that album.
     - Users (Artist) are able to update a song's title.
