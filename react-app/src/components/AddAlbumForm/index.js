@@ -139,9 +139,9 @@ export default function AddAlbumForm({ artist, closeModal }) {
             type='text'
             onChange={(e) => setAbout(e.target.value)}
             value={about}
-            placeholder='Title'
+            placeholder='About'
             name='name'
-            required
+            // required
           ></input>
         </div>
 
