@@ -5,11 +5,11 @@ import * as songActions from '../../store/song';
 
 import { useDispatch } from 'react-redux';
 
-export default function EditSongForm({ albumId, songId, trackNumber, closeModal }) {
+export default function EditSongForm({ albumId, songId, trackNumber, songTitle, closeModal }) {
   const dispatch = useDispatch();
 
   const [editErrors, setEditErrors] = useState([]);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(songTitle);
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -72,11 +72,23 @@ export default function EditSongForm({ albumId, songId, trackNumber, closeModal 
               required
             />
           </div>
+          <div className='resource-edit-form-btn-div'>
+            <div className='resource-btn-container'>
+              <button
+                className='resource-cancel-btn'
+                type='button'
+                onClick={closeModal}
+              >
+                Cancel
+              </button>
 
-          <div className='resource-btn-container'>
-            <button className='resource-btn' type='submit'>
-              Submit
-            </button>
+            <div className='resource-btn-container'>
+              <button className='resource-delete-btn' type='submit'>
+                Submit
+              </button>
+            </div>
+          </div>
+
           </div>
         </form>
       </div>
