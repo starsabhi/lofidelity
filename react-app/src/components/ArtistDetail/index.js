@@ -241,7 +241,7 @@ export default function ArtistDetail({ artist }) {
             onClick={openAddAlbumModal}
           >
             <div>
-              <span class='material-symbols-outlined'>playlist_add</span>&nbsp;
+              <span className='material-symbols-outlined'>playlist_add</span>&nbsp;
             </div>
             Add Album
           </div>
@@ -259,7 +259,7 @@ export default function ArtistDetail({ artist }) {
                 Dashboard
               </span>
               <span
-                class='material-symbols-outlined'
+                className='material-symbols-outlined'
                 onClick={toggleArtistDashboard}
               >
                 {`${showArtistDashboard ? 'expand_less' : 'expand_more'}`}
@@ -275,7 +275,7 @@ export default function ArtistDetail({ artist }) {
                     // setAlbumId(album.id);
                   }}
                 >
-                  <span class='material-symbols-outlined'>edit_note</span>
+                  <span className='material-symbols-outlined'>edit_note</span>
                   <span className='dashboardEditspan'>Edit Artist Details</span>
                 </div>
                 <div
