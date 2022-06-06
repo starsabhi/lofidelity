@@ -74,7 +74,7 @@ def create_new_album():
         image = request.files["image"]
 
         if not allowed_file(image.filename):
-            return {"errors": ["File type not permitted"]}, 400
+            return {"errors": ["File type not permitted (Only .png, .jpg, .jpeg, .gif permitted)"]}, 400
 
         image.filename = get_unique_filename(image.filename)
 
