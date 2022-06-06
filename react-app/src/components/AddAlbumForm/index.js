@@ -82,7 +82,9 @@ export default function AddAlbumForm({ artist, closeModal }) {
         changedError.push('Please choose a Image file');
       }
       if (albumErrors[i] === 'File type not permitted') {
-        changedError.push('File type not permitted');
+        changedError.push(
+          'File type not permitted (Only .png, .jpg, .jpeg, .gif permitted)'
+        );
       }
     }
     // console.log(changedError);
@@ -161,6 +163,9 @@ export default function AddAlbumForm({ artist, closeModal }) {
           <input type='file' accept='image/*' onChange={AddImage} />
         </div>
 
+        {imageLoading && (
+          <p className='UploadingLoadingptag'>Uploading File please wait...</p>
+        )}
         <div className='resource-delete-form-btn-div add-albumDivBtunList'>
           <div className='resource-btn-container'>
             <button
@@ -178,7 +183,6 @@ export default function AddAlbumForm({ artist, closeModal }) {
             </button>
           </div>
         </div>
-        {imageLoading && <p>Uploading File please wait...</p>}
       </form>
     </>
   );
