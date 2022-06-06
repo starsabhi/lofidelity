@@ -1,7 +1,7 @@
 # lofidelity
 
 Inspired by Bandcamp, lofidelity is an online music community where passionate lofi fans discover, connect with, and directly support the artists they love.
-Check out a live version of lofidelity here: [www.lofidelity.com](https://lofidelity.herokuapp.com/)
+Check out a live version of lofidelity here: [https://lofidelity.herokuapp.com](https://lofidelity.herokuapp.com)
 
 ![ZelpApp7](https://user-images.githubusercontent.com/95883222/172109787-135620c9-03c5-4603-b465-5d89209c88e2.gif)
 
