@@ -186,67 +186,76 @@ export default function ArtistDetail({ artist }) {
             {artist?.description}
           </div>
         </div>
+      </div>
 
-        {sessionArtist && sessionArtist?.id === artist?.id && (
+      {sessionArtist && sessionArtist?.id === artist?.id && (
+        <>
           <div className={`add-album-button`} onClick={openAddAlbumModal}>
             <span class='material-symbols-outlined'>playlist_add</span>
             <span className='profile-edit-span'>&nbsp;Add Album</span>
           </div>
-        )}
-      </div>
+          <div className='artist-edit-container'>
+            <div className={`artist-edit-profile`}>
+              <div
+                className='artist-edit-profile-btn'
+                onClick={toggleArtistDashboard}
+              >
+                <span> Edit Profile</span>
+                <span class='material-symbols-outlined'>
+                  {`${showArtistDashboard ? 'expand_less' : 'expand_more'}`}
+                </span>
+              </div>
 
-      {sessionArtist && sessionArtist?.id === artist?.id && (
-        <div className='artist-edit-container'>
-          <div className={`artist-edit-profile`}>
-            <div
-              className='artist-edit-profile-btn'
-              onClick={toggleArtistDashboard}
-            >
-              <span> Edit Profile</span>
-              <span class='material-symbols-outlined'>
-                {`${showArtistDashboard ? 'expand_less' : 'expand_more'}`}
-              </span>
+              {showArtistDashboard && (
+                <>
+                  <div
+                    className={`edit-artist-details-button`}
+                    onClick={openArtistDetailsModal}
+                  >
+                    <span class='material-symbols-outlined'>edit_note</span>
+                    <span className='profile-edit-span'>
+                      &nbsp;Artist Details
+                    </span>
+                  </div>
+
+                  <div
+                    className={`edit-profile-image-button`}
+                    onClick={openProfileModal}
+                  >
+                    <span className='material-symbols-outlined'>
+                      file_upload
+                    </span>
+                    <span className='profile-edit-span'>
+                      &nbsp;Profile Image
+                    </span>
+                  </div>
+
+                  <div
+                    className={`edit-cover-image-button`}
+                    onClick={openCoverModal}
+                  >
+                    <span className='material-symbols-outlined'>
+                      file_upload
+                    </span>
+                    <span className='profile-edit-span'>
+                      &nbsp;Cover Image{' '}
+                    </span>
+                  </div>
+
+                  <div
+                    className={`edit-background-image-button`}
+                    onClick={openBackgroundModal}
+                  >
+                    <span className='material-symbols-outlined'>
+                      file_upload
+                    </span>
+                    <span className='profile-edit-span'>&nbsp;BG Image</span>
+                  </div>
+                </>
+              )}
             </div>
-
-            {showArtistDashboard && (
-              <>
-                <div
-                  className={`edit-artist-details-button`}
-                  onClick={openArtistDetailsModal}
-                >
-                  <span class='material-symbols-outlined'>edit_note</span>
-                  <span className='profile-edit-span'>
-                    &nbsp;Artist Details
-                  </span>
-                </div>
-
-                <div
-                  className={`edit-profile-image-button`}
-                  onClick={openProfileModal}
-                >
-                  <span className='material-symbols-outlined'>file_upload</span>
-                  <span className='profile-edit-span'>&nbsp;Profile Image</span>
-                </div>
-
-                <div
-                  className={`edit-cover-image-button`}
-                  onClick={openCoverModal}
-                >
-                  <span className='material-symbols-outlined'>file_upload</span>
-                  <span className='profile-edit-span'>&nbsp;Cover Image </span>
-                </div>
-
-                <div
-                  className={`edit-background-image-button`}
-                  onClick={openBackgroundModal}
-                >
-                  <span className='material-symbols-outlined'>file_upload</span>
-                  <span className='profile-edit-span'>&nbsp;BG Image</span>
-                </div>
-              </>
-            )}
           </div>
-        </div>
+        </>
       )}
     </>
   );
