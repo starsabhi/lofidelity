@@ -38,10 +38,14 @@ class ArtistForm(FlaskForm):
         Length(min=0, max=255,
                message='Location must be less than 255 characters.'), ])
     artistUrl = StringField('artistUrl', validators=[DataRequired(message="Please enter an artistUrl."),
+        Length(min=0, max=255,
+            message='Name must be less than 255 characters.'),
         Regexp('^[\w\-]+$',
             message='Artist Profile Url must contain only letters, numbers or underscore.'),
         artistUrl_exists])
-    description = StringField('description', validators=[DataRequired(message="Please enter a description.")])
+    description = StringField('description', validators=[DataRequired(message="Please enter a description."),
+        Length(min=0, max=400,
+               message='Description must be less than 400 characters.')])
     # bgImageUrl = StringField('bgImageUrl', validators=[DataRequired()])
     # coverImageUrl = StringField('coverImageUrl', validators=[DataRequired()])
     # profileImageUrl = StringField('profileImageUrl', validators=[DataRequired()])

@@ -16,5 +16,7 @@ class AlbumForm(FlaskForm):
     releaseYear = IntegerField('releaseYear', validators=[
         DataRequired(message="Please enter the release year"),
         NumberRange(min=1900, max=datetime.now().year+1)])
-    about = TextAreaField('about')
+    about = TextAreaField('about', validators=[
+        Length(min=0, max=400,
+               message='About must be less than 400 characters.')])
     # price = FloatField('price')

@@ -16,9 +16,9 @@ added other models files and seed files
     github build, automatically runs the db migrate and upgrade, but not seed
 
 #resetting database, on Heroku database GUI resets PK ids
-    ~$ heroku run -a lofi-test-new flask db migrate
-    ~$ heroku run -a lofi-test-new flask db upgrade
-    ~$ heroku run -a lofi-test-new flask seed all
+    ~$ heroku run -a lofidelity flask db migrate
+    ~$ heroku run -a lofidelity flask db upgrade
+    ~$ heroku run -a lofidelity flask seed all
 
     ~$ heroku pg:psql postgresql-pointy-72360 --app lofi-test
         \d check tables
@@ -48,23 +48,21 @@ COMPONENTS:
         - ARTIST DETAILS
             - EDIT artist details -  DONE
             - UPLOAD IMAGE x3 - DONE
-            - Style artist dashboard - TODO - AL or first come
             - NO DELETE
         - ARTIST ALBUMS
-
-            - ADD ALBUM - AB - TODO: styling
+            - ADD ALBUM - AB -
 
 
         - ALBUM DETAILS
             - READ Album details - AB
-            - UPDATE Album detail - AB - DONE - TODO: styling
+            - UPDATE Album detail - AB - DONE
             - UPLOAD Album photo - AB/MO - DONE
             - DELETE Album - EK - DONE
 
             - SONG FUNCTIONALITY - AL
                 -ADD Song - AL - DONE
-                -UPDATE Song Title - AL - DONE TODO: Styling and update song player
-                -DELETE Song - AL - DONE - TODO: Fetch track numbers after deletion - EK
+                -UPDATE Song Title - AL - DONE
+                -DELETE Song - AL - DONE - trackNumber update - EK
                 -BONUS - change track order drag and drop form
 
 MUSIC PLAYER - MO - DONE
@@ -95,34 +93,18 @@ BACKEND:
         -auth - EK - DONE
 
 
-2) TODO: ensure continuity of error handling in frontend components (sans delete) - ALL
-3) BUG: update song playing when click new song, also after delete
-4) TODO: Style album detail -AB
-5) TODO: BONUS - Update form styling throughout - EK
-6) TODO: UPDATE CHOOSE FILE BUTTON
-6) TODO: update styling through out
-7) TODO: EXTENSIVE QA OF ALL CRUD AND ROUTES AND LOG INS
-8) ADD delete to album page with redirect to artist page
 
-TODO: BONUS add backend route protection so a logged in user can't update other user's things
+
+
+
+
+BONUS - TODO:  add backend route protection so a logged in user can't update other user's things
     - passing, but bad actor could exploit
-
-TODO: NEED TO RE-MIGRATE PRODUCTION!
-
-
-MAIN CONCERNS
-    -NO DEFAULT BUTTONS
-    -NO ability to change something if not logged in and doesn't belong to users
-    -IF ERROR that user doesn't understand, that will be a deferral
-
-PRIORITY LIST:
-    - auth
-    - func
-    - style
 
 BONUS - BUG: when click play it should start the player, not just load the song
 BONUS - BUG: artist can manually enter album number in url and edit info on that album regardless of ownership
 BONUS: let artist view page as user (clear session state, then use session thunk to update again)
+BONUS ADD delete to album page with redirect to artist page
 
 Unhide/Un-change in Future:
     - Discover Search Bar and notification bell in Nav
@@ -131,7 +113,10 @@ Unhide/Un-change in Future:
     - change back color of terms of use on signup page
     - add price back in
 
-updat edit form, add cancel button, make sure no hidden size
-song - cursor default - maybe because not wrapped in div
+TODO: update styling through out
+TODO: album image link to artist page
+TODO: EXTENSIVE QA OF ALL CRUD AND ROUTES AND LOG INS
+TODO: NEED TO RE-MIGRATE PRODUCTION!
+-IF ERROR that user doesn't understand, that will be a deferral
 
 """
