@@ -131,4 +131,7 @@ Unhide/Un-change in Future:
     - change back color of terms of use on signup page
     - add price back in
 
+updat edit form, add cancel button, make sure no hidden size
+song - cursor default - maybe because not wrapped in div
+
 """

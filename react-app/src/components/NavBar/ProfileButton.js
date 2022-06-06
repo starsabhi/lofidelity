@@ -43,6 +43,7 @@ export default function ProfileButton({ user }) {
     e.preventDefault();
     //removes user from jwt cookie
     dispatch(sessionActions.logout());
+    alert("You've been successfully logged out.");
   };
 
   return (

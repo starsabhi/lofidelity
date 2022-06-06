@@ -34,15 +34,14 @@ export default function AlbumDetail({ artist }) {
   const [currentTrack, setCurrentTrack] = useState(1);
   const [songId, setSongId] = useState(null);
 
-
   //slices of state related to player functionality
   const [autoPlay, setAutoPlay] = useState(false);
   const [trackButton, setTrackButton] = useState(playButton);
-  const [deleted, setDeleted] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // const [deleted, setDeleted] = useState(false);
+  // const [isPlaying, setIsPlaying] = useState(false);
 
   const updateStateOnDelete = () => {
-    setDeleted(true);
+    // setDeleted(true);
     setCurrentTrack(1);
     setAutoPlay(false);
     setTrackButton(playButton);
@@ -50,26 +49,23 @@ export default function AlbumDetail({ artist }) {
 
   const updatePlayButton = () => {
     setTrackButton(pauseButton);
-    setIsPlaying(true);
+    // setIsPlaying(true);
     setAutoPlay(true);
   };
 
   const updatePauseButton = () => {
     setTrackButton(playButton);
-    setIsPlaying(false);
+    // setIsPlaying(false);
     setAutoPlay(false);
-
   };
 
   //updates song title and url
   useEffect(() => {
     if (songs) {
-
       setSongTitle(songs[currentTrack - 1]?.title);
       setUrl(songs[currentTrack - 1]?.audioUrl);
     }
   }, [songs, currentTrack, songTitle]);
-
 
   const genreList = {
     1: 'acoustic',
@@ -160,7 +156,6 @@ export default function AlbumDetail({ artist }) {
 
   return (
     <>
-
       <>
         <FullPageModal
           showModal={showAlbumEditModal}
@@ -211,6 +206,7 @@ export default function AlbumDetail({ artist }) {
           <div className='album-title-text'>{album?.title}</div>
 
           <div className='album-year-text'>{album?.releaseYear}</div>
+          <div className='album-year-text'>{album?.about}</div>
 
           <div className='album-by-link'>
             by
@@ -235,14 +231,15 @@ export default function AlbumDetail({ artist }) {
               {/* <Player url={url} autoPlay={autoPlay} updatePlayButton={updatePlayButton} updatePauseButton={updatePauseButton} /> */}
               <ReactPlayer
                 url={url}
-                width='376px'
-                height='52px'
+                // width='376px'
+                width='300px'
+                // height='50px'
+                height='40px'
                 volume={0.3}
                 playing={autoPlay}
                 onPlay={updatePlayButton}
                 controls
                 onPause={updatePauseButton}
-
               />
 
               <div className='song-list-container'>
@@ -253,10 +250,8 @@ export default function AlbumDetail({ artist }) {
                       id={`song-${song?.id}-play-btn`}
                       alt='play'
                       src={
-
                         currentTrack === song?.trackNumber
                           ? trackButton
-
                           : playButton
                       }
                       onClick={() => {
@@ -267,7 +262,6 @@ export default function AlbumDetail({ artist }) {
                         if (currentTrack === song?.trackNumber) {
                           setAutoPlay((autoPlay) => !autoPlay);
                         } else setAutoPlay(true);
-
 
                         setCurrentTrack(song?.trackNumber);
                       }}
@@ -290,7 +284,6 @@ export default function AlbumDetail({ artist }) {
                               setAutoPlay(false);
                             }
                             // setClickFromPlayer(false)
-
                           }}
                         >
                           <span className='material-symbols-outlined'>
@@ -347,14 +340,12 @@ export default function AlbumDetail({ artist }) {
                 // setAlbumId(album.id);
               }}
             >
-
               <div className='edit-profile-image-span-div-last'>
                 <span className='material-symbols-outlined'>file_upload</span>
                 <span className='edit-profile-image-span'>
                   &nbsp; Edit Album Image
                 </span>
               </div>
-
             </div>
           )}
         </div>
