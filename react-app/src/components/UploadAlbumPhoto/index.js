@@ -1,12 +1,11 @@
 import './UploadAlbumPhoto.css';
 
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import * as albumActions from '../../store/album';
 
 export default function UploadAlbumPhoto({ artistId, albumId, closeModal }) {
-  const history = useHistory(); // so that we can redirect after the image upload is successful
+  // const history = useHistory(); // so that we can redirect after the image upload is successful
   const dispatch = useDispatch();
 
   const [image, setImage] = useState(null);
@@ -83,13 +82,14 @@ export default function UploadAlbumPhoto({ artistId, albumId, closeModal }) {
               className='resource-cancel-btn'
               type='button'
               onClick={closeModal}
+              disabled={imageLoading}
             >
               Cancel
             </button>
           </div>
 
           <div className='resource-btn-container'>
-            <button className='resource-delete-btn' type='submit'>
+            <button className='resource-delete-btn' type='submit' disabled={imageLoading}>
               Submit
             </button>
           </div>
