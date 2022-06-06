@@ -218,7 +218,7 @@ export default function AlbumDetail({ artist }) {
           {sessionArtist && sessionArtist?.id === album?.artistId && (
             <div className='DivEditdetailsforalbum'>
               <div className='editAlbumDetails' onClick={openAlbumEditModal}>
-                <span class='material-symbols-outlined'>edit_note</span>
+                <span className='material-symbols-outlined'>edit_note</span>
                 Edit Album Details
               </div>
             </div>

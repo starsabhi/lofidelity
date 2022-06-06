@@ -106,7 +106,7 @@ export default function EditArtistForm({ genreList, closeModal }) {
       )}
 
       <div className='inputfieldDiv'>
-        <label className='titleForanInput' for='name'>
+        <label className='titleForanInput' htmlFor='name'>
           Artist Name
         </label>
         <input
@@ -119,7 +119,7 @@ export default function EditArtistForm({ genreList, closeModal }) {
         ></input>
       </div>
       <div className='inputfieldDiv'>
-        <label className='titleForanInput' for='artist-url'>
+        <label className='titleForanInput' htmlFor='artist-url'>
           Artist URL
         </label>
         <input
@@ -132,7 +132,7 @@ export default function EditArtistForm({ genreList, closeModal }) {
         ></input>
       </div>
       <div className='inputfieldDiv'>
-        <label className='titleForanInput' for='genre'>
+        <label className='titleForanInput' htmlFor='genre'>
           Genre
         </label>
         <select
@@ -151,7 +151,7 @@ export default function EditArtistForm({ genreList, closeModal }) {
         </select>
       </div>
       <div className='inputfieldDiv'>
-        <label className='titleForanInput' for='location'>
+        <label className='titleForanInput' htmlFor='location'>
           Location
         </label>
         <input
@@ -164,7 +164,7 @@ export default function EditArtistForm({ genreList, closeModal }) {
         ></input>
       </div>
       <div className='inputfieldDiv'>
-        <label className='titleForanInput' for='description'>
+        <label className='titleForanInput' htmlFor='description'>
           Description
         </label>
         <textarea
