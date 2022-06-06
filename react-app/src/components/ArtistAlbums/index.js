@@ -50,37 +50,35 @@ export default function ArtistAlbums({ artist }) {
         {albums?.map((album) => (
           <div className={`album-card-container`} key={album?.id}>
             <NavLink
-              className={`album-navlink`}
+              className={`album-card-navlink`}
               id={`album-${album?.id}`}
               exact
               to={`/${artist.artistUrl}/albums/${album?.id}`}
             >
               <img
-                className='album-thumbnail-image'
+                className='album-card-image'
                 id={`album-${album?.id}-image`}
-                alt='album-thumbnail'
+                alt='album-card'
                 src={album?.imageUrl}
               />
             </NavLink>
             <a
               href={`/${artist.artistUrl}/albums/${album?.id}`}
-              className='album-thumbnail-title'
+              className='album-card-title'
             >
-              {album?.title}
+              <div className='album-card-title-text'>{album?.title}</div>
             </a>
-
-            <div
-              type='button'
-              className={`album-delete-button
-              ${sessionArtist?.id === album?.artistId ? '' : 'hidden'}
-              `}
-              onClick={() => {
-                openModal();
-                setAlbumId(album.id);
-              }}
-            >
-              <span className='material-symbols-outlined'> delete</span>
-            </div>
+            {sessionArtist && sessionArtist?.id === album?.artistId && (
+              <div
+                className={`album-card-delete-button`}
+                onClick={() => {
+                  openModal();
+                  setAlbumId(album.id);
+                }}
+              >
+                <span className='material-symbols-outlined'> delete</span>
+              </div>
+            )}
           </div>
         ))}
       </div>

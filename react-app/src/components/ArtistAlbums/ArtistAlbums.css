@@ -1,9 +1,17 @@
 .album-list-container-inner {
-  display: flex;
+  /* display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
-  align-content: flex-start;
+  align-items: center;
+  align-content: flex-start; */
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+  grid-gap: 16px;
+  justify-content: center;
+  padding: initial;
+
   width: 100%;
 
   gap: 20px;
@@ -13,32 +21,73 @@
 .album-card-container {
   min-height: 200px;
   vertical-align: top;
+  position: relative;
 }
 
-.album-thumbnail-image {
-  height: 200px;
-  width: 200px;
-}
-
-.album-delete-button {
-  /* position: absolute;
-  right: 0px;
-  top: 0px; */
-  cursor: pointer;
-}
-
-.album-thumbnail-title {
-  text-decoration: none;
-  font-weight: bold;
-  margin: 0;
-  color: #0000ee;
-}
-
-.album-thumbnail-title:hover {
+.album-card-container:hover {
   text-decoration: underline;
 }
 
-.album-navlink {
+.album-card-navlink {
   display: flex;
   flex-direction: column;
+  border: 1px solid gray;
+  outline-style: solid;
+  outline-color: rgba(0, 0, 0, 0.03);
+  outline-width: 1px;
+  outline-offset: -1px;
 }
+
+.album-card-image {
+  height: 200px;
+  width: 200px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.album-card-container:hover .album-card-image {
+  transform: scale(1.05);
+  /* border: 2px solid rgba(60, 145, 214, 1); */
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  /* box-shadow: 0px 0px 1px 4px rgba(60, 145, 214, 1); */
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.album-card-delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0px;
+  top: 213px;
+  cursor: pointer;
+  color: rgba(175, 4, 4, 1);
+  /* text-shadow: 1px 1px 1px rgb(90, 90, 90); */
+
+  padding: 2px;
+  /* text-shadow: 1px 1px 1px rgb(221, 0, 0); */
+}
+
+.album-card-delete-button:hover {
+  background-color: rgb(177, 177, 177);
+}
+
+.album-card-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-top: 10px;
+
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0;
+  color: rgb(6, 135, 245);
+}
+
+.album-card-title-text {
+  inline-size: 175px;
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Text/Wrapping_Text */
+  overflow-wrap: break-word;
+}
+
+/* .album-card-title-text {} */
