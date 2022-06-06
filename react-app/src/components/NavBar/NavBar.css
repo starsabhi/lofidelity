@@ -188,6 +188,13 @@
   color: black;
 }
 
+.nav-user-dropdown-welcome-text, .user-name-text-overflow {
+  /* max-width: 200px; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 .nav-user-dropdown-artist-link:hover {
   background-color: rgb(243, 243, 243);
 }
