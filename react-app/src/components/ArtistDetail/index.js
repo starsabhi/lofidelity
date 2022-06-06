@@ -236,9 +236,15 @@ export default function ArtistDetail({ artist }) {
         <p className='artist-description'>{artist?.description}</p>
 
         {sessionArtist && sessionArtist?.id === artist?.id && (
-          <button className='addalbumBtn' onClick={openAddAlbumModal}>
-            Add album
-          </button>
+          <div
+            className='addalbumBtn add-albumBtnover'
+            onClick={openAddAlbumModal}
+          >
+            <div>
+              <span class='material-symbols-outlined'>playlist_add</span>
+            </div>
+            Add Album
+          </div>
         )}
       </div>
 

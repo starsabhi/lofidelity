@@ -25,21 +25,27 @@
 }
 
 .addalbumBtn {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  color: rgb(70, 59, 59);
+  /* background-color: rgba(138, 121, 121, 0.837); */
+  /* border: none; */
+  border-radius: 10px solid black;
+  margin: 5px;
+  font-weight: 550;
   cursor: pointer;
-  color: white;
-  background-color: rgb(75, 75, 111);
-  border-radius: 10px;
-  animation: addalbumBtnani 3s infinite;
+  /* margin-top: 0%; */
 }
 
-@keyframes addalbumBtnani {
+/* @keyframes addalbumBtnani {
   0% {
     color: black;
   }
   80% {
     color: white;
   }
-}
+} */
 
 .artist-dashboard-header {
   font-weight: 600;
@@ -50,4 +56,25 @@
 .artist-dashboard-header:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.symbols-span {
+  margin-bottom: 5px;
+}
+
+.add-albumBtnover {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  color: rgb(70, 59, 59);
+  /* background-color: rgba(138, 121, 121, 0.837); */
+  /* border: none; */
+  border-radius: 1px solid black;
+  margin: 5px;
+  font-weight: 550;
+  cursor: pointer;
+  margin-left: -5px;
+}
+.add-albumBtnover:hover {
+  background-color: rgb(243, 243, 243);
 }

@@ -46,4 +46,8 @@
   margin: 5px;
   font-weight: 550;
   cursor: pointer;
+  margin-left: -5px;
+}
+.editAlbumDetails:hover {
+  background-color: rgb(243, 243, 243);
 }

@@ -81,10 +81,15 @@ export default function AddAlbumForm({ artist, closeModal }) {
       if (albumErrors[i] === 'Please choose a Image file') {
         changedError.push('Please choose a Image file');
       }
+      if (albumErrors[i] === 'File type not permitted') {
+        changedError.push('File type not permitted');
+      }
     }
     // console.log(changedError);
     setAddEditErros(changedError);
   }, [albumErrors]);
+
+  // console.log('************', albumErrors);
 
   return (
     <>
