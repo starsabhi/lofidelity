@@ -302,14 +302,18 @@ export default function AlbumDetail({ artist }) {
           {sessionArtist && sessionArtist?.id === album?.artistId && (
             <div
               type='button'
-              className={`edit-profile-image-button`}
+              className={`edit-profile-image-button-album-detail`}
               onClick={() => {
                 openAlbumImageModal();
                 // setAlbumId(album.id);
               }}
             >
-              <span className='material-symbols-outlined'>file_upload</span>
-              <span> Edit album image </span>
+              <div className='edit-profile-image-span-div-last'>
+                <span className='material-symbols-outlined'>file_upload</span>
+                <span className='edit-profile-image-span'>
+                  &nbsp; Edit Album Image
+                </span>
+              </div>
             </div>
           )}
         </div>
