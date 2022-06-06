@@ -62,7 +62,7 @@ export default function ProfileButton({ user }) {
           <>
             <div className='nav-user-dropdown-container' ref={menu}>
               <div className='nav-user-dropdown-welcome'>
-                <div>Welcome {user?.username}!</div>
+                <div className='nav-user-dropdown-welcome-text'>Welcome {user?.username}!</div>
               </div>
 
               {sessionArtist && (
