@@ -29,6 +29,7 @@ export default function AlbumDetail({ artist }) {
   // slices of state
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
   const [trackNumber, setTrackNumber] = useState(null);
+  const [editTitle, setEditTitle] = useState('')
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [currentTrack, setCurrentTrack] = useState(1);
   const [songId, setSongId] = useState(null);
@@ -187,6 +188,7 @@ export default function AlbumDetail({ artist }) {
             albumId={album?.id}
             songId={songId}
             trackNumber={trackNumber}
+            songTitle={editTitle}
           />
         </FullPageModal>
         <FullPageModal
@@ -303,6 +305,7 @@ export default function AlbumDetail({ artist }) {
                             openEditSongModal();
                             setTrackNumber(song?.trackNumber);
                             setSongId(song?.id);
+                            setEditTitle(song?.title)
                           }}
                         >
                           <span className='material-symbols-outlined'>

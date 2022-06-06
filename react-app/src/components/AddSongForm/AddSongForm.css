@@ -135,6 +135,6 @@
   border: 1px solid rgb(126, 126, 126);
 }
 
-/* .noHover {
-  pointer-events: none;
-} */
+.resource-add-text2 {
+  margin: 3%;
+}

@@ -102,10 +102,7 @@ export default function AddSongForm({ songType, closeModal }) {
           </div> */}
 
           <div className='resource-add-text1'>
-            <span>{`Upload ${songType} song`}</span>
-          </div>
-          <div className='resource-add-text2'>
-            <span>{`Upload your new ${songType} song`}</span>
+            <span>Upload song file: </span>
           </div>
           <div className='resource-add-text2'>
             <input type='file' accept='audio/*' onChange={updateSong} />
@@ -114,7 +111,7 @@ export default function AddSongForm({ songType, closeModal }) {
           <div className='resource-add-form-btn-div'>
             <div className='resource-btn-container'>
               <button
-                className={`resource-btn`}
+                className={`resource-cancel-btn`}
                 type='button'
                 disabled={songLoading}
                 onClick={closeModal}
@@ -125,7 +122,7 @@ export default function AddSongForm({ songType, closeModal }) {
 
             <div className='resource-btn-container'>
               <button
-                className={`resource-btn`}
+                className={`resource-delete-btn`}
                 type='submit'
                 disabled={songLoading}
               >
