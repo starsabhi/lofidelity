@@ -12,6 +12,7 @@
 .splash-hooks {
   text-align: center;
   color: white;
+  text-shadow: 1px 1px 1px rgb(90, 90, 90);
 }
 
 .splash-hooks h1 {
@@ -38,11 +39,32 @@
   font-weight: bold;
 }
 
-.splash-auth-buttons button {
-  margin: 3% 0%;
-  background-color: whitesmoke;
-  border: 1px solid rgb(151, 151, 151);
-  font-size: 112%;
+.splash-btn {
+  margin-top: 12px;
+  padding: 15px 15px;
+  border: 1px solid rgb(3, 161, 198);
+  border-radius: 4px;
+  /* width: 100%; */
+
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 200;
+  color: white;
+  background-color: rgb(3, 161, 198);
+
+  cursor: pointer;
+  /* transition: border 0.5s, background-color 0.5s, color 0.5s; */
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+.splash-btn * {
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 200;
+  color: white;
 }
 
 .artist-credentials {
@@ -51,6 +73,10 @@
   text-align: center;
   position: fixed;
   bottom: 110px;
+}
+
+.artist-credentials * {
+  text-shadow: 1px 1px 1px rgb(90, 90, 90);
 }
 
 .splash_artist_link {
