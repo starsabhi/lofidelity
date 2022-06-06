@@ -70,6 +70,9 @@ export default function AddAlbumForm({ artist, closeModal }) {
       if (albumErrors[i] === 'title : This field is required.') {
         changedError.push('Please provide valid title');
       }
+      if (albumErrors[i] === 'title : Title must be less than 255 characters.') {
+        changedError.push('Title must be less than 255 characters.');
+      }
       if (albumErrors[i] === 'releaseYear : This field is required.') {
         changedError.push('Year must be between 1900 and 2023');
       }
@@ -79,7 +82,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
         changedError.push('Year must be between 1900 and 2023');
       }
       if (albumErrors[i] === 'Please choose a Image file') {
-        changedError.push('Please choose a Image file');
+        changedError.push('Please choose an Image file');
       }
       if (albumErrors[i] === 'File type not permitted') {
         changedError.push(
@@ -159,7 +162,13 @@ export default function AddAlbumForm({ artist, closeModal }) {
           ></input>
         </div> */}
 
-        <div className='resource-delete-text2 resource-add-text2'>
+        <div className='inputfieldDiv'>
+          <div className='titleForanInput'>
+            Please upload your album cover image:
+          </div>
+        </div>
+
+        <div className='resource-delete-text2 resource-add-text2 file-upload-div'>
           <input type='file' accept='image/*' onChange={AddImage} />
         </div>
 
