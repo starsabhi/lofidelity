@@ -236,21 +236,33 @@ export default function ArtistDetail({ artist }) {
         <p className='artist-description'>{artist?.description}</p>
 
         {sessionArtist && sessionArtist?.id === artist?.id && (
-          <button className='addalbumBtn' onClick={openAddAlbumModal}>
-            Add album
-          </button>
+          <div
+            className='addalbumBtn add-albumBtnover'
+            onClick={openAddAlbumModal}
+          >
+            <div>
+              <span class='material-symbols-outlined'>playlist_add</span>&nbsp;
+            </div>
+            Add Album
+          </div>
         )}
       </div>
 
       <div className='artist-edit-container'>
         {sessionArtist && sessionArtist?.id === artist?.id && (
           <div className={`artist-dashboard`}>
-            <div>
+            <div className='artist-dashboard-header'>
               <span
-                className='artist-dashboard-header'
+                // className='artist-dashboard-header'
                 onClick={toggleArtistDashboard}
               >
-                Artist Dashboard
+                Dashboard
+              </span>
+              <span
+                class='material-symbols-outlined'
+                onClick={toggleArtistDashboard}
+              >
+                {`${showArtistDashboard ? 'expand_less' : 'expand_more'}`}
               </span>
             </div>
             {showArtistDashboard ? (
@@ -263,8 +275,8 @@ export default function ArtistDetail({ artist }) {
                     // setAlbumId(album.id);
                   }}
                 >
-                  <span className='material-symbols-outlined'>file_upload</span>
-                  <span> Edit {artist?.name} Details </span>
+                  <span class='material-symbols-outlined'>edit_note</span>
+                  <span className='dashboardEditspan'>Edit Artist Details</span>
                 </div>
                 <div
                   type='button'
@@ -275,7 +287,7 @@ export default function ArtistDetail({ artist }) {
                   }}
                 >
                   <span className='material-symbols-outlined'>file_upload</span>
-                  <span> Edit profile image </span>
+                  <span className='dashboardEditspan'>Edit Profile Image</span>
                 </div>
                 <div
                   type='button'
@@ -286,7 +298,7 @@ export default function ArtistDetail({ artist }) {
                   }}
                 >
                   <span className='material-symbols-outlined'>file_upload</span>
-                  <span> Edit cover image </span>
+                  <span className='dashboardEditspan'>Edit Cover Image </span>
                 </div>
                 <div
                   type='button'
@@ -297,7 +309,7 @@ export default function ArtistDetail({ artist }) {
                   }}
                 >
                   <span className='material-symbols-outlined'>file_upload</span>
-                  <span> Edit background image </span>
+                  <span className='dashboardEditspan'> Edit BG Image</span>
                 </div>
               </>
             ) : null}

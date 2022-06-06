@@ -46,4 +46,29 @@
   margin: 5px;
   font-weight: 550;
   cursor: pointer;
+  margin-left: -5px;
+}
+.editAlbumDetails:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.edit-profile-image-button-album-detail {
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 80px;
+  width: 50%;
+}
+
+.edit-profile-image-button-album-detail:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.material-symbols-outlined-for-album-image {
+  padding-bottom: 5px;
+}
+
+.edit-profile-image-span-div-last {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

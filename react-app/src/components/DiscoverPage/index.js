@@ -36,15 +36,17 @@ export default function DiscoverPage() {
           <div className='discover-artist-card-container-inner'>
             {allArtists?.map((artist) => {
               return (
-                <div className='discover-artist-card' key={artist.id}>
+                <Link
+                  className='discover-artist-card'
+                  to={`/${artist.artistUrl}`}
+                  key={artist.id}
+                >
                   <div className='discover-artist-card-inner'>
-                    <Link to={`/${artist.artistUrl}`}>
-                      <img
-                        className='discover-artistCoverImg'
-                        src={artist.profileImageUrl}
-                        alt='coverImage'
-                      ></img>
-                    </Link>
+                    <img
+                      className='discover-artistCoverImg'
+                      src={artist.profileImageUrl}
+                      alt='coverImage'
+                    ></img>
                     <div className='discover-artist-card-bottom'>
                       <div
                         className='discover-artistName'
@@ -57,7 +59,7 @@ export default function DiscoverPage() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

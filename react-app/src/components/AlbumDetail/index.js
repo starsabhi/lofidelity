@@ -33,6 +33,7 @@ export default function AlbumDetail({ artist }) {
   const [currentTrack, setCurrentTrack] = useState(1);
   const [songId, setSongId] = useState(null);
 
+
   //slices of state related to player functionality
   const [autoPlay, setAutoPlay] = useState(false);
   const [trackButton, setTrackButton] = useState(playButton);
@@ -56,15 +57,18 @@ export default function AlbumDetail({ artist }) {
     setTrackButton(playButton);
     setIsPlaying(false);
     setAutoPlay(false);
+
   };
 
   //updates song title and url
   useEffect(() => {
     if (songs) {
+
       setSongTitle(songs[currentTrack - 1]?.title);
       setUrl(songs[currentTrack - 1]?.audioUrl);
     }
   }, [songs, currentTrack, songTitle]);
+
 
   const genreList = {
     1: 'acoustic',
@@ -155,6 +159,7 @@ export default function AlbumDetail({ artist }) {
 
   return (
     <>
+
       <>
         <FullPageModal
           showModal={showAlbumEditModal}
@@ -198,6 +203,7 @@ export default function AlbumDetail({ artist }) {
           <AddSongForm songType={genreList[sessionArtist?.genreId]} />
         </FullPageModal>
       </>
+
       <div className='album-detail-container-inner'>
         <div className='album-player-container'>
           <div className='album-title-text'>{album?.title}</div>
@@ -213,16 +219,17 @@ export default function AlbumDetail({ artist }) {
 
           {sessionArtist && sessionArtist?.id === album?.artistId && (
             <div className='DivEditdetailsforalbum'>
-              <button className='editAlbumDetails' onClick={openAlbumEditModal}>
+              <div className='editAlbumDetails' onClick={openAlbumEditModal}>
                 <span class='material-symbols-outlined'>edit_note</span>
                 Edit Album Details
-              </button>
+              </div>
             </div>
           )}
 
           {url && (
             <>
               <span>Now playing: {songTitle}</span>
+
               {/* <Player url={url} autoPlay={autoPlay} updatePlayButton={updatePlayButton} updatePauseButton={updatePauseButton} /> */}
               <ReactPlayer
                 url={url}
@@ -233,6 +240,7 @@ export default function AlbumDetail({ artist }) {
                 onPlay={updatePlayButton}
                 controls
                 onPause={updatePauseButton}
+
               />
 
               <div className='song-list-container'>
@@ -243,8 +251,10 @@ export default function AlbumDetail({ artist }) {
                       id={`song-${song?.id}-play-btn`}
                       alt='play'
                       src={
+
                         currentTrack === song?.trackNumber
                           ? trackButton
+
                           : playButton
                       }
                       onClick={() => {
@@ -255,6 +265,7 @@ export default function AlbumDetail({ artist }) {
                         if (currentTrack === song?.trackNumber) {
                           setAutoPlay((autoPlay) => !autoPlay);
                         } else setAutoPlay(true);
+
 
                         setCurrentTrack(song?.trackNumber);
                       }}
@@ -271,11 +282,13 @@ export default function AlbumDetail({ artist }) {
                           className={`song-delete-button`}
                           onClick={() => {
                             openDeleteSongModal();
+
                             setSongId(song?.id);
                             if (currentTrack === song?.trackNumber) {
                               setAutoPlay(false);
                             }
                             // setClickFromPlayer(false)
+
                           }}
                         >
                           <span className='material-symbols-outlined'>
@@ -325,15 +338,20 @@ export default function AlbumDetail({ artist }) {
           {sessionArtist && sessionArtist?.id === album?.artistId && (
             <div
               type='button'
-              className={`edit-profile-image-button`}
+              className={`edit-profile-image-button-album-detail`}
               onClick={() => {
                 openAlbumImageModal();
                 // setAlbumId(album.id);
               }}
             >
-              <span className='material-symbols-outlined'>file_upload</span>
-              <span> Edit album image </span>
-              <div className='album-about-text'>{album?.about}</div>
+
+              <div className='edit-profile-image-span-div-last'>
+                <span className='material-symbols-outlined'>file_upload</span>
+                <span className='edit-profile-image-span'>
+                  &nbsp; Edit Album Image
+                </span>
+              </div>
+
             </div>
           )}
         </div>

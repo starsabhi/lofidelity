@@ -81,13 +81,13 @@ const SplashPage = () => {
           <p>Lofidelity is the hub for all things Lofi!</p>
         </div>
         <div className='splash-auth-buttons'>
-          <button type='button' onClick={openModal}>
+          <button type='button' onClick={openModal} className='splash-btn'>
             {/* <Link to='/signup'>Sign up for free</Link> */}
             <div>Sign up for free </div>
           </button>
-          <button>
+          {/* <button className='splash-btn'>
             <Link to='/login'>Already have an account? Log in</Link>
-          </button>
+          </button> */}
         </div>
         <div className='artist-credentials'>
           <Link to={`/${artistUrl}`} className='splash_artist_link'>
