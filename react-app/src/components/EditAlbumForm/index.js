@@ -116,14 +116,15 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
 
       <div className='inputfieldDiv'>
         <label className='titleForanInput'>About</label>
-        <input
-          className='allInputforCreateB'
+        <textarea
+          className='albumAboutInput'
           type='text'
           onChange={(e) => setAbout(e.target.value)}
           value={about}
           // placeholder='Title'
           name='name'
-        ></input>
+          rows={5}
+        ></textarea>
       </div>
 
       {/* <div className='inputfieldDiv'>
