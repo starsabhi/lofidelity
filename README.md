@@ -80,6 +80,7 @@ Check out a live version of lofidelity here: [https://lofidelity.herokuapp.com](
     - Users (Artist/Fan) are able to view all songs listed in that album.
     - Users (Artist/Fan) are able to choose a song and listen to it on the song player.
   - Song Player:
+  ![ZelpApp8](https://user-images.githubusercontent.com/95883222/172133084-f87cb7d2-d89c-4490-96e3-dcac8df110c9.gif)
     - Users are able to skip to different parts of a currently playing song.
     - Users are able to adjust the volume of the currently playing song.
     - Users are able to adjust the playback speed of the currently playing song.
