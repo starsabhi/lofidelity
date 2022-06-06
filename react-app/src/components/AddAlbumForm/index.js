@@ -1,6 +1,6 @@
 import './AddAlbumForm.css';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as albumActions from '../../store/album';
 import { useDispatch } from 'react-redux';
 
@@ -103,9 +103,9 @@ export default function AddAlbumForm({ artist, closeModal }) {
         onSubmit={handleAddSubmit}
       >
         <h2 className='add-album-header add-album-header-fix'>Add Album</h2>
-        {albumErrors.length > 0 && (
+        {albumErrors?.length > 0 && (
           <div className='resource-error-container'>
-            {albumErrors.map((error, idx) => (
+            {albumErrors?.map((error, idx) => (
               <p className='resource-error-message' key={idx}>
                 {error?.split(': ')[1]}
               </p>

@@ -1,6 +1,6 @@
 import './EditAlbumForm.css';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as albumActions from '../../store/album';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,10 +13,11 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
   //Controlled input
   const [title, setTitle] = useState(`${currentAlbum.title}`);
   const [releaseYear, setReleaseYear] = useState(`${currentAlbum.releaseYear}`);
-  const [about, setAbout] = useState(`${currentAlbum.about}`);
+  const [about, setAbout] = useState(currentAlbum?.about || '');
+
   // const [price, setPrice] = useState(`${currentAlbum.price}`);
   const [editErrors, setEditErrors] = useState([]);
-  const [newEditErros, setNewEditErros] = useState([]);
+  // const [newEditErros, setNewEditErros] = useState([]);
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -49,29 +50,29 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
   };
 
   // console.log(editErrors);
-  useEffect(() => {
-    let changedError = [];
-    for (let i = 0; i < editErrors.length; i++) {
-      console.log(editErrors[i]);
-      if (editErrors[i] === 'title : This field is required.') {
-        changedError.push('Please provide valid title');
-      }
-      if (editErrors[i] === 'releaseYear : This field is required.') {
-        changedError.push('Please provide valid release year');
-      }
-      if (editErrors[i] === 'price : Not a valid float value') {
-        changedError.push('Please provide valid price');
-      }
-      if (
-        editErrors[i] === 'releaseYear : Number must be between 1900 and 2023.'
-      ) {
-        changedError.push('Year must be between 1900 and 2023');
-      }
-    }
-    // console.log(changedError);
-    setNewEditErros(changedError);
-  }, [editErrors]);
-  // console.log(newEditError);
+  // useEffect(() => {
+  //   let changedError = [];
+  //   for (let i = 0; i < editErrors.length; i++) {
+  //     console.log(editErrors[i]);
+  //     if (editErrors[i] === 'title : This field is required.') {
+  //       changedError.push('Please provide valid title');
+  //     }
+  //     if (editErrors[i] === 'releaseYear : This field is required.') {
+  //       changedError.push('Please provide valid release year');
+  //     }
+  //     if (editErrors[i] === 'price : Not a valid float value') {
+  //       changedError.push('Please provide valid price');
+  //     }
+  //     if (
+  //       editErrors[i] === 'releaseYear : Number must be between 1900 and 2023.'
+  //     ) {
+  //       changedError.push('Year must be between 1900 and 2023');
+  //     }
+  //   }
+  //   // console.log(changedError);
+  //   setNewEditErros(changedError);
+  // }, [editErrors]);
+  // console.log(newEditErros);
 
   return (
     <form className='resource-update-form' onSubmit={handleEditSubmit}>
@@ -79,11 +80,11 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
         <span className='Edit-Album_title-span'>{`Edit Album Details`}</span>
       </div>
       <div className={`resource-update-form-update-container`}>
-        {newEditErros.length > 0 && (
+        {editErrors.length > 0 && (
           <div className='resource-error-update-container'>
-            {newEditErros.map((error, idx) => (
+            {editErrors.map((error, idx) => (
               <p className='resource-error-message' key={idx}>
-                {error}
+                {error?.split(': ')[1]}
               </p>
             ))}
           </div>

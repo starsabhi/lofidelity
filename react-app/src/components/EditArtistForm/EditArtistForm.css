@@ -19,9 +19,13 @@
 }
 
 .textareaForArtistEdit {
-  max-width: 300px;
-  max-height: 80px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  width: 300px;
+  border: 1px solid rgb(126, 126, 126);
+  padding-left: 10px;
+  max-height: 300px;
 }
 
 .edit-artist-htag {
