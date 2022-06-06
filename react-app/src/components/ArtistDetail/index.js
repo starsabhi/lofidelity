@@ -164,12 +164,13 @@ export default function ArtistDetail({ artist }) {
       </>
 
       <div className='artist-details-container'>
-        <img
-          className='artist-profile-image'
-          alt='profile'
-          src={artist?.profileImageUrl}
-        />
-
+        {artist?.profileImageUrl && (
+          <img
+            className='artist-profile-image'
+            alt='profile'
+            src={artist?.profileImageUrl}
+          />
+        )}
         <div className='artist-profile-name'>
           <div className='artist-profile-name-text'>{artist?.name}</div>
         </div>
@@ -177,9 +178,11 @@ export default function ArtistDetail({ artist }) {
           <div className='artist-profile-location-text'>{artist?.location}</div>
         </div>
         <div className='artist-profile-genre'>
-          <div className='artist-profile-genre-text'>
-            Genre: {genreList[artist?.genreId]}
-          </div>
+          {genreList[artist?.genreId] && (
+            <div className='artist-profile-genre-text'>
+              Genre: {genreList[artist?.genreId]}
+            </div>
+          )}
         </div>
         <div className='artist-profile-description'>
           <div className='artist-profile-description-text'>

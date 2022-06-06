@@ -89,17 +89,17 @@
 }
 
 .discover-artist-card-container-inner {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  align-content: flex-start;
+  align-content: flex-start; */
 
-  /* display: grid;
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, max-content));
   grid-gap: 16px;
   justify-content: center;
-  padding: initial; */
+  padding: initial;
 
   width: 100%;
 

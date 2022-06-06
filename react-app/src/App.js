@@ -80,6 +80,7 @@ export default function App() {
       const index = artists.findIndex(
         (artist) => artist.userId === sessionUser.id
       );
+      console.log(index);
       if (index !== -1) setArtistPageExist(true);
     }
   }, [dispatch, sessionUser, artists]);
@@ -114,7 +115,8 @@ export default function App() {
               ) : artistPageExist ? (
                 // if artist has already create a page:
                 // <Redirect to={`/${sessionArtist?.artistUrl}`}></Redirect>
-                <Redirect to={`/`}></Redirect>
+                // <Redirect to={`/`}></Redirect>
+                <Redirect to={`/sign-up/artist/details`}></Redirect>
               ) : (
                 //if artist needs to create page:
                 <Redirect to={`/sign-up/artist/details`}></Redirect>

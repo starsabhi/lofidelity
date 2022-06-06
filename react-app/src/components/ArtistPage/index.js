@@ -68,6 +68,7 @@ export default function ArtistPage() {
             className='artist-cover-div'
             style={{ backgroundImage: `url(${artist?.coverImageUrl})` }}
           >
+            {!artist && <h1>Artist Doesn't Exist</h1>}
             {/* <img
               className='artist-cover'
               alt='cover'
