@@ -27,9 +27,9 @@ export default function ArtistPage() {
 
   const albums = useSelector((state) => state.album);
 
-  useEffect(() => {
-    console.log('upload successful');
-  }, [artist]);
+  // useEffect(() => {
+  //   console.log('upload successful');
+  // }, [artist]);
   // console.log('ALBUMS', albums[albumId]);
 
   // useEffect(() => {
@@ -68,6 +68,7 @@ export default function ArtistPage() {
             className='artist-cover-div'
             style={{ backgroundImage: `url(${artist?.coverImageUrl})` }}
           >
+            {!artist && <h1>Artist Doesn't Exist</h1>}
             {/* <img
               className='artist-cover'
               alt='cover'

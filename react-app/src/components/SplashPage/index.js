@@ -15,7 +15,8 @@ const SplashPage = () => {
   const [artistBackgroundImg, setArtistBackgroundImg] = useState(
     'https://lofidelity-bucket.s3.amazonaws.com/pexels-photo-2270167.jpeg'
   );
-  const [artistUrl, setArtistUrl] = useState('/');
+
+  const [artistUrl, setArtistUrl] = useState('');
 
   const [showModal, setShowModal] = useState(false);
   //showModal handlers
@@ -33,6 +34,7 @@ const SplashPage = () => {
     document.getElementById('root').classList.remove('overflow');
   };
 
+  // note: set Timeout won't start until eager loading is done
   useEffect(() => {
     const interval = setTimeout(() => {
       if (
@@ -90,9 +92,10 @@ const SplashPage = () => {
           </button> */}
         </div>
         <div className='artist-credentials'>
-          <Link to={`/${artistUrl}`} className='splash_artist_link'>
+          {/* <Link to={`/${artistUrl}`} className='splash_artist_link'>
             {artistName}
-          </Link>
+          </Link> */}
+          <div className='splash_artist_link'>{artistName}</div>
           <p>from {artistLocation}</p>
         </div>
       </div>

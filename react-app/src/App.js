@@ -114,7 +114,8 @@ export default function App() {
               ) : artistPageExist ? (
                 // if artist has already create a page:
                 // <Redirect to={`/${sessionArtist?.artistUrl}`}></Redirect>
-                <Redirect to={`/`}></Redirect>
+                // <Redirect to={`/`}></Redirect>
+                <Redirect to={`/sign-up/artist/details`}></Redirect>
               ) : (
                 //if artist needs to create page:
                 <Redirect to={`/sign-up/artist/details`}></Redirect>

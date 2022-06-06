@@ -115,6 +115,7 @@ Unhide/Un-change in Future:
 TODO: artist image link to artist page
 TODO: EXTENSIVE QA OF ALL CRUD AND ROUTES AND LOG INS
 TODO: Ensure all errors visible to user make sense
+TODO: create artist doesn't exist file"
 
 TODO: NEED TO RE-MIGRATE PRODUCTION!
 
