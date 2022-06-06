@@ -1,12 +1,55 @@
-.artist-bio-container {
+.artist-details-container {
   display: flex;
   flex-direction: column;
   /* margin-bottom: 1.75em; */
 }
 
-.artist-profile {
+.artist-profile-image {
   max-width: 100%;
   max-height: 150px;
+}
+
+.artist-profile-name {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 5px 0px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.artist-profile-location {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 5px 0px;
+  color: gray;
+  font-size: 12px;
+}
+.artist-profile-genre {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 5px 0px;
+  color: gray;
+  font-size: 12px;
+}
+
+.artist-profile-description {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 5px 0px;
+  font-size: 12px;
+  padding-bottom: 60px;
+}
+
+.artist-profile-name-text,
+.artist-profile-location-text,
+.artist-profile-genre-text,
+.artist-profile-description-text {
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 .artist-edit-profile-btn {

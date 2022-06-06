@@ -164,15 +164,17 @@
   align-items: center;
   font-size: 14px;
   padding: 10px;
+  max-height: 60px;
+  overflow: hidden;
 }
 
 .discover-description-text {
   /* white-space: nowrap; */
   /* white-space: pre; */
   /* overflow-y: scroll; */
+  max-height: 60px;
   text-overflow: ellipsis;
   overflow: hidden;
-  /* text-overflow: scroll; */
-  /* overflow-wrap: break-word; */
-  /* word-break: break-all; */
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
