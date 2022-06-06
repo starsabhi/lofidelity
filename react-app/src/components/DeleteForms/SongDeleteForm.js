@@ -5,7 +5,7 @@ import * as songActions from '../../store/song';
 
 import { useDispatch } from 'react-redux';
 
-export default function DeleteSongForm({ albumId, songId, closeModal }) {
+export default function DeleteSongForm({ albumId, songId, closeModal, updateStateOnDelete }) {
   const dispatch = useDispatch();
 
   const [deleteErrors, setDeleteErrors] = useState([]);
@@ -22,6 +22,7 @@ export default function DeleteSongForm({ albumId, songId, closeModal }) {
       );
       if (resBody.message === 'Success') {
         closeModal();
+        updateStateOnDelete();
         return;
       }
     } catch (errorResponse) {

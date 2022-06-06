@@ -1,12 +1,14 @@
 import './AlbumDetail.css';
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import ReactPlayer from 'react-player';
+
+import { useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import playButton from '../../images/play-button.svg';
 import pauseButton from '../../images/pause-button.svg';
-import Player from '../Player';
+// import Player from '../Player';
 import EditAlbumForm from '../EditAlbumForm';
 
 import FullPageModal from '../FullPageModal';
@@ -29,36 +31,44 @@ export default function AlbumDetail({ artist }) {
   const [trackNumber, setTrackNumber] = useState(null);
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [currentTrack, setCurrentTrack] = useState(1);
-  const [autoPlay, setAutoPlay] = useState(false);
   const [songId, setSongId] = useState(null);
+
+
+  //slices of state related to player functionality
+  const [autoPlay, setAutoPlay] = useState(false);
+  const [trackButton, setTrackButton] = useState(playButton);
   const [deleted, setDeleted] = useState(false);
-  const [image, setImage] = useState(playButton);
-  const [clickFromPlayer, setClickFromPlayer] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const updateStateOnDelete = () => {
+    setDeleted(true);
+    setCurrentTrack(1);
+    setAutoPlay(false);
+    setTrackButton(playButton);
+  };
 
   const updatePlayButton = () => {
-    setImage(pauseButton);
-    setClickFromPlayer(true);
+    setTrackButton(pauseButton);
+    setIsPlaying(true);
+    setAutoPlay(true);
   };
 
   const updatePauseButton = () => {
-    setImage(playButton);
-    setClickFromPlayer(true);
+    setTrackButton(playButton);
+    setIsPlaying(false);
+    setAutoPlay(false);
+
   };
 
+  //updates song title and url
   useEffect(() => {
     if (songs) {
-      if (deleted) {
-        setCurrentTrack(1);
-        setDeleted(false);
-        setAutoPlay(false);
-        setClickFromPlayer(false);
-        setImage(playButton);
-      }
 
       setSongTitle(songs[currentTrack - 1]?.title);
       setUrl(songs[currentTrack - 1]?.audioUrl);
     }
-  }, [songs, currentTrack, songTitle, url, deleted]);
+  }, [songs, currentTrack, songTitle]);
+
 
   const genreList = {
     1: 'acoustic',
@@ -149,48 +159,63 @@ export default function AlbumDetail({ artist }) {
 
   return (
     <>
-      <FullPageModal
-        showModal={showAlbumEditModal}
-        closeModal={closeAlbumEditModal}
-      >
-        <EditAlbumForm artistId={sessionArtist?.id} albumId={albumId} />
-      </FullPageModal>
 
-      <FullPageModal
-        showModal={showDeleteSongModal}
-        closeModal={closeDeleteSongModal}
-      >
-        <SongDeleteForm albumId={album?.id} songId={songId} />
-      </FullPageModal>
+      <>
+        <FullPageModal
+          showModal={showAlbumEditModal}
+          closeModal={closeAlbumEditModal}
+        >
+          <EditAlbumForm artistId={sessionArtist?.id} albumId={albumId} />
+        </FullPageModal>
 
-      <FullPageModal
-        showModal={showEditSongModal}
-        closeModal={closeEditSongModal}
-      >
-        <EditSongForm
-          albumId={album?.id}
-          songId={songId}
-          trackNumber={trackNumber}
-        />
-      </FullPageModal>
-      <FullPageModal
-        showModal={showEditAlbumImageModal}
-        closeModal={closeAlbumImageModal}
-      >
-        <UploadAlbumPhoto artistId={artist?.id} albumId={albumId} />
-      </FullPageModal>
+        <FullPageModal
+          showModal={showDeleteSongModal}
+          closeModal={closeDeleteSongModal}
+        >
+          <SongDeleteForm
+            albumId={album?.id}
+            songId={songId}
+            updateStateOnDelete={updateStateOnDelete}
+          />
+        </FullPageModal>
 
-      <FullPageModal
-        showModal={showAddSongModal}
-        closeModal={closeAddSongModal}
-      >
-        <AddSongForm songType={genreList[sessionArtist?.genreId]} />
-      </FullPageModal>
+        <FullPageModal
+          showModal={showEditSongModal}
+          closeModal={closeEditSongModal}
+        >
+          <EditSongForm
+            albumId={album?.id}
+            songId={songId}
+            trackNumber={trackNumber}
+          />
+        </FullPageModal>
+        <FullPageModal
+          showModal={showEditAlbumImageModal}
+          closeModal={closeAlbumImageModal}
+        >
+          <UploadAlbumPhoto artistId={artist?.id} albumId={albumId} />
+        </FullPageModal>
+
+        <FullPageModal
+          showModal={showAddSongModal}
+          closeModal={closeAddSongModal}
+        >
+          <AddSongForm songType={genreList[sessionArtist?.genreId]} />
+        </FullPageModal>
+      </>
 
       <div className='album-detail-container-inner'>
         <div className='album-player-container'>
-          <h1>{album?.title}</h1>
-          <h3>by {artist?.name}</h3>
+          <div className='album-title-text'>{album?.title}</div>
+
+          <div className='album-year-text'>{album?.releaseYear}</div>
+
+          <div className='album-by-link'>
+            by
+            <span className='artist-name-span'>
+              <Link to={`/${artist?.artistUrl}`}>{artist?.name}</Link>
+            </span>
+          </div>
 
           {sessionArtist && sessionArtist?.id === album?.artistId && (
             <div className='DivEditdetailsforalbum'>
@@ -204,12 +229,18 @@ export default function AlbumDetail({ artist }) {
           {url && (
             <>
               <span>Now playing: {songTitle}</span>
-              <Player
-                albumId={albumId}
+
+              {/* <Player url={url} autoPlay={autoPlay} updatePlayButton={updatePlayButton} updatePauseButton={updatePauseButton} /> */}
+              <ReactPlayer
                 url={url}
-                autoPlay={autoPlay}
-                updatePauseButton={updatePauseButton}
-                updatePlayButton={updatePlayButton}
+                width='376px'
+                height='52px'
+                volume={0.3}
+                playing={autoPlay}
+                onPlay={updatePlayButton}
+                controls
+                onPause={updatePauseButton}
+
               />
 
               <div className='song-list-container'>
@@ -220,24 +251,26 @@ export default function AlbumDetail({ artist }) {
                       id={`song-${song?.id}-play-btn`}
                       alt='play'
                       src={
-                        clickFromPlayer && currentTrack === song?.trackNumber
-                          ? image
-                          : autoPlay && currentTrack === song?.trackNumber
-                          ? pauseButton
+
+                        currentTrack === song?.trackNumber
+                          ? trackButton
+
                           : playButton
                       }
                       onClick={() => {
                         setUrl(song?.audioUrl);
                         setSongTitle(song?.title);
-                        setClickFromPlayer(false);
+
+                        // match image of playing track on player to button next to track
                         if (currentTrack === song?.trackNumber) {
-                          setAutoPlay(!autoPlay);
-                        } else {
-                          setAutoPlay(true);
-                        }
+                          setAutoPlay((autoPlay) => !autoPlay);
+                        } else setAutoPlay(true);
+
+
                         setCurrentTrack(song?.trackNumber);
                       }}
                     />
+
                     <span>
                       {song?.trackNumber}. {song?.title}
                     </span>
@@ -245,14 +278,17 @@ export default function AlbumDetail({ artist }) {
                     {sessionArtist && sessionArtist?.id === album?.artistId && (
                       <>
                         <div
-                          type='button'
+                          // type='button'
                           className={`song-delete-button`}
                           onClick={() => {
                             openDeleteSongModal();
-                            setSongId(song.id);
-                            setDeleted(true);
-                            setAutoPlay(!autoPlay);
-                            setClickFromPlayer(false);
+
+                            setSongId(song?.id);
+                            if (currentTrack === song?.trackNumber) {
+                              setAutoPlay(false);
+                            }
+                            // setClickFromPlayer(false)
+
                           }}
                         >
                           <span className='material-symbols-outlined'>
@@ -261,12 +297,12 @@ export default function AlbumDetail({ artist }) {
                         </div>
 
                         <div
-                          type='button'
+                          // type='button'
                           className={`song-edit-button`}
                           onClick={() => {
                             openEditSongModal();
-                            setTrackNumber(song.trackNumber);
-                            setSongId(song.id);
+                            setTrackNumber(song?.trackNumber);
+                            setSongId(song?.id);
                           }}
                         >
                           <span className='material-symbols-outlined'>
@@ -308,12 +344,14 @@ export default function AlbumDetail({ artist }) {
                 // setAlbumId(album.id);
               }}
             >
+
               <div className='edit-profile-image-span-div-last'>
                 <span className='material-symbols-outlined'>file_upload</span>
                 <span className='edit-profile-image-span'>
                   &nbsp; Edit Album Image
                 </span>
               </div>
+
             </div>
           )}
         </div>
