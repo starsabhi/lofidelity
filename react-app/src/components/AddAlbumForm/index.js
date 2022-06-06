@@ -99,6 +99,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
             ))}
           </div>
         )}
+
         <div className='inputfieldDiv'>
           <label className='titleForanInput'>Title</label>
           <input
@@ -152,7 +153,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
           <input type='file' accept='image/*' onChange={AddImage} />
         </div>
 
-        <div className='resource-delete-form-btn-div'>
+        <div className='resource-delete-form-btn-div add-albumDivBtunList'>
           <div className='resource-btn-container'>
             <button
               className='resource-cancel-btn'
