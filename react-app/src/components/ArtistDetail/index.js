@@ -113,115 +113,55 @@ export default function ArtistDetail({ artist }) {
 
   return (
     <>
-      {/* <div className='artist-edit-container'>
-        {sessionArtist && sessionArtist?.id === artist?.id && (
-          <div className={`artist-dashboard`}>
-            <div>
-              <span>Artist Dashboard</span>
-            </div>
-            <div
-              type='button'
-              className={`edit-artist-details-button`}
-              onClick={() => {
-                openArtistDetailsModal();
-                // setAlbumId(album.id);
-              }}
-              >
-              <span className='material-symbols-outlined'>file_upload</span>
-              <span> Edit {artist?.name} Details </span>
-            </div>
-            <div
-              type='button'
-              className={`edit-profile-image-button`}
-              onClick={() => {
-                openProfileModal();
-                // setAlbumId(album.id);
-              }}
-              >
-              <span className='material-symbols-outlined'>file_upload</span>
-              <span> Edit profile image </span>
-            </div>
-            <div
-              type='button'
-              className={`edit-cover-image-button`}
-              onClick={() => {
-                openCoverModal();
-                // setAlbumId(album.id);
-              }}
-              >
-              <span className='material-symbols-outlined'>file_upload</span>
-              <span> Edit cover image </span>
-            </div>
-            <div
-              type='button'
-              className={`edit-background-image-button`}
-              onClick={() => {
-                openBackgroundModal();
-                // setAlbumId(album.id);
-              }}
-              >
-              <span className='material-symbols-outlined'>file_upload</span>
-              <span> Edit background image </span>
-            </div>
-          </div>
-        )}
-      </div> */}
+      <>
+        <FullPageModal
+          showModal={showEditArtistDetailsModal}
+          closeModal={closeArtistDetailsModal}
+        >
+          <EditArtistForm genreList={genreList} />
+        </FullPageModal>
 
-      {/* <FullPageModal showEditProfileImageModal={showEditProfileImageModal} closeModal={closeModal}>
-        <EditArtist
-        // artistId={sessionArtist?.id}
-        // albumId={albumId}
-        // deleteRedirect={updateDeleted}
-        />
-      </FullPageModal> */}
+        <FullPageModal
+          showModal={showAddAlbumModal}
+          closeModal={closeAddAlbumModal}
+        >
+          <AddAlbumForm artist={artist} closeModal={closeAddAlbumModal} />
+        </FullPageModal>
 
-      <FullPageModal
-        showModal={showEditArtistDetailsModal}
-        closeModal={closeArtistDetailsModal}
-      >
-        <EditArtistForm genreList={genreList} />
-      </FullPageModal>
-
-      <FullPageModal
-        showModal={showAddAlbumModal}
-        closeModal={closeAddAlbumModal}
-      >
-        <AddAlbumForm artist={artist} closeModal={closeAddAlbumModal} />
-      </FullPageModal>
-
-      <FullPageModal
-        showModal={showEditCoverImageModal}
-        closeModal={closeCoverModal}
-      >
-        <UploadPhoto
-          imageType={'cover'}
-          artist={artist}
-          // albumId={albumId}
-          // deleteRedirect={updateDeleted}
-        />
-      </FullPageModal>
-      <FullPageModal
-        showModal={showEditBackgroundImageModal}
-        closeModal={closeBackgroundModal}
-      >
-        <UploadPhoto
-          imageType={'background'}
-          artist={artist}
-          // albumId={albumId}
-          // deleteRedirect={updateDeleted}
-        />
-      </FullPageModal>
-      <FullPageModal
-        showModal={showEditProfileImageModal}
-        closeModal={closeProfileModal}
-      >
-        <UploadPhoto
-          imageType={'profile'}
-          artist={artist}
-          // albumId={albumId}
-          // deleteRedirect={updateDeleted}
-        />
-      </FullPageModal>
+        <FullPageModal
+          showModal={showEditCoverImageModal}
+          closeModal={closeCoverModal}
+        >
+          <UploadPhoto
+            imageType={'cover'}
+            artist={artist}
+            // albumId={albumId}
+            // deleteRedirect={updateDeleted}
+          />
+        </FullPageModal>
+        <FullPageModal
+          showModal={showEditBackgroundImageModal}
+          closeModal={closeBackgroundModal}
+        >
+          <UploadPhoto
+            imageType={'background'}
+            artist={artist}
+            // albumId={albumId}
+            // deleteRedirect={updateDeleted}
+          />
+        </FullPageModal>
+        <FullPageModal
+          showModal={showEditProfileImageModal}
+          closeModal={closeProfileModal}
+        >
+          <UploadPhoto
+            imageType={'profile'}
+            artist={artist}
+            // albumId={albumId}
+            // deleteRedirect={updateDeleted}
+          />
+        </FullPageModal>
+      </>
 
       <div className='artist-bio-container'>
         <img
@@ -236,86 +176,66 @@ export default function ArtistDetail({ artist }) {
         <p className='artist-description'>{artist?.description}</p>
 
         {sessionArtist && sessionArtist?.id === artist?.id && (
-          <div
-            className='addalbumBtn add-albumBtnover'
-            onClick={openAddAlbumModal}
-          >
-            <div>
-              <span className='material-symbols-outlined'>playlist_add</span>&nbsp;
-            </div>
-            Add Album
+          <div className={`add-album-button`} onClick={openAddAlbumModal}>
+            <span class='material-symbols-outlined'>playlist_add</span>
+            <span className='profile-edit-span'>&nbsp;Add Album</span>
           </div>
         )}
       </div>
 
-      <div className='artist-edit-container'>
-        {sessionArtist && sessionArtist?.id === artist?.id && (
-          <div className={`artist-dashboard`}>
-            <div className='artist-dashboard-header'>
-              <span
-                // className='artist-dashboard-header'
-                onClick={toggleArtistDashboard}
-              >
-                Dashboard
-              </span>
-              <span
-                className='material-symbols-outlined'
-                onClick={toggleArtistDashboard}
-              >
+      {sessionArtist && sessionArtist?.id === artist?.id && (
+        <div className='artist-edit-container'>
+          <div className={`artist-edit-profile`}>
+            <div
+              className='artist-edit-profile-btn'
+              onClick={toggleArtistDashboard}
+            >
+              <span> Edit Profile</span>
+              <span class='material-symbols-outlined'>
                 {`${showArtistDashboard ? 'expand_less' : 'expand_more'}`}
               </span>
             </div>
-            {showArtistDashboard ? (
+
+            {showArtistDashboard && (
               <>
                 <div
-                  type='button'
                   className={`edit-artist-details-button`}
-                  onClick={() => {
-                    openArtistDetailsModal();
-                    // setAlbumId(album.id);
-                  }}
+                  onClick={openArtistDetailsModal}
                 >
-                  <span className='material-symbols-outlined'>edit_note</span>
-                  <span className='dashboardEditspan'>Edit Artist Details</span>
+                  <span class='material-symbols-outlined'>edit_note</span>
+                  <span className='profile-edit-span'>
+                    &nbsp;Artist Details
+                  </span>
                 </div>
+
                 <div
-                  type='button'
                   className={`edit-profile-image-button`}
-                  onClick={() => {
-                    openProfileModal();
-                    // setAlbumId(album.id);
-                  }}
+                  onClick={openProfileModal}
                 >
                   <span className='material-symbols-outlined'>file_upload</span>
-                  <span className='dashboardEditspan'>Edit Profile Image</span>
+                  <span className='profile-edit-span'>&nbsp;Profile Image</span>
                 </div>
+
                 <div
-                  type='button'
                   className={`edit-cover-image-button`}
-                  onClick={() => {
-                    openCoverModal();
-                    // setAlbumId(album.id);
-                  }}
+                  onClick={openCoverModal}
                 >
                   <span className='material-symbols-outlined'>file_upload</span>
-                  <span className='dashboardEditspan'>Edit Cover Image </span>
+                  <span className='profile-edit-span'>&nbsp;Cover Image </span>
                 </div>
+
                 <div
-                  type='button'
                   className={`edit-background-image-button`}
-                  onClick={() => {
-                    openBackgroundModal();
-                    // setAlbumId(album.id);
-                  }}
+                  onClick={openBackgroundModal}
                 >
                   <span className='material-symbols-outlined'>file_upload</span>
-                  <span className='dashboardEditspan'> Edit BG Image</span>
+                  <span className='profile-edit-span'>&nbsp;BG Image</span>
                 </div>
               </>
-            ) : null}
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }

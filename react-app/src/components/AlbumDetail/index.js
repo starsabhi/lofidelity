@@ -29,7 +29,7 @@ export default function AlbumDetail({ artist }) {
   // slices of state
   const [url, setUrl] = useState(songs ? songs[0]?.audioUrl : '');
   const [trackNumber, setTrackNumber] = useState(null);
-  const [editTitle, setEditTitle] = useState('')
+  const [editTitle, setEditTitle] = useState('');
   const [songTitle, setSongTitle] = useState(songs ? songs[0]?.title : '');
   const [currentTrack, setCurrentTrack] = useState(1);
   const [songId, setSongId] = useState(null);
@@ -203,30 +203,21 @@ export default function AlbumDetail({ artist }) {
 
       <div className='album-detail-container-inner'>
         <div className='album-player-container'>
-          <div className='album-title-text'>{album?.title}</div>
-
-          <div className='album-year-text'>{album?.releaseYear}</div>
-          <div className='album-year-text'>{album?.about}</div>
+          <div className='album-title-text'>{album?.title} </div>
 
           <div className='album-by-link'>
-            by
+            <span>by &nbsp;</span>
             <span className='artist-name-span'>
               <Link to={`/${artist?.artistUrl}`}>{artist?.name}</Link>
             </span>
           </div>
 
-          {sessionArtist && sessionArtist?.id === album?.artistId && (
-            <div className='DivEditdetailsforalbum'>
-              <div className='editAlbumDetails' onClick={openAlbumEditModal}>
-                <span className='material-symbols-outlined'>edit_note</span>
-                Edit Album Details
-              </div>
-            </div>
-          )}
-
           {url && (
             <>
-              <span>Now playing: {songTitle}</span>
+              <div className='album-now-playing'>
+                <div className='album-song-now-text'>Now Playing:</div>
+                <div className='album-song-title'> {songTitle}</div>
+              </div>
 
               {/* <Player url={url} autoPlay={autoPlay} updatePlayButton={updatePlayButton} updatePauseButton={updatePauseButton} /> */}
               <ReactPlayer
@@ -245,45 +236,47 @@ export default function AlbumDetail({ artist }) {
               <div className='song-list-container'>
                 {songs?.map((song) => (
                   <div className='song-container' key={song?.id}>
-                    <img
-                      className='song-play-btn'
-                      id={`song-${song?.id}-play-btn`}
-                      alt='play'
-                      src={
-                        currentTrack === song?.trackNumber
-                          ? trackButton
-                          : playButton
-                      }
-                      onClick={() => {
-                        setUrl(song?.audioUrl);
-                        setSongTitle(song?.title);
+                    <div className='song-play-title-container'>
+                      <div
+                        className='song-play-btn-container'
+                        onClick={() => {
+                          setUrl(song?.audioUrl);
+                          setSongTitle(song?.title);
 
-                        // match image of playing track on player to button next to track
-                        if (currentTrack === song?.trackNumber) {
-                          setAutoPlay((autoPlay) => !autoPlay);
-                        } else setAutoPlay(true);
+                          // match image of playing track on player to button next to track
+                          if (currentTrack === song?.trackNumber) {
+                            setAutoPlay((autoPlay) => !autoPlay);
+                          } else setAutoPlay(true);
 
-                        setCurrentTrack(song?.trackNumber);
-                      }}
-                    />
-
-                    <span>
-                      {song?.trackNumber}. {song?.title}
-                    </span>
+                          setCurrentTrack(song?.trackNumber);
+                        }}
+                      >
+                        <img
+                          className='song-play-btn'
+                          id={`song-${song?.id}-play-btn`}
+                          alt='play'
+                          src={
+                            currentTrack === song?.trackNumber
+                              ? trackButton
+                              : playButton
+                          }
+                        />
+                      </div>
+                      <div className='song-track-title-text'>
+                        {song?.trackNumber}. {song?.title}
+                      </div>
+                    </div>
 
                     {sessionArtist && sessionArtist?.id === album?.artistId && (
-                      <>
+                      <div className={`song-edit-delete-container`}>
                         <div
-                          // type='button'
                           className={`song-delete-button`}
                           onClick={() => {
                             openDeleteSongModal();
-
                             setSongId(song?.id);
                             if (currentTrack === song?.trackNumber) {
                               setAutoPlay(false);
                             }
-                            // setClickFromPlayer(false)
                           }}
                         >
                           <span className='material-symbols-outlined'>
@@ -292,20 +285,19 @@ export default function AlbumDetail({ artist }) {
                         </div>
 
                         <div
-                          // type='button'
                           className={`song-edit-button`}
                           onClick={() => {
                             openEditSongModal();
                             setTrackNumber(song?.trackNumber);
                             setSongId(song?.id);
-                            setEditTitle(song?.title)
+                            setEditTitle(song?.title);
                           }}
                         >
                           <span className='material-symbols-outlined'>
                             edit
                           </span>
                         </div>
-                      </>
+                      </div>
                     )}
                   </div>
                 ))}
@@ -319,11 +311,13 @@ export default function AlbumDetail({ artist }) {
               className={`song-add-button`}
               onClick={openAddSongModal}
             >
-              <span className='material-symbols-outlined'> add</span>
+              <div className='material-symbols-outlined'> add</div>
+              <div> Add Track</div>
             </div>
           )}
         </div>
-        <div className='album-detail-image-div'>
+
+        <div className='album-detail-image-container'>
           <img
             className='album-detail-image'
             id={`album-${album?.id}-image-detail`}
@@ -331,19 +325,37 @@ export default function AlbumDetail({ artist }) {
             src={album?.imageUrl}
           />
 
+          <div className='album-about-container'>
+            <div className='album-year-text-container'>
+              <span className='album-year-text'>Released&nbsp;</span>
+              {album?.releaseYear}
+            </div>
+            <div className='album-description-container'>
+              <div className='album-description-text'>Album Description:</div>
+            </div>
+
+            <div className='album-about-text'>{album?.about}</div>
+          </div>
+
           {sessionArtist && sessionArtist?.id === album?.artistId && (
-            <div
-              type='button'
-              className={`edit-profile-image-button-album-detail`}
-              onClick={() => {
-                openAlbumImageModal();
-                // setAlbumId(album.id);
-              }}
-            >
-              <div className='edit-profile-image-span-div-last'>
+            <div className='edit-album-button-container'>
+              <div
+                className='edit-album-image-button'
+                onClick={openAlbumImageModal}
+              >
                 <span className='material-symbols-outlined'>file_upload</span>
                 <span className='edit-profile-image-span'>
-                  &nbsp; Edit Album Image
+                  &nbsp;Edit Album Image
+                </span>
+              </div>
+
+              <div
+                className='edit-album-details-button'
+                onClick={openAlbumEditModal}
+              >
+                <span className='material-symbols-outlined'>edit_note</span>
+                <span className='edit-profile-image-span'>
+                  &nbsp;Edit Album Details
                 </span>
               </div>
             </div>

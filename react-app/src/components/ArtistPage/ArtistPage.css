@@ -128,7 +128,7 @@ li.artist-community {
   flex-grow: 1;
   width: 100%;
 
-  padding: 35px 30px;
+  padding: 30px;
   padding-bottom: 40px;
 }
 
@@ -141,7 +141,6 @@ li.artist-community {
 
   width: 100%;
   margin: 0;
-  padding-right: 30px;
 }
 
 .artist-detail-container {
