@@ -100,8 +100,6 @@ BACKEND:
 
 BONUS - TODO:  add backend route protection so a logged in user can't update other user's things
     - passing, but bad actor could exploit
-
-BONUS - BUG: when click play it should start the player, not just load the song
 BONUS - BUG: artist can manually enter album number in url and edit info on that album regardless of ownership
 BONUS: let artist view page as user (clear session state, then use session thunk to update again)
 BONUS ADD delete to album page with redirect to artist page
@@ -113,10 +111,11 @@ Unhide/Un-change in Future:
     - change back color of terms of use on signup page
     - add price back in
 
-TODO: update styling through out
-TODO: album image link to artist page
+
+TODO: artist image link to artist page
 TODO: EXTENSIVE QA OF ALL CRUD AND ROUTES AND LOG INS
+TODO: Ensure all errors visible to user make sense
+
 TODO: NEED TO RE-MIGRATE PRODUCTION!
--IF ERROR that user doesn't understand, that will be a deferral
 
 """

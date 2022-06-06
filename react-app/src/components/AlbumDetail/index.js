@@ -331,7 +331,7 @@ export default function AlbumDetail({ artist }) {
               {album?.releaseYear}
             </div>
             <div className='album-description-container'>
-              <div className='album-description-text'>Album Description:</div>
+              <div className='album-description-text'>About:</div>
             </div>
 
             <div className='album-about-text'>{album?.about}</div>

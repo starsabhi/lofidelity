@@ -165,7 +165,7 @@
 
 .album-about-text {
   font-size: 14px;
-  /* overflow-wrap: break-word; */
+  overflow-wrap: break-word;
   word-break: break-all;
 }
 

@@ -163,17 +163,29 @@ export default function ArtistDetail({ artist }) {
         </FullPageModal>
       </>
 
-      <div className='artist-bio-container'>
+      <div className='artist-details-container'>
         <img
-          className='artist-profile'
+          className='artist-profile-image'
           alt='profile'
           src={artist?.profileImageUrl}
         />
 
-        <span className='artist-name'>{artist?.name}</span>
-        <span className='artist-genre'>{genreList[artist?.genreId]}</span>
-        <span className='artist-location'>{artist?.location}</span>
-        <p className='artist-description'>{artist?.description}</p>
+        <div className='artist-profile-name'>
+          <div className='artist-profile-name-text'>{artist?.name}</div>
+        </div>
+        <div className='artist-profile-location'>
+          <div className='artist-profile-location-text'>{artist?.location}</div>
+        </div>
+        <div className='artist-profile-genre'>
+          <div className='artist-profile-genre-text'>
+            Genre: {genreList[artist?.genreId]}
+          </div>
+        </div>
+        <div className='artist-profile-description'>
+          <div className='artist-profile-description-text'>
+            {artist?.description}
+          </div>
+        </div>
 
         {sessionArtist && sessionArtist?.id === artist?.id && (
           <div className={`add-album-button`} onClick={openAddAlbumModal}>
