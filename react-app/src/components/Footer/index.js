@@ -18,13 +18,13 @@ const Footer = () => {
                   alt='github'
                 ></img>
               </a>
-              <a href='https://github.com/Amlovern' target='_blank' rel='noreferrer'>
+              {/* <a href='https://github.com/Amlovern' target='_blank' rel='noreferrer'>
                 <img
                   src={linkedInLogo}
                   height='25px'
                   alt='linkedIn'
                 ></img>
-              </a>
+              </a> */}
             </div>
           </div>
           <div className='smallName'>
