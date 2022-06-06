@@ -86,7 +86,7 @@ def add_song():
         song = request.files["song"]
 
         if not allowed_file(song.filename):
-            return {"errors": ["File type not permitted"]}, 400
+            return {"errors": ["File type not permitted (Only .mp3, .wav, .FLAC permitted)"]}, 400
 
         song.filename = get_unique_filename(song.filename)
 

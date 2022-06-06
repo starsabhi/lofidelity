@@ -1,5 +1,6 @@
 .add-album {
   height: 600px;
+  /* display: flex; */
   border: 1px solid rgb(126, 126, 126);
   background-color: rgb(243, 243, 243);
 }
@@ -111,4 +112,9 @@ input[type='file']::file-selector-button:hover {
 
 .add-album-header-fix {
   padding-bottom: 15px;
+}
+
+.UploadingLoadingptag {
+  display: flex;
+  justify-content: center;
 }
