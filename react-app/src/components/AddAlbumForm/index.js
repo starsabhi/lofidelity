@@ -172,13 +172,14 @@ export default function AddAlbumForm({ artist, closeModal }) {
               className='resource-cancel-btn'
               type='button'
               onClick={closeModal}
+              disabled={imageLoading}
             >
               Cancel
             </button>
           </div>
 
           <div className='resource-btn-container'>
-            <button className='resource-delete-btn' type='submit'>
+            <button className='resource-delete-btn' type='submit' disabled={imageLoading}>
               Submit
             </button>
           </div>

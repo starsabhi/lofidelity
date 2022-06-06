@@ -130,7 +130,8 @@
   background-color: rgba(3, 162, 198, 0.76);
 }
 
-.resource-btn:disabled {
+.resource-cancel-btn:disabled,
+.resource-delete-btn:disabled {
   background-color: rgb(126, 126, 126);
   border: 1px solid rgb(126, 126, 126);
 }
