@@ -67,6 +67,7 @@ Check out a live version of lofidelity here: [https://lofidelity.herokuapp.com](
     - Users are able to sign in to access their account.
     - Users are able to log in as a Demo Fan account or Demo Artist account to experience the site before signing up.
   -  Artist Page:
+  -  ![ZelpApp10](https://user-images.githubusercontent.com/95883222/172137689-6124c3d6-5011-4e37-bf84-c8f658da58f2.gif)
     - Users (Artist) are able to create thier own albums.
     - Users (Artist) are able delete thier own albums.
     - Users (Artist) are able to edit their details, bio, and profile images.
