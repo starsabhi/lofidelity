@@ -16,7 +16,7 @@ export default function AddAlbumForm({ artist, closeModal }) {
   const [about, setAbout] = useState('');
   // const [price, setPrice] = useState('');
   const [albumErrors, setAlbumErrors] = useState([]);
-  const [newAddErros, setAddEditErros] = useState([]);
+  // const [newAddErros, setAddEditErros] = useState([]);
   // const [newEditErros, setNewEditErros] = useState([]);
 
   const handleAddSubmit = async (e) => {
@@ -63,33 +63,36 @@ export default function AddAlbumForm({ artist, closeModal }) {
     setImage(file);
   };
 
-  useEffect(() => {
-    let changedError = [];
-    for (let i = 0; i < albumErrors.length; i++) {
-      console.log(albumErrors[i]);
-      if (albumErrors[i] === 'title : This field is required.') {
-        changedError.push('Please provide valid title');
-      }
-      if (albumErrors[i] === 'releaseYear : This field is required.') {
-        changedError.push('Year must be between 1900 and 2023');
-      }
-      if (
-        albumErrors[i] === 'releaseYear : Number must be between 1900 and 2023.'
-      ) {
-        changedError.push('Year must be between 1900 and 2023');
-      }
-      if (albumErrors[i] === 'Please choose a Image file') {
-        changedError.push('Please choose a Image file');
-      }
-      if (albumErrors[i] === 'File type not permitted') {
-        changedError.push(
-          'File type not permitted (Only .png, .jpg, .jpeg, .gif permitted)'
-        );
-      }
-    }
-    // console.log(changedError);
-    setAddEditErros(changedError);
-  }, [albumErrors]);
+  // useEffect(() => {
+  //   let changedError = [];
+  //   for (let i = 0; i < albumErrors.length; i++) {
+  //     console.log(albumErrors[i]);
+  //     if (albumErrors[i] === 'title : This field is required.') {
+  //       changedError.push('Please provide valid title');
+  //     }
+  //     if (albumErrors[i] === 'title : Title must be less than 255 characters.') {
+  //       changedError.push('Title must be less than 255 characters.');
+  //     }
+  //     if (albumErrors[i] === 'releaseYear : This field is required.') {
+  //       changedError.push('Year must be between 1900 and 2023');
+  //     }
+  //     if (
+  //       albumErrors[i] === 'releaseYear : Number must be between 1900 and 2023.'
+  //     ) {
+  //       changedError.push('Year must be between 1900 and 2023');
+  //     }
+  //     if (albumErrors[i] === 'Please choose a Image file') {
+  //       changedError.push('Please choose an Image file');
+  //     }
+  //     if (albumErrors[i] === 'File type not permitted') {
+  //       changedError.push(
+  //         'File type not permitted (Only .png, .jpg, .jpeg, .gif permitted)'
+  //       );
+  //     }
+  //   }
+  //   // console.log(changedError);
+  // setAddEditErros(changedError);
+  // }, [albumErrors]);
 
   // console.log('************', albumErrors);
 
@@ -100,11 +103,11 @@ export default function AddAlbumForm({ artist, closeModal }) {
         onSubmit={handleAddSubmit}
       >
         <h2 className='add-album-header add-album-header-fix'>Add Album</h2>
-        {newAddErros.length > 0 && (
+        {albumErrors.length > 0 && (
           <div className='resource-error-container'>
-            {newAddErros.map((error, idx) => (
+            {albumErrors.map((error, idx) => (
               <p className='resource-error-message' key={idx}>
-                {error}
+                {error?.split(': ')[1]}
               </p>
             ))}
           </div>
@@ -159,7 +162,13 @@ export default function AddAlbumForm({ artist, closeModal }) {
           ></input>
         </div> */}
 
-        <div className='resource-delete-text2 resource-add-text2'>
+        <div className='inputfieldDiv'>
+          <div className='titleForanInput'>
+            Please upload your album cover image:
+          </div>
+        </div>
+
+        <div className='resource-delete-text2 resource-add-text2 file-upload-div'>
           <input type='file' accept='image/*' onChange={AddImage} />
         </div>
 
@@ -172,13 +181,18 @@ export default function AddAlbumForm({ artist, closeModal }) {
               className='resource-cancel-btn'
               type='button'
               onClick={closeModal}
+              disabled={imageLoading}
             >
               Cancel
             </button>
           </div>
 
           <div className='resource-btn-container'>
-            <button className='resource-delete-btn' type='submit'>
+            <button
+              className='resource-delete-btn'
+              type='submit'
+              disabled={imageLoading}
+            >
               Submit
             </button>
           </div>
