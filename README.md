@@ -64,6 +64,7 @@ Check out a live version of lofidelity here: [https://lofidelity.herokuapp.com](
     - Users can choose to sign-up as an artist or as a fan.
     - Artists will be prompted to provide more details than fans to improve customability and fan interaction.
   -  Login Page:
+  -  
     - Users are able to sign in to access their account.
     - Users are able to log in as a Demo Fan account or Demo Artist account to experience the site before signing up.
   -  Artist Page:
