@@ -50,11 +50,17 @@
 .artist-dashboard-header {
   font-weight: 600;
   font-size: 18px;
-  color: #0000ee;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid black;
+  /* color: #0000ee; */
 }
 
 .artist-dashboard-header:hover {
-  text-decoration: underline;
+  background-color: rgb(243, 243, 243);
   cursor: pointer;
 }
 
@@ -76,5 +82,58 @@
   margin-left: -5px;
 }
 .add-albumBtnover:hover {
+  background-color: rgb(243, 243, 243);
+}
+.expandmoreDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboardEditspan {
+  font-size: 15px;
+}
+
+.dashboardEditspan:hover {
+  cursor: pointer;
+  background-color: rgb(243, 243, 243);
+}
+
+.edit-artist-details-button {
+  display: flex;
+  align-items: center;
+}
+
+.edit-artist-details-button:hover {
+  cursor: pointer;
+  background-color: rgb(243, 243, 243);
+}
+
+.edit-profile-image-button {
+  display: flex;
+  align-items: center;
+}
+
+.edit-profile-image-button:hover {
+  cursor: pointer;
+  background-color: rgb(243, 243, 243);
+}
+
+.edit-cover-image-button {
+  display: flex;
+  align-items: center;
+}
+
+.edit-cover-image-button:hover {
+  cursor: pointer;
+  background-color: rgb(243, 243, 243);
+}
+
+.edit-background-image-button {
+  display: flex;
+  align-items: center;
+}
+
+.edit-background-image-button:hover {
+  cursor: pointer;
   background-color: rgb(243, 243, 243);
 }
