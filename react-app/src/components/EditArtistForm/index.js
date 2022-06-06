@@ -20,6 +20,7 @@ export default function EditArtistForm({ genreList, closeModal }) {
   const [artistUrl, setArtistUrl] = useState(`${artist?.artistUrl}`);
   const [description, setDescription] = useState(`${artist?.description}`);
   const [editErrors, setEditErrors] = useState([]);
+  const [newAddErros, setAddEditErros] = useState([]);
 
   const genreArr = Object.entries(genreList);
 
@@ -59,75 +60,123 @@ export default function EditArtistForm({ genreList, closeModal }) {
     }
   };
 
+  useEffect(() => {
+    let changedError = [];
+    for (let i = 0; i < editErrors.length; i++) {
+      console.log(editErrors[i]);
+      if (editErrors[i] === 'name : This field is required.') {
+        changedError.push('Please provide valid Name');
+      }
+      if (editErrors[i] === 'location : This field is required.') {
+        changedError.push('Please provide valid Location');
+      }
+      if (editErrors[i] === 'artistUrl : This field is required.') {
+        changedError.push('Please provide valid Location');
+      }
+      if (editErrors[i] === 'description : This field is required.') {
+        changedError.push('Please provide valid description');
+      }
+    }
+    // console.log(changedError);
+    setAddEditErros(changedError);
+  }, [editErrors]);
+  console.log('*************', newAddErros);
+
+  //   name : This field is required.
+  // location : This field is required.
+  // artistUrl : This field is required.
+  // description : This field is required.
+
   return (
-    <form className='resource-delete-form' onSubmit={handleEditSubmit}>
-      <div className={`resource-delete-form-container`}>
-        {editErrors.length > 0 && (
-          <div className='resource-error-container'>
-            {editErrors.map((error, idx) => (
-              <p className='resource-error-message' key={idx}>
-                {error}
-              </p>
-            ))}
-          </div>
-        )}
+    <form
+      className='resource-update-form edit-artist'
+      onSubmit={handleEditSubmit}
+    >
+      <h2 className='add-artist-header edit-artist-htag'>
+        Edit Artist Details
+      </h2>
+      {newAddErros.length > 0 && (
+        <div className='resource-error-containerr edit-artist-error-div'>
+          {newAddErros.map((error, idx) => (
+            <p className='resource-error-message ptagErrorMessage' key={idx}>
+              {error}
+            </p>
+          ))}
+        </div>
+      )}
+
+      <div className='inputfieldDiv'>
+        <label className='titleForanInput' for='name'>
+          Artist Name
+        </label>
+        <input
+          className='allInputforCreateB'
+          type='text'
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+          // placeholder='Title'
+          name='name'
+        ></input>
       </div>
-      <div className='resource-delete-text1'>
-        <span>{`Edit Artist Details`}</span>
+      <div className='inputfieldDiv'>
+        <label className='titleForanInput' for='artist-url'>
+          Artist URL
+        </label>
+        <input
+          className='allInputforCreateB'
+          type='text'
+          onChange={(e) => setArtistUrl(e.target.value)}
+          value={artistUrl}
+          // placeholder='Title'
+          name='artist-url'
+        ></input>
+      </div>
+      <div className='inputfieldDiv'>
+        <label className='titleForanInput' for='genre'>
+          Genre
+        </label>
+        <select
+          className='allInputforCreateB'
+          onChange={(e) => setGenreId(e.target.value)}
+          onMouseMove={(e) => setGenreId(e.target.value)}
+          defaultValue={genreId}
+          value={genreId}
+          name='genre'
+        >
+          {genreArr?.map(([num, value], i) => (
+            <option key={i} value={i + 1}>
+              {`${value}`}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className='inputfieldDiv'>
+        <label className='titleForanInput' for='location'>
+          Location
+        </label>
+        <input
+          className='allInputforCreateB'
+          type='text'
+          onChange={(e) => setLocation(e.target.value)}
+          value={location}
+          // placeholder='Title'
+          name='location'
+        ></input>
+      </div>
+      <div className='inputfieldDiv'>
+        <label className='titleForanInput' for='description'>
+          Description
+        </label>
+        <textarea
+          className='allInputforCreateB textareaForArtistEdit'
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
+          // placeholder='Title'
+          name='description'
+        ></textarea>
       </div>
 
-      <label for='name'>Artist Name</label>
-      <input
-        className='edit-artist-input'
-        type='text'
-        onChange={(e) => setName(e.target.value)}
-        value={name}
-        // placeholder='Title'
-        name='name'
-      ></input>
-      <label for='artist-url'>Artist URL</label>
-      <input
-        className='edit-artist-input'
-        type='text'
-        onChange={(e) => setArtistUrl(e.target.value)}
-        value={artistUrl}
-        // placeholder='Title'
-        name='artist-url'
-      ></input>
-      <label for='genre'>Genre</label>
-      <select
-        className='edit-artist-select'
-        onChange={(e) => setGenreId(e.target.value)}
-        onMouseMove={(e) => setGenreId(e.target.value)}
-        defaultValue={genreId}
-        value={genreId}
-        name='genre'
-      >
-        {genreArr?.map(([num, value], i) => (
-          <option key={i} value={i + 1}>
-            {`${value}`}
-          </option>
-        ))}
-      </select>
-      <label for='location'>Location</label>
-      <input
-        className='edit-artist-input'
-        type='text'
-        onChange={(e) => setLocation(e.target.value)}
-        value={location}
-        // placeholder='Title'
-        name='location'
-      ></input>
-      <label for='description'>Description</label>
-      <textarea
-        className='edit-artist-textarea'
-        onChange={(e) => setDescription(e.target.value)}
-        value={description}
-        // placeholder='Title'
-        name='description'
-      ></textarea>
-
-      <div className='resource-delete-form-btn-div'>
+      <div className='resource-delete-form-btn-div add-albumDivBtunList'>
         <div className='resource-btn-container'>
           <button
             className='resource-cancel-btn'

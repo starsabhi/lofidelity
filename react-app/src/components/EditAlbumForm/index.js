@@ -138,7 +138,7 @@ export default function EditAlbumForm({ artistId, albumId, closeModal }) {
         ></input>
       </div> */}
 
-      <div className='resource-delete-form-btn-div'>
+      <div className='resource-delete-form-btn-div add-albumDivBtunList'>
         <div className='resource-btn-container'>
           <button
             className='resource-cancel-btn'

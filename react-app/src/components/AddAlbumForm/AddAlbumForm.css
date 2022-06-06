@@ -73,7 +73,7 @@ input[type='file']::file-selector-button:hover {
   text-decoration: none;
   font-weight: 200;
   color: white;
-  background-color: rgba(230, 16, 16, 0.734);
+  background-color: rgb(3, 161, 198);
   cursor: pointer;
   /* transition: border 0.5s, background-color 0.5s, color 0.5s; */
   transition-property: background-color;
@@ -92,7 +92,7 @@ input[type='file']::file-selector-button:hover {
   text-decoration: none;
   font-weight: 200;
   color: white;
-  background-color: rgba(105, 125, 130, 0.59);
+  background-color: rgb(3, 161, 198);
   cursor: pointer;
   /* transition: border 0.5s, background-color 0.5s, color 0.5s; */
   transition-property: background-color;
@@ -102,4 +102,13 @@ input[type='file']::file-selector-button:hover {
 }
 .resource-cancel-btn:hover {
   background-color: gray;
+}
+
+.add-albumDivBtunList {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-album-header-fix {
+  padding-bottom: 15px;
 }
