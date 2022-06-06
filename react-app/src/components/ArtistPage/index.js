@@ -27,9 +27,9 @@ export default function ArtistPage() {
 
   const albums = useSelector((state) => state.album);
 
-  useEffect(() => {
-    console.log('upload successful');
-  }, [artist]);
+  // useEffect(() => {
+  //   console.log('upload successful');
+  // }, [artist]);
   // console.log('ALBUMS', albums[albumId]);
 
   // useEffect(() => {

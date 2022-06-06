@@ -80,7 +80,6 @@ export default function App() {
       const index = artists.findIndex(
         (artist) => artist.userId === sessionUser.id
       );
-      console.log(index);
       if (index !== -1) setArtistPageExist(true);
     }
   }, [dispatch, sessionUser, artists]);
