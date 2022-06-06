@@ -61,9 +61,9 @@ export default function UploadAlbumPhoto({ artistId, albumId, closeModal }) {
         <div className='resource-delete-text1'>
           <span>{`Upload Album image`}</span>
         </div>
-        <div className='resource-delete-text2'>
+        {/* <div className='resource-delete-text2'>
           <span>{`Upload your new Album image`}</span>
-        </div>
+        </div> */}
       {uploadErrors.length > 0 && (
         <div className='resource-error-container'>
           {uploadErrors.map((error, idx) => (
