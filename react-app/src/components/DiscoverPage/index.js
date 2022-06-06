@@ -52,10 +52,14 @@ export default function DiscoverPage() {
                         className='discover-artistName'
                         id='artistNameInnerId'
                       >
-                        <div className='user-name-text-overflow'>{artist.name}</div>
+                        <div className='user-name-text-overflow'>
+                          {artist.name}
+                        </div>
                       </div>
                       <div className='discover-artistdescription'>
-                        <div>{artist.description}</div>
+                        <div className='discover-description-text'>
+                          {artist.description}
+                        </div>
                       </div>
                     </div>
                   </div>
