@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 //prettier-ignore
 import { useParams, Route, Switch, NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -6,6 +6,9 @@ import AlbumDetail from '../AlbumDetail';
 import ArtistDetail from '../ArtistDetail';
 import ArtistAlbums from '../ArtistAlbums';
 import './ArtistPage.css';
+
+import brokenRecord from '../../images/broken-record.jpg';
+
 // import * as sessionActions from '../../store/session';
 // import * as artistActions from '../../store/artist';
 
@@ -50,6 +53,18 @@ export default function ArtistPage() {
   // future work, for redirecting non-existent route
   // use effect that loads one artist into state, then have renderReady
   //  state that is only true once artist call as been made, then can check route
+
+  const albumNotFound = (
+    <div className='album-not-found'>
+      <img
+        className='album-detail-image'
+        alt='album cover'
+        // https://unsplash.com/photos/KjJuHQG02qU
+        src={brokenRecord}
+      />
+      <h1>Album Not Found</h1>
+    </div>
+  );
 
   return (
     <>
@@ -115,15 +130,14 @@ export default function ArtistPage() {
                   <ArtistAlbums artist={artist} />
                 </Route>
                 <Route path='/:artistName/albums/:id(\d+)' exact={true}>
-                  {albums[albumId] ? (
+                  {albums[albumId] &&
+                  albums[albumId]?.artistId === artist?.id ? (
                     <AlbumDetail artist={artist} />
                   ) : (
-                    <h1>album doesn't exist</h1>
+                    albumNotFound
                   )}
                 </Route>
-                <Route>
-                  <h1>album doesn't exist</h1>
-                </Route>
+                <Route> {albumNotFound}</Route>
               </Switch>
             </div>
             <div className='artist-detail-container'>

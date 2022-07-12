@@ -141,6 +141,7 @@ li.artist-community {
 
   width: 100%;
   margin: 0;
+  position: relative;
 }
 
 .artist-detail-container {
@@ -155,4 +156,18 @@ li.artist-community {
   flex-direction: column;
   flex-wrap: wrap;
   width: 150px;
+}
+
+.album-not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0px;
+}
+
+.album-not-found img {
+  border-radius: 18px;
 }
