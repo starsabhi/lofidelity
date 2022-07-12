@@ -139,10 +139,6 @@ Splash Page: - MARK (anthony if time)
     album page
         - mobile query - change to flex-direction column so album art below, make album art smaller
         -artist profile can show up below the album art
--BUG: Routing Error BUG - EK
-    - user can manually enter album number in an artist's url and the info is displayed with wrong artist profile
-    -check if album's artistid matches ur;s artist id, if not render album not found for artist
--TODO: artist image link to artist page - EK
 
 BONUS: add a search bar to nav (make mobile friendly)
     -dynamic dropdown that matches artist name
