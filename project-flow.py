@@ -139,7 +139,6 @@ Splash Page: - MARK (anthony if time)
     album page
         - mobile query - change to flex-direction column so album art below, make album art smaller
         -artist profile can show up below the album art
--TODO: artist image link to artist page - EK
 
 BONUS: add a search bar to nav (make mobile friendly)
     -dynamic dropdown that matches artist name

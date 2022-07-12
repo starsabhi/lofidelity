@@ -18,6 +18,16 @@
   font-size: 14px;
 }
 
+.artist-profile-name a,
+.artist-profile-name-text {
+  color: black;
+  text-decoration: none;
+}
+
+.artist-profile-name-text:hover {
+  text-decoration: underline;
+}
+
 .artist-profile-location {
   display: flex;
   /* justify-content: center; */

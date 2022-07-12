@@ -3,6 +3,7 @@ import './ArtistDetail.css';
 import React, { useState } from 'react';
 // import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import FullPageModal from '../FullPageModal';
 import EditArtistForm from '../EditArtistForm';
@@ -165,14 +166,18 @@ export default function ArtistDetail({ artist }) {
 
       <div className='artist-details-container'>
         {artist?.profileImageUrl && (
-          <img
-            className='artist-profile-image'
-            alt='profile'
-            src={artist?.profileImageUrl}
-          />
+          <Link to={`/${artist?.artistUrl}`}>
+            <img
+              className='artist-profile-image'
+              alt='profile'
+              src={artist?.profileImageUrl}
+            />
+          </Link>
         )}
         <div className='artist-profile-name'>
-          <div className='artist-profile-name-text'>{artist?.name}</div>
+          <Link to={`/${artist?.artistUrl}`}>
+            <div className='artist-profile-name-text'>{artist?.name}</div>
+          </Link>
         </div>
         <div className='artist-profile-location'>
           <div className='artist-profile-location-text'>{artist?.location}</div>
