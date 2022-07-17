@@ -107,19 +107,19 @@ Project Note: Scalability and eager loading:
 ****************************************************************
 SPRINT WEEK:
 
--Discover Page: - MARK
+-Discover Page: - MARK - DONE
     -cover photo for our brand
     -https://pixabay.com/illustrations/music-player-music-music-background-2951399/
     -https://pixabay.com/vectors/record-player-needle-retro-dj-2385850/ (with colored background)
 
-Splash Page: - MARK (anthony if time)
+Splash Page: - MARK (anthony if time) - DONE
     -default brand image before setInterval starts up - empty string
     -re-add the artist links
     -one local file to start
     -update starter image
     1920-1080 for bg images
 
--Robust seeder data - MARK
+-Robust seeder data - MARK - DONE
     -12 artist - 3 photos (cover, profile, bg)
         -3 albums - 1 photo (album artwork)
             -3 songs
