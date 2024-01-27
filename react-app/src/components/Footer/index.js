@@ -21,13 +21,13 @@ export default function Footer() {
               >
                 <img src={githubLogo} height='20px' alt='github'></img>
               </a>
-              {/* <a href='https://github.com/Amlovern' target='_blank' rel='noreferrer'>
+              <a href='https://www.linkedin.com/in/anthonylovern/' target='_blank' rel='noreferrer'>
                 <img
                   src={linkedInLogo}
                   height='25px'
                   alt='linkedIn'
                 ></img>
-              </a> */}
+              </a>
             </div>
           </div>
 
